@@ -4,7 +4,7 @@
 // Check the function someObject()                                            //
 // and correct the code that starts at line 17.                               //
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, Coordinates, $, document, window*/
+/*global THREE, Coordinates, document, window*/
 
 var camera, scene, renderer;
 var windowScale;

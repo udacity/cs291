@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 
-/*global THREE Coordinates $ document window dat*/
+/*global THREE, Coordinates, $, document, window, dat*/
 
 var camera, scene, renderer;
 var cameraControls, effectController;
@@ -156,7 +156,7 @@ function setupGui() {
 		
 		ex: 0.0,
 		ey: 0.0,
-		ez: 0.0,
+		ez: 0.0
 	};
 
 	var gui = new dat.GUI();
