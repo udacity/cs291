@@ -4,7 +4,7 @@
 // Using the provided sizes and colors, complete the staircase                //
 // and reach the Gold Cup!                                                    //
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, Coordinates, $, document, window, dat*/
+/*global THREE Coordinates $ document window dat*/
 
 var camera, scene, renderer;
 var cameraControls, effectController;
@@ -28,10 +28,7 @@ function createStairs() {
 	var stepWidth = 500;
 	var stepSize = 200;
 	var stepThickness = 50;
-	var stepWidth = 500;
 	// height from top of one step to bottom of next step up
-	var stepSize = 200;
-	var stepThickness = 50;
 	var verticalStepHeight = stepSize;
 	var horizontalStepDepth = stepSize*2;
 
@@ -92,9 +89,6 @@ function init() {
 	renderer.setSize(canvasWidth, canvasHeight);
 	renderer.setClearColorHex( 0xAAAAAA, 1.0 );
 
-	var container = document.getElementById('container');
-	container.appendChild( renderer.domElement );
-
 	// CAMERA
 	camera = new THREE.PerspectiveCamera( 45, canvasRatio, 1, 40000 );
 	camera.position.set( -700, 500, -1600 );
@@ -104,7 +98,14 @@ function init() {
 
 	fillScene();
 }
-
+function addToDOM() {
+    var container = document.getElementById('container');
+    var canvas = container.getElementsByTagName('canvas');
+    if (canvas.length>0) {
+        container.removeChild(canvas[0]);
+    }
+    container.appendChild( renderer.domElement );
+}
 function fillScene() {
 	// SCENE
 	scene = new THREE.Scene();
@@ -186,25 +187,8 @@ function setupGui() {
 	gui.add( effectController, "newGround" ).name("Show ground");
 	gui.add( effectController, "newAxes" ).name("Show axes");
 }
-function takeScreenshot() {
-	init();
-	createCup();
-	var stairs = createStairs();
-	scene.add(stairs);
-	render();
-	var img1 = renderer.domElement.toDataURL("image/png");
-	camera.position.set( 1000, 1000, 2000 );
-	render();
-	var img2 = renderer.domElement.toDataURL("image/png");
-	var imgTarget = window.open('', 'For grading script');
-	imgTarget.document.write('<img src="'+img1+'"/><img src="'+img2+'"/>');
-}
 
 init();
+addToDOM();
 setupGui();
 animate();
-$("body").keydown(function(event) {
-	if (event.which === 80) {
-		takeScreenshot();
-	}
-});

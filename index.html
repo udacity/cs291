@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+		<script src="lib/jquery-1.8.3.min.js"></script>
 		<script src="lib/three.min.js"></script>
 		<script src="lib/Detector.js"></script>
 		<script src="lib/Coordinates.js"></script>
@@ -35,36 +35,41 @@
 							<select name="demo"
 							 OnChange="location.href=run.demo.options[selectedIndex].value">
 							     <option selected>Select demo
-							     	<option value="?load=demo/unit1-fps.js">Unit 1 FPS
-							     	<option value="?load=demo/unit1-teacup-demo.js">Unit 1 teacup
-							     	<option value="?load=demo/unit1-teapot-demo.js">Unit 1 teapot
-							     	<option value="?load=demo/unit1-teaspoon-demo.js">Unit 1 teaspoon
-							     	<option value="?load=demo/unit2-z-fighting.js">Unit 2 z-fighting
-							     	<option value="?load=demo/unit3-blending.js">Unit 3 blending
-							     	<option value="?load=demo/unit3-color-demo.js">Unit 3 colors
-							     	<option value="?load=demo/unit3-diffuse-demo.js">Unit 3 diffuse
-							     	<option value="?load=demo/unit3-over_operator.js">Unit 3 Over operator
-							     	<option value="?load=demo/unit3-teapot-demo.js">Unit 3 teapot
-							     	<option value="?load=demo/unit3-tessellation-demo.js">Unit 3 tesselation
-							     	<option value="?load=demo/unit3-transparency.js">Unit 3 transparency
-							     	<option value="?load=demo/unit4-euler_angles.js">Unit 4 Euler angles
-							     	<option value="?load=demo/unit4-robot_arm_demo.js">Unit 4 Robot arm
-							     	<option value="?load=demo/unit4-robot_arm_demo_forearm.js">Unit 4 Robot forearm
-							     	<option value="?load=demo/unit4-robot_arm_demo_upper_arm.js">Unit 4 Robot upper arm
-							     	<option value="?load=demo/unit4-rotate_then_scale.js">Unit 4 rotate then scale
+							     	<option value="?load=demo/unit1-fps.js">Lesson 1 FPS
+							     	<option value="?load=demo/unit1-teacup-demo.js">Lesson 1 teacup
+							     	<option value="?load=demo/unit1-teapot-demo.js">Lesson 1 teapot
+							     	<option value="?load=demo/unit1-teaspoon-demo.js">Lesson 1 teaspoon
+							     	<option value="?load=demo/unit2-z-fighting.js">Lesson 2 z-fighting
+							     	<option value="?load=demo/unit3-blending.js">Lesson 3 blending
+							     	<option value="?load=demo/unit3-color-demo.js">Lesson 3 colors
+							     	<option value="?load=demo/unit3-diffuse-demo.js">Lesson 3 diffuse
+							     	<option value="?load=demo/unit3-over_operator.js">Lesson 3 Over operator
+							     	<option value="?load=demo/unit3-teapot-demo.js">Lesson 3 teapot
+							     	<option value="?load=demo/unit3-tessellation-demo.js">Lesson 3 tesselation
+							     	<option value="?load=demo/unit3-transparency.js">Lesson 3 transparency
+							     	<option value="?load=demo/unit4-euler_angles.js">Lesson 4 Euler angles
+							     	<option value="?load=demo/unit4-robot_arm_demo.js">Lesson 4 Robot arm
+							     	<option value="?load=demo/unit4-robot_arm_demo_forearm.js">Lesson 4 Robot forearm
+							     	<option value="?load=demo/unit4-robot_arm_demo_upper_arm.js">Lesson 4 Robot upper arm
+							     	<option value="?load=demo/unit4-rotate_then_scale.js">Lesson 4 rotate then scale
 							</select>
 							 or 
 							<select name="exercises"
 							 OnChange="location.href=run.exercises.options[selectedIndex].value">
 							     <option selected>Select exercise
 							     <option value="?load=unit1/fix-javascript-errors.js">unit1 problem set 6 fix javascript errors
-							     <option value="?load=unit2/triangle-mesh.js">unit2 triangle mesh
-							     <option value="?load=unit2/vertex-order.js">unit2 vertex order
-							     <option value="?load=unit2/polygon-creation.js">unit2 polygon creation
-							     <option value="?load=unit2/polygon-location.js">unit2 polygon location
-							     <option value="?load=unit2/polygon-radius.js">unit2 polygon radius
-							     <option value="?load=unit2/create-stairs.js">unit2 create stairs
-							     <option value="?load=unit2/drinking-bird.js">unit2 drinking bird
+							     <option value="?load=unit2/triangle-mesh.js">Lesson 2 triangle mesh
+							     <option value="?load=unit2/vertex-order.js">Lesson 2 vertex order
+							     <option value="?load=unit2/polygon-creation.js">Lesson 2 Problem Set - polygon creation
+							     <option value="?load=unit2/polygon-location.js">Lesson 2 Problem Set - polygon location
+							     <option value="?load=unit2/polygon-radius.js">Lesson 2 Problem Set - polygon radius
+							     <option value="?load=unit2/create-stairs.js">Lesson 2 Problem Set - create stairs
+							     <option value="?load=unit2/drinking-bird.js">Lesson 2 Problem Set - drinking bird
+							     <option value="?load=unit3/diffuse-material.js">Lesson 3 diffuse material
+							     <option value="?load=unit3/smooth-lambert.js">Lesson 3 smooth sphere
+							     <option value="?load=unit3/drinking-bird-shiny.js">Lesson 3 Problem Set - shiny drinking bird
+							     <option value="?load=unit3/drinking-bird-transparency.js">Lesson 3 Problem Set - transparent drinking bird
+
 							</select>
 		<div id="container" style="height: 492px, width: 876px">
 		</div>

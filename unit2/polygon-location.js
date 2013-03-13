@@ -1,12 +1,12 @@
 ////////////////////////////////////////////////////////////////////////////////
-// Polygon Creation Exercise
+// Polygon Location Exercise
 // Your task is to write a function that will take 2 arguments:
 //   sides - how many edges the polygon has.
 //   location - location of the center of the polygon as a THREE.Vector3.
 // Return the mesh that defines the minimum number of triangles necessary
 // to draw the polygon.
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE Coordinates $ document window*/
+/*global, THREE, Coordinates, $, document, window*/
 
 var camera, scene, renderer;
 var windowScale;
@@ -67,38 +67,32 @@ function init() {
 	var container = document.getElementById('container');
 	container.appendChild( renderer.domElement );
 
+}
+function showGrids() {
 	// Background grid and axes. Grid step size is 1, axes cross at 0, 0
 	Coordinates.drawGrid({size:100,scale:1,orientation:"z"});
-	Coordinates.drawAxes({axisLength:7,axisOrientation:"x",axisRadius:0.03});
-	Coordinates.drawAxes({axisLength:7,axisOrientation:"y",axisRadius:0.03});	
+	Coordinates.drawAxes({axisLength:4,axisOrientation:"x",axisRadius:0.02});
+	Coordinates.drawAxes({axisLength:3,axisOrientation:"y",axisRadius:0.02});
+}
+function addToDOM() {
+    var container = document.getElementById('container');
+    var canvas = container.getElementsByTagName('canvas');
+    if (canvas.length>0) {
+        container.removeChild(canvas[0]);
+    }
+    container.appendChild( renderer.domElement );
 }
 
 function render() {
 	renderer.render( scene, camera );
 }
 
-function takeScreenshot() {
-	init();
-	var pgon1 = PolygonGeometry(5, new THREE.Vector3( 4, 1, 0 ));
-	var pgon1Mat = new THREE.MeshBasicMaterial( { color: 0xff0000, side: THREE.FrontSide } );
-	var mesh = new THREE.Mesh( pgon1, pgon1Mat );
-	scene.add( mesh );
-	render();
-	var img = renderer.domElement.toDataURL("image/png");
-	var imgTarget = window.open('', 'For grading script');
-	imgTarget.document.write('<img src="'+img+'"/>');
-}
-
 // Main body of the script
-
 init();
-var pgon1t = PolygonGeometry(6, new THREE.Vector3( 3, 4, 0 ));
-var pgon1Matt = new THREE.MeshBasicMaterial( { color: 0xff0000, side: THREE.FrontSide } );
-var mesht = new THREE.Mesh( pgon1t, pgon1Matt );
-scene.add( mesht );
+showGrids();
+addToDOM();
+var geo = PolygonGeometry(6, new THREE.Vector3( 3, 4, 0 ));
+var material = new THREE.MeshBasicMaterial( { color: 0xff0000, side: THREE.FrontSide } );
+var mesh = new THREE.Mesh( geo, material );
+scene.add( mesh );
 render();
-$("body").keydown(function(event) {
-	if (event.which === 80) {
-		takeScreenshot();
-	}
-});

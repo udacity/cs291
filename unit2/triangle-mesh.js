@@ -44,7 +44,7 @@ function init() {
 	var windowWidth = windowScale * canvasRatio;
 	var windowHeight = windowScale;
 
-	camera = new THREE.OrthographicCamera( windowWidth / - 2, windowWidth / 2, windowHeight / 2, windowHeight / - 2, 0, 40 );
+	camera = new THREE.OrthographicCamera(windowWidth/-2, windowWidth/2, windowHeight/2, windowHeight/-2, 0, 40);
 	
 	var focus = new THREE.Vector3( 5,5,0 );
 	camera.position.x = focus.x;
@@ -57,52 +57,40 @@ function init() {
 	renderer.gammaOutput = true;
 	renderer.setSize( canvasWidth, canvasHeight );
 	renderer.setClearColorHex( 0xffffff, 1.0 );
-	var container = document.getElementById('container');
-	container.appendChild( renderer.domElement );
+}
+
+function addToDOM() {
+    var container = document.getElementById('container');
+    var canvas = container.getElementsByTagName('canvas');
+    if (canvas.length>0) {
+        container.removeChild(canvas[0]);
+    }
+    container.appendChild( renderer.domElement );
 }
 
 function render() {
 	renderer.render( scene, camera );
 }
 
-function takeScreenshot() {
-	init();
-	var triangle_material = new THREE.MeshBasicMaterial( { color: 0x2685AA, side: THREE.DoubleSide } );
-	var triangle_geometry = exampleTriangle();
-	var tmesh = new THREE.Mesh( triangle_geometry, triangle_material );
-	scene.add(tmesh);
-	var material = new THREE.MeshBasicMaterial( { color: 0xF6831E, side: THREE.DoubleSide } );
-	var geometry = drawSquare(2,3,8,9);
-	var mesh = new THREE.Mesh( geometry, material );
-	scene.add( mesh );
-	render();
-	var img = renderer.domElement.toDataURL("image/png");
-	var imgTarget = window.open('', 'For grading script');
-	imgTarget.document.write('<img src="'+img+'"/>');
+function showGrids() {
+	// Background grid and axes. Grid step size is 1, axes cross at 0, 0
+	Coordinates.drawGrid({size:100,scale:1,orientation:"z"});
+	Coordinates.drawAxes({axisLength:11,axisOrientation:"x",axisRadius:0.04});
+	Coordinates.drawAxes({axisLength:11,axisOrientation:"y",axisRadius:0.04});
 }
 
 // Main body of the script
-
 init();
-Coordinates.drawGrid({size:100,scale:1,orientation:"z"});
-Coordinates.drawAxes({axisLength:11,axisOrientation:"x",axisRadius:0.04});
-Coordinates.drawAxes({axisLength:11,axisOrientation:"y",axisRadius:0.04});
-var triangleMaterial = new THREE.MeshBasicMaterial( 
-	{ color: 0x2685AA, side: THREE.DoubleSide } 
-	);
+showGrids();
+addToDOM();
+// creating and adding the triangle to the scene
+var triangleMaterial = new THREE.MeshBasicMaterial( { color: 0x2685AA, side: THREE.DoubleSide } );
 var triangleGeometry = exampleTriangle();
 var triangleMesh = new THREE.Mesh( triangleGeometry, triangleMaterial );
 scene.add(triangleMesh);
-var square_material = new THREE.MeshBasicMaterial( { 
-	color: 0xF6831E, 
-	side: THREE.DoubleSide 
-} );
+// creating and adding your square to the scene !
+var square_material = new THREE.MeshBasicMaterial( { color: 0xF6831E, side: THREE.DoubleSide } );
 var square_geometry = drawSquare(3,5,7,9);
 var square_mesh = new THREE.Mesh(square_geometry, square_material);
 scene.add(square_mesh);
 render();
-$("body").keydown(function(event) {
-	if (event.which === 80) {
-		takeScreenshot();
-	}
-});

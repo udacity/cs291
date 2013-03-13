@@ -9,12 +9,8 @@
 var camera, scene, renderer;
 var windowScale;
 
-function someObject () {
-	var material, geometry, mesh;
-	material = new THREE.MeshBasicMaterial( { 
-		color: 0xF6831E, side: THREE.FrontSide 
-	} );
-	geometry = new THREE.Geometry();
+function someObject (material) {
+	var geometry = new THREE.Geometry();
 	
 	// Student: some data below must be fixed 
 	// for both triangles to appear !
@@ -26,7 +22,7 @@ function someObject () {
 	geometry.faces.push( new THREE.Face3( 0, 1, 2 ) );
 	geometry.faces.push( new THREE.Face3( 2, 0, 3 ) );
 	
-	mesh = new THREE.Mesh( geometry, material );
+	var mesh = new THREE.Mesh( geometry, material );
 	
 	scene.add( mesh );
 }
@@ -58,36 +54,33 @@ function init() {
 	renderer.gammaOutput = true;
 	renderer.setSize( canvasWidth, canvasHeight );
 	renderer.setClearColorHex( 0xffffff, 1.0 );
-	var container = document.getElementById('container');
-	container.appendChild( renderer.domElement );
 
+}
+
+function addToDOM() {
+    var container = document.getElementById('container');
+    var canvas = container.getElementsByTagName('canvas');
+    if (canvas.length>0) {
+        container.removeChild(canvas[0]);
+    }
+    container.appendChild( renderer.domElement );
+}
+
+function showGrids() {
 	// Background grid and axes. Grid step size is 1, axes cross at 0, 0
 	Coordinates.drawGrid({size:100,scale:1,orientation:"z"});
 	Coordinates.drawAxes({axisLength:11,axisOrientation:"x",axisRadius:0.04});
-	Coordinates.drawAxes({axisLength:9,axisOrientation:"y",axisRadius:0.04});
-
+	Coordinates.drawAxes({axisLength:11,axisOrientation:"y",axisRadius:0.04});
 }
 
 function render() {
 	renderer.render( scene, camera );
 }
 
-function takeScreenshot() {
-	init();
-	someObject();
-	render();
-	var img = renderer.domElement.toDataURL("image/png");
-	var imgTarget = window.open('', 'For grading script');
-	imgTarget.document.write('<img src="'+img+'"/>');
-}
-
 // Main body of the script
-
 init();
-someObject();
+showGrids();
+addToDOM();
+var material = new THREE.MeshBasicMaterial( { color: 0xF6831E, side: THREE.FrontSide } );
+someObject(material);
 render();
-$("body").keydown(function(event) {
-	if (event.which === 80) {
-		takeScreenshot();
-	}
-});

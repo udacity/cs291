@@ -7,7 +7,7 @@
 // to draw the polygon.
 // Radius of the polygon is 1. Center of the polygon is at 0, 0.
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, Coordinates, $, document, window, dat*/
+/*global THREE Coordinates $ document window*/
 
 var camera, scene, renderer;
 var windowScale;
@@ -24,13 +24,14 @@ function PolygonGeometry(sides) {
 		var x = Math.cos( angle );
 		var y = Math.sin( angle );
 		
-		// Save the vertex location - fill in the code
+		// YOUR CODE HERE
+        //Save the vertex location - fill in the code
 
 	}
-
+    // YOUR CODE HERE
 	// Write the code to generate minimum number of faces for the polygon.
 
-	// return the geometry object
+	// Return the geometry object
 	return geo;
 }
 
@@ -60,41 +61,32 @@ function init() {
 	renderer.gammaOutput = true;
 	renderer.setSize( canvasWidth, canvasHeight );
 	renderer.setClearColorHex( 0xffffff, 1.0 );
-	var container = document.getElementById('container');
-	container.appendChild( renderer.domElement );
 
-	// Background grid and axes. Grid step size is 1, axes cross at 0, 0
+}
+function showGrids() {
+  	// Background grid and axes. Grid step size is 1, axes cross at 0, 0
 	Coordinates.drawGrid({size:100,scale:1,orientation:"z"});
 	Coordinates.drawAxes({axisLength:4,axisOrientation:"x",axisRadius:0.02});
 	Coordinates.drawAxes({axisLength:3,axisOrientation:"y",axisRadius:0.02});
 }
-
+function addToDOM() {
+    var container = document.getElementById('container');
+    var canvas = container.getElementsByTagName('canvas');
+    if (canvas.length>0) {
+        container.removeChild(canvas[0]);
+    }
+    container.appendChild( renderer.domElement );
+}
 function render() {
 	renderer.render( scene, camera );
 }
 
-function takeScreenshot() {
-	init();
-	var pgon1 = PolygonGeometry(7);
-	var pgon1Mat = new THREE.MeshBasicMaterial( { color: 0xff0000, side: THREE.FrontSide } );
-	var mesh = new THREE.Mesh( pgon1, pgon1Mat );
-	scene.add( mesh );
-	render();
-	var img = renderer.domElement.toDataURL("image/png");
-	var imgTarget = window.open('', 'For grading script');
-	imgTarget.document.write('<img src="'+img+'"/>');
-}
-
 // Main body of the script
-
 init();
-var pgon1t = PolygonGeometry(5);
-var pgon1Matt = new THREE.MeshBasicMaterial( { color: 0xff0000, side: THREE.FrontSide } );
-var mesht = new THREE.Mesh( pgon1t, pgon1Matt );
-scene.add( mesht );
+showGrids();
+addToDOM();
+var geo = PolygonGeometry(5);
+var material = new THREE.MeshBasicMaterial( { color: 0xff0000, side: THREE.FrontSide } );
+var mesh = new THREE.Mesh( geo, material );
+scene.add( mesh );
 render();
-$("body").keydown(function(event) {
-	if (event.which === 80) {
-		takeScreenshot();
-	}
-});

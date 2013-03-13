@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////
-// Polygon Creation Exercise
+// Polygon Radius Exercise
 // Your task is to write a function that will take 3 arguments:
 //   sides - how many edges the polygon has.
 //   location - location of the center of the polygon as a THREE.Vector3.
@@ -12,7 +12,7 @@
 var camera, scene, renderer;
 var windowScale;
 
-function PolygonGeometry(sides, radius, location) {
+function PolygonGeometry(sides, location, radius) {
 	var geo = new THREE.Geometry();
 	
 	// generate vertices
@@ -65,45 +65,32 @@ function init() {
 	renderer.gammaOutput = true;
 	renderer.setSize(canvasWidth, canvasHeight);
 	renderer.setClearColorHex( 0xffffff, 1.0 );
-	var container = document.getElementById('container');
-	container.appendChild( renderer.domElement );
-
-	// Background grid and axes. Grid step size is 1, axes cross at 0, 0
-	Coordinates.drawGrid({size:100,scale:1,orientation:"z"});
-	Coordinates.drawAxes({axisLength:11,axisOrientation:"x",axisRadius:0.04});
-	Coordinates.drawAxes({axisLength:11,axisOrientation:"y",axisRadius:0.04});	
+	
 }
-
+function showGrids() {
+  	// Background grid and axes. Grid step size is 1, axes cross at 0, 0
+	Coordinates.drawGrid({size:100,scale:1,orientation:"z"});
+	Coordinates.drawAxes({axisLength:4,axisOrientation:"x",axisRadius:0.02});
+	Coordinates.drawAxes({axisLength:3,axisOrientation:"y",axisRadius:0.02});
+}
+function addToDOM() {
+    var container = document.getElementById('container');
+    var canvas = container.getElementsByTagName('canvas');
+    if (canvas.length>0) {
+        container.removeChild(canvas[0]);
+    }
+    container.appendChild( renderer.domElement );
+}
 function render() {
 	renderer.render( scene, camera );
 }
 
-function takeScreenshot() {
-	init();
-	var pgon1 = PolygonGeometry(8, 3, new THREE.Vector3( 3, 3, 0 ));
-	var pgon2 = PolygonGeometry(3, 2, new THREE.Vector3( 8, 7, 0 ));
-	var pgon1Mat = new THREE.MeshBasicMaterial( { color: 0xff0000, side: THREE.FrontSide } );
-	var pgon2Mat = new THREE.MeshBasicMaterial( { color: 0x00ff00, side: THREE.FrontSide } );
-	var mesh = new THREE.Mesh( pgon1, pgon1Mat );
-	var mesh2 = new THREE.Mesh( pgon2, pgon2Mat );
-	scene.add( mesh );
-	scene.add(mesh2);
-	render();
-	var img = renderer.domElement.toDataURL("image/png");
-	var imgTarget = window.open('', 'For grading script');
-	imgTarget.document.write('<img src="'+img+'"/>');
-}
-
 // Main body of the script
-
 init();
-var pgon1t = PolygonGeometry(9, 4, new THREE.Vector3( 5, 5, 0 ));
-var pgon1Matt = new THREE.MeshBasicMaterial( { color: 0x2685AA, side: THREE.FrontSide } );
-var mesht = new THREE.Mesh( pgon1t, pgon1Matt );
-scene.add( mesht );
+showGrids();
+addToDOM();
+var geo = PolygonGeometry(9, new THREE.Vector3( 5, 5, 0 ), 4);
+var material = new THREE.MeshBasicMaterial( { color: 0xff0000, side: THREE.FrontSide } );
+var mesh = new THREE.Mesh( geo, material );
+scene.add( mesh );
 render();
-$("body").keydown(function(event) {
-	if (event.which === 80) {
-		takeScreenshot();
-	}
-});

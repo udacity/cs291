@@ -1,8 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////
-// Teapot demo  (unit 3)                                                      //
-// per-pixel shading - up/down arrows for tessellation;                       //
-// 'F' for flat/smooth,                                                       //
-// 'V' for vertex/pixel shading.                                              //
+// RGB color demo  (unit 3)                                                   //
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE*/
 

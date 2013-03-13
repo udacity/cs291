@@ -1,6 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////
-
-/*global THREE */
+/*global THREE, Coordinates, document, window  */
 var camera, scene, renderer;
 var cameraControls;
 
@@ -24,62 +23,39 @@ function fillScene() {
 
 	scene.add( light );
 
-	//  GROUND
+	Coordinates.drawGround({size:1000});
 
-	// put grid lines every 10000/100 = 100 units
-	var solidGround = new THREE.Mesh(
-		new THREE.PlaneGeometry( 10000, 10000, 100, 100 ),
-		new THREE.MeshLambertMaterial( { color: 0xffffff } ) );
-	solidGround.rotation.x = - Math.PI / 2;
-	// cheat: offset by a small amount so grid is on top
-	// TODO: better way in three.js? Polygon offset is used in WebGL.
-	solidGround.position.y = -0.2;
+	createDrinkingBird();
+}
 
-	scene.add( solidGround );
-	
-	var ground = new THREE.Mesh(
-		new THREE.PlaneGeometry( 10000, 10000, 100, 100 ),
-		new THREE.MeshBasicMaterial( { color: 0x0, wireframe: true } ) );
-	ground.rotation.x = - Math.PI / 2;
-
-	scene.add( ground );
-
+function createDrinkingBird() {
 	//////////////////////////////
-	// Student modifies this code:
-	// MATERIALS
+	// YOU SHOULD MODIFY THE COLORS
 	var headMaterial = new THREE.MeshLambertMaterial( );
 	headMaterial.color.r = 104/255;
 	headMaterial.color.g = 1/255;
 	headMaterial.color.b = 5/255;
 				
-	var hatMaterial = new THREE.MeshPhongMaterial( { shininess: 100 } );
+	var hatMaterial = new THREE.MeshLambertMaterial( );
 	hatMaterial.color.r = 24/255;
 	hatMaterial.color.g = 38/255;
 	hatMaterial.color.b = 77/255;
-	hatMaterial.specular.setRGB( 0.5, 0.5, 0.5 );
 				
-	var bodyMaterial = new THREE.MeshPhongMaterial( { shininess: 100 } );
+	var bodyMaterial = new THREE.MeshLambertMaterial( );
 	bodyMaterial.color.setRGB( 31/255, 86/255, 169/255 );
-	bodyMaterial.specular.setRGB( 0.5, 0.5, 0.5 );
-
-	// student modifies this material to be transparent:
-	var glassMaterial = new THREE.MeshPhongMaterial( { color: 0xFFFFFF, shininess: 100 } );
-	
-	var legMaterial = new THREE.MeshPhongMaterial( { shininess: 4 } );
+				
+	var legMaterial = new THREE.MeshLambertMaterial( );
 	legMaterial.color.setHex( 0xAdA79b );
-	legMaterial.specular.setRGB( 0.5, 0.5, 0.5 );
 				
-	var footMaterial = new THREE.MeshPhongMaterial( { color: 0x960f0b, shininess: 30 } );
-	footMaterial.specular.setRGB( 0.5, 0.5, 0.5 );
-				
+	var footMaterial = new THREE.MeshLambertMaterial( { color: 0x960f0b } );
+
 	var sphere, cylinder, cube;
 	
 	var bevelRadius = 1.9;	// TODO: 2.0 causes some geometry bug.
 
 	// MODELS
 	// base
-	cube = new THREE.Mesh( 
-		new THREE.BeveledBlockGeometry( 20+64+110, 4, 2*77+12, bevelRadius ), footMaterial );
+	cube = new THREE.Mesh(new THREE.BeveledBlockGeometry( 20+64+110, 4, 2*77+12, bevelRadius ), footMaterial );
 	cube.position.x = -45;	// (20+32) - half of width (20+64+110)/2
 	cube.position.y = 4/2;	// half of height
 	cube.position.z = 0;	// centered at origin
@@ -131,37 +107,14 @@ function fillScene() {
 				
 	// body
 	sphere = new THREE.Mesh(
-		new THREE.SphereGeometry( 104/2, 32, 16, 0, Math.PI * 2, Math.PI/2, Math.PI ), bodyMaterial );
-	sphere.position.x = 0;
-	sphere.position.y = 160;
-	sphere.position.z = 0;
-	scene.add( sphere );
-	
-	// cap for top of hemisphere
-	cylinder = new THREE.Mesh( 
-		new THREE.CylinderGeometry( 104/2, 104/2, 0, 32 ), bodyMaterial );
-	cylinder.position.x = 0;
-	cylinder.position.y = 160;
-	cylinder.position.z = 0;
-	scene.add( cylinder );		
-
-	cylinder = new THREE.Mesh( 
-		new THREE.CylinderGeometry( 12/2, 12/2, 390 - 100, 32 ), bodyMaterial );
-	cylinder.position.x = 0;
-	cylinder.position.y = 160 + 390/2 - 100;
-	cylinder.position.z = 0;
-	scene.add( cylinder );
-	
-	// glass stem
-	sphere = new THREE.Mesh(
-		new THREE.SphereGeometry( 116/2, 32, 16 ), glassMaterial );
+		new THREE.SphereGeometry( 116/2, 32, 16 ), bodyMaterial );
 	sphere.position.x = 0;
 	sphere.position.y = 160;
 	sphere.position.z = 0;
 	scene.add( sphere );
 
 	cylinder = new THREE.Mesh( 
-		new THREE.CylinderGeometry( 24/2, 24/2, 390, 32 ), glassMaterial );
+		new THREE.CylinderGeometry( 24/2, 24/2, 390, 32 ), bodyMaterial );
 	cylinder.position.x = 0;
 	cylinder.position.y = 160 + 390/2;
 	cylinder.position.z = 0;
@@ -192,8 +145,8 @@ function fillScene() {
 }
 
 function init() {
-	var canvasWidth = window.innerWidth;
-	var canvasHeight = window.innerHeight;
+	var canvasWidth = 846;
+	var canvasHeight = 494;
 	var canvasRatio = canvasWidth / canvasHeight;
 
 	// RENDERER
@@ -203,18 +156,23 @@ function init() {
 	renderer.setSize(canvasWidth, canvasHeight);
 	renderer.setClearColorHex( 0xAAAAAA, 1.0 );
 
-	var container = document.getElementById('container');
-	container.appendChild( renderer.domElement );
-
 	// CAMERA
-	camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 1, 4000 );
-	camera.position.set( -1000, 450, -1300 );
-
+	camera = new THREE.PerspectiveCamera( 45, canvasRatio, 1, 4000 );
 	// CONTROLS
 	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
-	cameraControls.target.set(0,300,0);
+	camera.position.set( -480, 659, -619 );
+	cameraControls.target.set(4,301,92);
 	
 	fillScene();
+}
+
+function addToDOM() {
+    var container = document.getElementById('container');
+    var canvas = container.getElementsByTagName('canvas');
+    if (canvas.length>0) {
+        container.removeChild(canvas[0]);
+    }
+    container.appendChild( renderer.domElement );
 }
 
 function animate() {
@@ -230,9 +188,6 @@ function render() {
 }
 
 init();
+fillScene();
+addToDOM();
 animate();
-$("body").keydown(function(event) {
-	if (event.which === 80) {
-		takeScreenshot();
-	}
-});
