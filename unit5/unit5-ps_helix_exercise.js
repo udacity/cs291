@@ -116,7 +116,7 @@ function fillScene() {
 //   tubularSegments - tessellation around equator of each tube
 //   height - height to extend, from *center* of tube ends along Y axis
 //   arc - how many times to go around the Y axis; currently just an integer
-//	 clockwise - if true, go counterclockwise up the axis
+//   clockwise - if true, go counterclockwise up the axis
 function createHelix( material, radius, tube, radialSegments, tubularSegments, height, arc, clockwise )
 {
 	// defaults
@@ -138,8 +138,8 @@ function createHelix( material, radius, tube, radialSegments, tubularSegments, h
 	{
 		// going from X to Z axis
 		top.set( radius * Math.cos( i * 2*Math.PI / radialSegments ),
-		    height * (i/(arc*radialSegments)) - height/2,
-		    sine_sign * radius * Math.sin( i * 2*Math.PI / radialSegments ) );
+			height * (i/(arc*radialSegments)) - height/2,
+			sine_sign * radius * Math.sin( i * 2*Math.PI / radialSegments ) );
 
 		var sphere = new THREE.Mesh( sphGeom, material );
 		sphere.position.copy( top );

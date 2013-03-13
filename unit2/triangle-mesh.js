@@ -5,7 +5,7 @@
 // for the square and returns a geometry object (THREE.Geometry())            //
 // that defines a square at the provided coordinates.                         //
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE Coordinates $ document window*/
+/*global THREE, Coordinates, document, window*/
 
 var camera, scene, renderer;
 var windowScale;

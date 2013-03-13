@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 // NOTE: this is not really a demo, just a way to show what goes wrong with a bad order.
-/*global THREE Coordinates $ document window dat*/
+/*global THREE, Coordinates, $, document, window, dat*/
 
 var camera, scene, renderer;
 var cameraControls, effectController;

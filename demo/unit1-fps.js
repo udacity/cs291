@@ -3,10 +3,10 @@
 // Use the slider to adjust FPS an see how that changes the responsiveness    //
 // of the scene.                                                              //
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE*/
 
-/*global THREE, requestAnimationFrame, Detector, Stats, dat */
-var container, camera, scene, renderer, stats;
+/*global THREE, requestAnimationFrame, Stats, dat */
+
+var camera, scene, renderer, stats;
 var cameraControls;
 var effectController;
 var clock = new THREE.Clock();
@@ -15,10 +15,11 @@ var ambientLight, light, light2;
 var teapot;
 var newTime = 0, oldTime = 0;
 
+var canvasWidth, canvasHeight;
 
 function init() {
-	var canvasWidth = window.innerWidth;
-	var canvasHeight = window.innerHeight;
+	canvasWidth = window.innerWidth;
+	canvasHeight = window.innerHeight;
 	var canvasRatio = canvasWidth / canvasHeight;
 	// CAMERA
 
@@ -28,8 +29,6 @@ function init() {
 	// SCENE
 
 	scene = new THREE.Scene();
-
-	scene.add( camera );
 
 	// LIGHTS
 
@@ -109,8 +108,8 @@ function init() {
 
 function onWindowResize() {
 
-	SCREEN_WIDTH = canvasWidth;
-	SCREEN_HEIGHT = canvasHeight;
+	var SCREEN_WIDTH = canvasWidth;
+	var SCREEN_HEIGHT = canvasHeight;
 
 	renderer.setSize( SCREEN_WIDTH, SCREEN_HEIGHT );
 
@@ -184,8 +183,3 @@ function render() {
 
 init();
 animate();
-$("body").keydown(function(event) {
-	if (event.which === 80) {
-		takeScreenshot();
-	}
-});

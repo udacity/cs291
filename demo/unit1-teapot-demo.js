@@ -211,7 +211,7 @@ function render() {
 		effectController.body !== bBody ||
 		effectController.fitLid !== bFitLid ||
 		effectController.nonblinn !== bNonBlinn ||
-	    effectController.newFlat !== flat || effectController.newPhong !== phong || effectController.newWire !== wire)
+		effectController.newFlat !== flat || effectController.newPhong !== phong || effectController.newWire !== wire)
 	{
 		tess = effectController.newTess;
 		bBottom = effectController.bottom;
@@ -290,8 +290,6 @@ function createShaderMaterial( id, light, ambientLight ) {
 function fillScene() {
 	scene = new THREE.Scene();
 	scene.fog = new THREE.Fog( 0x808080, 2000, 4000 );
-
-	scene.add( camera );
 
 	// LIGHTS
 

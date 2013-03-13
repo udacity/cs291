@@ -2,10 +2,9 @@
 // Drinking Bird Model exercise                                               //
 // Your task is to complete the model for the drinking bird                   //
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE*/
+/*global THREE, $, Coordinates, requestAnimationFrame*/
 
 var camera, scene, renderer;
-var windowScale;
 var cameraControls;
 var clock = new THREE.Clock();
 function drawDrinkingBird() {
@@ -63,7 +62,7 @@ function drawDrinkingBird() {
 	scene.add( cube );
 	
 	// body
-	var sphere = new THREE.Mesh(
+	sphere = new THREE.Mesh(
 		new THREE.SphereGeometry( 116/2, 32, 16 ), sphereMaterial );
 	sphere.position.x = 0;
 	sphere.position.y = 160;
@@ -71,7 +70,7 @@ function drawDrinkingBird() {
 	scene.add( sphere );
 
 	// head
-	var sphere = new THREE.Mesh(
+	sphere = new THREE.Mesh(
 		new THREE.SphereGeometry( 104/2, 32, 16 ), sphereMaterial );
 	sphere.position.x = 0;
 	sphere.position.y = 160 + 390;
@@ -79,7 +78,7 @@ function drawDrinkingBird() {
 	scene.add( sphere );
 
 	// head/body connector
-	var cylinder = new THREE.Mesh( 
+	cylinder = new THREE.Mesh( 
 		new THREE.CylinderGeometry( 24/2, 24/2, 390, 32 ), cylinderMaterial );
 	cylinder.position.x = 0;
 	cylinder.position.y = 160 + 390/2;
@@ -87,7 +86,7 @@ function drawDrinkingBird() {
 	scene.add( cylinder );
 	
 	// hat brim
-	var cylinder = new THREE.Mesh( 
+	cylinder = new THREE.Mesh( 
 		new THREE.CylinderGeometry( 142/2, 142/2, 10, 32 ), cylinderMaterial );
 	cylinder.position.x = 0;
 	cylinder.position.y = 160 + 390 + 40 + 10/2;
@@ -95,16 +94,12 @@ function drawDrinkingBird() {
 	scene.add( cylinder );
 	
 	// hat top
-	var cylinder = new THREE.Mesh( 
+	cylinder = new THREE.Mesh( 
 		new THREE.CylinderGeometry( 80/2, 80/2, 70, 32 ), cylinderMaterial );
 	cylinder.position.x = 0;
 	cylinder.position.y = 160 + 390 + 40 + 10 + 70/2;
 	cylinder.position.z = 0;
 	scene.add( cylinder );
-}
-
-var controls = {
-	painters: false,
 }
 
 function init() {
@@ -120,7 +115,7 @@ function init() {
 	light.position.set( 200, 400, 500 );
 	scene.add( light );
 	
-	var light = new THREE.DirectionalLight( 0xffffff, 1.0 );
+	light = new THREE.DirectionalLight( 0xffffff, 1.0 );
 	light.position.set( -400, 200, -300 );
 	scene.add( light );
 
@@ -172,12 +167,12 @@ function takeScreenshot() {
 	camera.position.set( 400, 500, -800 );
 	render();
 	var img2 = renderer.domElement.toDataURL("image/png");
-	imgTarget = window.open('', 'For grading script');
+	var imgTarget = window.open('', 'For grading script');
 	imgTarget.document.write('<img src="'+img1+'"/><img src="'+img2+'"/>');
 }
 
 init();
-drinkingBird = drawDrinkingBird();
+var drinkingBird = drawDrinkingBird();
 scene.add(drinkingBird);
 animate();
 $("body").keydown(function(event) {

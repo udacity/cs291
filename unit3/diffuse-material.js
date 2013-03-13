@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, requestAnimationFrame, Detector, Stats, dat window document Coordinates*/
+/*global THREE, window, document, Coordinates*/
 var camera, scene, renderer;
 var cameraControls;
 var clock = new THREE.Clock();
@@ -9,7 +9,6 @@ var ambientLight, light;
 function init() {
 	var canvasWidth = window.innerWidth;
 	var canvasHeight = window.innerHeight;
-	var canvasRatio = canvasWidth / canvasHeight;
 
 	// CAMERA
 
@@ -48,7 +47,6 @@ function createBall() {
 function fillScene() {
 	scene = new THREE.Scene();
 	scene.fog = new THREE.Fog( 0x808080, 2000, 4000 );
-	scene.add( camera );
 
 	// LIGHTS
 	scene.add( ambientLight );
