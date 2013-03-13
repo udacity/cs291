@@ -40,7 +40,7 @@ function init() {
 }
 
 function createBall() {
-	var material = new THREE.MeshBasicMaterial( { color: 0x80fc66, shading: THREE.FlatShading } );
+	var material = new THREE.MeshBasicMaterial( { color: 0xFF0000, shading: THREE.FlatShading } );
 	var sphere = new THREE.Mesh( new THREE.SphereGeometry( 400, 64, 32 ), material );
 	return sphere;
 }

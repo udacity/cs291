@@ -4,7 +4,7 @@
 // Using the provided sizes and colors, complete the staircase                //
 // and reach the Gold Cup!                                                    //
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE Coordinates $ document window dat*/
+/*global THREE, Coordinates, document, window, dat*/
 
 var camera, scene, renderer;
 var cameraControls, effectController;
