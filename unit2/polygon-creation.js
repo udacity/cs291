@@ -7,7 +7,7 @@
 // to draw the polygon.
 // Radius of the polygon is 1. Center of the polygon is at 0, 0.
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE Coordinates $ document window*/
+/*global THREE, Coordinates, document, window*/
 
 var camera, scene, renderer;
 var windowScale;
@@ -64,7 +64,7 @@ function init() {
 
 }
 function showGrids() {
-  	// Background grid and axes. Grid step size is 1, axes cross at 0, 0
+	// Background grid and axes. Grid step size is 1, axes cross at 0, 0
 	Coordinates.drawGrid({size:100,scale:1,orientation:"z"});
 	Coordinates.drawAxes({axisLength:4,axisOrientation:"x",axisRadius:0.02});
 	Coordinates.drawAxes({axisLength:3,axisOrientation:"y",axisRadius:0.02});
