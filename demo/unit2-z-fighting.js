@@ -1,6 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////
-// Drinking Bird Model exercise                                               //
-// Your task is to complete the model for the drinking bird                   //
+// Z-fighting demo
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, $, Coordinates, requestAnimationFrame*/
 
@@ -133,10 +132,12 @@ function init() {
 
 	// CAMERA
 	camera = new THREE.PerspectiveCamera( 45, canvasRatio, 1, 4000 );
-	camera.position.set( -500, 500, -1000 );
+	camera.position.set( -330, 178, -400 );
 	// CONTROLS
-	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
-	cameraControls.target.set(0,300,0);
+	// For this demo, unconstrained viewing is good, to allow other angles.
+	cameraControls = new THREE.TrackballControls(camera, renderer.domElement);
+	// focus on the feet
+	cameraControls.target.set(0,0,0);
 	scene.add(camera);
 
 	Coordinates.drawGround({size:10000});
