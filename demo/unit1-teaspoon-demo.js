@@ -123,11 +123,7 @@ function setupGui() {
 		newTess: 6,
 		newFlat: false,
 		newPhong: true,
-		newWire: false,
-
-		dummy: function() {
-		}
-
+		newWire: false
 	};
 
 	var h;
