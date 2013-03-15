@@ -174,10 +174,7 @@ function setupGui() {
 		newGridY: gridY,
 		newGridZ: gridZ,
 		newGround: ground,
-		newAxes: axes,
-
-		dummy: function() {
-		}
+		newAxes: axes
 	};
 
 	var gui = new dat.GUI();
