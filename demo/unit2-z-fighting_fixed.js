@@ -35,9 +35,9 @@ function drawDrinkingBird() {
 	
 	// left leg
 	cube = new THREE.Mesh( 
-		new THREE.CubeGeometry( 64, 334+52, 6 ), legMaterial );
+		new THREE.CubeGeometry( 64, 334, 6 ), legMaterial );
 	cube.position.x = 0;	// centered on origin along X
-	cube.position.y = (334+52)/2;
+	cube.position.y = 334/2 + 52;
 	cube.position.z = 77 + 6/2;	// negative offset 77 + half of depth 6/2
 	scene.add( cube );
 	
@@ -54,9 +54,9 @@ function drawDrinkingBird() {
 	
 	// right leg
 	cube = new THREE.Mesh( 
-		new THREE.CubeGeometry( 64, 334+52, 6 ), legMaterial );
+		new THREE.CubeGeometry( 64, 334, 6 ), legMaterial );
 	cube.position.x = 0;	// centered on origin along X
-	cube.position.y = (334+52)/2;
+	cube.position.y = 334/2 + 52;
 	cube.position.z = -(77 + 6/2);	// negative offset 77 + half of depth 6/2
 	scene.add( cube );
 	

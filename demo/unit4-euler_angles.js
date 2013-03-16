@@ -1,6 +1,8 @@
 ////////////////////////////////////////////////////////////////////////////////
+// Euler angle demo: order of rotation application is Z, Y, X in three.js
+////////////////////////////////////////////////////////////////////////////////
 
-/*global THREE Coordinates $ document window dat*/
+/*global THREE, Coordinates, $, document, window, dat*/
 
 var camera, scene, renderer;
 var cameraControls, effectController;
@@ -156,7 +158,7 @@ function setupGui() {
 		
 		ex: 0.0,
 		ey: 0.0,
-		ez: 0.0,
+		ez: 0.0
 	};
 
 	var gui = new dat.GUI();

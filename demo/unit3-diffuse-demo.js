@@ -1,12 +1,9 @@
 ////////////////////////////////////////////////////////////////////////////////
-// Teapot demo  (unit 3)                                                      //
-// per-pixel shading - up/down arrows for tessellation;                       //
-// 'F' for flat/smooth,                                                       //
-// 'V' for vertex/pixel shading.                                              //
+// Change angle of light to see how effect decreases with angle
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE*/
 
 /*global THREE, requestAnimationFrame, dat, window, document*/
+
 var camera, scene, renderer;
 var cameraControls;
 var ec;
@@ -98,10 +95,6 @@ function setupGui() {
 	var gui = new dat.GUI();
 	var element = gui.add( ec, "angle", 0.0, 90.0 ).step(0.1);
 	element.name("Light angle");
-	// element = gui.add( ec, "green", 0.0, 1.0 ).step(0.1);
-	// element.name("Green intensity");
-	// element = gui.add( ec, "blue", 0.0, 1.0 ).step(0.1);
-	// element.name("Blue intensity");
 }
 
 
@@ -131,16 +124,15 @@ function render() {
 
 function fillScene() {
 	scene = new THREE.Scene();
-	scene.add( camera );
-	// LIGHTS
 
+	// LIGHTS
 	scene.add( light1 );
 	scene.add( light2 );
 	scene.add( light3 );
+	
 	scene.add( ground );
 	scene.add(lightMesh);
 	//Coordinates.drawGrid({size:75,scale:0.1, orientation:"z"});
-
 
 }
 

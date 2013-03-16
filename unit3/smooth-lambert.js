@@ -1,4 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////
+// Smooth shading exercise: change program to make sphere look smooth
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, window, document*/
 var camera, scene, renderer;
@@ -9,7 +10,6 @@ var ambientLight, light;
 function init() {
 	var canvasWidth = window.innerWidth;
 	var canvasHeight = window.innerHeight;
-	var canvasRatio = canvasWidth / canvasHeight;
 
 	// CAMERA
 
@@ -54,7 +54,6 @@ function createBall() {
 function fillScene() {
 	scene = new THREE.Scene();
 	scene.fog = new THREE.Fog( 0x808080, 2000, 4000 );
-	scene.add( camera );
 
 	// LIGHTS
 	scene.add( ambientLight );

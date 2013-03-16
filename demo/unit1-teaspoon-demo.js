@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////
-// Teaspoon demo                                                              //
+// Newell Teaspoon demo                                                       //
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, requestAnimationFrame, dat, window */
 
@@ -123,11 +123,7 @@ function setupGui() {
 		newTess: 6,
 		newFlat: false,
 		newPhong: true,
-		newWire: false,
-
-		dummy: function() {
-		}
-
+		newWire: false
 	};
 
 	var h;
@@ -264,8 +260,6 @@ function createShaderMaterial( id, light, ambientLight ) {
 function fillScene() {
 	scene = new THREE.Scene();
 	scene.fog = new THREE.Fog( 0x808080, 2000, 4000 );
-
-	scene.add( camera );
 
 	// LIGHTS
 

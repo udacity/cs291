@@ -1,6 +1,9 @@
 ////////////////////////////////////////////////////////////////////////////////
+// Drinking Bird: add eyes, nose, and a crossbar
+////////////////////////////////////////////////////////////////////////////////
 
-/*global THREE */
+/*global THREE, document, window*/
+
 var camera, scene, renderer;
 var cameraControls;
 
@@ -211,7 +214,6 @@ function fillScene() {
 function init() {
 	var canvasWidth = window.innerWidth;
 	var canvasHeight = window.innerHeight;
-	var canvasRatio = canvasWidth / canvasHeight;
 
 	// RENDERER
 	renderer = new THREE.WebGLRenderer( { antialias: true } );
@@ -248,8 +250,3 @@ function render() {
 
 init();
 animate();
-$("body").keydown(function(event) {
-	if (event.which === 80) {
-		takeScreenshot();
-	}
-});

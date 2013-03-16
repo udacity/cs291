@@ -1,6 +1,8 @@
 ////////////////////////////////////////////////////////////////////////////////
+// Transparency demo, showing problems of multiple transparent objects
+////////////////////////////////////////////////////////////////////////////////
 
-/*global THREE Coordinates $ document window dat*/
+/*global THREE, Coordinates, $, document, window, dat*/
 
 var camera, scene, renderer;
 var cameraControls, effectController;

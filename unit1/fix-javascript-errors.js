@@ -8,7 +8,7 @@
 // WebGL is not supported in Internet Explorer                                //
 // There are 4 syntax errors in this code                                     //
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE Coordinates $ document window*/
+/*global THREE, Coordinates, $, document, window*/
 
 var camera, scene, renderer;
 var windowScale;

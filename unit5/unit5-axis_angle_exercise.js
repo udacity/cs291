@@ -1,6 +1,8 @@
 ////////////////////////////////////////////////////////////////////////////////
+// Ornament axis/angle exercise: add three more cylinders to the ornament
+////////////////////////////////////////////////////////////////////////////////
 
-/*global THREE Coordinates $ document window dat*/
+/*global THREE, Coordinates, $, document, window, dat*/
 
 var camera, scene, renderer;
 var cameraControls, effectController;

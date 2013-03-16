@@ -1,8 +1,10 @@
 ////////////////////////////////////////////////////////////////////////////////
+// Tessellation demo
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, requestAnimationFrame, Detector, Stats, dat window document Coordinates*/
+/*global THREE, dat, window, document*/
+
 var camera, scene, renderer;
-var cameraControls;
+var cameraControls, effectController;
 var clock = new THREE.Clock();
 var ambientLight, light;
 var tess = 3;	// force initialization
@@ -12,7 +14,6 @@ var flat;
 function init() {
 	var canvasWidth = window.innerWidth;
 	var canvasHeight = window.innerHeight;
-	var canvasRatio = canvasWidth / canvasHeight;
 
 	// CAMERA
 
@@ -70,7 +71,6 @@ var material3 = new THREE.MeshLambertMaterial( { color: 0xFFFF00, wireframe: tru
 function fillScene() {
 	scene = new THREE.Scene();
 	scene.fog = new THREE.Fog( 0x808080, 2000, 4000 );
-	//scene.add( camera );
 
 	// LIGHTS
 	scene.add( ambientLight );
@@ -96,10 +96,9 @@ function onWindowResize() {
 
 	renderer.setSize( canvasWidth, canvasHeight );
 
-	camera.aspect = canvasWidth/ canvasHeight;
+	camera.aspect = canvasWidth / canvasHeight;
 	camera.updateProjectionMatrix();
 }
-
 
 //
 
@@ -129,10 +128,4 @@ function render() {
 
 init();
 animate();
-
-
-
-
-
-
 

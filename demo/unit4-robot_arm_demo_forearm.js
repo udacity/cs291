@@ -1,6 +1,8 @@
 ////////////////////////////////////////////////////////////////////////////////
+// Just the forearm of the robot, for testing
+////////////////////////////////////////////////////////////////////////////////
 
-/*global THREE Coordinates $ document window dat*/
+/*global THREE, Coordinates, $, document, window, dat*/
 
 var camera, scene, renderer;
 var cameraControls, effectController;

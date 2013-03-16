@@ -1,6 +1,8 @@
 ////////////////////////////////////////////////////////////////////////////////
+// Over operator for blending and how it works
+////////////////////////////////////////////////////////////////////////////////
 
-/*global THREE Coordinates $ document window dat*/
+/*global THREE, Coordinates, $, document, window, dat*/
 
 var camera, scene, renderer;
 var cameraControls, effectController;
