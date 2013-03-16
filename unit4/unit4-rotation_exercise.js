@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 
-/*global THREE Coordinates $ document window dat*/
+/*global THREE, Coordinates, document, window, dat*/
 
 var camera, scene, renderer;
 var cameraControls, effectController;
@@ -102,9 +102,6 @@ function init() {
 	renderer.setSize(canvasWidth, canvasHeight);
 	renderer.setClearColorHex( 0xAAAAAA, 1.0 );
 
-	var container = document.getElementById('container');
-	container.appendChild( renderer.domElement );
-
 	// CAMERA
 	camera = new THREE.PerspectiveCamera( 30, canvasRatio, 1, 10000 );
 	camera.position.set( -370, 420, 190 );
@@ -114,6 +111,15 @@ function init() {
 	
 	fillScene();
 
+}
+
+function addToDOM() {
+    var container = document.getElementById('container');
+    var canvas = container.getElementsByTagName('canvas');
+    if (canvas.length>0) {
+        container.removeChild(canvas[0]);
+    }
+    container.appendChild( renderer.domElement );
 }
 
 function animate() {
@@ -138,8 +144,6 @@ function render() {
 	renderer.render(scene, camera);
 }
 
-
-
 function setupGui() {
 
 	effectController = {
@@ -159,23 +163,7 @@ function setupGui() {
 	gui.add( effectController, "newAxes" ).name("Show axes");
 }
 
-function takeScreenshot() {
-	effectController.newGround = true, effectController.newGridX = false, effectController.newGridY = false, effectController.newGridZ = false, effectController.newAxes = false;
-	init();
-	render();
-	var img1 = renderer.domElement.toDataURL("image/png");
-	camera.position.set( 400, 500, -800 );
-	render();
-	var img2 = renderer.domElement.toDataURL("image/png");
-	var imgTarget = window.open('', 'For grading script');
-	imgTarget.document.write('<img src="'+img1+'"/><img src="'+img2+'"/>');
-}
-
 init();
+addToDOM();
 setupGui();
 animate();
-$("body").keydown(function(event) {
-	if (event.which === 80) {
-		takeScreenshot();
-	}
-});
