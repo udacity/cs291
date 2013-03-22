@@ -122,8 +122,6 @@ function fillScene() {
 	scene.add(light);
 	scene.add(light2);
 
-	scene.add(camera);
-
 	if (ground) {
 		Coordinates.drawGround({size:1000});		
 	}

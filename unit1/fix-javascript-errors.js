@@ -61,7 +61,6 @@ function init() {
 	// CONTROLS
 	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
 	cameraControls.target.set(0,0,0);
-	scene.add(camera);
 
 	/ draw the coordinate grid
 	Coordinates.drawGrid({size:1000,scale:0.01});
