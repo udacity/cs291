@@ -138,7 +138,6 @@ function init() {
 	cameraControls = new THREE.TrackballControls(camera, renderer.domElement);
 	// focus on the feet
 	cameraControls.target.set(0,0,0);
-	scene.add(camera);
 
 	Coordinates.drawGround({size:10000});
 	Coordinates.drawGrid({size:10000,scale:0.01});
