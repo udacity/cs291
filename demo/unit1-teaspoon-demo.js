@@ -231,7 +231,6 @@ function render() {
 	ambientLight.color.setHSL( effectController.hue, effectController.saturation, effectController.lightness * effectController.ka );
 
 	light.position.set( effectController.lx, effectController.ly, effectController.lz );
-	light.position.normalize();
 	light.color.setHSL( effectController.lhue, effectController.lsaturation, effectController.llightness );
 	renderer.render( scene, camera );
 
