@@ -45,9 +45,9 @@ function createStairs() {
 	stepMesh = new THREE.Mesh( stepVertical, stepMaterialVertical );
 	// The position is where the center of the block will be put.
 	// You can define position as THREE.Vector3(x, y, z) or in the following way:
-	stepMesh.position.x = 0;			// centered at origin
-	stepMesh.position.y = verticalStepHeight/2;	// half of height: put it above ground plane
-	stepMesh.position.z = 0;			// centered at origin
+	stepMesh.position.x = 0;            // centered at origin
+	stepMesh.position.y = verticalStepHeight/2; // half of height: put it above ground plane
+	stepMesh.position.z = 0;            // centered at origin
 	scene.add( stepMesh );
 
 	// Make and position the horizontal part
@@ -62,18 +62,16 @@ function createStairs() {
 
 function createCup() {
 	var cupMaterial = new THREE.MeshLambertMaterial( { color: 0xFDD017});
+
 	// THREE.CylinderGeometry takes (radiusTop, radiusBottom, height, segmentsRadius)
 	var cupGeo = new THREE.CylinderGeometry( 200, 50, 400, 32 );
 	var cup = new THREE.Mesh( cupGeo, cupMaterial );
-	cup.position.x = 0;
-	cup.position.y = 1725;
-	cup.position.z = 1925;
+	cup.position.set(0, 1725, 1925);
 	scene.add( cup );
+
 	cupGeo = new THREE.CylinderGeometry( 100, 100, 50, 32 );
 	cup = new THREE.Mesh( cupGeo, cupMaterial );
-	cup.position.x = 0;
-	cup.position.y = 1525;
-	cup.position.z = 1925;
+	cup.position.set(0, 1525, 1925);
 	scene.add( cup );
 }
 
@@ -99,12 +97,12 @@ function init() {
 	fillScene();
 }
 function addToDOM() {
-    var container = document.getElementById('container');
-    var canvas = container.getElementsByTagName('canvas');
-    if (canvas.length>0) {
-        container.removeChild(canvas[0]);
-    }
-    container.appendChild( renderer.domElement );
+	var container = document.getElementById('container');
+	var canvas = container.getElementsByTagName('canvas');
+	if (canvas.length>0) {
+		container.removeChild(canvas[0]);
+	}
+	container.appendChild( renderer.domElement );
 }
 function fillScene() {
 	// SCENE
@@ -123,7 +121,7 @@ function fillScene() {
 	scene.add(light2);
 
 	if (ground) {
-		Coordinates.drawGround({size:1000});		
+		Coordinates.drawGround({size:1000});        
 	}
 	if (gridX) {
 		Coordinates.drawGrid({size:1000,scale:0.01});
@@ -132,7 +130,7 @@ function fillScene() {
 		Coordinates.drawGrid({size:1000,scale:0.01, orientation:"y"});
 	}
 	if (gridZ) {
-		Coordinates.drawGrid({size:1000,scale:0.01, orientation:"z"});	
+		Coordinates.drawGrid({size:1000,scale:0.01, orientation:"z"});  
 	}
 	if (axes) {
 		Coordinates.drawAllAxes({axisLength:300,axisRadius:2,axisTess:50});
