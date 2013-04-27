@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
-// FPS demo                                                                   //
-// Use the slider to adjust FPS an see how that changes the responsiveness    //
-// of the scene.                                                              //
+// FPS demo
+// Use the slider to adjust FPS an see how that changes the responsiveness
+// of the scene.
 ////////////////////////////////////////////////////////////////////////////////
 
 /*global THREE, requestAnimationFrame, Stats, dat */
@@ -39,12 +39,12 @@ function init() {
 	light.position.set( 320, 390, 700 );
 
 	scene.add( light );
-	
+
 	light2 = new THREE.DirectionalLight( 0xffffff, 0.5 );
 	light2.position.set( -720, -190, -300 );
 
 	scene.add( light2 );
-	
+
 	// RENDERER
 
 	renderer = new THREE.WebGLRenderer( { antialias: true } );
@@ -86,7 +86,7 @@ function init() {
 	// it affects only whether the light direction is recalculated each pixel.
 	var lambertMaterial = new THREE.MeshLambertMaterial( { color: 0xb00505 } );
 	lambertMaterial.side = THREE.DoubleSide;
-	
+
 	// to test texturing, uncomment the following three lines
 	//var texture = THREE.ImageUtils.loadTexture( 'textures/ash_uvgrid01.jpg' );
 	//texture.anisotropy = renderer.getMaxAnisotropy();
@@ -95,14 +95,14 @@ function init() {
 	teapot = new THREE.Mesh(
 		new THREE.TeapotGeometry( teapotSize, 8, true, true, true, true ),
 		lambertMaterial );
-	
+
 	scene.add( teapot );
-	
+
 	// GUI
 
 	setupGui();
 }
-				
+
 
 // EVENT HANDLERS
 
@@ -121,7 +121,7 @@ function onWindowResize() {
 function onKeyDown ( event ) {
 
 	switch( event.keyCode ) {
-					
+
 	}
 
 }
@@ -152,17 +152,17 @@ function animate() {
 
 	requestAnimationFrame( animate );
 	render();
-	
+
 }
 
 function render() {
 
 	var delta = clock.getDelta();
-	
+
 	cameraControls.update( delta );
-	
+
 	newTime += delta;
-	
+
 	// fudge factor: 0.95 correlates closer to true frame rate numbers;
 	// basically, there's some friction as far as timing goes, and this adjusts for it.
 	var frameTime = 0.95/effectController.fps;
@@ -172,7 +172,7 @@ function render() {
 		// Not doing so can force a frame time that is less than 60 FPS.
 		frameTime = 0;
 	}
-					
+
 	if ( newTime > oldTime + frameTime )
 	{
 		oldTime = newTime;

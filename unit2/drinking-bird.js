@@ -1,15 +1,15 @@
 ////////////////////////////////////////////////////////////////////////////////
-// Drinking Bird Model exercise                                               //
-// Your task is to complete the model for the drinking bird                   //
-// The following forms and sizes should be used:                              //
-// Hat: cylinder. color blue (cylinderMaterial)                               //
-//      Diameter top 80, bottom, full height 80, edge 10                      //
-// Head: sphere, red (sphereMaterial), diameter 104                           //
-// Middle of base: cube, color orange (cubeMaterial), width 77, length 194    //
-// Feet: cube, color orange, width 6, length 194, height 52                   //
-// Legs: cube, color orange, width 6, length 64, height 386                   //
-// Body: sphere, red, diameter 116                                            //
-// Spine: cylinder, blue, diameter 24, length 390                             //
+// Drinking Bird Model exercise
+// Your task is to complete the model for the drinking bird
+// The following forms and sizes should be used:
+// Hat: cylinder. color blue (cylinderMaterial)
+//		Diameter top 80, bottom, full height 80, edge 10
+// Head: sphere, red (sphereMaterial), diameter 104
+// Middle of base: cube, color orange (cubeMaterial), width 77, length 194
+// Feet: cube, color orange, width 6, length 194, height 52
+// Legs: cube, color orange, width 6, length 64, height 386
+// Body: sphere, red, diameter 116
+// Spine: cylinder, blue, diameter 24, length 390
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, Coordinates, document, window, dat*/
 
@@ -29,35 +29,35 @@ var cylinderMaterial = new THREE.MeshLambertMaterial( { color: 0x0000D0 } );
 // Supporting frame for the bird - base + legs + feet
 function createSupport() {
 	var cube;
-	
+
 	// base
-	cube = new THREE.Mesh( 
+	cube = new THREE.Mesh(
 		new THREE.CubeGeometry( 20+64+110, 4, 2*77 ), cubeMaterial );
 	cube.position.x = -45;	// (20+32) - half of width (20+64+110)/2
 	cube.position.y = 4/2;	// half of height
 	cube.position.z = 0;	// centered at origin
 	scene.add( cube );
-	
+
 	// left foot
-	cube = new THREE.Mesh( 
+	cube = new THREE.Mesh(
 		new THREE.CubeGeometry( 20+64+110, 52, 6 ), cubeMaterial );
 	cube.position.x = -45;	// (20+32) - half of width (20+64+110)/2
 	cube.position.y = 52/2;	// half of height
 	cube.position.z = 77 + 6/2;	// offset 77 + half of depth 6/2
 	scene.add( cube );
-	
+
 	// left leg
-	cube = new THREE.Mesh( 
+	cube = new THREE.Mesh(
 		new THREE.CubeGeometry( 64, 334+52, 6 ), cubeMaterial );
 	cube.position.x = 0;	// centered on origin along X
 	cube.position.y = (334+52)/2;
 	cube.position.z = 77 + 6/2;	// offset 77 + half of depth 6/2
 	scene.add( cube );
-	
+
 	// right foot
-	
+
 	// right leg
-	
+
 }
 
 // Body of the bird - body and the connector of body and head
@@ -73,10 +73,10 @@ function createBody() {
 // Head of the bird - head + hat
 function createHead() {
 	var sphere, cylinder;
-	// head 
+	// head
 
 	// hat brim
-	
+
 	// hat top
 
 }
@@ -86,7 +86,7 @@ function createDrinkingBird() {
 	// MODELS
 	// base + legs + feet
 	createSupport();
-	
+
 	// body + body/head connector
 	createBody();
 
@@ -103,7 +103,7 @@ function fillScene() {
 
 	var light = new THREE.DirectionalLight( 0xffffff, 1.0 );
 	light.position.set( 200, 400, 500 );
-	
+
 	var light2 = new THREE.DirectionalLight( 0xffffff, 1.0 );
 	light2.position.set( -400, 200, -300 );
 
@@ -112,7 +112,7 @@ function fillScene() {
 	scene.add(light2);
 
 	if (ground) {
-		Coordinates.drawGround({size:10000});		
+		Coordinates.drawGround({size:10000});
 	}
 	if (gridX) {
 		Coordinates.drawGrid({size:10000,scale:0.01});
@@ -121,12 +121,12 @@ function fillScene() {
 		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"y"});
 	}
 	if (gridZ) {
-		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"z"});	
+		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"z"});
 	}
 	if (axes) {
 		Coordinates.drawAllAxes({axisLength:300,axisRadius:2,axisTess:50});
 	}
-	
+
 	createDrinkingBird();
 }
 
@@ -148,7 +148,7 @@ function init() {
 	// CONTROLS
 	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
 	cameraControls.target.set(0,300,0);
-	
+
 	fillScene();
 
 }
@@ -156,12 +156,12 @@ function init() {
 
 //
 function addToDOM() {
-    var container = document.getElementById('container');
-    var canvas = container.getElementsByTagName('canvas');
-    if (canvas.length>0) {
-        container.removeChild(canvas[0]);
-    }
-    container.appendChild( renderer.domElement );
+	var container = document.getElementById('container');
+	var canvas = container.getElementsByTagName('canvas');
+	if (canvas.length>0) {
+		container.removeChild(canvas[0]);
+	}
+	container.appendChild( renderer.domElement );
 }
 
 function animate() {
@@ -189,7 +189,7 @@ function render() {
 function setupGui() {
 
 	effectController = {
-	
+
 		newGridX: gridX,
 		newGridY: gridY,
 		newGridZ: gridZ,

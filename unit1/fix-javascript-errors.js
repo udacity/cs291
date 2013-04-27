@@ -1,12 +1,12 @@
 ////////////////////////////////////////////////////////////////////////////////
-// Fixing Incorrect JavaScript exercise                                       //
+// Fixing Incorrect JavaScript exercise
 ////////////////////////////////////////////////////////////////////////////////
-// Your task is to find the syntax errors in this Javacript                   //
-// until it shows the the Gold Cube!                                          //
-// Use Developer tools/JavaScript console in Chrome,                          //
-// FireBug in FireFox, or Web Inspector in Safari.                            //
-// WebGL is not supported in Internet Explorer                                //
-// There are 4 syntax errors in this code                                     //
+// Your task is to find the syntax errors in this Javacript
+// until it shows the the Gold Cube!
+// Use Developer tools/JavaScript console in Chrome,
+// FireBug in FireFox, or Web Inspector in Safari.
+// WebGL is not supported in Internet Explorer
+// There are 4 syntax errors in this code
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, Coordinates, $, document, window*/
 
@@ -19,7 +19,7 @@ function drawGoldCube() {
 
 	var cube;
 	var cubeSizeLength = 100;
-	var goldColor = "#FFDF00"; 
+	var goldColor = "#FFDF00";
 	var showFrame = true;
 	var wireMaterial = new THREE.MeshBasicMaterial( { color: goldColor, wireframe: showFrame } ) ;
 

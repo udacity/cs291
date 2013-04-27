@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////////////////
-// Staircase exercise                                                         //
-// Your task is to complete the model for simple stairs                       //
-// Using the provided sizes and colors, complete the staircase                //
-// and reach the Gold Cup!                                                    //
+// Staircase exercise
+// Your task is to complete the model for simple stairs
+// Using the provided sizes and colors, complete the staircase
+// and reach the Gold Cup!
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, Coordinates, document, window, dat*/
 
@@ -18,11 +18,11 @@ var ground = true;
 function createStairs() {
 
 	// MATERIALS
-	var stepMaterialVertical = new THREE.MeshLambertMaterial( { 
-		color: 0xA85F35 
+	var stepMaterialVertical = new THREE.MeshLambertMaterial( {
+		color: 0xA85F35
 	} );
-	var stepMaterialHorizontal = new THREE.MeshLambertMaterial( { 
-		color: 0xBC7349 
+	var stepMaterialHorizontal = new THREE.MeshLambertMaterial( {
+		color: 0xBC7349
 	} );
 
 	var stepWidth = 500;
@@ -33,7 +33,7 @@ function createStairs() {
 	var horizontalStepDepth = stepSize*2;
 
 	var stepHalfThickness = stepThickness/2;
-	
+
 	// +Y direction is up
 	// Define the two pieces of the step, vertical and horizontal
 	// THREE.CubeGeometry takes (width, height, depth)
@@ -99,12 +99,12 @@ function init() {
 	fillScene();
 }
 function addToDOM() {
-    var container = document.getElementById('container');
-    var canvas = container.getElementsByTagName('canvas');
-    if (canvas.length>0) {
-        container.removeChild(canvas[0]);
-    }
-    container.appendChild( renderer.domElement );
+	var container = document.getElementById('container');
+	var canvas = container.getElementsByTagName('canvas');
+	if (canvas.length>0) {
+		container.removeChild(canvas[0]);
+	}
+	container.appendChild( renderer.domElement );
 }
 function fillScene() {
 	// SCENE
@@ -114,7 +114,7 @@ function fillScene() {
 	var ambientLight = new THREE.AmbientLight( 0x222222 );
 	var light = new THREE.DirectionalLight( 0xffffff, 1.0 );
 	light.position.set( 200, 400, 500 );
-	
+
 	var light2 = new THREE.DirectionalLight( 0xffffff, 1.0 );
 	light2.position.set( -400, 200, -300 );
 
@@ -123,7 +123,7 @@ function fillScene() {
 	scene.add(light2);
 
 	if (ground) {
-		Coordinates.drawGround({size:1000});		
+		Coordinates.drawGround({size:1000});
 	}
 	if (gridX) {
 		Coordinates.drawGrid({size:1000,scale:0.01});
@@ -132,7 +132,7 @@ function fillScene() {
 		Coordinates.drawGrid({size:1000,scale:0.01, orientation:"y"});
 	}
 	if (gridZ) {
-		Coordinates.drawGrid({size:1000,scale:0.01, orientation:"z"});	
+		Coordinates.drawGrid({size:1000,scale:0.01, orientation:"z"});
 	}
 	if (axes) {
 		Coordinates.drawAllAxes({axisLength:300,axisRadius:2,axisTess:50});
@@ -167,7 +167,7 @@ function render() {
 function setupGui() {
 
 	effectController = {
-	
+
 		newGridX: gridX,
 		newGridY: gridY,
 		newGridZ: gridZ,

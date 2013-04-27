@@ -13,7 +13,7 @@ var windowScale;
 
 function PolygonGeometry(sides, location) {
 	var geo = new THREE.Geometry();
-	
+
 	// generate vertices
 	for ( var pt = 0 ; pt < sides; pt++ )
 	{
@@ -32,7 +32,7 @@ function PolygonGeometry(sides, location) {
 	{
 		// this makes a triangle fan, from the first +Y point around
 		geo.faces.push( new THREE.Face3( 0, face+1, face+2 ) );
-	}	
+	}
 	// done: return it.
 	return geo;
 }
@@ -52,7 +52,7 @@ function init() {
 
 	camera = new THREE.OrthographicCamera( windowWidth / - 2, windowWidth / 2,
 		windowHeight / 2, windowHeight / - 2, 0, 40 );
-	
+
 	var focus = new THREE.Vector3( 3,3,0 );
 	camera.position.x = focus.x;
 	camera.position.y = focus.y;
@@ -75,12 +75,12 @@ function showGrids() {
 	Coordinates.drawAxes({axisLength:3,axisOrientation:"y",axisRadius:0.02});
 }
 function addToDOM() {
-    var container = document.getElementById('container');
-    var canvas = container.getElementsByTagName('canvas');
-    if (canvas.length>0) {
-        container.removeChild(canvas[0]);
-    }
-    container.appendChild( renderer.domElement );
+	var container = document.getElementById('container');
+	var canvas = container.getElementsByTagName('canvas');
+	if (canvas.length>0) {
+		container.removeChild(canvas[0]);
+	}
+	container.appendChild( renderer.domElement );
 }
 
 function render() {

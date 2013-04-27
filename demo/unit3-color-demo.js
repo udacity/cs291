@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////
-// RGB additive color demo  (unit 3)                                                   //
+// RGB additive color demo  (unit 3)
 ////////////////////////////////////////////////////////////////////////////////
 
 /*global THREE, requestAnimationFrame, dat, window, document*/
@@ -78,7 +78,7 @@ function init() {
 	setupGui();
 
 }
-	
+
 // EVENT HANDLERS
 
 function onWindowResize() {
@@ -96,7 +96,7 @@ function onWindowResize() {
 function setupGui() {
 
 	ec = {
-	
+
 		red: intensityRed,
 		green: intensityGreen,
 		blue: intensityBlue
@@ -118,13 +118,13 @@ function animate() {
 
 	requestAnimationFrame( animate );
 	render();
-	
+
 }
 
 function render() {
 
 	var delta = clock.getDelta();
-	
+
 	cameraControls.update( delta );
 	if ( ec.red !== intensityRed || ec.green !== intensityGreen || ec.blue !== intensityBlue)
 	{

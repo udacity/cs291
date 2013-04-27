@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
-// Rendering modes demo                                                       //
-// This is rendering mode #1                                                  //
-// Rotate the scene and see how the objects are displayed                     //
+// Rendering modes demo
+// This is rendering mode #1
+// Rotate the scene and see how the objects are displayed
 ////////////////////////////////////////////////////////////////////////////////
 /*global, THREE, requestAnimationFrame, window, document, Stats */
 var container, camera, scene, renderer, stats;
@@ -10,12 +10,12 @@ var clock = new THREE.Clock();
 var sphere, cube, cylinder;
 
 function addToDOM() {
-    container = document.getElementById('container');
-    var canvas = container.getElementsByTagName('canvas');
-    if (canvas.length>0) {
-        container.removeChild(canvas[0]);
-    }
-    container.appendChild( renderer.domElement );
+	container = document.getElementById('container');
+	var canvas = container.getElementsByTagName('canvas');
+	if (canvas.length>0) {
+		container.removeChild(canvas[0]);
+	}
+	container.appendChild( renderer.domElement );
 }
 
 function init() {
@@ -80,7 +80,7 @@ function init() {
 
 	scene.add( sphere );
 
-	cube = new THREE.Mesh( 
+	cube = new THREE.Mesh(
 		new THREE.CubeGeometry( 120, 380, 200 ),
 		new THREE.MeshLambertMaterial( { color: 0x800000 } ) );
 
@@ -90,7 +90,7 @@ function init() {
 
 	scene.add( cube );
 
-	cylinder = new THREE.Mesh( 
+	cylinder = new THREE.Mesh(
 		new THREE.CylinderGeometry( 200, 200, 500, 32, 1 ),
 		new THREE.MeshPhongMaterial( { color: 0x000060, specular: 0x000060 } ) );
 
