@@ -48,7 +48,6 @@ function fillScene() {
 	scene.add( ground );
 
 	//////////////////////////////
-	// Student modifies this code:
 	// MATERIALS
 	var headMaterial = new THREE.MeshLambertMaterial( );
 	headMaterial.color.r = 104/255;
