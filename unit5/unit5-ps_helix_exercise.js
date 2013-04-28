@@ -22,7 +22,7 @@ function fillScene() {
 
 	var light = new THREE.DirectionalLight( 0xffffff, 1.0 );
 	light.position.set( 200, 400, 500 );
-	
+
 	var light2 = new THREE.DirectionalLight( 0xffffff, 1.0 );
 	light2.position.set( -500, 250, -200 );
 
@@ -31,7 +31,7 @@ function fillScene() {
 	scene.add(light2);
 
 	if (ground) {
-		Coordinates.drawGround({size:10000});		
+		Coordinates.drawGround({size:10000});
 	}
 	if (gridX) {
 		Coordinates.drawGrid({size:10000,scale:0.01});
@@ -40,12 +40,12 @@ function fillScene() {
 		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"y"});
 	}
 	if (gridZ) {
-		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"z"});	
+		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"z"});
 	}
 	if (axes) {
 		Coordinates.drawAllAxes({axisLength:200,axisRadius:1,axisTess:50});
 	}
-	
+
 	var redMaterial = new THREE.MeshLambertMaterial( { color: 0xFF0000 } );
 	var greenMaterial = new THREE.MeshLambertMaterial( { color: 0x00FF00 } );
 	var blueMaterial = new THREE.MeshLambertMaterial( { color: 0x0000FF } );
@@ -54,52 +54,52 @@ function fillScene() {
 	var yellowMaterial = new THREE.MeshLambertMaterial( { color: 0xFFFF00 } );
 	var cyanMaterial = new THREE.MeshLambertMaterial( { color: 0x00FFFF } );
 	var magentaMaterial = new THREE.MeshLambertMaterial( { color: 0xFF00FF } );
-	
+
 	var radius = 60;
 	var tube = 10;
 	var radialSegments = 24;
 	var height = 300;
 	var segmentsWidth = 12;
 	var arc = 2;
-	
+
 	var helix;
 	helix = createHelix( redMaterial, radius, tube, radialSegments, segmentsWidth, height, arc, true );
 	helix.position.y = height/2;
 	scene.add( helix );
-	
+
 	helix = createHelix( greenMaterial, radius/2, tube, radialSegments, segmentsWidth, height, arc, false );
 	helix.position.y = height/2;
 	scene.add( helix );
-	
+
 	// DNA
 	helix = createHelix( blueMaterial, radius, tube/2, radialSegments, segmentsWidth, height, arc, false );
 	helix.position.y = height/2;
 	helix.position.z = 2.5 * radius;
 	scene.add( helix );
-	
+
 	helix = createHelix( blueMaterial, radius, tube/2, radialSegments, segmentsWidth, height, arc, false );
 	helix.rotation.y = 120 * Math.PI / 180;
 	helix.position.y = height/2;
 	helix.position.z = 2.5 * radius;
 	scene.add( helix );
-	
+
 	helix = createHelix( grayMaterial, radius, tube/2, radialSegments, segmentsWidth, height/2, arc, true );
 	helix.position.y = height/2;
 	helix.position.x = 2.5 * radius;
 	scene.add( helix );
-	
+
 	helix = createHelix( yellowMaterial, 0.75*radius, tube/2, radialSegments, segmentsWidth, height, 4*arc, false );
 	helix.position.y = height/2;
 	helix.position.x = 2.5 * radius;
 	helix.position.z = -2.5 * radius;
 	scene.add( helix );
-	
+
 	helix = createHelix( cyanMaterial, 0.75*radius, 4*tube, radialSegments, segmentsWidth, height, 2*arc, false );
 	helix.position.y = height/2;
 	helix.position.x = 2.5 * radius;
 	helix.position.z = 2.5 * radius;
 	scene.add( helix );
-	
+
 	helix = createHelix( magentaMaterial, radius, tube, radialSegments, segmentsWidth, height, arc, true );
 	helix.rotation.x = 45 * Math.PI / 180;
 	helix.position.y = height/2;
@@ -121,20 +121,21 @@ function fillScene() {
 //   clockwise - if true, go counterclockwise up the axis
 function createHelix( material, radius, tube, radialSegments, tubularSegments, height, arc, clockwise )
 {
-	// defaults
-	tubularSegments = (tubularSegments === undefined) ? 32 : tubularSegments;
-	arc = (arc === undefined) ? 1 : arc;
-	clockwise = (clockwise === undefined) ? true : clockwise;
-	
+	// defaults: if parameter is not passed in, "undefined",
+	// then the value to the right is used instead.
+	tubularSegments = tubularSegments || 32;
+	arc = arc || 1;
+	clockwise = clockwise || true;
+
 	var helix = new THREE.Object3D();
-	
+
 	var top = new THREE.Vector3();
-	
+
 	var sine_sign = clockwise ? 1 : -1;
-	
+
 	///////////////
 	// Student: remove spheres, use capsules instead, going from point to point.
-	// 
+	//
 	var sphGeom = new THREE.SphereGeometry( tube, tubularSegments, tubularSegments/2 );
 	for ( var i = 0; i <= arc*radialSegments ; i++ )
 	{
@@ -149,7 +150,7 @@ function createHelix( material, radius, tube, radialSegments, tubularSegments, h
 		helix.add( sphere );
 	}
 	///////////////
-	
+
 	return helix;
 }
 
@@ -159,7 +160,7 @@ function createHelix( material, radius, tube, radialSegments, tubularSegments, h
 //   radiusTop, radiusBottom - same as CylinderGeometry, the top and bottom radii of the cone
 //   top, bottom - THREE.Vector3, top and bottom positions of cone
 //   segmentsWidth - tessellation around equator, like radiusSegments in CylinderGeometry
-//   openTop, openBottom - whether the end is given a sphere; true means they are not 
+//   openTop, openBottom - whether the end is given a sphere; true means they are not
 function createCapsule( material, radius, top, bottom, segmentsWidth, openTop, openBottom )
 {
 	// defaults
@@ -171,7 +172,7 @@ function createCapsule( material, radius, top, bottom, segmentsWidth, openTop, o
 	var cylAxis = new THREE.Vector3();
 	cylAxis.subVectors( top, bottom );
 	var length = cylAxis.length();
-	
+
 	// get cylinder center for translation
 	var center = new THREE.Vector3();
 	center.addVectors( top, bottom );
@@ -180,12 +181,12 @@ function createCapsule( material, radius, top, bottom, segmentsWidth, openTop, o
 	// always open-ended
 	var cylGeom = new THREE.CylinderGeometry( radius, radius, length, segmentsWidth, 1, 1 );
 	var cyl = new THREE.Mesh( cylGeom, material );
-	
+
 	// pass in the cylinder itself, its desired axis, and the place to move the center.
 	makeLengthAngleAxisTransform( cyl, cylAxis, center );
 
-	var capsule = new THREE.Object3D();	
-	capsule.add( cyl );	
+	var capsule = new THREE.Object3D();
+	capsule.add( cyl );
 	if ( !openTop || !openBottom ) {
 		// instance geometry
 		var sphGeom = new THREE.SphereGeometry( radius, segmentsWidth, segmentsWidth/2 );
@@ -200,14 +201,14 @@ function createCapsule( material, radius, top, bottom, segmentsWidth, openTop, o
 			capsule.add( sphBottom );
 		}
 	}
-	
+
 	return capsule;
 }
 
 function makeLengthAngleAxisTransform( cyl, cylAxis, center )
 {
 	cyl.matrixAutoUpdate = false;
-	
+
 	// From left to right using frames: translate, then rotate; TR.
 	// So translate is first.
 	cyl.matrix.makeTranslation( center.x, center.y, center.z );
@@ -227,7 +228,7 @@ function makeLengthAngleAxisTransform( cyl, cylAxis, center )
 		rotationAxis.set( 1, 0, 0 );
 	}
 	rotationAxis.normalize();
-	
+
 	// take dot product of cylAxis and up vector to get cosine of angle of rotation
 	var theta = -Math.acos( cylAxis.dot( yAxis ) );
 	//cyl.matrix.makeRotationAxis( rotationAxis, theta );
@@ -257,7 +258,7 @@ function init() {
 	// CONTROLS
 	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
 	cameraControls.target.set(0,200,0);
-	
+
 	fillScene();
 
 }
@@ -281,7 +282,7 @@ function render() {
 
 		fillScene();
 	}
-	
+
 	renderer.render(scene, camera);
 }
 

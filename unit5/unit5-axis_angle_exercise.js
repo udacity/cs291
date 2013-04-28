@@ -23,7 +23,7 @@ function fillScene() {
 
 	var light = new THREE.DirectionalLight( 0xffffff, 1.0 );
 	light.position.set( 200, 400, 500 );
-	
+
 	var light2 = new THREE.DirectionalLight( 0xffffff, 1.0 );
 	light2.position.set( -500, 250, -200 );
 
@@ -32,7 +32,7 @@ function fillScene() {
 	scene.add(light2);
 
 	if (ground) {
-		Coordinates.drawGround({size:100,offset:-0.01});		
+		Coordinates.drawGround({size:100,offset:-0.01});
 	}
 	if (gridX) {
 		Coordinates.drawGrid({size:100,scale:1});
@@ -41,20 +41,20 @@ function fillScene() {
 		Coordinates.drawGrid({size:100,scale:1, orientation:"y"});
 	}
 	if (gridZ) {
-		Coordinates.drawGrid({size:100,scale:1, orientation:"z"});	
+		Coordinates.drawGrid({size:100,scale:1, orientation:"z"});
 	}
 	if (axes) {
 		Coordinates.drawAllAxes({axisLength:5,axisRadius:0.01,axisTess:50});
 	}
-	
+
 	if (bCube) {
-		var cubeMaterial = new THREE.MeshLambertMaterial( 
+		var cubeMaterial = new THREE.MeshLambertMaterial(
 			{ color: 0xFFFFFF, opacity: 0.7, transparent: true } );
-		var cube = new THREE.Mesh( 
+		var cube = new THREE.Mesh(
 			new THREE.CubeGeometry( 2, 2, 2 ), cubeMaterial );
 		scene.add( cube );
 	}
-	
+
 	var cylinderMaterial = new THREE.MeshPhongMaterial( { color: 0xD1F5FD, specular: 0xD1F5FD, shininess: 100 } );
 
 	// get two diagonally-opposite corners of the cube and compute the
@@ -64,13 +64,13 @@ function fillScene() {
 	// note how you can chain one operation on to another:
 	var cylAxis = new THREE.Vector3().subVectors( maxCorner, minCorner );
 	var cylLength = cylAxis.length();
-	
+
 	// take dot product of cylAxis and up vector to get cosine of angle
 	cylAxis.normalize();
 	var theta = Math.acos( cylAxis.dot( new THREE.Vector3(0,1,0) ) );
 	// or just simply theta = Math.acos( cylAxis.y );
-	
-	var cylinder = new THREE.Mesh( 
+
+	var cylinder = new THREE.Mesh(
 		new THREE.CylinderGeometry( 0.2, 0.2, cylLength, 32 ), cylinderMaterial );
 	var rotationAxis = new THREE.Vector3(1,0,-1);
 	// makeRotationAxis wants its axis normalized
@@ -103,7 +103,7 @@ function init() {
 	// CONTROLS
 	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
 	cameraControls.target.set(0,0,0);
-	
+
 	fillScene();
 
 }
