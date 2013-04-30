@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Fixing Incorrect JavaScript exercise                                       //
 ////////////////////////////////////////////////////////////////////////////////
-// Your task is to find the syntax errors in this Javacript                   //
+// Your task is to find the syntax errors in this JavaScript                  //
 // until it shows the the Gold Cube!                                          //
 // Use Developer tools/JavaScript console in Chrome,                          //
 // FireBug in FireFox, or Web Inspector in Safari.                            //
