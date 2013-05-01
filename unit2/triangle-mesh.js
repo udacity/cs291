@@ -1,9 +1,9 @@
 ////////////////////////////////////////////////////////////////////////////////
-// Draw a Square Exercise                                                     //
-// Your task is to complete the function square (at line 28).                 //
-// The function takes 4 arguments - coordinates x1, y1, x2, y2                //
-// for the square and returns a geometry object (THREE.Geometry())            //
-// that defines a square at the provided coordinates.                         //
+// Draw a Square Exercise
+// Your task is to complete the function square (at line 28).
+// The function takes 4 arguments - coordinates x1, y1, x2, y2
+// for the square and returns a geometry object (THREE.Geometry())
+// that defines a square at the provided coordinates.
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, Coordinates, document, window*/
 
@@ -16,7 +16,7 @@ function exampleTriangle() {
 	triangle.vertices.push( new THREE.Vector3( 1, 1, 0 ) );
 	triangle.vertices.push( new THREE.Vector3( 3, 1, 0 ) );
 	triangle.vertices.push( new THREE.Vector3( 3, 3, 0 ) );
-	
+
 	triangle.faces.push( new THREE.Face3( 0, 1, 2 ) );
 
 	return triangle;
@@ -45,7 +45,7 @@ function init() {
 	var windowHeight = windowScale;
 
 	camera = new THREE.OrthographicCamera(windowWidth/-2, windowWidth/2, windowHeight/2, windowHeight/-2, 0, 40);
-	
+
 	var focus = new THREE.Vector3( 5,5,0 );
 	camera.position.x = focus.x;
 	camera.position.y = focus.y;
@@ -60,12 +60,12 @@ function init() {
 }
 
 function addToDOM() {
-    var container = document.getElementById('container');
-    var canvas = container.getElementsByTagName('canvas');
-    if (canvas.length>0) {
-        container.removeChild(canvas[0]);
-    }
-    container.appendChild( renderer.domElement );
+	var container = document.getElementById('container');
+	var canvas = container.getElementsByTagName('canvas');
+	if (canvas.length>0) {
+		container.removeChild(canvas[0]);
+	}
+	container.appendChild( renderer.domElement );
 }
 
 function render() {

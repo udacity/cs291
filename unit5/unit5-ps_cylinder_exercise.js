@@ -22,7 +22,7 @@ function fillScene() {
 
 	var light = new THREE.DirectionalLight( 0xffffff, 1.0 );
 	light.position.set( 200, 400, 500 );
-	
+
 	var light2 = new THREE.DirectionalLight( 0xffffff, 1.0 );
 	light2.position.set( -500, 250, -200 );
 
@@ -31,7 +31,7 @@ function fillScene() {
 	scene.add(light2);
 
 	if (ground) {
-		Coordinates.drawGround({size:10000});		
+		Coordinates.drawGround({size:10000});
 	}
 	if (gridX) {
 		Coordinates.drawGrid({size:10000,scale:0.01});
@@ -40,12 +40,12 @@ function fillScene() {
 		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"y"});
 	}
 	if (gridZ) {
-		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"z"});	
+		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"z"});
 	}
 	if (axes) {
 		Coordinates.drawAllAxes({axisLength:200,axisRadius:1,axisTess:50});
 	}
-	
+
 	var redMaterial = new THREE.MeshLambertMaterial( { color: 0xFF0000 } );
 	var greenMaterial = new THREE.MeshLambertMaterial( { color: 0x00FF00 } );
 	var blueMaterial = new THREE.MeshLambertMaterial( { color: 0x0000FF } );
@@ -54,7 +54,7 @@ function fillScene() {
 	var yellowMaterial = new THREE.MeshLambertMaterial( { color: 0xFFFF00 } );
 	var cyanMaterial = new THREE.MeshLambertMaterial( { color: 0x00FFFF } );
 	var magentaMaterial = new THREE.MeshLambertMaterial( { color: 0xFF00FF } );
-	
+
 	var radiusTop = 50;
 	var radiusBottom = 0;
 	var segmentsWidth = 32;
@@ -62,58 +62,58 @@ function fillScene() {
 	var cylinder;
 
 	// along Y axis
-	cylinder = new createCylinderFromEnds( greenMaterial, 
+	cylinder = new createCylinderFromEnds( greenMaterial,
 		radiusTop, radiusBottom,
 		new THREE.Vector3( 0, 300, 0 ),
-		new THREE.Vector3( 0, 0, 0 ), 
+		new THREE.Vector3( 0, 0, 0 ),
 		segmentsWidth, openEnded );
 	scene.add( cylinder );
 
 	// along X axis
-	cylinder = new createCylinderFromEnds( redMaterial, 
+	cylinder = new createCylinderFromEnds( redMaterial,
 		radiusTop, radiusBottom,
 		new THREE.Vector3( 300, 0, 0 ),
-		new THREE.Vector3( 0, 0, 0 ), 
+		new THREE.Vector3( 0, 0, 0 ),
 		segmentsWidth, openEnded );
 	scene.add( cylinder );
 
 	// along Z axis
-	cylinder = new createCylinderFromEnds( blueMaterial, 
+	cylinder = new createCylinderFromEnds( blueMaterial,
 		radiusTop, radiusBottom,
 		new THREE.Vector3( 0, 0, 300 ),
-		new THREE.Vector3( 0, 0, 0 ), 
+		new THREE.Vector3( 0, 0, 0 ),
 		segmentsWidth, openEnded );
 	scene.add( cylinder );
 
 	// along XYZ axis
-	cylinder = new createCylinderFromEnds( grayMaterial, 
+	cylinder = new createCylinderFromEnds( grayMaterial,
 		radiusTop, radiusBottom,
 		new THREE.Vector3( 200, 200, 200 ),
-		new THREE.Vector3( 0, 0, 0 ), 
+		new THREE.Vector3( 0, 0, 0 ),
 		segmentsWidth, openEnded );
 	scene.add( cylinder );
 
 	// along -Y axis, translated in XYZ
-	cylinder = new createCylinderFromEnds( yellowMaterial, 
+	cylinder = new createCylinderFromEnds( yellowMaterial,
 		radiusTop, radiusBottom,
 		new THREE.Vector3( 50, 100, -200 ),
-		new THREE.Vector3( 50, 300, -200 ), 
+		new THREE.Vector3( 50, 300, -200 ),
 		segmentsWidth, openEnded );
 	scene.add( cylinder );
 
 	// along X axis, from top of previous cylinder
-	cylinder = new createCylinderFromEnds( cyanMaterial, 
+	cylinder = new createCylinderFromEnds( cyanMaterial,
 		radiusTop, radiusBottom,
 		new THREE.Vector3( 50, 300, -200 ),
-		new THREE.Vector3( 250, 300, -200 ), 
+		new THREE.Vector3( 250, 300, -200 ),
 		segmentsWidth, openEnded );
 	scene.add( cylinder );
 
 	// continue from bottom of previous cylinder
-	cylinder = new createCylinderFromEnds( magentaMaterial, 
+	cylinder = new createCylinderFromEnds( magentaMaterial,
 		radiusTop, radiusBottom,
 		new THREE.Vector3( 250, 300, -200 ),
-		new THREE.Vector3( -150, 100, 0 ), 
+		new THREE.Vector3( -150, 100, 0 ),
 		segmentsWidth );	// try openEnded default to false
 	scene.add( cylinder );
 }
@@ -124,12 +124,13 @@ function fillScene() {
 //   radiusTop, radiusBottom - same as CylinderGeometry, the top and bottom radii of the cone
 //   top, bottom - THREE.Vector3, top and bottom positions of cone
 //   segmentsWidth - tessellation around equator, like radiusSegments in CylinderGeometry
-//   openEnded - whether the ends of the cone are generated; true means they are not 
+//   openEnded - whether the ends of the cone are generated; true means they are not
 function createCylinderFromEnds( material, radiusTop, radiusBottom, top, bottom, segmentsWidth, openEnded)
 {
-	// defaults
-	segmentsWidth = (segmentsWidth === undefined) ? 32 : segmentsWidth;
-	openEnded = (openEnded === undefined) ? false : openEnded;
+	// defaults: if parameter is not passed in, "undefined",
+	// then the value to the right is used instead.
+	segmentsWidth = segmentsWidth || 32;
+	openEnded = openEnded || false;
 
 	// Dummy settings, replace with proper code:
 	var length = 100;
@@ -139,18 +140,18 @@ function createCylinderFromEnds( material, radiusTop, radiusBottom, top, bottom,
 
 	var cylGeom = new THREE.CylinderGeometry( radiusTop, radiusBottom, length, segmentsWidth, 1, openEnded );
 	var cyl = new THREE.Mesh( cylGeom, material );
-	
+
 	// pass in the cylinder itself, its desired axis, and the place to move the center.
 	makeLengthAngleAxisTransform( cyl, cylAxis, center );
 
 	return cyl;
 }
 
-// Transform cylinder to align with given axis and then move to center 
+// Transform cylinder to align with given axis and then move to center
 function makeLengthAngleAxisTransform( cyl, cylAxis, center )
 {
 	cyl.matrixAutoUpdate = false;
-	
+
 	// From left to right using frames: translate, then rotate; TR.
 	// So translate is first.
 	cyl.matrix.makeTranslation( center.x, center.y, center.z );
@@ -170,7 +171,7 @@ function makeLengthAngleAxisTransform( cyl, cylAxis, center )
 		rotationAxis.set( 1, 0, 0 );
 	}
 	rotationAxis.normalize();
-	
+
 	// take dot product of cylAxis and up vector to get cosine of angle of rotation
 	var theta = -Math.acos( cylAxis.dot( yAxis ) );
 	//cyl.matrix.makeRotationAxis( rotationAxis, theta );
@@ -200,7 +201,7 @@ function init() {
 	// CONTROLS
 	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
 	cameraControls.target.set(0,200,0);
-	
+
 	fillScene();
 
 }
@@ -224,7 +225,7 @@ function render() {
 
 		fillScene();
 	}
-	
+
 	renderer.render(scene, camera);
 }
 

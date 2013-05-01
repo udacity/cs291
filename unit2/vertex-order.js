@@ -1,8 +1,8 @@
 ////////////////////////////////////////////////////////////////////////////////
-// Vertex Order Exercise                                                      //
-// Your task is to determine the problem and fix the vertex drawing order.    //
-// Check the function someObject()                                            //
-// and correct the code that starts at line 17.                               //
+// Vertex Order Exercise
+// Your task is to determine the problem and fix the vertex drawing order.
+// Check the function someObject()
+// and correct the code that starts at line 17.
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, Coordinates, document, window*/
 
@@ -11,19 +11,19 @@ var windowScale;
 
 function someObject (material) {
 	var geometry = new THREE.Geometry();
-	
-	// Student: some data below must be fixed 
+
+	// Student: some data below must be fixed
 	// for both triangles to appear !
 	geometry.vertices.push( new THREE.Vector3( 3, 3, 0 ) );
 	geometry.vertices.push( new THREE.Vector3( 7, 3, 0 ) );
 	geometry.vertices.push( new THREE.Vector3( 7, 7, 0 ) );
 	geometry.vertices.push( new THREE.Vector3( 3, 7, 0 ) );
-	
+
 	geometry.faces.push( new THREE.Face3( 0, 1, 2 ) );
 	geometry.faces.push( new THREE.Face3( 2, 0, 3 ) );
-	
+
 	var mesh = new THREE.Mesh( geometry, material );
-	
+
 	scene.add( mesh );
 }
 
@@ -42,7 +42,7 @@ function init() {
 
 	camera = new THREE.OrthographicCamera( windowWidth / - 2, windowWidth / 2,
 		windowHeight / 2, windowHeight / - 2, 0, 40 );
-	
+
 	var focus = new THREE.Vector3( 5,4,0 );
 	camera.position.x = focus.x;
 	camera.position.y = focus.y;
@@ -58,12 +58,12 @@ function init() {
 }
 
 function addToDOM() {
-    var container = document.getElementById('container');
-    var canvas = container.getElementsByTagName('canvas');
-    if (canvas.length>0) {
-        container.removeChild(canvas[0]);
-    }
-    container.appendChild( renderer.domElement );
+	var container = document.getElementById('container');
+	var canvas = container.getElementsByTagName('canvas');
+	if (canvas.length>0) {
+		container.removeChild(canvas[0]);
+	}
+	container.appendChild( renderer.domElement );
 }
 
 function showGrids() {

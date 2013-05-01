@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////
-// Newell Teaspoon demo                                                       //
+// Newell Teaspoon demo
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, requestAnimationFrame, dat, window */
 
@@ -30,7 +30,7 @@ function init() {
 
 	light = new THREE.DirectionalLight( 0xffffff, 1.0 );
 	// direction is set in GUI
-	
+
 	// RENDERER
 
 	renderer = new THREE.WebGLRenderer( { antialias: true } );
@@ -62,27 +62,27 @@ function init() {
 	flatGouraudMaterial.uniforms.uMaterialColor.value.copy( materialColor );
 	flatGouraudMaterial.shading = THREE.FlatShading;
 	flatGouraudMaterial.side = THREE.DoubleSide;
-	
+
 	flatPhongMaterial = createShaderMaterial( "phong", light, ambientLight );
 	flatPhongMaterial.uniforms.uMaterialColor.value.copy( materialColor );
 	flatPhongMaterial.shading = THREE.FlatShading;
 	flatPhongMaterial.side = THREE.DoubleSide;
-	
+
 	gouraudMaterial = createShaderMaterial( "gouraud", light, ambientLight );
 	gouraudMaterial.uniforms.uMaterialColor.value.copy( materialColor );
 	gouraudMaterial.side = THREE.DoubleSide;
-	
+
 	phongMaterial = createShaderMaterial( "phong", light, ambientLight );
 	phongMaterial.uniforms.uMaterialColor.value.copy( materialColor );
 	phongMaterial.side = THREE.DoubleSide;
-	
+
 	wireMaterial = new THREE.MeshBasicMaterial( { color: 0xFFCC99, wireframe: true } ) ;
 
 	// GUI
 	setupGui();
 
 }
-	
+
 // EVENT HANDLERS
 
 function onWindowResize() {
@@ -100,18 +100,18 @@ function onWindowResize() {
 function setupGui() {
 
 	effectController = {
-	
+
 		shininess: 100.0,
 		ka: 0.2,
 		kd: 0.7,
 		ks: 0.7,
 		metallic: false,
 
-		hue:    0.53,
+		hue:		0.53,
 		saturation: 0.01,
 		lightness:  0.9,
 
-		lhue:        0.04,
+		lhue:		 0.04,
 		lsaturation: 0.01,	// so that fractions will be shown
 		llightness:  1.0,
 
@@ -178,13 +178,13 @@ function animate() {
 
 	requestAnimationFrame( animate );
 	render();
-	
+
 }
 
 function render() {
 
 	var delta = clock.getDelta();
-	
+
 	cameraControls.update( delta );
 	if ( effectController.newTess !== tess || effectController.newFlat !== flat || effectController.newPhong !== phong || effectController.newWire !== wire)
 	{
@@ -195,7 +195,7 @@ function render() {
 
 		fillScene();
 	}
-	
+
 	flatGouraudMaterial.uniforms.shininess.value = effectController.shininess;
 	flatPhongMaterial.uniforms.shininess.value = effectController.shininess;
 	gouraudMaterial.uniforms.shininess.value = effectController.shininess;
@@ -217,7 +217,7 @@ function render() {
 	flatPhongMaterial.uniforms.uMaterialColor.value.copy( materialColor );
 	gouraudMaterial.uniforms.uMaterialColor.value.copy( materialColor );
 	phongMaterial.uniforms.uMaterialColor.value.copy( materialColor );
-	
+
 	if ( !effectController.metallic )
 	{
 		materialColor.setRGB(1,1,1);
@@ -231,7 +231,6 @@ function render() {
 	ambientLight.color.setHSL( effectController.hue, effectController.saturation, effectController.lightness * effectController.ka );
 
 	light.position.set( effectController.lx, effectController.ly, effectController.lz );
-	light.position.normalize();
 	light.color.setHSL( effectController.lhue, effectController.lsaturation, effectController.llightness );
 	renderer.render( scene, camera );
 
@@ -266,16 +265,16 @@ function fillScene() {
 	scene.add( ambientLight );
 	scene.add( light );
 	scene.add( particleLight );
-	
+
 	// Coordinates.drawAllAxes({axisLength:1000,axisRadius:5,axisTess:50});
 
 	var teaspoon = new THREE.Mesh(
 		new THREE.TeaspoonGeometry( teaspoonSize, tess ),
 		wire ? wireMaterial : (
-		flat ? 
+		flat ?
 			( phong ? flatPhongMaterial : flatGouraudMaterial ) :
 			( phong ? phongMaterial : gouraudMaterial ) ));
-	
+
 	scene.add( teaspoon );
 }
 

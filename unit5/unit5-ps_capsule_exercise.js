@@ -22,7 +22,7 @@ function fillScene() {
 
 	var light = new THREE.DirectionalLight( 0xffffff, 1.0 );
 	light.position.set( 200, 400, 500 );
-	
+
 	var light2 = new THREE.DirectionalLight( 0xffffff, 1.0 );
 	light2.position.set( -500, 250, -200 );
 
@@ -31,7 +31,7 @@ function fillScene() {
 	scene.add(light2);
 
 	if (ground) {
-		Coordinates.drawGround({size:10000});		
+		Coordinates.drawGround({size:10000});
 	}
 	if (gridX) {
 		Coordinates.drawGrid({size:10000,scale:0.01});
@@ -40,12 +40,12 @@ function fillScene() {
 		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"y"});
 	}
 	if (gridZ) {
-		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"z"});	
+		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"z"});
 	}
 	if (axes) {
 		Coordinates.drawAllAxes({axisLength:200,axisRadius:1,axisTess:50});
 	}
-	
+
 	var redMaterial = new THREE.MeshLambertMaterial( { color: 0xFF0000 } );
 	var greenMaterial = new THREE.MeshLambertMaterial( { color: 0x00FF00 } );
 	var blueMaterial = new THREE.MeshLambertMaterial( { color: 0x0000FF } );
@@ -54,64 +54,64 @@ function fillScene() {
 	var yellowMaterial = new THREE.MeshLambertMaterial( { color: 0xFFFF00 } );
 	var cyanMaterial = new THREE.MeshLambertMaterial( { color: 0x00FFFF } );
 	var magentaMaterial = new THREE.MeshLambertMaterial( { color: 0xFF00FF } );
-	
+
 	var radius = 20;
 	var segmentsWidth = 32;
 	var capsule;
 
 	// along Y axis
-	capsule = new createCapsule( greenMaterial, 
+	capsule = new createCapsule( greenMaterial,
 		radius,
 		new THREE.Vector3( 0, 300, 0 ),
-		new THREE.Vector3( 0, 0, 0 ), 
+		new THREE.Vector3( 0, 0, 0 ),
 		segmentsWidth, false, false );
 	scene.add( capsule );
 
 	// along X axis
-	capsule = new createCapsule( redMaterial, 
+	capsule = new createCapsule( redMaterial,
 		radius,
 		new THREE.Vector3( 300, 0, 0 ),
-		new THREE.Vector3( 0, 0, 0 ), 
+		new THREE.Vector3( 0, 0, 0 ),
 		segmentsWidth, false, true );
 	scene.add( capsule );
 
 	// along Z axis
-	capsule = new createCapsule( blueMaterial, 
+	capsule = new createCapsule( blueMaterial,
 		radius,
 		new THREE.Vector3( 0, 0, 300 ),
-		new THREE.Vector3( 0, 0, 0 ), 
+		new THREE.Vector3( 0, 0, 0 ),
 		segmentsWidth, false, true );
 	scene.add( capsule );
 
 	// along XYZ axis
-	capsule = new createCapsule( grayMaterial, 
+	capsule = new createCapsule( grayMaterial,
 		radius,
 		new THREE.Vector3( 200, 200, 200 ),
-		new THREE.Vector3( 0, 0, 0 ), 
+		new THREE.Vector3( 0, 0, 0 ),
 		segmentsWidth, false, true );
 	scene.add( capsule );
 
 	// along -Y axis, translated in XYZ
-	capsule = new createCapsule( yellowMaterial, 
+	capsule = new createCapsule( yellowMaterial,
 		radius,
 		new THREE.Vector3( 50, 100, -200 ),
-		new THREE.Vector3( 50, 300, -200 ), 
+		new THREE.Vector3( 50, 300, -200 ),
 		segmentsWidth, false, true );
 	scene.add( capsule );
 
 	// along X axis, from top of previous capsule
-	capsule = new createCapsule( cyanMaterial, 
+	capsule = new createCapsule( cyanMaterial,
 		radius,
 		new THREE.Vector3( 50, 300, -200 ),
-		new THREE.Vector3( 250, 300, -200 ), 
+		new THREE.Vector3( 250, 300, -200 ),
 		segmentsWidth, false, true );
 	scene.add( capsule );
 
 	// continue from bottom of previous capsule
-	capsule = new createCapsule( magentaMaterial, 
+	capsule = new createCapsule( magentaMaterial,
 		radius,
 		new THREE.Vector3( 250, 300, -200 ),
-		new THREE.Vector3( -150, 100, 0 ), 
+		new THREE.Vector3( -150, 100, 0 ),
 		segmentsWidth, false, false );
 	scene.add( capsule );
 }
@@ -122,19 +122,20 @@ function fillScene() {
 //   radiusTop, radiusBottom - same as CylinderGeometry, the top and bottom radii of the cone
 //   top, bottom - THREE.Vector3, top and bottom positions of cone
 //   segmentsWidth - tessellation around equator, like radiusSegments in CylinderGeometry
-//   openTop, openBottom - whether the end is given a sphere; true means they are not 
+//   openTop, openBottom - whether the end is given a sphere; true means they are not
 function createCapsule( material, radius, top, bottom, segmentsWidth, openTop, openBottom )
 {
-	// defaults
-	segmentsWidth = (segmentsWidth === undefined) ? 32 : segmentsWidth;
-	openTop = (openTop === undefined) ? false : openTop;
-	openBottom = (openBottom === undefined) ? false : openBottom;
+	// defaults: if parameter is not passed in, "undefined",
+	// then the value to the right is used instead.
+	segmentsWidth = segmentsWidth || 32;
+	openTop = openTop || false;
+	openBottom = openBottom || false;
 
 	// get cylinder height
 	var cylAxis = new THREE.Vector3();
 	cylAxis.subVectors( top, bottom );
 	var length = cylAxis.length();
-	
+
 	// get cylinder center for translation
 	var center = new THREE.Vector3();
 	center.addVectors( top, bottom );
@@ -143,7 +144,7 @@ function createCapsule( material, radius, top, bottom, segmentsWidth, openTop, o
 	// always open-ended
 	var cylGeom = new THREE.CylinderGeometry( radius, radius, length, segmentsWidth, 1, 1 );
 	var cyl = new THREE.Mesh( cylGeom, material );
-	
+
 	// pass in the cylinder itself, its desired axis, and the place to move the center.
 	makeLengthAngleAxisTransform( cyl, cylAxis, center );
 
@@ -151,17 +152,17 @@ function createCapsule( material, radius, top, bottom, segmentsWidth, openTop, o
 	// Student: here's a sphere's geometry. Use it to cap the cylinder if
 	// openTop and/or openBottom is false. Bonus points: use instancing!
 	var sphGeom = new THREE.SphereGeometry( radius, segmentsWidth, segmentsWidth/2 );
-	
+
 	// You'll probably want to return something other than this...
 	return cyl;
-	
+
 	//////////////////////
 }
 
 function makeLengthAngleAxisTransform( cyl, cylAxis, center )
 {
 	cyl.matrixAutoUpdate = false;
-	
+
 	// From left to right using frames: translate, then rotate; TR.
 	// So translate is first.
 	cyl.matrix.makeTranslation( center.x, center.y, center.z );
@@ -181,7 +182,7 @@ function makeLengthAngleAxisTransform( cyl, cylAxis, center )
 		rotationAxis.set( 1, 0, 0 );
 	}
 	rotationAxis.normalize();
-	
+
 	// take dot product of cylAxis and up vector to get cosine of angle of rotation
 	var theta = -Math.acos( cylAxis.dot( yAxis ) );
 	//cyl.matrix.makeRotationAxis( rotationAxis, theta );
@@ -211,7 +212,7 @@ function init() {
 	// CONTROLS
 	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
 	cameraControls.target.set(0,200,0);
-	
+
 	fillScene();
 
 }
@@ -235,7 +236,7 @@ function render() {
 
 		fillScene();
 	}
-	
+
 	renderer.render(scene, camera);
 }
 

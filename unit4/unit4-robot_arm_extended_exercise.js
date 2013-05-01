@@ -187,7 +187,8 @@ function render() {
 		fillScene();
 	}
 
-	// student, uncomment: body.rotation.y = effectController.by * Math.PI/180;	// yaw
+	// student, uncomment:
+	//body.rotation.y = effectController.by * Math.PI/180;	// yaw
 
 	arm.rotation.y = effectController.uy * Math.PI/180;	// yaw
 	arm.rotation.z = effectController.uz * Math.PI/180;	// roll
@@ -210,7 +211,8 @@ function setupGui() {
 		newGround: ground,
 		newAxes: axes,
 		
-		// student, uncomment: by: 0.0,
+		// student, uncomment:
+		//by: 0.0,
 		
 		uy: 70.0,
 		uz: -15.0,
@@ -227,7 +229,8 @@ function setupGui() {
 	h.add( effectController, "newGround" ).name("Show ground");
 	h.add( effectController, "newAxes" ).name("Show axes");
 	h = gui.addFolder("Arm angles");
-	// student, uncomment: h.add(effectController, "by", -180.0, 180.0, 0.025).name("Body y");
+	// student, uncomment:
+	//h.add(effectController, "by", -180.0, 180.0, 0.025).name("Body y");
 	h.add(effectController, "uy", -180.0, 180.0, 0.025).name("Upper arm y");
 	h.add(effectController, "uz", -45.0, 45.0, 0.025).name("Upper arm z");
 	h.add(effectController, "fy", -180.0, 180.0, 0.025).name("Forearm y");
