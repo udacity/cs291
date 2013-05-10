@@ -16,10 +16,9 @@ var clock = new THREE.Clock();
 
 var teapotSize = 600;
 
-var tess = 7, newTess = tess;
+var tess = -1;	// force initialization
 
 var tessLevel = [2, 3, 4, 5, 6, 8, 10, 12, 16, 24, 32];
-var maxTessLevel = tessLevel.length - 1;
 
 var ambientLight, light;
 var teapot;
@@ -66,7 +65,7 @@ function init() {
 
 	// CONTROLS
 
-	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
+	cameraControls = new THREE.TrackballControls(camera, renderer.domElement);
 	cameraControls.target.set(0, -436, 0);
 
 	// MATERIALS
@@ -76,8 +75,8 @@ function init() {
 	materialColor.setRGB(1.0, 0.8, 0.6);
 
 	phongBalancedMaterial = createShaderMaterial("phongBalanced", light, ambientLight);
-	//phongBalancedMaterial.uniforms.uMaterialColor.value.copy(materialColor);
-	//phongBalancedMaterial.side = THREE.DoubleSide;
+	phongBalancedMaterial.uniforms.uMaterialColor.value.copy(materialColor);
+	phongBalancedMaterial.side = THREE.DoubleSide;
 
 	fillScene();
 
@@ -120,7 +119,7 @@ function createShaderMaterial(id, light, ambientLight) {
 				},
 				uFresnelScale: {
 					type: "f",
-					value: 1.0
+					value: 5.0
 				},
 				uUseFresnel: {
 					type: "f",
@@ -171,10 +170,10 @@ function createShaderMaterial(id, light, ambientLight) {
 "// See http://en.wikipedia.org/wiki/Schlick%27s_approximation for formula",
 "// R0 is ((1-n2)/(1+n2))^2, e.g. for skin (from GPU Gems 3):",
 "// Index of refraction of 1.4 gives ((1-1.4)/(1+1.4))^2 = 0.028",
-"vec3 fresnelReflectance( vec3 L, vec3 H, vec3 F0 ) {",
+"float fresnelReflectance( vec3 L, vec3 H, float R0 ) {",
 	"float base = 1.0 - dot( L, H );",
 	"float exponential = pow( base, 5.0 );",
-	"return F0 + (1.0 - F0) * exponential;",
+	"return R0 + (1.0 - R0) * exponential;",
 "}",
 "",
 "void main() {",
@@ -208,15 +207,11 @@ function createShaderMaterial(id, light, ambientLight) {
 			"// Since Fresnel dims the specular considerably except at a shallow angle,",
 			"// adjust by a fudge factor. We're not dealing with an energy-conserving",
 			"// illumination model here.",
-			"sc = uFresnelScale * fresnelReflectance( lVector, pointHalfVector, sc );",
+			"specular *= uFresnelScale * fresnelReflectance( lVector, pointHalfVector, 0.028 );",
 		"}",
-		"// specular term should get reduced by N*L also! Avoids termination problem",
-		"gl_FragColor.rgb += diffuse * sc;",
+		"gl_FragColor.rgb += uKd * uMaterialColor * uDirLightColor * diffuse;",
+		"gl_FragColor.rgb += diffuse * uDirLightColor * uSpecularColor * uKs * specular;",
 	"}",
-	"// gamma correction - works only for opaque rendering!",
-	"gl_FragColor.r = pow( gl_FragColor.r, 0.454545 );",
-	"gl_FragColor.g = pow( gl_FragColor.g, 0.454545 );",
-	"gl_FragColor.b = pow( gl_FragColor.b, 0.454545 );",
 "}"].join("\n")
 
 	var material = new THREE.ShaderMaterial({ uniforms: u, vertexShader: vs, fragmentShader: fs });
@@ -237,7 +232,7 @@ function setupGui() {
 		ka: 0.2,
 		kd: 0.52,
 		ks: 0.35,
-		fresnelScale: 1.0,
+		fresnelScale: 5.0,
 		useFresnel: true,
 
 		hue: 0.09,
@@ -252,7 +247,8 @@ function setupGui() {
 		// will not show any decimal places.
 		lx: 0.65,
 		ly: 0.43,
-		lz: 0.35
+		lz: 0.35,
+		newTess: 10
 	};
 
 	var h;
@@ -268,8 +264,8 @@ function setupGui() {
 	h.add(effectController, "kd", 0.0, 1.0, 0.025).name("Kd");
 	h.add(effectController, "ks", 0.0, 1.0, 0.025).name("Ks");
 	h.add(effectController, "useFresnel");
-	h.add(effectController, "fresnelScale", 0.0, 5.0, 0.025).name("Fresnel scale");
-	// TODO: add tess for tessellation
+	h.add(effectController, "fresnelScale", 0.0, 50.0, 0.025).name("Fresnel scale");
+	h.add(effectController, "newTess", [2,3,4,5,6,8,10,12,16,24,32] ).name("Tessellation Level");
 
 	// material (color)
 
@@ -312,8 +308,8 @@ function render() {
 
 	cameraControls.update(delta);
 
-	if (newTess !== tess ) {
-		tess = newTess;
+	if (effectController.newTess !== tess ) {
+		tess = effectController.newTess;
 
 		fillScene();
 	}
@@ -346,7 +342,7 @@ function render() {
 
 function fillScene() {
 	scene = new THREE.Scene();
-	//scene.fog = new THREE.Fog(0x808080, 2000, 4000);
+	scene.fog = new THREE.Fog(0x808080, 2000, 4000);
 
 	scene.add(camera);
 
@@ -354,7 +350,7 @@ function fillScene() {
 	scene.add(light);
 
 	teapot = new THREE.Mesh(
-		new THREE.TeapotGeometry(teapotSize, tessLevel[tess], true, true, true, true), phongBalancedMaterial);
+		new THREE.TeapotGeometry(teapotSize, tess, true, true, true, true), phongBalancedMaterial);
 	teapot.position.y = -teapotSize;
 
 	scene.add(teapot);
