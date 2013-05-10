@@ -65,7 +65,7 @@ function init() {
 
 	// CONTROLS
 
-	cameraControls = new THREE.TrackballControls(camera, renderer.domElement);
+	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
 	cameraControls.target.set(0, -436, 0);
 
 	// MATERIALS
