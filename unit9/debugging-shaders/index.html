@@ -1,0 +1,72 @@
+<html>
+	<head></head>
+	<body style="overflow:auto; margin:0; padding:0;">
+		<div id="container" onclick="this.focus();"></div>
+		<div id="grading"></div>
+	</body>
+		<script type="text/javascript" src="../../lib/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="../../lib/utils.js"></script>
+		<script type="text/javascript" src="../../lib/three.min.js"></script>
+        <script type="text/javascript" src="../../lib/Coordinates.js"></script>
+		<script type="text/javascript" src="../../lib/OrbitAndPanControls.js"></script>
+		<script type="text/javascript" src="../../lib/uclass_BeveledBlockGeometry.js"></script>
+		<script type="text/javascript" src="../../lib/uclass_TeapotGeometry.js"></script>
+		<script type="text/javascript" src="../../lib/stats.min.js"></script>
+		<script type="text/javascript" src="../../lib/dat.gui.min.js"></script>
+		<script type="text/x-glsl" id="vertex">
+varying vec3 vNormal;
+varying vec3 vViewPosition;
+varying vec3 vModelPosition;
+
+void main() {
+	gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+	vNormal = normalize( normalMatrix * normal );
+	vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+	vViewPosition = -mvPosition.xyz;
+	vModelPosition = position;
+}
+		</script>
+		<script type="text/x-glsl" id="fragment">
+uniform vec3 uMaterialColor;
+
+uniform vec3 uDirLightPos;
+uniform vec3 uDirLightColor;
+
+uniform float uKd;
+uniform float uScale;
+uniform float uGainAlpha;
+
+varying vec3 vNormal;
+varying vec3 vViewPosition;
+varying vec3 vModelPosition;
+
+// from Schlick, "Fast alternatives to Perlin's bias and gain functions"
+float computeBias( float t, float alpha ) {
+	float exponent = -log(alpha)/log(2.0);
+	return pow( t, exponent );
+}
+
+void main() {
+	// compute direction to light
+	vec4 lDirection = viewMatrix * vec4( uDirLightPos, 0.0 );
+	vec3 lVector = normalize( lDirection.xyz );
+
+	// diffuse: N * L. Normal must be normalized, since it's interpolated.
+	vec3 normal = normalize( vNormal );
+	
+	float diffuse = max( dot( normal, lVector ), 0.0);
+	
+	float attenuation = ( 0.5 + 
+		0.5 * sin( uScale * sqrt( vModelPosition.x*vModelPosition.x + vModelPosition.z*vModelPosition.z ) ) );
+	
+	// general gain formula
+	diffuse *= ( attenuation < 0.5 ) ?
+		0.5 * computeBias( 2.0*attenuation, uGainAlpha ) : 
+		1.0 - 0.5 * computeBias( 2.0 - 2.0*attenuation, uGainAlpha );
+
+	// Student: instead output diffuse, uGainAlpha, attenuation to RGB
+	gl_FragColor = vec4( uKd * uMaterialColor * uDirLightColor * diffuse, 1.0 );
+}
+		</script>
+		<script type="text/javascript" src="shaders.js"></script>
+</html>
