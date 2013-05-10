@@ -14,6 +14,7 @@
 		<script src="lib/uclass_shaders.js"></script>
 		<script src='lib/stats.min.js'></script>
 		<script src="lib/dat.gui.min.js"></script>
+		<script src="lib/tween.min.js"></script>
 	</head>
 	<body>
 		<script type="text/javascript">
@@ -36,28 +37,48 @@
 							 OnChange="location.href=run.demo.options[selectedIndex].value">
 								 <option selected>Select demo
 								 	<option value="?load=demo/unit1-fps.js">Lesson 1 FPS
-								 	<option value="?load=demo/unit1-teacup-demo.js">Lesson 1 teacup
-								 	<option value="?load=demo/unit1-teapot-demo.js">Lesson 1 teapot
-								 	<option value="?load=demo/unit1-teaspoon-demo.js">Lesson 1 teaspoon
-								 	<option value="?load=demo/unit1-render-mode-0.js">Lesson 1 render mode #0
-								 	<option value="?load=demo/unit1-render-mode-1.js">Lesson 1 render mode #1
-								 	<option value="?load=demo/unit1-render-mode-2.js">Lesson 1 render mode #2
-								 	<option value="?load=demo/unit2-z-fighting.js">Lesson 2 z-fighting
-								 	<option value="?load=demo/unit2-z-fighting_fixed.js">Lesson 2 z-fighting fixed
-								 	<option value="?load=demo/unit3-blending.js">Lesson 3 blending
-								 	<option value="?load=demo/unit3-color-demo.js">Lesson 3 colors
-								 	<option value="?load=demo/unit3-diffuse-demo.js">Lesson 3 diffuse
+								 	<option value="?load=demo/unit1-teacup-demo.js">Lesson 1 Teacup
+								 	<option value="?load=demo/unit1-teapot-demo.js">Lesson 1 Teapot
+								 	<option value="?load=demo/unit1-teaspoon-demo.js">Lesson 1 Teaspoon
+								 	<option value="?load=demo/unit1-render-mode-0.js">Lesson 1 Render mode #0
+								 	<option value="?load=demo/unit1-render-mode-1.js">Lesson 1 Render mode #1
+								 	<option value="?load=demo/unit1-render-mode-2.js">Lesson 1 Render mode #2
+								 	<option value="?load=demo/unit2-z-fighting.js">Lesson 2 Z-fighting
+								 	<option value="?load=demo/unit2-z-fighting_fixed.js">Lesson 2 Z-fighting fixed
+								 	<option value="?load=demo/unit3-blending.js">Lesson 3 Blending
+								 	<option value="?load=demo/unit3-color-demo.js">Lesson 3 Colors
+								 	<option value="?load=demo/unit3-diffuse-demo.js">Lesson 3 Fiffuse
 								 	<option value="?load=demo/unit3-over_operator.js">Lesson 3 Over operator
-								 	<option value="?load=demo/unit3-teapot-demo.js">Lesson 3 teapot
-								 	<option value="?load=demo/unit3-tessellation-demo.js">Lesson 3 tessellation
-								 	<option value="?load=demo/unit3-transparency.js">Lesson 3 transparency
+								 	<option value="?load=demo/unit3-teapot-demo.js">Lesson 3 Teapot
+								 	<option value="?load=demo/unit3-tessellation-demo.js">Lesson 3 Tessellation
+								 	<option value="?load=demo/unit3-transparency.js">Lesson 3 Transparency
 								 	<option value="?load=demo/unit4-euler_angles.js">Lesson 4 Euler angles
 								 	<option value="?load=demo/unit4-robot_arm_demo.js">Lesson 4 Robot arm
 								 	<option value="?load=demo/unit4-robot_arm_demo_forearm.js">Lesson 4 Robot forearm
 								 	<option value="?load=demo/unit4-robot_arm_demo_upper_arm.js">Lesson 4 Robot upper arm
-								 	<option value="?load=demo/unit4-rotate_then_scale.js">Lesson 4 rotate then scale
+								 	<option value="?load=demo/unit4-rotate_then_scale.js">Lesson 4 Rotate then scale
+									<option value="?load=demo/unit6-fog.js">Lesson 6 Fog
+									<option value="?load=demo/unit7-orthographic-projection.js">Lesson 7 Orthographic
+									<option value="?load=demo/unit7-dolly-and-zoom.js">Lesson 7 Dolly and zoom
+
+									<option value="?load=demo/unit8-uv-coordinates.js">Lesson 8 UV coordinates
+									<option value="?load=demo/unit8-texture-distortion.js">Lesson 8 Texture distortion
+									<option value="?load=demo/unit8-wrap-mode.js">Lesson 8 Wrap mode
+									<option value="?load=demo/unit8-texture-magnification.js">Lesson 8 Magnification
+									<option value="?load=demo/unit8-texture-minification.js">Lesson 8 Minification
+									<option value="?load=demo/unit8-mipmapping.js">Lesson 8 Mipmapping
+									<option value="?load=demo/unit8-anisotropy.js">Lesson 8 Anisotropy
+									<option value="?load=demo/unit8-particles.js">Lesson 8 Particles
+									<option value="?load=demo/unit9-fresnel.js">Lesson 9 Fresnel
+									<option value="?load=demo/unit9-energy-balanced.js">Lesson 9 Energy balanced
+									<option value="?load=demo/unit9-gamma.js">Lesson 9 Gamma correction
+									<option value="?load=demo/unit10-picking.js">Lesson 10 Picking demo
+									<option value="?load=demo/unit10-constant-vs-timed-steps.js">Lesson 10 Constant vs. timed steps
+									<option value="?load=demo/unit10-tweening-demo.js">Lesson 10 Tween keyframing
+									<option value="?load=demo/unit10-jaunty-hat.js">Lesson 10 Jaunty hat
 							</select>
-							 or
+
+							or
 							<select name="exercises"
 							 OnChange="location.href=run.exercises.options[selectedIndex].value">
 								 <option selected>Select exercise
