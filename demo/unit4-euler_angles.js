@@ -11,7 +11,9 @@ var gridX = true;
 var gridY = false;
 var gridZ = false;
 var axes = true;
+var rings = true;
 var airplane;
+var ringx,ringy,ringz;
 
 function fillScene() {
 	scene = new THREE.Scene();
@@ -41,6 +43,10 @@ function fillScene() {
 	}
 	if (axes) {
 		Coordinates.drawAllAxes({axisLength:200,axisRadius:1,axisTess:50});
+	}
+
+	if (rings) {
+		createAllRings();
 	}
 	
 	var planeMaterial = new THREE.MeshPhongMaterial( { color: 0x95E4FB, specular: 0x505050, shininess: 100 } );
@@ -91,6 +97,55 @@ function fillScene() {
 	airplane.add( cylinder );
 	
 	scene.add( airplane );
+
+}
+
+function createAllRings() {
+	//create Rings
+	ringx =  createRing(200,0xFF0000,'x');
+	ringy =  createRing(175,0x00FF00,'y');
+	ringz =  createRing(150,0x0000FF,'z');
+	
+	//setuo rotation hierarchy - assuming x -> y -> z intrinsic
+	ringy.add(ringz);
+	ringx.add(ringy);
+	
+	scene.add(ringx);
+}
+
+function createRing(radius,color,axis) {
+	var sphere_radius = 12;
+
+	var ringMaterial = new THREE.MeshLambertMaterial({color: color});
+
+	//create ring shape
+	var circleMesh = new THREE.Mesh(
+	 	new THREE.TorusGeometry(radius,5,6,50),
+		ringMaterial
+	);
+
+	var sphereMesh = new THREE.Mesh(
+		new THREE.SphereGeometry(sphere_radius,12,10),
+		ringMaterial
+		);
+	sphereMesh.position.x = radius;
+
+	var composite = new THREE.Object3D();
+	composite.add(circleMesh);
+	composite.add(sphereMesh);
+	// composite.add(coneMesh);
+	
+	if (axis === 'x') {
+		composite.rotation.y = Math.PI/2;
+	} else if (axis === 'y') {
+		composite.rotation.x = Math.PI/2;
+	}
+
+	var ringObj = new THREE.Object3D();
+	ringObj.add(composite);
+	
+	return ringObj;
+
 }
 
 function init() {
@@ -128,12 +183,13 @@ function render() {
 	var delta = clock.getDelta();
 	cameraControls.update(delta);
 
-	if ( effectController.newGridX !== gridX || effectController.newGridY !== gridY || effectController.newGridZ !== gridZ || effectController.newAxes !== axes)
+	if ( effectController.newGridX !== gridX || effectController.newGridY !== gridY || effectController.newGridZ !== gridZ || effectController.newAxes !== axes || effectController.newRings !== rings)
 	{
 		gridX = effectController.newGridX;
 		gridY = effectController.newGridY;
 		gridZ = effectController.newGridZ;
 		axes = effectController.newAxes;
+		rings = effectController.newRings;
 
 		fillScene();
 	}
@@ -141,7 +197,11 @@ function render() {
 	airplane.rotation.x = effectController.ex * Math.PI/180;	// pitch
 	airplane.rotation.y = effectController.ey * Math.PI/180;	// yaw
 	airplane.rotation.z = effectController.ez * Math.PI/180;	// roll
-	
+
+	ringx.rotation.x = airplane.rotation.x;
+	ringy.rotation.y = airplane.rotation.y;
+	ringz.rotation.z = airplane.rotation.z;
+
 	renderer.render(scene, camera);
 }
 
@@ -155,6 +215,7 @@ function setupGui() {
 		newGridY: gridY,
 		newGridZ: gridZ,
 		newAxes: axes,
+		newRings: rings,
 		
 		ex: 0.0,
 		ey: 0.0,
@@ -167,6 +228,7 @@ function setupGui() {
 	h.add( effectController, "newGridY" ).name("Show YZ grid");
 	h.add( effectController, "newGridZ" ).name("Show XY grid");
 	h.add( effectController, "newAxes" ).name("Show axes");
+	h.add( effectController, "newRings").name("Show rings");
 	h = gui.addFolder("Euler angles");
 	h.add(effectController, "ex", -180.0, 180.0, 0.025).name("Euler x");
 	h.add(effectController, "ey", -180.0, 180.0, 0.025).name("Euler y");
