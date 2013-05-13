@@ -104,14 +104,31 @@ function onDocumentMouseDown( event ) {
 
 	// Annoying nested window code: need to subtract offsets for nested windows.
 	// This is not needed if you have just a single window filling the browser
-	var node = event.srcElement;
-	var mouseX = event.clientX - node.offsetLeft;
-	var mouseY = event.clientY - node.offsetTop;
+	// var node = event.srcElement;
+	// var mouseX = event.clientX - node.offsetLeft;
+	// var mouseY = event.clientY - node.offsetTop;
+
+
+    // getBoundingClientRect()
+    //   givest the element's position relative to the browser's visile viewport.
+    // clientX/Y 
+    //   gives the mouse position relative to the browser's visible viewport.
+    //
+    // we then just have to find the difference between the two 
+    // to get the mouse position in "canvas-space"
+	var canvasPosition = renderer.domElement.getBoundingClientRect();
+	var mouseX = event.clientX - canvasPosition.left;
+	var mouseY = event.clientY - canvasPosition.top;
+
+	// console.log(canvasPosition.left,canvasPosition.top);
+	// console.log(mouseX,mouseY);
+
+	/*
 	while (node.offsetParent){
 		node = node.offsetParent;
 		mouseX -= node.offsetLeft;
 		mouseY -= node.offsetTop;
-	}
+	}*/
 
 	/* the old way */
 	/*
