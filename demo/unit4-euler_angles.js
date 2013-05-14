@@ -165,7 +165,7 @@ function init() {
 
 	// CAMERA
 	camera = new THREE.PerspectiveCamera( 30, canvasRatio, 1, 10000 );
-	camera.position.set( -380, 270, 120 );
+	camera.position.set( -668, 474, 210 );
 	// CONTROLS
 	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
 	cameraControls.target.set(0,0,0);

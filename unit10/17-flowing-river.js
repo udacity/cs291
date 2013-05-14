@@ -1,8 +1,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Texture animation
 ////////////////////////////////////////////////////////////////////////////////
-
 /*global THREE, Coordinates, document, window, dat*/
+
+var path = "/";      // STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
 
 var camera, scene, renderer;
 var cameraControls, effectController;
@@ -104,13 +105,13 @@ function init() {
 	wireMaterial = new THREE.MeshBasicMaterial( { wireframe: true, color: 0x00FF00 } );
 
 	// TEXTURES
-	texture.crate = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/crate.gif' );
-	texture.grid = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/ash_uvgrid01.jpg');
-	//texture['maple'] = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/maple.png' );
-	//texture['feather'] = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/feather.png' );
-	texture.water = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/water.jpg' );
-	texture.concrete = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/concrete.jpg' );
-	texture.letterR = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/r_border.png' );
+	texture.crate = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/crate.gif' );
+	texture.grid = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/ash_uvgrid01.jpg');
+	//texture['maple'] = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/maple.png' );
+	//texture['feather'] = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/feather.png' );
+	texture.water = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/water.jpg' );
+	texture.concrete = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/concrete.jpg' );
+	texture.letterR = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/r_border.png' );
 	
 	// MATERIALS
 	for (var name in texture)

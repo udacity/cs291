@@ -4,6 +4,8 @@
 
 /*global THREE, Coordinates, document, window, dat*/
 
+var path = "/";      // STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
+
 var camera, scene, renderer;
 var cameraControls, effectController;
 var clock = new THREE.Clock();
@@ -99,13 +101,13 @@ function init() {
 	cameraControls.target.set(0.8,0.6,0);
 
 	// TEXTURES
-	crateTexture = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/crate.gif' );
+	crateTexture = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/crate.gif' );
 	crateTexture.wrapS = THREE.RepeatWrapping; crateTexture.wrapT = THREE.RepeatWrapping;
-	gridTexture = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/ash_uvgrid01.jpg');
+	gridTexture = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/ash_uvgrid01.jpg');
 	gridTexture.wrapS = THREE.RepeatWrapping; gridTexture.wrapT = THREE.RepeatWrapping;
-	mapleTexture = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/maple.png' );
+	mapleTexture = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/maple.png' );
 	mapleTexture.wrapS = THREE.RepeatWrapping; mapleTexture.wrapT = THREE.RepeatWrapping;
-	featherTexture = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/feather.png' );
+	featherTexture = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/feather.png' );
 	featherTexture.wrapS = THREE.RepeatWrapping; featherTexture.wrapT = THREE.RepeatWrapping;
 
 	// MATERIALS

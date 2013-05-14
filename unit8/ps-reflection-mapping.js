@@ -4,6 +4,8 @@
 
 /*global THREE, requestAnimationFrame, window */
 
+var path = "/";      // STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
+
 var camera, scene, renderer;
 var cameraControls;
 var clock = new THREE.Clock();
