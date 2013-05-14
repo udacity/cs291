@@ -29,8 +29,8 @@ function someObject (material) {
 
 function init() {
 	//  Setting up some parameters
-	var canvasWidth = window.innerWidth;
-	var canvasHeight = window.innerHeight;
+	var canvasWidth = 846;
+	var canvasHeight = 494;
 	var canvasRatio = canvasWidth / canvasHeight;
 	// scene
 	scene = new THREE.Scene();
@@ -42,7 +42,7 @@ function init() {
 
 	camera = new THREE.OrthographicCamera( windowWidth / - 2, windowWidth / 2,
 		windowHeight / 2, windowHeight / - 2, 0, 40 );
-
+	
 	var focus = new THREE.Vector3( 5,4,0 );
 	camera.position.x = focus.x;
 	camera.position.y = focus.y;
@@ -77,10 +77,16 @@ function render() {
 	renderer.render( scene, camera );
 }
 
+
 // Main body of the script
-init();
-showGrids();
-addToDOM();
-var material = new THREE.MeshBasicMaterial( { color: 0xF6831E, side: THREE.FrontSide } );
-someObject(material);
-render();
+try {
+  init();
+  showGrids();
+  var material = new THREE.MeshBasicMaterial( { color: 0xF6831E, side: THREE.FrontSide } );
+  someObject(material);
+  addToDOM();
+  render();
+} catch(e) {
+    var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+    $('#container').append(errorReport+e);
+}

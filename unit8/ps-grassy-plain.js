@@ -7,6 +7,7 @@ var camera, scene, renderer;
 var cameraControls;
 var bevelRadius = 1.9;
 var clock = new THREE.Clock();
+var cylinder,sphere,cube;
 
 function fillScene() {
 	scene = new THREE.Scene();
@@ -31,7 +32,7 @@ function fillScene() {
 	scene.add( solidGround );
     
     // Bird
-	bird = new THREE.Object3D();
+	var bird = new THREE.Object3D();
 	createDrinkingBird( bird );
 	scene.add( bird );
 
@@ -278,12 +279,12 @@ function init() {
 }
 
 function addToDOM() {
-    var container = document.getElementById('container');
-    var canvas = container.getElementsByTagName('canvas');
-    if (canvas.length>0) {
-        container.removeChild(canvas[0]);
-    }
-    container.appendChild( renderer.domElement );
+	var container = document.getElementById('container');
+	var canvas = container.getElementsByTagName('canvas');
+	if (canvas.length>0) {
+		container.removeChild(canvas[0]);
+	}
+	container.appendChild( renderer.domElement );
 }
 
 function animate() {
