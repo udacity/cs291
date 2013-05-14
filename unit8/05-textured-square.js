@@ -1,8 +1,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Make a textured square
 ////////////////////////////////////////////////////////////////////////////////
-
 /*global THREE, Coordinates, $, document, window*/
+
+var path = "/";      // STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
 
 var camera, scene, renderer;
 var cameraControls, effectController;
@@ -12,7 +13,7 @@ function fillScene() {
 	scene = new THREE.Scene();
 	
 	var myPolygon = new SquareGeometry();
-	var myTexture = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/ash_uvgrid01.jpg' );
+	var myTexture = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/ash_uvgrid01.jpg' );
 	var myPolygonMaterial = new THREE.MeshBasicMaterial( { map: myTexture } );
 	var polygonObject = new THREE.Mesh( myPolygon, myPolygonMaterial );
 	scene.add(polygonObject);
