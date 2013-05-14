@@ -1,8 +1,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Particle System
 ////////////////////////////////////////////////////////////////////////////////
-
 /*global THREE, document, window*/
+
+var path = "/";      // STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
 
 var camera, scene, renderer;
 var cameraControls;
@@ -34,7 +35,7 @@ function fillScene() {
 
 	}
 
-	var disk = THREE.ImageUtils.loadTexture( "/media/img/cs291/disc.png" );
+	var disk = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/disc.png' );
 	var material = new THREE.ParticleBasicMaterial(
 		{ size: 35, sizeAttenuation: false, map: disk, transparent: true } );
 	material.color.setHSL( 0.9, 0.2, 0.6 );

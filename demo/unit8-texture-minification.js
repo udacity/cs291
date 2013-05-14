@@ -1,8 +1,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Minification demo
 ////////////////////////////////////////////////////////////////////////////////
-
 /*global THREE, document, window, dat*/
+
+var path = "/";      // STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
 
 var camera, scene, renderer;
 var cameraControls, effectController;
@@ -109,21 +110,21 @@ function initRenderer() {
 function init() {
 	// TEXTURES
 	// If you change the magnify mode, you must reload texture?
-	texture['checker 1x1 (gray)'] = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/checker1x1.png' );
-	texture['checker 2x2'] = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/checker2x2.png' );
-	texture['checker 4x4'] = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/checker4x4.png' );
-	texture['checker 8x8'] = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/checker8x8.png' );
-	texture['checker 16x16'] = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/checker16x16.png' );
-	texture['checker 32x32'] = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/checker32x32.png' );
-	texture['checker 64x64'] = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/checker64x64.png' );
-	texture['checker 128x128'] = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/checker128x128.png' );
-	texture['checker 256x256'] = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/checker256x256.png' );
-	texture['checker 512x512'] = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/checker512x512.png' );
-	texture.crate = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/crate.gif' );
-	texture.grid = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/ash_uvgrid01.jpg');
-	texture.water = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/water.jpg' );
-	texture.concrete = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/concrete.jpg' );
-	texture.letterR = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/r_border.png' );
+	texture['checker 1x1 (gray)'] = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/checker1x1.png' );
+	texture['checker 2x2'] = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/checker2x2.png' );
+	texture['checker 4x4'] = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/checker4x4.png' );
+	texture['checker 8x8'] = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/checker8x8.png' );
+	texture['checker 16x16'] = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/checker16x16.png' );
+	texture['checker 32x32'] = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/checker32x32.png' );
+	texture['checker 64x64'] = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/checker64x64.png' );
+	texture['checker 128x128'] = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/checker128x128.png' );
+	texture['checker 256x256'] = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/checker256x256.png' );
+	texture['checker 512x512'] = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/checker512x512.png' );
+	texture.crate = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/crate.gif' );
+	texture.grid = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/ash_uvgrid01.jpg');
+	texture.water = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/water.jpg' );
+	texture.concrete = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/concrete.jpg' );
+	texture.letterR = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/r_border.png' );
 
 	setFilters();
 

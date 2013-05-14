@@ -6,6 +6,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, Coordinates, $, document, window*/
 
+var path = "/";      // STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
+
 var camera, scene, renderer;
 var cameraControls, effectController;
 var clock = new THREE.Clock();
@@ -39,7 +41,7 @@ function fillScene() {
 	scene = new THREE.Scene();
 
 	var myPolygon = new SquareGeometry();
-	var myTexture = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/lettergrid.png' );
+	var myTexture = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/lettergrid.png' );
 	var myPolygonMaterial = new THREE.MeshBasicMaterial( { map: myTexture } );
 	var polygonObject = new THREE.Mesh( myPolygon, myPolygonMaterial );
 	scene.add(polygonObject);
