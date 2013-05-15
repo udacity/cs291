@@ -5,7 +5,7 @@
 // for the square and returns a geometry object (THREE.Geometry())
 // that defines a square at the provided coordinates.
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, Coordinates, document, window*/
+/*global THREE, Coordinates, document*/
 
 var camera, scene, renderer;
 var windowScale;
@@ -80,23 +80,23 @@ function showGrids() {
 }
 
 try {
-  init();
-  showGrids();
-  // creating and adding the triangle to the scene
-  var triangleMaterial = new THREE.MeshBasicMaterial( { color: 0x2685AA, side: THREE.DoubleSide } );
-  var triangleGeometry = exampleTriangle();
-  var triangleMesh = new THREE.Mesh( triangleGeometry, triangleMaterial );
-  scene.add(triangleMesh);
-  // creating and adding your square to the scene !
-  var square_material = new THREE.MeshBasicMaterial( { color: 0xF6831E, side: THREE.DoubleSide } );
-  var square_geometry = drawSquare(3,5,7,9);
-  var square_mesh = new THREE.Mesh(square_geometry, square_material);
-  scene.add(square_mesh);
-  addToDOM();
-  render();
+	init();
+	showGrids();
+	// creating and adding the triangle to the scene
+	var triangleMaterial = new THREE.MeshBasicMaterial( { color: 0x2685AA, side: THREE.DoubleSide } );
+	var triangleGeometry = exampleTriangle();
+	var triangleMesh = new THREE.Mesh( triangleGeometry, triangleMaterial );
+	scene.add(triangleMesh);
+	// creating and adding your square to the scene !
+	var square_material = new THREE.MeshBasicMaterial( { color: 0xF6831E, side: THREE.DoubleSide } );
+	var square_geometry = drawSquare(3,5,7,9);
+	var square_mesh = new THREE.Mesh(square_geometry, square_material);
+	scene.add(square_mesh);
+	addToDOM();
+	render();
 } catch(e) {
-    var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
-    $('#container').append(errorReport+e);
+	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	$('#container').append(errorReport+e);
 }
 
 

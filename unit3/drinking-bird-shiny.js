@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////
-// Drinking Bird shininess: make parts of the bird be shiny
+// Make hat, body, leg and foot of Drinking Bird shiny
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, Coordinates, document, window  */
 var camera, scene, renderer;
@@ -32,7 +32,12 @@ function fillScene() {
 
 function createDrinkingBird() {
 	//////////////////////////////
-	// YOU SHOULD MODIFY THE COLORS
+	// YOU SHOULD MODIFY THE SHININESS:
+	// use MeshPhongMaterial
+	// hat and body: 100
+	// leg: 4
+	// foot: 30
+	// specular color for all of these to 0.5,0.5,0.5
 	var headMaterial = new THREE.MeshLambertMaterial( );
 	headMaterial.color.r = 104/255;
 	headMaterial.color.g = 1/255;
@@ -189,7 +194,14 @@ function render() {
 	renderer.render(scene, camera);
 }
 
-init();
-fillScene();
-addToDOM();
-animate();
+
+try {
+	init();
+	fillScene();
+	addToDOM();
+	animate();
+} catch(e) {
+	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	$('#container').append(errorReport+e);
+}
+

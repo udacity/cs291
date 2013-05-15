@@ -1,8 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Ornament axis/angle exercise: add three more cylinders to the ornament
 ////////////////////////////////////////////////////////////////////////////////
-
-/*global THREE, Coordinates, $, document, window, dat*/
+/*global THREE, Coordinates, document, window, dat*/
 
 var camera, scene, renderer;
 var cameraControls, effectController;
@@ -31,8 +30,37 @@ function fillScene() {
 	scene.add(light);
 	scene.add(light2);
 
+	var cylinderMaterial = new THREE.MeshPhongMaterial( { color: 0xD1F5FD, specular: 0xD1F5FD, shininess: 100 } );
+
+	// get two diagonally-opposite corners of the cube and compute the
+	// cylinder axis direction and length
+	var maxCorner = new THREE.Vector3(  1, 1, 1 );
+	var minCorner = new THREE.Vector3( -1,-1,-1 );
+	// note how you can chain one operation on to another:
+	var cylAxis = new THREE.Vector3().subVectors( maxCorner, minCorner );
+	var cylLength = cylAxis.length();
+
+	// take dot product of cylAxis and up vector to get cosine of angle
+	cylAxis.normalize();
+	var theta = Math.acos( cylAxis.dot( new THREE.Vector3(0,1,0) ) );
+	// or just simply theta = Math.acos( cylAxis.y );
+
+    // YOUR CODE HERE
+	var cylinder = new THREE.Mesh(
+		new THREE.CylinderGeometry( 0.2, 0.2, cylLength, 32 ), cylinderMaterial );
+	var rotationAxis = new THREE.Vector3(1,0,-1);
+	// makeRotationAxis wants its axis normalized
+	rotationAxis.normalize();
+	// don't use position, rotation, scale
+	cylinder.matrixAutoUpdate = false;
+	cylinder.matrix.makeRotationAxis( rotationAxis, theta );
+	scene.add( cylinder );
+
+}
+
+function drawHelpers() {
 	if (ground) {
-		Coordinates.drawGround({size:100,offset:-0.01});
+		Coordinates.drawGround({size:100});
 	}
 	if (gridX) {
 		Coordinates.drawGrid({size:100,scale:1});
@@ -54,36 +82,11 @@ function fillScene() {
 			new THREE.CubeGeometry( 2, 2, 2 ), cubeMaterial );
 		scene.add( cube );
 	}
-
-	var cylinderMaterial = new THREE.MeshPhongMaterial( { color: 0xD1F5FD, specular: 0xD1F5FD, shininess: 100 } );
-
-	// get two diagonally-opposite corners of the cube and compute the
-	// cylinder axis direction and length
-	var maxCorner = new THREE.Vector3(  1, 1, 1 );
-	var minCorner = new THREE.Vector3( -1,-1,-1 );
-	// note how you can chain one operation on to another:
-	var cylAxis = new THREE.Vector3().subVectors( maxCorner, minCorner );
-	var cylLength = cylAxis.length();
-
-	// take dot product of cylAxis and up vector to get cosine of angle
-	cylAxis.normalize();
-	var theta = Math.acos( cylAxis.dot( new THREE.Vector3(0,1,0) ) );
-	// or just simply theta = Math.acos( cylAxis.y );
-
-	var cylinder = new THREE.Mesh(
-		new THREE.CylinderGeometry( 0.2, 0.2, cylLength, 32 ), cylinderMaterial );
-	var rotationAxis = new THREE.Vector3(1,0,-1);
-	// makeRotationAxis wants its axis normalized
-	rotationAxis.normalize();
-	// don’t use position, rotation, scale
-	cylinder.matrixAutoUpdate = false;
-	cylinder.matrix.makeRotationAxis( rotationAxis, theta );
-	scene.add( cylinder );
 }
 
 function init() {
-	var canvasWidth = window.innerWidth;
-	var canvasHeight = window.innerHeight;
+	var canvasWidth = 846;
+	var canvasHeight = 494;
 	var canvasRatio = canvasWidth / canvasHeight;
 
 	// RENDERER
@@ -98,14 +101,20 @@ function init() {
 
 	// CAMERA
 	camera = new THREE.PerspectiveCamera( 30, canvasRatio, 1, 10000 );
-	camera.position.set( -7, 7, 2 );
-
 	// CONTROLS
 	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
+	camera.position.set( -7, 7, 2 );
 	cameraControls.target.set(0,0,0);
 
-	fillScene();
+}
 
+function addToDOM() {
+	var container = document.getElementById('container');
+	var canvas = container.getElementsByTagName('canvas');
+	if (canvas.length>0) {
+		container.removeChild(canvas[0]);
+	}
+	container.appendChild( renderer.domElement );
 }
 
 function animate() {
@@ -127,6 +136,7 @@ function render() {
 		axes = effectController.newAxes;
 
 		fillScene();
+		drawHelpers();
 	}
 	renderer.render(scene, camera);
 }
@@ -154,24 +164,15 @@ function setupGui() {
 	gui.add( effectController, "newAxes" ).name("Show axes");
 }
 
-function takeScreenshot() {
-	effectController.newCube = false,
-	effectController.newGround = false, effectController.newGridX = false, effectController.newGridY = false, effectController.newGridZ = false, effectController.newAxes = false;
+try {
 	init();
-	render();
-	var img1 = renderer.domElement.toDataURL("image/png");
-	camera.position.set( 6, 5, -3 );
-	render();
-	var img2 = renderer.domElement.toDataURL("image/png");
-	var imgTarget = window.open('', 'For grading script');
-	imgTarget.document.write('<img src="'+img1+'"/><img src="'+img2+'"/>');
+	fillScene();
+	setupGui();
+	drawHelpers();
+	addToDOM();
+	animate();
+} catch(e) {
+	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	$('#container').append(errorReport+e);
 }
 
-init();
-setupGui();
-animate();
-$("body").keydown(function(event) {
-	if (event.which === 80) {
-		takeScreenshot();
-	}
-});

@@ -1,10 +1,10 @@
 ////////////////////////////////////////////////////////////////////////////////
-// Fixing Incorrect JavaScript exercise                                       //
+// Fixing Incorrect JavaScript exercise
 ////////////////////////////////////////////////////////////////////////////////
-// Your task is to find the syntax errors in this Javacript                   //
-// until it shows the the Gold Cube!                                          //
-// WebGL is not supported in Internet Explorer                                //
-// There are 3 syntax errors in this code                                     //
+// Your task is to find the syntax errors in this Javacript
+// until it shows the the Gold Cube!
+// WebGL is not supported in Internet Explorer
+// There are 3 syntax errors in this code
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, Coordinates, $, document, window*/
 
@@ -17,7 +17,7 @@ function drawGoldCube() {
 
 	var cube;
 	var cubeSizeLength = 100;
-	var goldColor = "#FFDF00"; 
+	var goldColor = "#FFDF00";
 	var showFrame = true;
 	var wireMaterial = new THREE.MeshBasicMaterial( { color: goldColor, wireframe: showFrame } ) ;
 
@@ -32,8 +32,8 @@ function drawGoldCube() {
 }
 
 function init() {
-	var canvasWidth = window.innerWidth-8;
-	var canvasHeight = window.innerHeight-16;
+	var canvasWidth = 846;
+	var canvasHeight = 494;
 	var canvasRatio = canvasWidth / canvasHeight;
 	// SCENE
 	scene = new THREE.Scene();
@@ -59,7 +59,6 @@ function init() {
 	// CONTROLS
 	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
 	cameraControls.target.set(0,0,0);
-	scene.add(camera);
 
 	/ draw the coordinate grid
 	Coordinates.drawGrid({size:1000,scale:0.01});

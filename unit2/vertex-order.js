@@ -4,12 +4,12 @@
 // Check the function someObject()
 // and correct the code that starts at line 17.
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, Coordinates, document, window*/
+/*global THREE, Coordinates, $, document*/
 
 var camera, scene, renderer;
 var windowScale;
 
-function someObject (material) {
+function someObject(material) {
 	var geometry = new THREE.Geometry();
 
 	// Student: some data below must be fixed
@@ -42,7 +42,7 @@ function init() {
 
 	camera = new THREE.OrthographicCamera( windowWidth / - 2, windowWidth / 2,
 		windowHeight / 2, windowHeight / - 2, 0, 40 );
-	
+
 	var focus = new THREE.Vector3( 5,4,0 );
 	camera.position.x = focus.x;
 	camera.position.y = focus.y;
@@ -80,13 +80,13 @@ function render() {
 
 // Main body of the script
 try {
-  init();
-  showGrids();
-  var material = new THREE.MeshBasicMaterial( { color: 0xF6831E, side: THREE.FrontSide } );
-  someObject(material);
-  addToDOM();
-  render();
+	init();
+	showGrids();
+	var material = new THREE.MeshBasicMaterial( { color: 0xF6831E, side: THREE.FrontSide } );
+	someObject(material);
+	addToDOM();
+	render();
 } catch(e) {
-    var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
-    $('#container').append(errorReport+e);
+	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	$('#container').append(errorReport+e);
 }

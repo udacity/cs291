@@ -194,7 +194,7 @@ function init() {
 	camera = new THREE.PerspectiveCamera( 45, canvasRatio, 1, 4000 );
 	// CONTROLS
 	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
-	camera.position.set( -480, 659, -619 );
+	camera.position.set( -417, 367, -234);
 	cameraControls.target.set(4,301,92);
 }
 
@@ -219,7 +219,12 @@ function render() {
 	renderer.render(scene, camera);
 }
 
-init();
-fillScene();
-addToDOM();
-animate();
+try {
+	init();
+	fillScene();
+	addToDOM();
+	animate();
+} catch(e) {
+	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	$('#container').append(errorReport+e);
+}

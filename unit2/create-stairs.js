@@ -4,7 +4,7 @@
 // Using the provided sizes and colors, complete the staircase
 // and reach the Gold Cup!
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, Coordinates, document, window, dat*/
+/*global THREE, Coordinates, $, document, window, dat*/
 
 var camera, scene, renderer;
 var cameraControls, effectController;
@@ -78,8 +78,8 @@ function createCup() {
 }
 
 function init() {
-	var canvasWidth = window.innerWidth;
-	var canvasHeight = window.innerHeight;
+	var canvasWidth = 846;
+	var canvasHeight = 494;
 	var canvasRatio = canvasWidth / canvasHeight;
 
 	// RENDERER
@@ -95,6 +95,10 @@ function init() {
 	// CONTROLS
 	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
 	cameraControls.target.set(0,600,0);
+
+	// Camera(2) for testing has following values:
+	// camera.position.set( 1225, 2113, 1814 );
+	// cameraControls.target.set(-1800,180,630);
 
 	fillScene();
 }
@@ -183,7 +187,14 @@ function setupGui() {
 	gui.add( effectController, "newAxes" ).name("Show axes");
 }
 
-init();
-addToDOM();
-setupGui();
-animate();
+
+
+try {
+	init();
+	setupGui();
+	addToDOM();
+	animate();
+} catch(e) {
+	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	$('#container').append(errorReport+e);
+}

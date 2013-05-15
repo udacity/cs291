@@ -1,8 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Clock exercise: rotate hands correctly
 ////////////////////////////////////////////////////////////////////////////////
-
-/*global THREE, Coordinates, $, document, window, dat*/
+/*global THREE, Coordinates, document, window, dat*/
 
 var camera, scene, renderer;
 var cameraControls, effectController;
@@ -22,7 +21,7 @@ function fillScene() {
 
 	var light = new THREE.DirectionalLight( 0xffffff, 1.0 );
 	light.position.set( 200, 400, 500 );
-	
+
 	var light2 = new THREE.DirectionalLight( 0xffffff, 1.0 );
 	light2.position.set( -500, 250, -200 );
 
@@ -30,22 +29,6 @@ function fillScene() {
 	scene.add(light);
 	scene.add(light2);
 
-	if (ground) {
-		Coordinates.drawGround({size:10000});		
-	}
-	if (gridX) {
-		Coordinates.drawGrid({size:10000,scale:0.01});
-	}
-	if (gridY) {
-		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"y"});
-	}
-	if (gridZ) {
-		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"z"});	
-	}
-	if (axes) {
-		Coordinates.drawAllAxes({axisLength:200,axisRadius:1,axisTess:50});
-	}
-	
 	var faceMaterial = new THREE.MeshLambertMaterial( { color: 0xFFECA9 } );
 	var markMaterial = new THREE.MeshLambertMaterial( { color: 0x89581F } );
 	var mark12Material = new THREE.MeshLambertMaterial( { color: 0xE6880E } );
@@ -53,61 +36,62 @@ function fillScene() {
 	var hourHandMaterial = new THREE.MeshLambertMaterial( { color: 0xE02BFB } );
 
 	// clock
-	var clock = new THREE.Mesh( 
+	var clock = new THREE.Mesh(
 		new THREE.CylinderGeometry( 75, 75, 10, 32 ), faceMaterial );
 		//new THREE.CubeGeometry( 150, 5, 150 ), faceMaterial );
 	clock.position.y = 5;
 	scene.add( clock );
-	
+
 	// marks
-	var cube = new THREE.Mesh( 
+	var cube = new THREE.Mesh(
 		new THREE.CubeGeometry( 20, 4, 15 ), mark12Material );
 	cube.position.x = 60;
 	cube.position.y = 9;
 	scene.add( cube );
-	
-	cube = new THREE.Mesh( 
+
+	cube = new THREE.Mesh(
 		new THREE.CubeGeometry( 10, 4, 10 ), markMaterial );
 	cube.position.x = -60;
 	cube.position.y = 9;
 	scene.add( cube );
-	
-	cube = new THREE.Mesh( 
+
+	cube = new THREE.Mesh(
 		new THREE.CubeGeometry( 10, 4, 10 ), markMaterial );
 	cube.position.z = 60;
 	cube.position.y = 9;
 	scene.add( cube );
-	
-	cube = new THREE.Mesh( 
+
+	cube = new THREE.Mesh(
 		new THREE.CubeGeometry( 10, 4, 10 ), markMaterial );
 	cube.position.z = -60;
 	cube.position.y = 9;
 	scene.add( cube );
-	
-	
-	// Student modifies code below:
-	cube = new THREE.Mesh( 
+
+  // YOUR CODE HERE:
+  // The dimensions and rotation angles of the hands are correct
+  // you just have find a way to perform them in the correct order
+	cube = new THREE.Mesh(
 		new THREE.CubeGeometry( 70, 4, 4 ), minuteHandMaterial );
 	cube.position.y = 14;
 	cube.position.x = 70/2 - 10;
 	cube.rotation.y = -60 * Math.PI/180;
 	scene.add( cube );
 
-	var sphere = new THREE.Mesh( 
+	var sphere = new THREE.Mesh(
 		new THREE.SphereGeometry( 0.5, 32, 16 ), hourHandMaterial );
-	sphere.position.y = 18;	// move the hand above the other hand	
+	sphere.position.y = 18;	// move the hand above the other hand
 	sphere.position.x = 50/2 - 10;
 	sphere.rotation.y = 30 * Math.PI/180;
 	sphere.scale.x = 50;
 	sphere.scale.y = 4;
 	sphere.scale.z = 4;
-	
+
 	scene.add( sphere );
 }
 
 function init() {
-	var canvasWidth = window.innerWidth;
-	var canvasHeight = window.innerHeight;
+	var canvasWidth = 846;
+	var canvasHeight = 494;
 	var canvasRatio = canvasWidth / canvasHeight;
 
 	// RENDERER
@@ -117,18 +101,41 @@ function init() {
 	renderer.setSize(canvasWidth, canvasHeight);
 	renderer.setClearColorHex( 0xAAAAAA, 1.0 );
 
-	var container = document.getElementById('container');
-	container.appendChild( renderer.domElement );
-
 	// CAMERA
 	camera = new THREE.PerspectiveCamera( 30, canvasRatio, 1, 10000 );
 	camera.position.set( -420, 400, 100 );
 	// CONTROLS
 	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
 	cameraControls.target.set(0,0,0);
-	
+
 	fillScene();
 
+}
+function drawHelpers() {
+	if (ground) {
+		Coordinates.drawGround({size:10000});
+	}
+	if (gridX) {
+		Coordinates.drawGrid({size:10000,scale:0.01});
+	}
+	if (gridY) {
+		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"y"});
+	}
+	if (gridZ) {
+		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"z"});
+	}
+	if (axes) {
+		Coordinates.drawAllAxes({axisLength:200,axisRadius:1,axisTess:50});
+	}
+}
+
+function addToDOM() {
+	var container = document.getElementById('container');
+	var canvas = container.getElementsByTagName('canvas');
+	if (canvas.length>0) {
+		container.removeChild(canvas[0]);
+	}
+	container.appendChild( renderer.domElement );
 }
 
 function animate() {
@@ -149,6 +156,7 @@ function render() {
 		axes = effectController.newAxes;
 
 		fillScene();
+		drawHelpers();
 	}
 	renderer.render(scene, camera);
 }
@@ -174,23 +182,14 @@ function setupGui() {
 	gui.add( effectController, "newAxes" ).name("Show axes");
 }
 
-function takeScreenshot() {
-	effectController.newGround = true, effectController.newGridX = false, effectController.newGridY = false, effectController.newGridZ = false, effectController.newAxes = false;
+try {
 	init();
-	render();
-	var img1 = renderer.domElement.toDataURL("image/png");
-	camera.position.set( 400, 500, -800 );
-	render();
-	var img2 = renderer.domElement.toDataURL("image/png");
-	var imgTarget = window.open('', 'For grading script');
-	imgTarget.document.write('<img src="'+img1+'"/><img src="'+img2+'"/>');
+	setupGui();
+	drawHelpers();
+	addToDOM();
+	animate();
+} catch(e) {
+	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	$('#container').append(errorReport+e);
 }
 
-init();
-setupGui();
-animate();
-$("body").keydown(function(event) {
-	if (event.which === 80) {
-		takeScreenshot();
-	}
-});
