@@ -11,8 +11,8 @@ THREE.ShaderTypes = {
 
 		"uAmbientLightColor": { type: "c", value: new THREE.Color( 0x050505 ) },
 
-		"uMaterialColor":  { type: "c", value: new THREE.Color( 0xFFFFFF ) },
-		"uSpecularColor":  { type: "c", value: new THREE.Color( 0xFFFFFF ) },
+		"uMaterialColor": { type: "c", value: new THREE.Color( 0xFFFFFF ) },
+		"uSpecularColor": { type: "c", value: new THREE.Color( 0xFFFFFF ) },
 
 		uKd: {
 			type: "f",
@@ -53,7 +53,7 @@ THREE.ShaderTypes = {
 		"uniform vec3 uDirLightColor;",
 
 		"uniform vec3 uAmbientLightColor;",
-		
+
 		"uniform float uKd;",
 		"uniform float uKs;",
 		"uniform float shininess;",
@@ -81,7 +81,7 @@ THREE.ShaderTypes = {
 			"}",
 
 			"gl_FragColor.rgb += uKd * uMaterialColor * uDirLightColor * diffuse;",
-		
+
 			// specular: N * H to a power. H is light vector + view vector
 			"vec3 viewPosition = normalize( vViewPosition );",
 			"vec3 pointHalfVector = normalize( lVector + viewPosition );",
@@ -105,8 +105,8 @@ THREE.ShaderTypes = {
 
 		"uAmbientLightColor": { type: "c", value: new THREE.Color( 0x050505 ) },
 
-		"uMaterialColor":  { type: "c", value: new THREE.Color( 0xFFFFFF ) },
-		"uSpecularColor":  { type: "c", value: new THREE.Color( 0xFFFFFF ) },
+		"uMaterialColor": { type: "c", value: new THREE.Color( 0xFFFFFF ) },
+		"uSpecularColor": { type: "c", value: new THREE.Color( 0xFFFFFF ) },
 
 		uKd: {
 			type: "f",
@@ -147,7 +147,7 @@ THREE.ShaderTypes = {
 		"uniform vec3 uDirLightColor;",
 
 		"uniform vec3 uAmbientLightColor;",
-		
+
 		"uniform float uKd;",
 		"uniform float uKs;",
 		"uniform float shininess;",
@@ -175,7 +175,7 @@ THREE.ShaderTypes = {
 			"}",
 
 			"gl_FragColor.rgb += uKd * uMaterialColor * uDirLightColor * diffuse;",
-		
+
 			// specular: N * H to a power. H is light vector + view vector
 			"vec3 viewPosition = normalize( vViewPosition );",
 			"vec3 pointHalfVector = normalize( lVector + viewPosition );",
@@ -271,7 +271,7 @@ function init() {
 	phongBalancedMaterial.side = THREE.DoubleSide;
 
 	fillScene();
-	
+
 	// GUI
 
 	setupGui();

@@ -45,7 +45,7 @@ function fillScene() {
 	var theta = Math.acos( cylAxis.dot( new THREE.Vector3(0,1,0) ) );
 	// or just simply theta = Math.acos( cylAxis.y );
 
-    // YOUR CODE HERE
+	// YOUR CODE HERE
 	var cylinder = new THREE.Mesh(
 		new THREE.CylinderGeometry( 0.2, 0.2, cylLength, 32 ), cylinderMaterial );
 	var rotationAxis = new THREE.Vector3(1,0,-1);

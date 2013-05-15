@@ -229,7 +229,7 @@ function addToDOM() {
 }
 
 function drawHelpers() {
-  if (ground) {
+	if (ground) {
 		Coordinates.drawGround({size:10000});
 	}
 	if (gridX) {

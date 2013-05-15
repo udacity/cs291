@@ -36,8 +36,8 @@ function fillScene() {
 	var cylGeom = new THREE.CylinderGeometry( 15, 0, petalLength, 32 );
 	var flower = new THREE.Object3D();
 
-    /////////
-    // YOUR CODE HERE
+	/////////
+	// YOUR CODE HERE
 	// add code here to make 24 petals, radiating around the sphere
 	// Scales, rotates, and positions on the cylinder and petals are needed.
 	// The petals should be squished and be 1/4 as thick as wide
@@ -102,7 +102,7 @@ function addToDOM() {
 }
 
 function drawHelpers() {
-  if (ground) {
+	if (ground) {
 		Coordinates.drawGround({size:10000});
 	}
 	if (gridX) {

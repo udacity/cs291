@@ -94,7 +94,7 @@ function render() {
 }
 
 function loadShader(shadertype) {
-  return document.getElementById(shadertype).textContent;
+	return document.getElementById(shadertype).textContent;
 }
 
 function createShaderMaterial(id, light) {
@@ -108,7 +108,7 @@ function createShaderMaterial(id, light) {
 				"uDirLightPos":	{ type: "v3", value: new THREE.Vector3() },
 				"uDirLightColor": { type: "c", value: new THREE.Color( 0xFFFFFF ) },
 
-				"uMaterialColor":  { type: "c", value: new THREE.Color( 0xFFFFFF ) },
+				"uMaterialColor": { type: "c", value: new THREE.Color( 0xFFFFFF ) },
 
 				uKd: {
 					type: "f",

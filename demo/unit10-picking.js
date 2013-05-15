@@ -32,19 +32,19 @@ function init() {
 	scene = new THREE.Scene();
 
 	headlight = new THREE.PointLight( 0xFFFFFF, 0.3 );
-	
+
 	scene.add( headlight );
 
 	var light = new THREE.DirectionalLight( 0xFFFFFF, 0.6 );
 	light.position.set( 200, 500, 500 );
 
 	scene.add( light );
-	
+
 	light = new THREE.DirectionalLight( 0xFFFFFF, 0.6 );
 	light.position.set( 0, 200, -300 );
 
 	scene.add( light );
-	
+
 	light = new THREE.DirectionalLight( 0xFFFFFF, 0.4 );
 	light.position.set( -400, -300, 200 );
 
@@ -54,12 +54,12 @@ function init() {
 
 	for ( var i = 0; i < 10; i ++ ) {
 
-		var object = new THREE.Mesh( geometry, 
+		var object = new THREE.Mesh( geometry,
 			new THREE.MeshLambertMaterial(
 				{ color: Math.random() * 0xFFFFFF } )
 				//, opacity: 0.5, transparent: true } ) );
 			);
-		
+
 		// add a random box between -400 to +400
 		object.position.x = Math.random() * 800 - 400;
 		object.position.y = Math.random() * 800 - 400;
@@ -92,7 +92,7 @@ function init() {
 
 	var container = document.getElementById('container');
 	container.appendChild( renderer.domElement );
-	
+
 	sphereGeom = new THREE.SphereGeometry( 6, 12, 6 );
 
 	document.addEventListener( 'mousedown', onDocumentMouseDown, false );
@@ -109,13 +109,13 @@ function onDocumentMouseDown( event ) {
 	// var mouseY = event.clientY - node.offsetTop;
 
 
-    // getBoundingClientRect()
-    //   givest the element's position relative to the browser's visile viewport.
-    // clientX/Y 
-    //   gives the mouse position relative to the browser's visible viewport.
-    //
-    // we then just have to find the difference between the two 
-    // to get the mouse position in "canvas-space"
+	// getBoundingClientRect()
+	//   givest the element's position relative to the browser's visile viewport.
+	// clientX/Y
+	//   gives the mouse position relative to the browser's visible viewport.
+	//
+	// we then just have to find the difference between the two
+	// to get the mouse position in "canvas-space"
 	var canvasPosition = renderer.domElement.getBoundingClientRect();
 	var mouseX = event.clientX - canvasPosition.left;
 	var mouseY = event.clientY - canvasPosition.top;
@@ -136,7 +136,7 @@ function onDocumentMouseDown( event ) {
 		2 * ( mouseX / canvasWidth ) - 1,
 		1 - 2 * ( mouseY / canvasHeight ), 0.5 );
 	projector.unprojectVector( mouseVector, camera );
-	
+
 	var raycaster = new THREE.Raycaster( camera.position, mouseVector.sub( camera.position ).normalize() );
 	*/
 

@@ -67,7 +67,7 @@ material1.ambient.setRGB( material1.color.r * ka, material1.color.g * ka, materi
 var material2 = new THREE.MeshLambertMaterial( { color: 0xFFFF00} );
 material2.ambient.setRGB( material2.color.r * ka, material2.color.g * ka, material2.color.b * ka );
 var material3 = new THREE.MeshLambertMaterial( { color: 0xFFFF00, wireframe: true } );
-		
+
 function fillScene() {
 	scene = new THREE.Scene();
 	scene.fog = new THREE.Fog( 0x808080, 2000, 4000 );
@@ -76,17 +76,17 @@ function fillScene() {
 	scene.add( ambientLight );
 	scene.add( light );
 
-	var material = wire ? material3 : (flat ? material1 : material2  );
+	var material = wire ? material3 : (flat ? material1 : material2 );
 	var sphere = new THREE.Mesh(new THREE.SphereGeometry( 400, tess*2, tess ), material);
-		
-	
+
+
 	scene.add( sphere );
 
 	//Coordinates.drawGround({size:1000});
 	//Coordinates.drawGrid({size:1000,scale:0.01});
 	//Coordinates.drawAllAxes({axisLength:500,axisRadius:1,axisTess:4});
 }
-	
+
 // EVENT HANDLERS
 
 function onWindowResize() {
@@ -106,7 +106,7 @@ function animate() {
 
 	window.requestAnimationFrame( animate );
 	render();
-	
+
 }
 
 function render() {

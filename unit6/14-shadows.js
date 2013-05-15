@@ -63,7 +63,7 @@ function fillScene() {
 
 	scene.add( lightSphere );
 
-	//  GROUND
+	// GROUND
 	// put grid lines every 10000/100 = 100 units
 	var solidGround = new THREE.Mesh(
 		new THREE.PlaneGeometry( 10000, 10000 ),
@@ -346,7 +346,7 @@ function render() {
 try {
 	init();
 	fillScene();
-  setupGui();
+	setupGui();
 	drawHelpers();
 	addToDOM();
 	animate();

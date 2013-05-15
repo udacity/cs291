@@ -28,7 +28,7 @@ function someObject(material) {
 }
 
 function init() {
-	//  Setting up some parameters
+	// Setting up some parameters
 	var canvasWidth = 846;
 	var canvasHeight = 494;
 	// For grading the window is fixed in size; here's general code:

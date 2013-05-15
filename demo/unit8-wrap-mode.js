@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, Coordinates, document, window, dat*/
 
-var path = "/";      // STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
+var path = "/";	// STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
 
 var camera, scene, renderer;
 var cameraControls, effectController;
@@ -33,12 +33,12 @@ function fillScene() {
 	// Background grid and axes. Grid step size is 1, axes cross at 0, 0
 	Coordinates.drawGrid({size:100,scale:1,orientation:"z",offset:-0.01});
 	Coordinates.drawAxes({axisLength:2.1,axisOrientation:"x",axisRadius:0.004,offset:-0.01});
-	Coordinates.drawAxes({axisLength:2.1,axisOrientation:"y",axisRadius:0.004,offset:-0.01});	
-	
+	Coordinates.drawAxes({axisLength:2.1,axisOrientation:"y",axisRadius:0.004,offset:-0.01});
+
 	var myPolygon = new SquareGeometry();
 	var polygonObject = new THREE.Mesh( myPolygon, material[mtlName] );
 	scene.add(polygonObject);
-	
+
 	if ( effectController.showPoly )
 	{
 		polygonObject = new THREE.Mesh( myPolygon, wireMaterial );
@@ -59,7 +59,7 @@ function setWrap() {
 
 function SquareGeometry() {
 	var geo = new THREE.Geometry();
-	
+
 	// generate vertices
 	geo.vertices.push( new THREE.Vector3( 0.0, 0.0, 0.0 ) );
 	geo.vertices.push( new THREE.Vector3( uX, 0.0, 0.0 ) );
@@ -100,7 +100,7 @@ function init() {
 	// Camera: Y up, X right, Z up
 	camera = new THREE.PerspectiveCamera( 1, canvasRatio, 10, 200 );
 	camera.position.set( 0.75, 0.5, 100 );
-	
+
 	// CONTROLS
 	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
 	cameraControls.target.set(0.75,0.5,0);
@@ -115,7 +115,7 @@ function init() {
 	texture.water = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/water.jpg' );
 	texture.concrete = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/concrete.jpg' );
 	texture.letterR = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/r_border.png' );
-	
+
 	// MATERIALS
 	for (var name in texture)
 	{
@@ -137,7 +137,7 @@ function animate() {
 function render() {
 	var delta = clock.getDelta();
 	cameraControls.update(delta);
-	
+
 	if ( effectController.reset )
 	{
 		resetGui();
@@ -149,13 +149,13 @@ function render() {
 			}
 		}
 	}
-	
+
 	var refill = false;
 	if ( wrapName !== effectController.wrap )
 	{
 		wrapName = effectController.wrap;
 		refill = true;
-	
+
 		if ( effectController.wrap === 'repeat' )
 		{
 			wrapVal = THREE.RepeatWrapping;
@@ -166,7 +166,7 @@ function render() {
 		{
 			wrapVal = THREE.ClampToEdgeWrapping;
 		}
-		
+
 		setWrap();
 	}
 
@@ -186,7 +186,7 @@ function render() {
 			texture[name].repeat.set( effectController.repeat, effectController.repeat );
 		}
 	}
-	
+
 	renderer.render(scene, camera);
 }
 
@@ -194,11 +194,11 @@ function resetGui() {
 	effectController.wrap = 'repeat';
 	effectController.offset = 0.1;
 	effectController.repeat = 3;
-	
+
 	effectController.showPoly = false;
 
 	effectController.mtlName = 'letterR';
-	
+
 	effectController.reset = false;
 }
 
@@ -208,19 +208,19 @@ function setupGui() {
 		wrap: 'repeat',
 		offset: 0.1,
 		repeat: 3,
-		
+
 		showPoly: false,
 
 		mtlName: 'letterR',
-		
+
 		reset: false
 	};
 	resetGui();
 
 	gui = new dat.GUI();
 	gui.add( effectController, "wrap", ['repeat', 'mirrored repeat', 'clamp to edge'] ).name("wrap mode");
-	gui.add( effectController, "repeat",  0.0, 10.0 ).name("texture repeat");
-	gui.add( effectController, "offset",  -1.0, 1.0, 0.01 ).name("texture offset");
+	gui.add( effectController, "repeat", 0.0, 10.0 ).name("texture repeat");
+	gui.add( effectController, "offset", -1.0, 1.0, 0.01 ).name("texture offset");
 	gui.add( effectController, "showPoly" ).name("show polygon");
 	gui.add( effectController, "mtlName", ['crate','grid','water','concrete','letterR'] ).name("texture image");
 	gui.add( effectController, "reset" ).name("reset");

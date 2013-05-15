@@ -27,12 +27,12 @@ function setupGui() {
 }
 
 function addToDOM() {
-    container = document.getElementById('container');
-    var canvas = container.getElementsByTagName('canvas');
-    if (canvas.length>0) {
-        container.removeChild(canvas[0]);
-    }
-    container.appendChild( renderer.domElement );
+	container = document.getElementById('container');
+	var canvas = container.getElementsByTagName('canvas');
+	if (canvas.length>0) {
+		container.removeChild(canvas[0]);
+	}
+	container.appendChild( renderer.domElement );
 }
 
 function init() {
@@ -54,11 +54,11 @@ function init() {
 	light = new THREE.DirectionalLight( 0xFFFFFF, 0.8 );
 	light.position.set( 320, 390, 700 );
 	scene.add( light );
-	
+
 	light2 = new THREE.DirectionalLight( 0xFFFFFF, 0.5 );
 	light2.position.set( -720, -190, -300 );
 	scene.add( light2 );
-	
+
 	// RENDERER
 	renderer = new THREE.WebGLRenderer( { antialias: true } );
 	renderer.setSize( canvasWidth, canvasHeight);
@@ -88,9 +88,9 @@ function init() {
 	// it affects only whether the light direction is recalculated each pixel.
 	var lambertMaterial = new THREE.MeshLambertMaterial( { color: 0xb00505 } );
 	lambertMaterial.side = THREE.DoubleSide;
-	
+
 	// to test texturing, uncomment the following four lines
-	//var path = "/";      // STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
+	//var path = "/";	// STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
 	//var texture = THREE.ImageUtils.loadTexture( path + 'textures/ash_uvgrid01.jpg' );
 	//texture.anisotropy = renderer.getMaxAnisotropy();
 	//flatGouraudMaterial = new THREE.MeshLambertMaterial( { map: texture } );
@@ -98,9 +98,9 @@ function init() {
 	teapot = new THREE.Mesh(
 		new THREE.TeapotGeometry( teapotSize, 8, true, true, true, true ),
 		lambertMaterial );
-	
+
 	scene.add( teapot );
-	
+
 	// GUI
 	setupGui();
 }
@@ -108,11 +108,11 @@ function init() {
 function render() {
 
 	var delta = clock.getDelta();
-	
+
 	cameraControls.update( delta );
-	
+
 	newTime += delta;
-	
+
 	// fudge factor: 0.95 correlates closer to true frame rate numbers;
 	// basically, there's some friction as far as timing goes, and this adjusts for it.
 	var frameTime = 0.95/effectController.fps;
@@ -122,7 +122,7 @@ function render() {
 		// Not doing so can force a frame time that is less than 60 FPS.
 		frameTime = 0;
 	}
-					
+
 	if ( newTime > oldTime + frameTime )
 	{
 		oldTime = newTime;
@@ -135,7 +135,7 @@ function animate() {
 
 	requestAnimationFrame( animate );
 	render();
-	
+
 }
 
 init();

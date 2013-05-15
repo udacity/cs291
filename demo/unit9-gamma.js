@@ -40,7 +40,7 @@ function init() {
 	light2.target.position.set( 61/overlap, 0, 0 );
 	light2.angle = 0.08;
 
-	//  GROUND
+	// GROUND
 
 	var gg = new THREE.PlaneGeometry( 400, 400, 0, 0 );
 	white_material = new THREE.MeshPhongMaterial( { color: 0xFFFFFF, specular: 0x0, side: THREE.DoubleSide } );

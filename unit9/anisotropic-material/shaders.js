@@ -61,7 +61,7 @@ function init() {
 }
 
 function loadShader(shadertype) {
-  return document.getElementById(shadertype).textContent;
+	return document.getElementById(shadertype).textContent;
 }
 
 function createShaderMaterial(id, light, ambientLight) {
@@ -77,8 +77,8 @@ function createShaderMaterial(id, light, ambientLight) {
 
 				"uAmbientLightColor": { type: "c", value: new THREE.Color( 0x050505 ) },
 
-				"uMaterialColor":  { type: "c", value: new THREE.Color( 0xFFFFFF ) },
-				"uSpecularColor":  { type: "c", value: new THREE.Color( 0xFFFFFF ) },
+				"uMaterialColor": { type: "c", value: new THREE.Color( 0xFFFFFF ) },
+				"uSpecularColor": { type: "c", value: new THREE.Color( 0xFFFFFF ) },
 
 				uKd: {
 					type: "f",

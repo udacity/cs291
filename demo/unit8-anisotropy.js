@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, document, window, dat*/
 
-var path = "/";      // STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
+var path = "/";	// STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
 
 var camera, scene, renderer;
 var cameraControls, effectController;
@@ -33,15 +33,15 @@ var gui;
 
 function fillScene() {
 	scene = new THREE.Scene();
-	
+
 	var myPolygon = new SquareGeometry();
 	var polygonObject = new THREE.Mesh( myPolygon, material[mtlName] );
 	scene.add(polygonObject);
-	
+
 }
 
 function setFilters() {
-	
+
 	// MATERIALS
 	for (var name in texture)
 	{
@@ -58,7 +58,7 @@ function setFilters() {
 
 function SquareGeometry() {
 	var geo = new THREE.Geometry();
-	
+
 	// generate vertices
 	geo.vertices.push( new THREE.Vector3( -uX, 0.0, -uY ) );
 	geo.vertices.push( new THREE.Vector3( uX, 0.0, -uY ) );
@@ -101,7 +101,7 @@ function initRenderer() {
 	// Camera: Y up, X right, Z up
 	camera = new THREE.PerspectiveCamera( 40, canvasRatio, 0.1, 100 );
 	camera.position.set( 10, 3.4, 2 );
-	
+
 	// CONTROLS
 	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
 	cameraControls.target.set(0,0,0);
@@ -146,7 +146,7 @@ function animate() {
 function render() {
 	var delta = clock.getDelta();
 	cameraControls.update(delta);
-	
+
 	if ( effectController.reset )
 	{
 		resetGui();
@@ -158,7 +158,7 @@ function render() {
 			}
 		}
 	}
-	
+
 	var refill = false;
 	if ( magName !== effectController.magnification ||
 		minName !== effectController.minification ||
@@ -168,7 +168,7 @@ function render() {
 		minName = effectController.minification;
 		anisotropy = effectController.anisotropy;
 		refill = true;
-	
+
 		if ( effectController.magnification === 'nearest' )
 		{
 			magVal = THREE.NearestFilter;
@@ -176,7 +176,7 @@ function render() {
 		{
 			magVal = THREE.LinearFilter;
 		}
-		
+
 		if ( effectController.minification === 'nearest' )
 		{
 			minVal = THREE.NearestFilter;
@@ -187,7 +187,7 @@ function render() {
 		{
 			minVal = THREE.LinearMipMapLinearFilter;
 		}
-		
+
 		setFilters();
 	}
 
@@ -219,7 +219,7 @@ function resetGui() {
 	effectController.repeat = 3;
 
 	effectController.mtlName = 'checker 32x32';
-		
+
 	effectController.reset = false;
 }
 
@@ -233,7 +233,7 @@ function setupGui() {
 		repeat: 3,
 
 		mtlName: 'checker 32x32',
-		
+
 		reset: false
 	};
 
@@ -249,8 +249,8 @@ function setupGui() {
 		anisoCount *= 2;
 	}
 	gui.add( effectController, "anisotropy", anisoList ).name("anisotropy");
-	gui.add( effectController, "repeat",  0.1, 10.0 ).name("texture repeat");
-	gui.add( effectController, "fov",  5, 150 ).name("field of view");
+	gui.add( effectController, "repeat", 0.1, 10.0 ).name("texture repeat");
+	gui.add( effectController, "fov", 5, 150 ).name("field of view");
 	gui.add( effectController, "mtlName", ['checker 1x1 (gray)','checker 2x2','checker 4x4','checker 8x8','checker 16x16','checker 32x32','checker 64x64','checker 128x128','checker 256x256','checker 512x512','crate','grid','water','concrete','letterR'] ).name("texture image");
 	gui.add( effectController, "reset" ).name("reset");
 }

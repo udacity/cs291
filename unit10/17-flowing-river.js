@@ -217,7 +217,7 @@ function setupGui() {
 
 	gui = new dat.GUI();
 	gui.add( effectController, "wrap", ['repeat', 'mirrored repeat', 'clamp to edge'] ).name("wrap mode");
-	gui.add( effectController, "repeat",  0.0, 10.0 ).name("texture repeat");
+	gui.add( effectController, "repeat", 0.0, 10.0 ).name("texture repeat");
 	gui.add( effectController, "showPoly" ).name("show polygon");
 	gui.add( effectController, "mtlName", ['crate','grid','water','concrete','letterR'] ).name("texture image");
 	gui.add( effectController, "reset" ).name("reset");

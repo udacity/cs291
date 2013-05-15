@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////
-// RGB additive color demo  (unit 3)
+// RGB additive color demo (unit 3)
 ////////////////////////////////////////////////////////////////////////////////
 
 /*global THREE, requestAnimationFrame, dat, window, document*/
@@ -44,7 +44,7 @@ function init() {
 	light3.target.position.set( 61/overlap, -50/overlap, 0 );
 	light3.angle = 0.08;
 
-	//  GROUND
+	// GROUND
 
 	var gg = new THREE.PlaneGeometry( 270, 250, 2*270, 2*250 );
 	var gm = new THREE.MeshLambertMaterial( { color: 0xFFFFFF, side: THREE.DoubleSide } );
