@@ -242,7 +242,6 @@ function setupGui() {
 	gui = new dat.GUI();
 	gui.add( effectController, "magnification", ['nearest','linear'] ).name("magnification");
 	gui.add( effectController, "minification", ['nearest','linear','mipmap'] ).name("minification");
-	// TODO: we should really query THREE.getMaxAnisotropy to find max level!
 	var anisoCount = 1;
 	var anisoList = [];
 	while ( anisoCount <= renderer.getMaxAnisotropy() ) {
