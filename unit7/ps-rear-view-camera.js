@@ -238,6 +238,9 @@ function fillScene() {
 function init() {
 	canvasWidth = 846;
 	canvasHeight = 494;
+	// For grading the window is fixed in size; here's general code:
+	//var canvasWidth = window.innerWidth;
+	//var canvasHeight = window.innerHeight;
 
 	// allocate just once, instead of per render
 	rearTarget = new THREE.Vector3();

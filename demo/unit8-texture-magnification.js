@@ -191,7 +191,7 @@ function render() {
 	for (var name in texture)
 	{
 		if (texture.hasOwnProperty(name)) {
-			//texture[name].offset = new THREE.Vector2( effectController.offset, effectController.offset );
+			//texture[name].offset.set( effectController.offset, effectController.offset );
 			texture[name].repeat.set( effectController.repeat, effectController.repeat );
 		}
 	}
