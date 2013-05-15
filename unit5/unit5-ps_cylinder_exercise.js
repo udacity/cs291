@@ -81,10 +81,10 @@ function fillScene() {
 	// LIGHTS
 	var ambientLight = new THREE.AmbientLight( 0x222222 );
 
-	var light = new THREE.DirectionalLight( 0xffffff, 1.0 );
+	var light = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
 	light.position.set( 200, 400, 500 );
 
-	var light2 = new THREE.DirectionalLight( 0xffffff, 1.0 );
+	var light2 = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
 	light2.position.set( -500, 250, -200 );
 
 	scene.add(ambientLight);

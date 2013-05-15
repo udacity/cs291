@@ -3,22 +3,21 @@
 // Your task is to change the fragment shader, and only that
 // Edit the file named fragment.glsl in the tab above.
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, requestAnimationFrame, Detector, dat */
+/*global THREE, requestAnimationFrame, dat */
 
-var container, camera, scene, renderer;
+var camera, scene, renderer;
 var cameraControls;
 var effectController;
 var clock = new THREE.Clock();
 var teapotSize = 600;
 var tess = 7, newTess = tess;
 var tessLevel = [2, 3, 4, 5, 6, 8, 10, 12, 16, 24, 32];
-var maxTessLevel = tessLevel.length - 1;
 var ambientLight, light;
 var teapot;
 var phongBalancedMaterial;
 
 function init() {
-	var canvasWidth = 846; 
+	var canvasWidth = 846;
 	var canvasHeight = 494;
 	var canvasRatio = canvasWidth / canvasHeight;
 
@@ -26,7 +25,7 @@ function init() {
 
 	ambientLight = new THREE.AmbientLight(0x333333); // 0.2
 
-	light = new THREE.DirectionalLight(0xffffff, 1.0);
+	light = new THREE.DirectionalLight(0xFFFFFF, 1.0);
 	light.position.set(700, 3000, 1200);
 
 	// RENDERER
@@ -71,12 +70,12 @@ function createShaderMaterial(id, light, ambientLight) {
 			uniforms: {
 
 				"uDirLightPos":	{ type: "v3", value: new THREE.Vector3() },
-				"uDirLightColor": { type: "c", value: new THREE.Color( 0xffffff ) },
+				"uDirLightColor": { type: "c", value: new THREE.Color( 0xFFFFFF ) },
 
 				"uAmbientLightColor": { type: "c", value: new THREE.Color( 0x050505 ) },
 
-				"uMaterialColor":  { type: "c", value: new THREE.Color( 0xffffff ) },
-				"uSpecularColor":  { type: "c", value: new THREE.Color( 0xffffff ) },
+				"uMaterialColor":  { type: "c", value: new THREE.Color( 0xFFFFFF ) },
+				"uSpecularColor":  { type: "c", value: new THREE.Color( 0xFFFFFF ) },
 
 				uKd: {
 					type: "f",
@@ -257,12 +256,12 @@ function addToDOM() {
 }
 
 try {
-  init();
-  fillScene();
-  setupGui();
-  addToDOM();
-  animate();
+	init();
+	fillScene();
+	setupGui();
+	addToDOM();
+	animate();
 } catch(e) {
-  var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
-  $('#container').append(errorReport+e);
+	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	$('#container').append(errorReport+e);
 }

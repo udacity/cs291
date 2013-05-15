@@ -3,16 +3,11 @@
 // Your task is to change the fragment shader, and only that
 // Edit the file named fragment.glsl in the tab above.
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, Coordinates, document, window, dat*/
+/*global THREE, document, window, dat*/
 
 var camera, scene, renderer, light;
 var cameraControls, effectController, phongMaterial;
 var clock = new THREE.Clock();
-var gridX = true;
-var gridY = false;
-var gridZ = false;
-var axes = true;
-var ground = true;
 
 function fillScene() {
 	scene = new THREE.Scene();
@@ -21,7 +16,7 @@ function fillScene() {
 	// LIGHTS
 	var ambientLight = new THREE.AmbientLight(0x333333); // 0.2
 
-	light = new THREE.DirectionalLight(0xffffff, 1.0);
+	light = new THREE.DirectionalLight(0xFFFFFF, 1.0);
 	light.position.set(320, 390, 700);
 
 	scene.add(ambientLight);
@@ -71,24 +66,6 @@ function addToDOM() {
 	container.appendChild( renderer.domElement );
 }
 
-function drawHelpers() {
-  if (ground) {
-		Coordinates.drawGround({size:10000});
-	}
-	if (gridX) {
-		Coordinates.drawGrid({size:10000,scale:0.01});
-	}
-	if (gridY) {
-		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"y"});
-	}
-	if (gridZ) {
-		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"z"});
-	}
-	if (axes) {
-		Coordinates.drawAllAxes({axisLength:200,axisRadius:1,axisTess:50});
-	}
-}
-
 function animate() {
 	window.requestAnimationFrame(animate);
 	render();
@@ -114,7 +91,7 @@ function render() {
 }
 
 function loadShader(shadertype) {
-  return document.getElementById(shadertype).textContent;
+	return document.getElementById(shadertype).textContent;
 }
 
 function createShaderMaterial(id, light) {
@@ -126,9 +103,9 @@ function createShaderMaterial(id, light) {
 			uniforms: {
 
 				"uDirLightPos":	{ type: "v3", value: new THREE.Vector3() },
-				"uDirLightColor": { type: "c", value: new THREE.Color( 0xffffff ) },
+				"uDirLightColor": { type: "c", value: new THREE.Color( 0xFFFFFF ) },
 
-				"uMaterialColor":  { type: "c", value: new THREE.Color( 0xffffff ) },
+				"uMaterialColor": { type: "c", value: new THREE.Color( 0xFFFFFF ) },
 
 				uKd: {
 					type: "f",
@@ -215,13 +192,13 @@ function setupGui() {
 // this is the main action sequence
 
 try {
-  init();
-  fillScene();
-  setupGui();
-  addToDOM();
-  animate();
+	init();
+	fillScene();
+	setupGui();
+	addToDOM();
+	animate();
 } catch(e) {
-  var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
-  $('#container').append(errorReport+e);
+	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	$('#container').append(errorReport+e);
 }
 

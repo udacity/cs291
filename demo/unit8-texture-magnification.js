@@ -100,7 +100,7 @@ function init() {
 	renderer.gammaInput = true;
 	renderer.gammaOutput = true;
 	renderer.setSize(canvasWidth, canvasHeight);
-	renderer.setClearColorHex( 0xffffff, 1.0 );
+	renderer.setClearColorHex( 0xFFFFFF, 1.0 );
 
 	var container = document.getElementById('container');
 	container.appendChild( renderer.domElement );
@@ -133,7 +133,7 @@ function init() {
 	for (var name in texture)
 	{
 		if (texture.hasOwnProperty(name)) {
-			texture[name].repeat = new THREE.Vector2( effectController.repeat, effectController.repeat );
+			texture[name].repeat.set( effectController.repeat, effectController.repeat );
 			material[name] = new THREE.MeshBasicMaterial( { map: texture[name], side:THREE.DoubleSide } );
 		}
 	}
@@ -192,7 +192,7 @@ function render() {
 	{
 		if (texture.hasOwnProperty(name)) {
 			//texture[name].offset = new THREE.Vector2( effectController.offset, effectController.offset );
-			texture[name].repeat = new THREE.Vector2( effectController.repeat, effectController.repeat );
+			texture[name].repeat.set( effectController.repeat, effectController.repeat );
 		}
 	}
 

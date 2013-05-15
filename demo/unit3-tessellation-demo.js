@@ -22,9 +22,9 @@ function init() {
 	camera.lookAt(0,0,0);
 	// LIGHTS
 
-	ambientLight = new THREE.AmbientLight( 0xffffff );
+	ambientLight = new THREE.AmbientLight( 0xFFFFFF );
 
-	light = new THREE.DirectionalLight( 0xffffff, 0.7 );
+	light = new THREE.DirectionalLight( 0xFFFFFF, 0.7 );
 	light.position.set( -800, 900, 300 );
 
 	// RENDERER

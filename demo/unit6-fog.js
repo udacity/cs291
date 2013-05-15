@@ -69,7 +69,7 @@ function fillScene() {
 	// put grid lines every 10000/100 = 100 units
 	var solidGround = new THREE.Mesh(
 		new THREE.PlaneGeometry( 10000, 10000 ),
-		new THREE.MeshPhongMaterial({ color: 0xffffff,
+		new THREE.MeshPhongMaterial({ color: 0xFFFFFF,
 		    // polygonOffset moves the plane back from the eye a bit, so that the lines on top of
 		    // the grid do not have z-fighting with the grid:
 		    // Factor == 1 moves it back relative to the slope (more on-edge means move back farther)

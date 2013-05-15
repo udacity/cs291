@@ -51,11 +51,11 @@ function init() {
 	ambientLight = new THREE.AmbientLight( 0x222222 );
 	scene.add( ambientLight );
 
-	light = new THREE.DirectionalLight( 0xffffff, 0.8 );
+	light = new THREE.DirectionalLight( 0xFFFFFF, 0.8 );
 	light.position.set( 320, 390, 700 );
 	scene.add( light );
 	
-	light2 = new THREE.DirectionalLight( 0xffffff, 0.5 );
+	light2 = new THREE.DirectionalLight( 0xFFFFFF, 0.5 );
 	light2.position.set( -720, -190, -300 );
 	scene.add( light2 );
 	

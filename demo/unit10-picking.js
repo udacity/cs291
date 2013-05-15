@@ -56,7 +56,7 @@ function init() {
 
 		var object = new THREE.Mesh( geometry, 
 			new THREE.MeshLambertMaterial(
-				{ color: Math.random() * 0xffffff } )
+				{ color: Math.random() * 0xFFFFFF } )
 				//, opacity: 0.5, transparent: true } ) );
 			);
 		
@@ -164,7 +164,7 @@ function onDocumentMouseDown( event ) {
 	/*
 	// Parse all the faces, for when you are using face materials
 	for ( var i in intersects ) {
-		intersects[ i ].face.material[ 0 ].color.setHex( Math.random() * 0xffffff | 0x80000000 );
+		intersects[ i ].face.material[ 0 ].color.setHex( Math.random() * 0xFFFFFF | 0x80000000 );
 	}
 	*/
 }

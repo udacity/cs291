@@ -19,12 +19,12 @@ function fillScene() {
 	scene.fog = new THREE.Fog( 0x808080, 2000, 4000 );
 
 	// LIGHTS
-	var light = new THREE.DirectionalLight( 0xffffff, 1.0 );
+	var light = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
 	light.position.set( -2000, 140, 0 );
 	
 	scene.add(light);
 	
-	var light2 = new THREE.DirectionalLight( 0xffffff, 1.0 );
+	var light2 = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
 	light2.position.set( 2000, 140, 0 );
 	
 	scene.add(light2);
@@ -71,7 +71,7 @@ function init() {
 	renderer.gammaInput = true;
 	renderer.gammaOutput = true;
 	renderer.setSize(canvasWidth, canvasHeight);
-	renderer.setClearColorHex( 0xffffff, 1.0 );
+	renderer.setClearColorHex( 0xFFFFFF, 1.0 );
 
 	var container = document.getElementById('container');
 	container.appendChild( renderer.domElement );

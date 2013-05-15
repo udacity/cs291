@@ -47,7 +47,7 @@ function init() {
 	//  GROUND
 
 	var gg = new THREE.PlaneGeometry( 270, 250, 2*270, 2*250 );
-	var gm = new THREE.MeshLambertMaterial( { color: 0xffffff, side: THREE.DoubleSide } );
+	var gm = new THREE.MeshLambertMaterial( { color: 0xFFFFFF, side: THREE.DoubleSide } );
 	//gm.specular.setRGB(0,0,0);
 
 	ground = new THREE.Mesh( gg, gm );

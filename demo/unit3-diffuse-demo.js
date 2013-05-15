@@ -36,7 +36,7 @@ function init() {
 
 	//  GROUND
 	var gg = new THREE.PlaneGeometry( 75, 75, 5, 5 );
-	var gm = new THREE.MeshPhongMaterial( { color: 0xffffff, side: THREE.DoubleSide} );
+	var gm = new THREE.MeshPhongMaterial( { color: 0xFFFFFF, side: THREE.DoubleSide} );
 	gm.specular.setRGB(0,0,0);
 	var wire = new THREE.MeshBasicMaterial({ color: 0x555555, wireframe: true });
 

@@ -1,8 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Add a specular texture
 ////////////////////////////////////////////////////////////////////////////////
-
-/*global THREE, requestAnimationFrame, window */
+/*global THREE, requestAnimationFrame */
 
 var camera, scene, renderer;
 var cameraControls;
@@ -17,31 +16,31 @@ function createMaterial() {
 	material.ambient.copy( material.color );
 	material.specular.setHSL( 0.09, 0.46, 1.0 );
 
-    return material;
+	return material;
 }
 
 function fillScene() {
 	scene = new THREE.Scene();
 	// LIGHTS
 	scene.add( new THREE.AmbientLight( 0x333333 ) );
-	var light = new THREE.DirectionalLight( 0xffffff, 0.9 );
+	var light = new THREE.DirectionalLight( 0xFFFFFF, 0.9 );
 	light.position.set( 200, 300, 500 );
 	scene.add( light );
-	light = new THREE.DirectionalLight( 0xffffff, 0.7 );
+	light = new THREE.DirectionalLight( 0xFFFFFF, 0.7 );
 	light.position.set( -200, -100, -400 );
-	scene.add( light );	
-	
-    var material = createMaterial();
+	scene.add( light );
+
+	var material = createMaterial();
 	var teapot = new THREE.Mesh(
-		new THREE.TeapotGeometry( teapotSize, 
+		new THREE.TeapotGeometry( teapotSize,
 			8, true, true, true, true, true ),
 		material );
-	
+
 	scene.add( teapot );
 }
 
 function init() {
-	var canvasWidth = 846; 
+	var canvasWidth = 846;
 	var canvasHeight = 494;
 
 	// CAMERA
@@ -60,23 +59,23 @@ function init() {
 	// CONTROLS
 	cameraControls = new THREE.OrbitAndPanControls( camera, renderer.domElement );
 	cameraControls.target.set(0, -160, 0);
-	
+
 }
 
 function addToDOM() {
-    var container = document.getElementById('container');
-    var canvas = container.getElementsByTagName('canvas');
-    if (canvas.length>0) {
-        container.removeChild(canvas[0]);
-    }
-    container.appendChild( renderer.domElement );
+	var container = document.getElementById('container');
+	var canvas = container.getElementsByTagName('canvas');
+	if (canvas.length>0) {
+		container.removeChild(canvas[0]);
+	}
+	container.appendChild( renderer.domElement );
 }
 
 function animate() {
 
 	requestAnimationFrame( animate );
 	render();
-	
+
 }
 
 function render() {
@@ -88,14 +87,11 @@ function render() {
 
 
 try {
-    init();
-    fillScene();
-    addToDOM();
-    animate();
+	init();
+	fillScene();
+	addToDOM();
+	animate();
 } catch(e) {
-  var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
-  $('#container').append(errorReport+e);
+	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	$('#container').append(errorReport+e);
 }
-
-
-

@@ -116,10 +116,10 @@ function fillScene() {
 	scene.fog = new THREE.Fog( 0x808080, 3000, 6000 );
 	// LIGHTS
 	var ambientLight = new THREE.AmbientLight( 0x222222 );
-	var light = new THREE.DirectionalLight( 0xffffff, 1.0 );
+	var light = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
 	light.position.set( 200, 400, 500 );
 
-	var light2 = new THREE.DirectionalLight( 0xffffff, 1.0 );
+	var light2 = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
 	light2.position.set( -400, 200, -300 );
 
 	scene.add(ambientLight);

@@ -21,7 +21,7 @@ function fillScene() {
 	// LIGHTS
 	var ambientLight = new THREE.AmbientLight(0x333333); // 0.2
 
-	light = new THREE.DirectionalLight(0xffffff, 1.0);
+	light = new THREE.DirectionalLight(0xFFFFFF, 1.0);
 	light.position.set(320, 390, 700);
 
 	scene.add(ambientLight);
@@ -130,9 +130,9 @@ function createShaderMaterial(id, light) {
 			uniforms: {
 
 				"uDirLightPos":	{ type: "v3", value: new THREE.Vector3() },
-				"uDirLightColor": { type: "c", value: new THREE.Color( 0xffffff ) },
+				"uDirLightColor": { type: "c", value: new THREE.Color( 0xFFFFFF ) },
 
-				"uMaterialColor":  { type: "c", value: new THREE.Color( 0xffffff ) },
+				"uMaterialColor": { type: "c", value: new THREE.Color( 0xFFFFFF ) },
 
 				uKd: {
 					type: "f",
@@ -225,12 +225,12 @@ function setupGui() {
 // this is the main action sequence
 
 try {
-  init();
-  fillScene();
-  setupGui();
-  addToDOM();
-  animate();
+	init();
+	fillScene();
+	setupGui();
+	addToDOM();
+	animate();
 } catch(e) {
-  var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
-  $('#container').append(errorReport+e);
+	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	$('#container').append(errorReport+e);
 }

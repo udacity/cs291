@@ -29,15 +29,15 @@ function init() {
 
 	// SCENE
 	scene = new THREE.Scene();
-	scene.fog = new THREE.Fog( 0xffffff, 1000, 4000 );
+	scene.fog = new THREE.Fog( 0xFFFFFF, 1000, 4000 );
 
 	// LIGHTS
 	scene.add( new THREE.AmbientLight( 0x222222 ) );
-	var light = new THREE.DirectionalLight( 0xffffff, 2.25 );
+	var light = new THREE.DirectionalLight( 0xFFFFFF, 2.25 );
 	light.position.set( 200, 400, 500 );
 	scene.add( light );
 
-	var light2 = new THREE.DirectionalLight( 0xffffff, 1.5 );
+	var light2 = new THREE.DirectionalLight( 0xFFFFFF, 1.5 );
 	light2.position.set( -400, -200, 200 );
 	scene.add( light2 );
 

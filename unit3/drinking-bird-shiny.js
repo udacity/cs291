@@ -15,12 +15,12 @@ function fillScene() {
 
 	scene.add( new THREE.AmbientLight( 0x222222 ) );
 
-	var light = new THREE.DirectionalLight( 0xffffff, 0.7 );
+	var light = new THREE.DirectionalLight( 0xFFFFFF, 0.7 );
 	light.position.set( 200, 500, 500 );
 
 	scene.add( light );
 
-	light = new THREE.DirectionalLight( 0xffffff, 0.9 );
+	light = new THREE.DirectionalLight( 0xFFFFFF, 0.9 );
 	light.position.set( -200, -100, -400 );
 
 	scene.add( light );

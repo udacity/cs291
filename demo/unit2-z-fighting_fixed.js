@@ -110,11 +110,11 @@ function init() {
 	scene.fog = new THREE.Fog( 0x808080, 2000, 4000 );
 	// LIGHTS
 	scene.add( new THREE.AmbientLight( 0x222222 ) );
-	var light = new THREE.DirectionalLight( 0xffffff, 1.0 );
+	var light = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
 	light.position.set( 200, 400, 500 );
 	scene.add( light );
 	
-	light = new THREE.DirectionalLight( 0xffffff, 1.0 );
+	light = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
 	light.position.set( -400, 200, -300 );
 	scene.add( light );
 

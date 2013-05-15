@@ -1,8 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Change from fixed steps to timed updates
 ////////////////////////////////////////////////////////////////////////////////
-
-/*global THREE, document, window, Stats*/
+/*global THREE, Coordinates, document, window, container, Stats*/
 
 var camera, scene, renderer, stats;
 var cameraControls;
@@ -385,12 +384,12 @@ function render() {
 }
 
 try {
-  init();
-  fillScene();
-  drawHelpers();
-  addToDOM();
-  animate();
+	init();
+	fillScene();
+	drawHelpers();
+	addToDOM();
+	animate();
 } catch(e) {
-  var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
-  $('#container').append(errorReport+e);
+	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	$('#container').append(errorReport+e);
 }

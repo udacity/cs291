@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, document, window*/
 
-var path = "/";      // STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
+var path = "/";	// STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
 
 var camera, scene, renderer;
 var cameraControls;
@@ -20,12 +20,12 @@ function fillScene() {
 	// -1000,-1000,-1000 to 1000,1000,1000, e.g.
 	// at -1000,-1000,-1000, -900,-1000,-1000,
 	// and so on, for the 21*21*21 = 9261 points.
-    
+
 	for ( var i = 0; i < 8000; i ++ ) {
 
 		var vertex = new THREE.Vector3();
 		// accept the point only if it's in the sphere
-		do { 
+		do {
 			vertex.x = 2000 * Math.random() - 1000;
 			vertex.y = 2000 * Math.random() - 1000;
 			vertex.z = 2000 * Math.random() - 1000;
@@ -46,7 +46,7 @@ function fillScene() {
 }
 
 function init() {
-	var canvasWidth = 846; 
+	var canvasWidth = 846;
 	var canvasHeight = 494;
 	var canvasRatio = canvasWidth / canvasHeight;
 
@@ -68,12 +68,12 @@ function init() {
 }
 
 function addToDOM() {
-    var container = document.getElementById('container');
-    var canvas = container.getElementsByTagName('canvas');
-    if (canvas.length>0) {
-        container.removeChild(canvas[0]);
-    }
-    container.appendChild( renderer.domElement );
+	var container = document.getElementById('container');
+	var canvas = container.getElementsByTagName('canvas');
+	if (canvas.length>0) {
+		container.removeChild(canvas[0]);
+	}
+	container.appendChild( renderer.domElement );
 }
 
 function animate() {
@@ -88,11 +88,11 @@ function render() {
 }
 
 try {
-    init();
-    fillScene();
-    addToDOM();
-    animate();
-    } catch(e) {
-    var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
-    $('#container').append(errorReport+e);
+	init();
+	fillScene();
+	addToDOM();
+	animate();
+} catch(e) {
+	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	$('#container').append(errorReport+e);
 }

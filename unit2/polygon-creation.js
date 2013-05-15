@@ -60,7 +60,7 @@ function init() {
 	renderer.gammaInput = true;
 	renderer.gammaOutput = true;
 	renderer.setSize( canvasWidth, canvasHeight );
-	renderer.setClearColorHex( 0xffffff, 1.0 );
+	renderer.setClearColorHex( 0xFFFFFF, 1.0 );
 
 }
 function showGrids() {
