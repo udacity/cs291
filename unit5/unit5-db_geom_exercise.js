@@ -1,53 +1,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Drinking Bird: add eyes, nose, and a crossbar
+// Your task is to modify the createDrinkingBird function around line 163
 ////////////////////////////////////////////////////////////////////////////////
-
-/*global THREE, document, window*/
+/*global THREE, Coordinates, document, window, dat*/
 
 var camera, scene, renderer;
-var cameraControls;
-
+var cameraControls, effectController;
 var clock = new THREE.Clock();
+var gridX = true;
+var gridY = false;
+var gridZ = false;
+var axes = true;
+var ground = true;
 
-function fillScene() {
-	scene = new THREE.Scene();
-	scene.fog = new THREE.Fog( 0x808080, 2000, 4000 );
-
-	// LIGHTS
-
-	scene.add( new THREE.AmbientLight( 0x222222 ) );
-
-	var light = new THREE.DirectionalLight( 0xffffff, 0.7 );
-	light.position.set( 200, 500, 500 );
-
-	scene.add( light );
-
-	light = new THREE.DirectionalLight( 0xffffff, 0.9 );
-	light.position.set( -200, -100, -400 );
-
-	scene.add( light );
-
-	//  GROUND
-
-	// put grid lines every 10000/100 = 100 units
-	var solidGround = new THREE.Mesh(
-		new THREE.PlaneGeometry( 10000, 10000, 100, 100 ),
-		new THREE.MeshLambertMaterial( { color: 0xffffff } ) );
-	solidGround.rotation.x = - Math.PI / 2;
-	// cheat: offset by a small amount so grid is on top
-	// TODO: better way in three.js? Polygon offset is used in WebGL.
-	solidGround.position.y = -0.2;
-
-	scene.add( solidGround );
-
-	var ground = new THREE.Mesh(
-		new THREE.PlaneGeometry( 10000, 10000, 100, 100 ),
-		new THREE.MeshBasicMaterial( { color: 0x0, wireframe: true } ) );
-	ground.rotation.x = - Math.PI / 2;
-
-	scene.add( ground );
-
-	//////////////////////////////
+function createDrinkingBird() {
 	// MATERIALS
 	var headMaterial = new THREE.MeshLambertMaterial( );
 	headMaterial.color.r = 104/255;
@@ -194,25 +160,48 @@ function fillScene() {
 	var crossbarMaterial = new THREE.MeshPhongMaterial( { color: 0x808080, specular: 0xFFFFFF, shininess: 400 } );
 	var eyeMaterial = new THREE.MeshPhongMaterial( { color: 0x000000, specular: 0x303030, shininess: 4 } );
 
-	// Student:
+	// YOUR CODE HERE
 	// Add a crossbar support, a nose, and eyes.
 	// Crossbar: use crossbarMaterial and
 	//   THREE.CylinderGeometry( XX, XX, XX, 32 ) for the tessellation.
-	//   The cylinder should have a radius of 5, height Y=360,
+	//   The cylinder should have a radius of 5, length 200 and be at height Y=360
 	//   and rotated 90 degrees into position.
 	// Nose: use headMaterial and
 	//   THREE.CylinderGeometry( XX, XX, XX, 32 ) for the tessellation.
-	//   The cone should have a radius of 6 at the tip, 14 at the bottom.
+	//   The cone should have a radius of 6 at the tip, 14 at the bottom, height 70
 	//   It should be rotated 90 degrees and put into position at -70, 530.
 	// Eyes: use eyeMaterial and
 	//   THREE.SphereGeometry( XX, 32, 16 ) for the tessellation.
-	//   Each sphere should be moved to X=-46, Y=560,
+	//   Each sphere should have radius of 10 and be moved to X=-46, Y=560,
 	//   then rotated 20 degrees left and right to make a pair.
 }
 
+function fillScene() {
+	scene = new THREE.Scene();
+	scene.fog = new THREE.Fog( 0x808080, 2000, 4000 );
+
+	// LIGHTS
+	var ambientLight = new THREE.AmbientLight( 0x222222 );
+
+	var light = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
+	light.position.set( 200, 400, 500 );
+
+	var light2 = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
+	light2.position.set( -500, 250, -200 );
+
+	scene.add(ambientLight);
+	scene.add(light);
+	scene.add(light2);
+
+}
+
 function init() {
-	var canvasWidth = window.innerWidth;
-	var canvasHeight = window.innerHeight;
+	var canvasWidth = 846;
+	var canvasHeight = 494;
+	// For grading the window is fixed in size; here's general code:
+	//var canvasWidth = window.innerWidth;
+	//var canvasHeight = window.innerHeight;
+	var canvasRatio = canvasWidth / canvasHeight;
 
 	// RENDERER
 	renderer = new THREE.WebGLRenderer( { antialias: true } );
@@ -221,18 +210,40 @@ function init() {
 	renderer.setSize(canvasWidth, canvasHeight);
 	renderer.setClearColorHex( 0xAAAAAA, 1.0 );
 
-	var container = document.getElementById('container');
-	container.appendChild( renderer.domElement );
-
 	// CAMERA
-	camera = new THREE.PerspectiveCamera( 35, window.innerWidth / window.innerHeight, 1, 4000 );
+	camera = new THREE.PerspectiveCamera( 40, canvasRatio, 1, 10000 );
 	camera.position.set( -384, 758, -492 );
-
 	// CONTROLS
 	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
 	cameraControls.target.set(0,475,0);
 
-	fillScene();
+}
+
+function addToDOM() {
+	var container = document.getElementById('container');
+	var canvas = container.getElementsByTagName('canvas');
+	if (canvas.length>0) {
+		container.removeChild(canvas[0]);
+	}
+	container.appendChild( renderer.domElement );
+}
+
+function drawHelpers() {
+	if (ground) {
+		Coordinates.drawGround({size:10000});
+	}
+	if (gridX) {
+		Coordinates.drawGrid({size:10000,scale:0.01});
+	}
+	if (gridY) {
+		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"y"});
+	}
+	if (gridZ) {
+		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"z"});
+	}
+	if (axes) {
+		Coordinates.drawAllAxes({axisLength:200,axisRadius:1,axisTess:50});
+	}
 }
 
 function animate() {
@@ -244,8 +255,52 @@ function render() {
 	var delta = clock.getDelta();
 	cameraControls.update(delta);
 
+	if ( effectController.newGridX !== gridX || effectController.newGridY !== gridY || effectController.newGridZ !== gridZ || effectController.newGround !== ground || effectController.newAxes !== axes)
+	{
+		gridX = effectController.newGridX;
+		gridY = effectController.newGridY;
+		gridZ = effectController.newGridZ;
+		ground = effectController.newGround;
+		axes = effectController.newAxes;
+		fillScene();
+		createDrinkingBird();
+		drawHelpers();
+	}
+
 	renderer.render(scene, camera);
 }
 
-init();
-animate();
+
+
+function setupGui() {
+
+	effectController = {
+
+		newGridX: gridX,
+		newGridY: gridY,
+		newGridZ: gridZ,
+		newGround: ground,
+		newAxes: axes
+	};
+
+	var gui = new dat.GUI();
+	var h = gui.addFolder("Grid display");
+	h.add( effectController, "newGridX").name("Show XZ grid");
+	h.add( effectController, "newGridY" ).name("Show YZ grid");
+	h.add( effectController, "newGridZ" ).name("Show XY grid");
+	h.add( effectController, "newGround" ).name("Show ground");
+	h.add( effectController, "newAxes" ).name("Show axes");
+}
+
+try {
+	init();
+	fillScene();
+	createDrinkingBird();
+	drawHelpers();
+	setupGui();
+	addToDOM();
+	animate();
+} catch(e) {
+	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	$('#container').append(errorReport+e);
+}

@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
-// Drinking Bird shininess: make parts of the bird be shiny
+// Make hat, body, leg and foot of Drinking Bird shiny
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, Coordinates, document, window  */
+/*global THREE, Coordinates, document, window */
 var camera, scene, renderer;
 var cameraControls;
 
@@ -15,12 +15,12 @@ function fillScene() {
 
 	scene.add( new THREE.AmbientLight( 0x222222 ) );
 
-	var light = new THREE.DirectionalLight( 0xffffff, 0.7 );
+	var light = new THREE.DirectionalLight( 0xFFFFFF, 0.7 );
 	light.position.set( 200, 500, 500 );
 
 	scene.add( light );
 
-	light = new THREE.DirectionalLight( 0xffffff, 0.9 );
+	light = new THREE.DirectionalLight( 0xFFFFFF, 0.9 );
 	light.position.set( -200, -100, -400 );
 
 	scene.add( light );
@@ -32,7 +32,12 @@ function fillScene() {
 
 function createDrinkingBird() {
 	//////////////////////////////
-	// YOU SHOULD MODIFY THE COLORS
+	// YOU SHOULD MODIFY THE SHININESS:
+	// use MeshPhongMaterial
+	// hat and body: 100
+	// leg: 4
+	// foot: 30
+	// specular color for all of these to 0.5,0.5,0.5
 	var headMaterial = new THREE.MeshLambertMaterial( );
 	headMaterial.color.r = 104/255;
 	headMaterial.color.g = 1/255;
@@ -149,6 +154,9 @@ function createDrinkingBird() {
 function init() {
 	var canvasWidth = 846;
 	var canvasHeight = 494;
+	// For grading the window is fixed in size; here's general code:
+	//var canvasWidth = window.innerWidth;
+	//var canvasHeight = window.innerHeight;
 	var canvasRatio = canvasWidth / canvasHeight;
 
 	// RENDERER
@@ -189,7 +197,14 @@ function render() {
 	renderer.render(scene, camera);
 }
 
-init();
-fillScene();
-addToDOM();
-animate();
+
+try {
+	init();
+	fillScene();
+	addToDOM();
+	animate();
+} catch(e) {
+	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	$('#container').append(errorReport+e);
+}
+

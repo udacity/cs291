@@ -22,10 +22,10 @@ function fillScene() {
 	// LIGHTS
 	var ambientLight = new THREE.AmbientLight( 0x222222 );
 
-	var light = new THREE.DirectionalLight( 0xffffff, 1.0 );
+	var light = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
 	light.position.set( 200, 400, 500 );
-	
-	var light2 = new THREE.DirectionalLight( 0xffffff, 1.0 );
+
+	var light2 = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
 	light2.position.set( -500, 250, -200 );
 
 	scene.add(ambientLight);
@@ -39,7 +39,7 @@ function fillScene() {
 		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"y"});
 	}
 	if (gridZ) {
-		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"z"});	
+		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"z"});
 	}
 	if (axes) {
 		Coordinates.drawAllAxes({axisLength:200,axisRadius:1,axisTess:50});
@@ -48,12 +48,12 @@ function fillScene() {
 	if (rings) {
 		createAllRings();
 	}
-	
+
 	var planeMaterial = new THREE.MeshPhongMaterial( { color: 0x95E4FB, specular: 0x505050, shininess: 100 } );
 
 	airplane = new THREE.Object3D();
-	
-	var sphere = new THREE.Mesh( 
+
+	var sphere = new THREE.Mesh(
 		new THREE.SphereGeometry( 15, 32, 16 ), planeMaterial );
 	// nose
 	sphere.rotation.x = 90 * Math.PI/180;
@@ -62,7 +62,7 @@ function fillScene() {
 	sphere.position.z = 70;
 	airplane.add( sphere );
 
-	var cylinder = new THREE.Mesh( 
+	var cylinder = new THREE.Mesh(
 		new THREE.CylinderGeometry( 15, 15, 180, 32 ), planeMaterial );
 	// body
 	cylinder.rotation.x = 90 * Math.PI/180;
@@ -70,15 +70,15 @@ function fillScene() {
 	cylinder.position.z = -20;
 	airplane.add( cylinder );
 
-	cylinder = new THREE.Mesh( 
+	cylinder = new THREE.Mesh(
 		new THREE.CylinderGeometry( 20, 20, 250, 32 ), planeMaterial );
 	// wing
 	cylinder.scale.x = 0.2;
 	cylinder.rotation.z = 90 * Math.PI/180;
 	cylinder.position.y = 5;
 	airplane.add( cylinder );
-	
-	cylinder = new THREE.Mesh( 
+
+	cylinder = new THREE.Mesh(
 		new THREE.CylinderGeometry( 15, 15, 100, 32 ), planeMaterial );
 	// tail wing
 	cylinder.scale.x = 0.2;
@@ -86,8 +86,8 @@ function fillScene() {
 	cylinder.position.y = 5;
 	cylinder.position.z = -90;
 	airplane.add( cylinder );
-	
-	cylinder = new THREE.Mesh( 
+
+	cylinder = new THREE.Mesh(
 		new THREE.CylinderGeometry( 10, 15, 40, 32 ), planeMaterial );
 	// tail
 	cylinder.scale.x = 0.15;
@@ -95,21 +95,21 @@ function fillScene() {
 	cylinder.position.y = 20;
 	cylinder.position.z = -96;
 	airplane.add( cylinder );
-	
+
 	scene.add( airplane );
 
 }
 
 function createAllRings() {
 	//create Rings
-	ringx =  createRing(200,0xFF0000,'x');
-	ringy =  createRing(175,0x00FF00,'y');
-	ringz =  createRing(150,0x0000FF,'z');
-	
-	//setuo rotation hierarchy - assuming x -> y -> z intrinsic
+	ringx = createRing(200,0xFF0000,'x');
+	ringy = createRing(175,0x00FF00,'y');
+	ringz = createRing(150,0x0000FF,'z');
+
+	//set up rotation hierarchy - assuming x -> y -> z intrinsic
 	ringy.add(ringz);
 	ringx.add(ringy);
-	
+
 	scene.add(ringx);
 }
 
@@ -134,7 +134,7 @@ function createRing(radius,color,axis) {
 	composite.add(circleMesh);
 	composite.add(sphereMesh);
 	// composite.add(coneMesh);
-	
+
 	if (axis === 'x') {
 		composite.rotation.y = Math.PI/2;
 	} else if (axis === 'y') {
@@ -143,7 +143,7 @@ function createRing(radius,color,axis) {
 
 	var ringObj = new THREE.Object3D();
 	ringObj.add(composite);
-	
+
 	return ringObj;
 
 }
@@ -169,7 +169,7 @@ function init() {
 	// CONTROLS
 	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
 	cameraControls.target.set(0,0,0);
-	
+
 	fillScene();
 
 }
@@ -216,7 +216,7 @@ function setupGui() {
 		newGridZ: gridZ,
 		newAxes: axes,
 		newRings: rings,
-		
+
 		ex: 0.0,
 		ey: 0.0,
 		ez: 0.0

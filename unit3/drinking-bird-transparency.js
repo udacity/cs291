@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Drinking Bird transparency: make the body's bulb be transparent
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, Coordinates, document, window  */
+/*global THREE, Coordinates, document, window */
 var camera, scene, renderer;
 var cameraControls;
 
@@ -15,12 +15,12 @@ function fillScene() {
 
 	scene.add( new THREE.AmbientLight( 0x222222 ) );
 
-	var light = new THREE.DirectionalLight( 0xffffff, 0.7 );
+	var light = new THREE.DirectionalLight( 0xFFFFFF, 0.7 );
 	light.position.set( 200, 500, 500 );
 
 	scene.add( light );
 
-	light = new THREE.DirectionalLight( 0xffffff, 0.9 );
+	light = new THREE.DirectionalLight( 0xFFFFFF, 0.9 );
 	light.position.set( -200, -100, -400 );
 
 	scene.add( light );
@@ -181,6 +181,9 @@ function drawDrinkingBird() {
 function init() {
 	var canvasWidth = 846;
 	var canvasHeight = 494;
+	// For grading the window is fixed in size; here's general code:
+	//var canvasWidth = window.innerWidth;
+	//var canvasHeight = window.innerHeight;
 	var canvasRatio = canvasWidth / canvasHeight;
 
 	// RENDERER
@@ -194,7 +197,7 @@ function init() {
 	camera = new THREE.PerspectiveCamera( 45, canvasRatio, 1, 4000 );
 	// CONTROLS
 	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
-	camera.position.set( -480, 659, -619 );
+	camera.position.set( -417, 367, -234);
 	cameraControls.target.set(4,301,92);
 }
 
@@ -219,7 +222,12 @@ function render() {
 	renderer.render(scene, camera);
 }
 
-init();
-fillScene();
-addToDOM();
-animate();
+try {
+	init();
+	fillScene();
+	addToDOM();
+	animate();
+} catch(e) {
+	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	$('#container').append(errorReport+e);
+}

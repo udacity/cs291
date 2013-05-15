@@ -2,25 +2,30 @@
 // Smooth shading exercise: change program to make sphere look smooth
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, window, document*/
+
 var camera, scene, renderer;
 var cameraControls;
 var clock = new THREE.Clock();
 var ambientLight, light;
 
 function init() {
-	var canvasWidth = window.innerWidth;
-	var canvasHeight = window.innerHeight;
+	var canvasWidth = 846;
+	var canvasHeight = 494;
+	// For grading the window is fixed in size; here's general code:
+	//var canvasWidth = window.innerWidth;
+	//var canvasHeight = window.innerHeight;
+	var canvasRatio = canvasWidth / canvasHeight;
 
 	// CAMERA
 
-	camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 80000 );
-	camera.position.set( -300, 300, -1500 );
+	camera = new THREE.PerspectiveCamera( 45, canvasRatio, 1, 80000 );
+	camera.position.set( -300, 300, -1000 );
 	camera.lookAt(0,0,0);
 	// LIGHTS
 
-	ambientLight = new THREE.AmbientLight( 0xffffff );
+	ambientLight = new THREE.AmbientLight( 0xFFFFFF );
 
-	light = new THREE.DirectionalLight( 0xffffff, 0.7 );
+	light = new THREE.DirectionalLight( 0xFFFFFF, 0.7 );
 	light.position.set( -800, 900, 300 );
 
 	// RENDERER
@@ -38,8 +43,6 @@ function init() {
 	cameraControls = new THREE.OrbitAndPanControls( camera, renderer.domElement );
 	cameraControls.target.set(0, 0, 0);
 
-	fillScene();
-	// GUI
 }
 
 function createBall() {
@@ -91,7 +94,12 @@ function render() {
 
 }
 
-init();
-addToDOM();
-animate();
-
+try {
+	init();
+	fillScene();
+	addToDOM();
+	animate();
+} catch(e) {
+	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	$('#container').append(errorReport+e);
+}

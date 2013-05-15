@@ -1,8 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Snowman exercise: position the arms of the snowman correctly
 ////////////////////////////////////////////////////////////////////////////////
-
-/*global THREE, Coordinates, $, document, window, dat*/
+/*global THREE, Coordinates, document, window, dat*/
 
 var camera, scene, renderer;
 var cameraControls, effectController;
@@ -20,52 +19,38 @@ function fillScene() {
 	// LIGHTS
 	var ambientLight = new THREE.AmbientLight( 0x222222 );
 
-	var light = new THREE.DirectionalLight( 0xffffff, 1.0 );
+	var light = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
 	light.position.set( 200, 400, 500 );
-	
-	var light2 = new THREE.DirectionalLight( 0xffffff, 1.0 );
+
+	var light2 = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
 	light2.position.set( -500, 250, -200 );
 
 	scene.add(ambientLight);
 	scene.add(light);
 	scene.add(light2);
 
-	if (ground) {
-		Coordinates.drawGround({size:10000});		
-	}
-	if (gridX) {
-		Coordinates.drawGrid({size:10000,scale:0.01});
-	}
-	if (gridY) {
-		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"y"});
-	}
-	if (gridZ) {
-		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"z"});	
-	}
-	if (axes) {
-		Coordinates.drawAllAxes({axisLength:200,axisRadius:1,axisTess:50});
-	}
-	
 	var snowMaterial = new THREE.MeshLambertMaterial( { color: 0xFFFFFF } );
 	var woodMaterial = new THREE.MeshLambertMaterial( { color: 0x75691B } );
 
-	var sphere = new THREE.Mesh( 
+	var sphere = new THREE.Mesh(
 		new THREE.SphereGeometry( 20, 32, 16 ), snowMaterial );
 	sphere.position.y = 20;
 	scene.add( sphere );
-	
-	sphere = new THREE.Mesh( 
+
+	sphere = new THREE.Mesh(
 		new THREE.SphereGeometry( 15, 32, 16 ), snowMaterial );
 	sphere.position.y = 50;
 	scene.add( sphere );
-	
-	sphere = new THREE.Mesh( 
+
+	sphere = new THREE.Mesh(
 		new THREE.SphereGeometry( 10, 32, 16 ), snowMaterial );
 	sphere.position.y = 70;
 	scene.add( sphere );
-	
-	var cylinder = new THREE.Mesh( 
+
+	var cylinder = new THREE.Mesh(
 		new THREE.CylinderGeometry( 2, 2, 60, 32 ), woodMaterial );
+
+	// YOUR CHANGES HERE
 	// These positions are given just so you can see the stick.
 	// You will need to reposition, etc.
 	cylinder.position.x = -20;
@@ -76,8 +61,11 @@ function fillScene() {
 }
 
 function init() {
-	var canvasWidth = window.innerWidth;
-	var canvasHeight = window.innerHeight;
+	var canvasWidth = 846;
+	var canvasHeight = 494;
+	// For grading the window is fixed in size; here's general code:
+	//var canvasWidth = window.innerWidth;
+	//var canvasHeight = window.innerHeight;
 	var canvasRatio = canvasWidth / canvasHeight;
 
 	// RENDERER
@@ -92,13 +80,22 @@ function init() {
 
 	// CAMERA
 	camera = new THREE.PerspectiveCamera( 30, canvasRatio, 1, 10000 );
-	camera.position.set( -170, 170, 40 );
+	//camera.position.set( -170, 170, 40 );
 	// CONTROLS
 	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
-	cameraControls.target.set(0,50,0);
-	
-	fillScene();
+	//cameraControls.target.set(0,50,0);
+	camera.position.set(-120, 66, 23);
+	cameraControls.target.set(0, 43, -8);
 
+}
+
+function addToDOM() {
+	var container = document.getElementById('container');
+	var canvas = container.getElementsByTagName('canvas');
+	if (canvas.length>0) {
+		container.removeChild(canvas[0]);
+	}
+	container.appendChild( renderer.domElement );
 }
 
 function animate() {
@@ -119,11 +116,28 @@ function render() {
 		axes = effectController.newAxes;
 
 		fillScene();
+		drawHelpers();
 	}
 	renderer.render(scene, camera);
 }
 
-
+function drawHelpers() {
+	if (ground) {
+		Coordinates.drawGround({size:10000});
+	}
+	if (gridX) {
+		Coordinates.drawGrid({size:10000,scale:0.01});
+	}
+	if (gridY) {
+		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"y"});
+	}
+	if (gridZ) {
+		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"z"});
+	}
+	if (axes) {
+		Coordinates.drawAllAxes({axisLength:200,axisRadius:1,axisTess:50});
+	}
+}
 
 function setupGui() {
 
@@ -144,23 +158,14 @@ function setupGui() {
 	gui.add( effectController, "newAxes" ).name("Show axes");
 }
 
-function takeScreenshot() {
-	effectController.newGround = true, effectController.newGridX = false, effectController.newGridY = false, effectController.newGridZ = false, effectController.newAxes = false;
+try {
 	init();
-	render();
-	var img1 = renderer.domElement.toDataURL("image/png");
-	camera.position.set( 400, 500, -800 );
-	render();
-	var img2 = renderer.domElement.toDataURL("image/png");
-	var imgTarget = window.open('', 'For grading script');
-	imgTarget.document.write('<img src="'+img1+'"/><img src="'+img2+'"/>');
+	fillScene();
+	setupGui();
+	drawHelpers();
+	addToDOM();
+	animate();
+} catch(e) {
+	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	$('#container').append(errorReport+e);
 }
-
-init();
-setupGui();
-animate();
-$("body").keydown(function(event) {
-	if (event.which === 80) {
-		takeScreenshot();
-	}
-});

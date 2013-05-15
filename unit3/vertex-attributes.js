@@ -1,48 +1,24 @@
 ////////////////////////////////////////////////////////////////////////////////
-// Particle System
-////////////////////////////////////////////////////////////////////////////////
-/*global THREE, document, window*/
-
-var path = "/";	// STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
-
+/*global THREE, window, document*/
 var camera, scene, renderer;
 var cameraControls;
-
 var clock = new THREE.Clock();
 
 function fillScene() {
 	scene = new THREE.Scene();
 
-	var geometry = new THREE.Geometry();
+	// Triangle Mesh
+	var material, geometry, mesh;
+	material = new THREE.MeshBasicMaterial( { vertexColors: THREE.VertexColors, side: THREE.DoubleSide } );
+	geometry = new THREE.Geometry();
 
-	// Student: rewrite the following vertex generation code so that
-	// vertices are generated every 100 units:
-	// -1000,-1000,-1000 to 1000,1000,1000, e.g.
-	// at -1000,-1000,-1000, -900,-1000,-1000,
-	// and so on, for the 21*21*21 = 9261 points.
+	// Student: add a colored triangle here
 
-	for ( var i = 0; i < 8000; i ++ ) {
 
-		var vertex = new THREE.Vector3();
-		// accept the point only if it's in the sphere
-		do {
-			vertex.x = 2000 * Math.random() - 1000;
-			vertex.y = 2000 * Math.random() - 1000;
-			vertex.z = 2000 * Math.random() - 1000;
-		} while ( vertex.length() > 1000 );
+	mesh = new THREE.Mesh( geometry, material );
 
-		geometry.vertices.push( vertex );
+	scene.add( mesh );
 
-	}
-
-	var disk = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/disc.png' );
-	var material = new THREE.ParticleBasicMaterial(
-		{ size: 35, sizeAttenuation: false, map: disk, transparent: true } );
-	material.color.setHSL( 0.9, 0.2, 0.6 );
-
-	var particles = new THREE.ParticleSystem( geometry, material );
-	particles.sortParticles = true;
-	scene.add( particles );
 }
 
 function init() {
@@ -55,15 +31,15 @@ function init() {
 
 	// RENDERER
 	renderer = new THREE.WebGLRenderer( { antialias: true } );
-	renderer = new THREE.WebGLRenderer( { clearAlpha: 1 } );
 	renderer.gammaInput = true;
 	renderer.gammaOutput = true;
 	renderer.setSize(canvasWidth, canvasHeight);
 	renderer.setClearColorHex( 0xAAAAAA, 1.0 );
 
 	// CAMERA
-	camera = new THREE.PerspectiveCamera( 55, canvasRatio, 2, 8000 );
-	camera.position.set( 10, 5, 15 );
+	camera = new THREE.PerspectiveCamera( 55, canvasRatio, 1, 4000 );
+	camera.position.set( 100, 150, 130 );
+
 	// CONTROLS
 	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
 	cameraControls.target.set(0,0,0);
@@ -87,8 +63,10 @@ function animate() {
 function render() {
 	var delta = clock.getDelta();
 	cameraControls.update(delta);
+
 	renderer.render(scene, camera);
 }
+
 
 try {
 	init();
@@ -99,3 +77,4 @@ try {
 	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
 	$('#container').append(errorReport+e);
 }
+

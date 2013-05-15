@@ -21,7 +21,7 @@ function fillScene() {
 	// LIGHTS
 	var ambientLight = new THREE.AmbientLight(0x333333); // 0.2
 
-	light = new THREE.DirectionalLight(0xffffff, 1.0);
+	light = new THREE.DirectionalLight(0xFFFFFF, 1.0);
 	light.position.set(320, 390, 700);
 
 	scene.add(ambientLight);
@@ -48,6 +48,9 @@ function fillScene() {
 function init() {
 	var canvasWidth = 846;
 	var canvasHeight = 494;
+	// For grading the window is fixed in size; here's general code:
+	//var canvasWidth = window.innerWidth;
+	//var canvasHeight = window.innerHeight;
 	var canvasRatio = canvasWidth / canvasHeight;
 
 	// RENDERER
@@ -75,7 +78,7 @@ function addToDOM() {
 }
 
 function drawHelpers() {
-  if (ground) {
+	if (ground) {
 		Coordinates.drawGround({size:10000});
 	}
 	if (gridX) {
@@ -118,7 +121,7 @@ function render() {
 }
 
 function loadShader(shadertype) {
-  return document.getElementById(shadertype).textContent;
+	return document.getElementById(shadertype).textContent;
 }
 
 function createShaderMaterial(id, light) {
@@ -130,9 +133,9 @@ function createShaderMaterial(id, light) {
 			uniforms: {
 
 				"uDirLightPos":	{ type: "v3", value: new THREE.Vector3() },
-				"uDirLightColor": { type: "c", value: new THREE.Color( 0xffffff ) },
+				"uDirLightColor": { type: "c", value: new THREE.Color( 0xFFFFFF ) },
 
-				"uMaterialColor":  { type: "c", value: new THREE.Color( 0xffffff ) },
+				"uMaterialColor": { type: "c", value: new THREE.Color( 0xFFFFFF ) },
 
 				uKd: {
 					type: "f",
@@ -225,12 +228,12 @@ function setupGui() {
 // this is the main action sequence
 
 try {
-  init();
-  fillScene();
-  setupGui();
-  addToDOM();
-  animate();
+	init();
+	fillScene();
+	setupGui();
+	addToDOM();
+	animate();
 } catch(e) {
-  var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
-  $('#container').append(errorReport+e);
+	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	$('#container').append(errorReport+e);
 }
