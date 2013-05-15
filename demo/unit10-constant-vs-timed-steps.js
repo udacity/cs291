@@ -34,7 +34,7 @@ function init() {
 	renderer.gammaOutput = true;
 	renderer.setSize(canvasWidth, canvasHeight);
 	renderer.setClearColorHex( 0x0, 1.0 );
-	//renderer.shadowMapEnabled = true;
+	renderer.shadowMapEnabled = true;
 
 	var container = document.getElementById('container');
 	container.appendChild( renderer.domElement );
