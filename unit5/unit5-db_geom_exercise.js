@@ -206,7 +206,7 @@ function fillScene() {
 	//   It should be rotated 90 degrees and put into position at -70, 530.
 	// Eyes: use eyeMaterial and
 	//   THREE.SphereGeometry( XX, 32, 16 ) for the tessellation.
-	//   Each sphere should be moved to X=-46, Y=560,
+	//   Each sphere should have radius of 10 and be moved to X=-46, Y=560,
 	//   then rotated 20 degrees left and right to make a pair.
 }
 
