@@ -198,7 +198,7 @@ function fillScene() {
 	// Add a crossbar support, a nose, and eyes.
 	// Crossbar: use crossbarMaterial and
 	//   THREE.CylinderGeometry( XX, XX, XX, 32 ) for the tessellation.
-	//   The cylinder should have a radius of 5, height Y=360,
+	//   The cylinder should have a radius of 5, length 200 and be at height Y=360
 	//   and rotated 90 degrees into position.
 	// Nose: use headMaterial and
 	//   THREE.CylinderGeometry( XX, XX, XX, 32 ) for the tessellation.
