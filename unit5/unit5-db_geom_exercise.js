@@ -202,7 +202,7 @@ function fillScene() {
 	//   and rotated 90 degrees into position.
 	// Nose: use headMaterial and
 	//   THREE.CylinderGeometry( XX, XX, XX, 32 ) for the tessellation.
-	//   The cone should have a radius of 6 at the tip, 14 at the bottom.
+	//   The cone should have a radius of 6 at the tip, 14 at the bottom, height 70.
 	//   It should be rotated 90 degrees and put into position at -70, 530.
 	// Eyes: use eyeMaterial and
 	//   THREE.SphereGeometry( XX, 32, 16 ) for the tessellation.
