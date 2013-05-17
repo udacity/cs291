@@ -7,12 +7,12 @@ THREE.ShaderTypes = {
 	uniforms: {
 
 		"uDirLightPos":	{ type: "v3", value: new THREE.Vector3() },
-		"uDirLightColor": { type: "c", value: new THREE.Color( 0xffffff ) },
+		"uDirLightColor": { type: "c", value: new THREE.Color( 0xFFFFFF ) },
 
 		"uAmbientLightColor": { type: "c", value: new THREE.Color( 0x050505 ) },
 
-		"uMaterialColor":  { type: "c", value: new THREE.Color( 0xffffff ) },
-		"uSpecularColor":  { type: "c", value: new THREE.Color( 0xffffff ) },
+		"uMaterialColor": { type: "c", value: new THREE.Color( 0xFFFFFF ) },
+		"uSpecularColor": { type: "c", value: new THREE.Color( 0xFFFFFF ) },
 
 		uKd: {
 			type: "f",
@@ -53,7 +53,7 @@ THREE.ShaderTypes = {
 		"uniform vec3 uDirLightColor;",
 
 		"uniform vec3 uAmbientLightColor;",
-		
+
 		"uniform float uKd;",
 		"uniform float uKs;",
 		"uniform float shininess;",
@@ -81,7 +81,7 @@ THREE.ShaderTypes = {
 			"}",
 
 			"gl_FragColor.rgb += uKd * uMaterialColor * uDirLightColor * diffuse;",
-		
+
 			// specular: N * H to a power. H is light vector + view vector
 			"vec3 viewPosition = normalize( vViewPosition );",
 			"vec3 pointHalfVector = normalize( lVector + viewPosition );",
@@ -101,12 +101,12 @@ THREE.ShaderTypes = {
 	uniforms: {
 
 		"uDirLightPos":	{ type: "v3", value: new THREE.Vector3() },
-		"uDirLightColor": { type: "c", value: new THREE.Color( 0xffffff ) },
+		"uDirLightColor": { type: "c", value: new THREE.Color( 0xFFFFFF ) },
 
 		"uAmbientLightColor": { type: "c", value: new THREE.Color( 0x050505 ) },
 
-		"uMaterialColor":  { type: "c", value: new THREE.Color( 0xffffff ) },
-		"uSpecularColor":  { type: "c", value: new THREE.Color( 0xffffff ) },
+		"uMaterialColor": { type: "c", value: new THREE.Color( 0xFFFFFF ) },
+		"uSpecularColor": { type: "c", value: new THREE.Color( 0xFFFFFF ) },
 
 		uKd: {
 			type: "f",
@@ -147,7 +147,7 @@ THREE.ShaderTypes = {
 		"uniform vec3 uDirLightColor;",
 
 		"uniform vec3 uAmbientLightColor;",
-		
+
 		"uniform float uKd;",
 		"uniform float uKs;",
 		"uniform float shininess;",
@@ -175,7 +175,7 @@ THREE.ShaderTypes = {
 			"}",
 
 			"gl_FragColor.rgb += uKd * uMaterialColor * uDirLightColor * diffuse;",
-		
+
 			// specular: N * H to a power. H is light vector + view vector
 			"vec3 viewPosition = normalize( vViewPosition );",
 			"vec3 pointHalfVector = normalize( lVector + viewPosition );",
@@ -233,7 +233,7 @@ function init() {
 
 	ambientLight = new THREE.AmbientLight(0x333333); // 0.2
 
-	light = new THREE.DirectionalLight(0xffffff, 1.0);
+	light = new THREE.DirectionalLight(0xFFFFFF, 1.0);
 	light.position.set(320, 390, 700);
 
 	// RENDERER
@@ -271,7 +271,7 @@ function init() {
 	phongBalancedMaterial.side = THREE.DoubleSide;
 
 	fillScene();
-	
+
 	// GUI
 
 	setupGui();
@@ -432,8 +432,6 @@ function render() {
 function fillScene() {
 	scene = new THREE.Scene();
 	scene.fog = new THREE.Fog(0x808080, 2000, 4000);
-
-	scene.add(camera);
 
 	// LIGHTS
 

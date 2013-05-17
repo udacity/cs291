@@ -1,8 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Change from fixed steps to timed updates
 ////////////////////////////////////////////////////////////////////////////////
-
-/*global THREE, document, window, Stats*/
+/*global THREE, Coordinates, document, window, container, Stats*/
 
 var camera, scene, renderer, stats;
 var cameraControls;
@@ -20,8 +19,11 @@ var bird;
 var tiltDirection = 1;
 
 function init() {
-	var canvasWidth = 846; 
+	var canvasWidth = 846;
 	var canvasHeight = 494;
+	// For grading the window is fixed in size; here's general code:
+	//var canvasWidth = window.innerWidth;
+	//var canvasHeight = window.innerHeight;
 
 	// RENDERER
 	renderer = new THREE.WebGLRenderer( { antialias: true } );
@@ -38,7 +40,7 @@ function init() {
 	// CONTROLS
 	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
 	cameraControls.target.set(0,310,0);
-	
+
 	// STATS
 	stats = new Stats();
 	stats.setMode( 0 );
@@ -62,16 +64,16 @@ function fillScene() {
 
 	headlight = new THREE.PointLight( 0xFFFFFF, 1.0 );
 	scene.add( headlight );
-	
+
 	var light = new THREE.SpotLight( 0xFFFFFF, 1.0 );
 	light.position.set( -600, 1200, 300 );
 	light.angle = 20 * Math.PI / 180;
 	light.exponent = 1;
 	light.target.position.set( 0, 200, 0 );
 	light.castShadow = true;
-	
+
 	scene.add( light );
-		
+
 	var lightSphere = new THREE.Mesh(
 		new THREE.SphereGeometry( 10, 12, 6 ),
 		new THREE.MeshBasicMaterial() );
@@ -89,7 +91,7 @@ function fillScene() {
 	// Bird
 	bird = new THREE.Object3D();
 	createDrinkingBird( bird );
-	
+
 	scene.add( bird );
 }
 
@@ -105,7 +107,7 @@ function createGlass(height) {
 	var glassMesh = new THREE.Mesh( glassGeometry, cupMaterial );
 	var glassObject = new THREE.Object3D();
 	glassObject.add(glassMesh);
-	
+
 	var glassWater = new THREE.Mesh( new THREE.CylinderGeometry(120, 100, height, 32), waterMaterial);
 	glassWater.scale = new THREE.Vector3(0.9, 0.85, 0.9);
 	glassWater.position = new THREE.Vector3(0, -10, 0);
@@ -120,57 +122,57 @@ function createSupport( bsupport ) {
 	legMaterial.color.setHex( 0xAdA79b );
 	legMaterial.specular.setRGB( 0.5, 0.5, 0.5 );
 	legMaterial.ambient.copy( legMaterial.color );
-				
+
 	var footMaterial = new THREE.MeshPhongMaterial( { color: 0x960f0b, shininess: 30 } );
 	footMaterial.specular.setRGB( 0.5, 0.5, 0.5 );
 	footMaterial.ambient.copy( footMaterial.color );
-				
+
 	// base
-	cube = new THREE.Mesh( 
+	cube = new THREE.Mesh(
 		new THREE.BeveledBlockGeometry( 20+64+110, 4, 2*77+12, bevelRadius ), footMaterial );
 	cube.position.x = -45;	// (20+32) - half of width (20+64+110)/2
 	cube.position.y = 4/2;	// half of height
 	cube.position.z = 0;	// centered at origin
 	bsupport.add( cube );
-				
+
 	// feet
-	cube = new THREE.Mesh( 
+	cube = new THREE.Mesh(
 		new THREE.BeveledBlockGeometry( 20+64+110, 52, 6, bevelRadius ), footMaterial );
 	cube.position.x = -45;	// (20+32) - half of width (20+64+110)/2
 	cube.position.y = 52/2;	// half of height
 	cube.position.z = 77 + 6/2;	// offset 77 + half of depth 6/2
 	bsupport.add( cube );
-				
-	cube = new THREE.Mesh( 
+
+	cube = new THREE.Mesh(
 		new THREE.BeveledBlockGeometry( 20+64+110, 52, 6, bevelRadius ), footMaterial );
 	cube.position.x = -45;	// (20+32) - half of width (20+64+110)/2
 	cube.position.y = 52/2;	// half of height
 	cube.position.z = -(77 + 6/2);	// negative offset 77 + half of depth 6/2
 	bsupport.add( cube );
-				
-	cube = new THREE.Mesh( 
+
+	cube = new THREE.Mesh(
 		new THREE.BeveledBlockGeometry( 64, 104, 6, bevelRadius ), footMaterial );
 	cube.position.x = 0;	// centered on origin along X
 	cube.position.y = 104/2;
 	cube.position.z = 77 + 6/2;	// negative offset 77 + half of depth 6/2
 	bsupport.add( cube );
-				
-	cube = new THREE.Mesh( 
+
+	cube = new THREE.Mesh(
 		new THREE.BeveledBlockGeometry( 64, 104, 6, bevelRadius ), footMaterial );
 	cube.position.x = 0;	// centered on origin along X
 	cube.position.y = 104/2;
 	cube.position.z = -(77 + 6/2);	// negative offset 77 + half of depth 6/2
 	bsupport.add( cube );
-				
+
 	// legs
-	cube = new THREE.Mesh( 
+	cube = new THREE.Mesh(
 		new THREE.BeveledBlockGeometry( 60, 282+4, 4, bevelRadius ), legMaterial );
 	cube.position.x = 0;	// centered on origin along X
 	cube.position.y = 104 + 282/2 - 2;
 	cube.position.z = 77 + 6/2;	// negative offset 77 + half of depth 6/2
 	bsupport.add( cube );
-				
-	cube = new THREE.Mesh( 
+
+	cube = new THREE.Mesh(
 		new THREE.BeveledBlockGeometry( 60, 282+4, 4, bevelRadius ), legMaterial );
 	cube.position.x = 0;	// centered on origin along X
 	cube.position.y = 104 + 282/2 - 2;
@@ -198,22 +200,22 @@ function createBody(bbody) {
 	sphere.position.y = 160;
 	sphere.position.z = 0;
 	bbody.add( sphere );
-	
+
 	// cap for top of hemisphere
-	cylinder = new THREE.Mesh( 
+	cylinder = new THREE.Mesh(
 		new THREE.CylinderGeometry( 104/2, 104/2, 0, 32 ), bodyMaterial );
 	cylinder.position.x = 0;
 	cylinder.position.y = 160;
 	cylinder.position.z = 0;
-	bbody.add( cylinder );		
+	bbody.add( cylinder );
 
-	cylinder = new THREE.Mesh( 
+	cylinder = new THREE.Mesh(
 		new THREE.CylinderGeometry( 12/2, 12/2, 390 - 100, 32 ), bodyMaterial );
 	cylinder.position.x = 0;
 	cylinder.position.y = 160 + 390/2 - 100;
 	cylinder.position.z = 0;
 	bbody.add( cylinder );
-	
+
 	// glass stem
 	sphere = new THREE.Mesh(
 		new THREE.SphereGeometry( 116/2, 32, 16 ), glassMaterial );
@@ -222,15 +224,15 @@ function createBody(bbody) {
 	sphere.position.z = 0;
 	bbody.add( sphere );
 
-	cylinder = new THREE.Mesh( 
+	cylinder = new THREE.Mesh(
 		new THREE.CylinderGeometry( 24/2, 24/2, 390, 32 ), glassMaterial );
 	cylinder.position.x = 0;
 	cylinder.position.y = 160 + 390/2;
 	cylinder.position.z = 0;
 	bbody.add( cylinder );
-		
-	// crossbar	
-	cylinder = new THREE.Mesh( 
+
+	// crossbar
+	cylinder = new THREE.Mesh(
 		new THREE.CylinderGeometry( 5, 5, 200, 32 ), crossbarMaterial );
 	cylinder.position.set( 0, 360, 0 );
 	cylinder.rotation.x = 90 * Math.PI / 180.0;
@@ -244,7 +246,7 @@ function createHead(bhead) {
 	headMaterial.color.g = 1/255;
 	headMaterial.color.b = 5/255;
 	headMaterial.ambient.copy( headMaterial.color );
-				
+
 	var hatMaterial = new THREE.MeshPhongMaterial( { shininess: 100 } );
 	hatMaterial.color.r = 24/255;
 	hatMaterial.color.g = 38/255;
@@ -254,7 +256,7 @@ function createHead(bhead) {
 
 	var eyeMaterial = new THREE.MeshPhongMaterial( { color: 0x000000, specular: 0x303030, shininess: 4 } );
 	eyeMaterial.ambient.copy( eyeMaterial.color );
-	
+
 	// head
 	sphere = new THREE.Mesh(
 		new THREE.SphereGeometry( 104/2, 32, 16 ), headMaterial );
@@ -264,14 +266,14 @@ function createHead(bhead) {
 	bhead.add( sphere );
 
 	// hat
-	cylinder = new THREE.Mesh( 
+	cylinder = new THREE.Mesh(
 		new THREE.CylinderGeometry( 142/2, 142/2, 10, 32 ), hatMaterial );
 	cylinder.position.x = 0;
 	cylinder.position.y = 160 + 390 + 40 + 10/2;
 	cylinder.position.z = 0;
 	bhead.add( cylinder );
-				
-	cylinder = new THREE.Mesh( 
+
+	cylinder = new THREE.Mesh(
 		new THREE.CylinderGeometry( 80/2, 80/2, 70, 32 ), hatMaterial );
 	cylinder.position.x = 0;
 	cylinder.position.y = 160 + 390 + 40 + 10 + 70/2;
@@ -279,7 +281,7 @@ function createHead(bhead) {
 	bhead.add( cylinder );
 
 	// nose
-	cylinder = new THREE.Mesh( 
+	cylinder = new THREE.Mesh(
 		new THREE.CylinderGeometry( 6, 14, 70, 32 ), headMaterial );
 	cylinder.position.set( -70, 530, 0 );
 	cylinder.rotation.z = 90 * Math.PI / 180.0;
@@ -287,11 +289,11 @@ function createHead(bhead) {
 
 	// eyes
 	var sphGeom = new THREE.SphereGeometry( 10, 32, 16 );
-	
+
 	// left eye
 	sphere = new THREE.Mesh( sphGeom, eyeMaterial );
 	sphere.position.set( -48, 560, 0 );
-	var eye = new THREE.Object3D();	
+	var eye = new THREE.Object3D();
 	eye.add( sphere );
 	eye.rotation.y = 20 * Math.PI / 180.0;
 	bhead.add( eye );
@@ -299,7 +301,7 @@ function createHead(bhead) {
 	// right eye
 	sphere = new THREE.Mesh( sphGeom, eyeMaterial );
 	sphere.position.set( -48, 560, 0 );
-	eye = new THREE.Object3D();	
+	eye = new THREE.Object3D();
 	eye.add( sphere );
 	eye.rotation.y = -20 * Math.PI / 180.0;
 	bhead.add( eye );
@@ -309,19 +311,19 @@ function createDrinkingBird(bbird) {
 	var support = new THREE.Object3D();
 	var body = new THREE.Object3D();
 	var head = new THREE.Object3D();
-	
+
 	// MODELS
 	// base + legs + feet
 	createSupport(support);
-	
+
 	// body + body/head connector
 	createBody(body);
 
 	// head + hat
 	createHead(head);
-	
+
 	// make moving piece
-	
+
 	var bodyhead = new THREE.Object3D();
 	bodyhead.add(body);
 	bodyhead.add(head);
@@ -329,10 +331,10 @@ function createDrinkingBird(bbird) {
 	// Student: change pivot point
 	// pivotHeight is the height of the crossbar
 	var pivotHeight = 360;
-	
+
 	// add field for animated part, for simplicity
 	bbird.animated = bodyhead;
-	
+
 	bbird.add(support);
 	bbird.add(bodyhead);
 
@@ -344,20 +346,20 @@ function createDrinkingBird(bbird) {
 			object.receiveShadow = true;
 		}
 	} );
-	
+
 }
 
 function addToDOM() {
-    var container = document.getElementById('container');
-    var canvas = container.getElementsByTagName('canvas');
-    if (canvas.length>0) {
-        container.removeChild(canvas[0]);
-    }
-    container.appendChild( renderer.domElement );
+	var container = document.getElementById('container');
+	var canvas = container.getElementsByTagName('canvas');
+	if (canvas.length>0) {
+		container.removeChild(canvas[0]);
+	}
+	container.appendChild( renderer.domElement );
 }
 
 function drawHelpers() {
-    Coordinates.drawGround({size:10000});		
+	Coordinates.drawGround({size:10000});
 	Coordinates.drawGrid({size:10000,scale:0.01});
 }
 
@@ -385,12 +387,12 @@ function render() {
 }
 
 try {
-  init();
-  fillScene();
-  drawHelpers();
-  addToDOM();
-  animate();
+	init();
+	fillScene();
+	drawHelpers();
+	addToDOM();
+	animate();
 } catch(e) {
-  var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
-  $('#container').append(errorReport+e);
+	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	$('#container').append(errorReport+e);
 }

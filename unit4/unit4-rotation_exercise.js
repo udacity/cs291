@@ -3,7 +3,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, Coordinates, document, window, dat*/
 
-
 var camera, scene, renderer;
 var cameraControls, effectController;
 var clock = new THREE.Clock();
@@ -20,18 +19,66 @@ function fillScene() {
 	// LIGHTS
 	var ambientLight = new THREE.AmbientLight( 0x222222 );
 
-	var light = new THREE.DirectionalLight( 0xffffff, 1.0 );
+	var light = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
 	light.position.set( 200, 400, 500 );
-	
-	var light2 = new THREE.DirectionalLight( 0xffffff, 1.0 );
+
+	var light2 = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
 	light2.position.set( -500, 250, -200 );
 
 	scene.add(ambientLight);
 	scene.add(light);
 	scene.add(light2);
 
+	var faceMaterial = new THREE.MeshLambertMaterial( { color: 0xFFECA9 } );
+	var markMaterial = new THREE.MeshLambertMaterial( { color: 0x89581F } );
+	var mark12Material = new THREE.MeshLambertMaterial( { color: 0xE6880E } );
+	var handMaterial = new THREE.MeshLambertMaterial( { color: 0x226894 } );
+
+	// clock
+	var clock = new THREE.Mesh(
+		new THREE.CylinderGeometry( 75, 75, 10, 32 ), faceMaterial );
+		//new THREE.CubeGeometry( 150, 5, 150 ), faceMaterial );
+	clock.position.y = 5;
+	scene.add( clock );
+
+	// marks
+	var cube = new THREE.Mesh(
+		new THREE.CubeGeometry( 20, 4, 15 ), mark12Material );
+	cube.position.x = 60;
+	cube.position.y = 9;
+	scene.add( cube );
+
+	cube = new THREE.Mesh(
+		new THREE.CubeGeometry( 10, 4, 10 ), markMaterial );
+	cube.position.x = -60;
+	cube.position.y = 9;
+	scene.add( cube );
+
+	cube = new THREE.Mesh(
+		new THREE.CubeGeometry( 10, 4, 10 ), markMaterial );
+	cube.position.z = 60;
+	cube.position.y = 9;
+	scene.add( cube );
+
+	cube = new THREE.Mesh(
+		new THREE.CubeGeometry( 10, 4, 10 ), markMaterial );
+	cube.position.z = -60;
+	cube.position.y = 9;
+	scene.add( cube );
+
+	// CODE FOR THE CLOCK HAND
+	cube = new THREE.Mesh(
+		new THREE.CubeGeometry( 110, 4, 4 ), handMaterial );
+	cube.position.y = 14;
+
+	// YOUR CODE HERE
+
+	scene.add( cube );
+}
+
+function drawHelpers() {
 	if (ground) {
-		Coordinates.drawGround({size:10000});		
+		Coordinates.drawGround({size:10000});
 	}
 	if (gridX) {
 		Coordinates.drawGrid({size:10000,scale:0.01});
@@ -40,61 +87,20 @@ function fillScene() {
 		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"y"});
 	}
 	if (gridZ) {
-		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"z"});	
+		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"z"});
 	}
 	if (axes) {
 		Coordinates.drawAllAxes({axisLength:200,axisRadius:1,axisTess:50});
 	}
-	
-	var faceMaterial = new THREE.MeshLambertMaterial( { color: 0xFFECA9 } );
-	var markMaterial = new THREE.MeshLambertMaterial( { color: 0x89581F } );
-	var mark12Material = new THREE.MeshLambertMaterial( { color: 0xE6880E } );
-	var handMaterial = new THREE.MeshLambertMaterial( { color: 0x226894 } );
-
-	// clock
-	var clock = new THREE.Mesh( 
-		new THREE.CylinderGeometry( 75, 75, 10, 32 ), faceMaterial );
-		//new THREE.CubeGeometry( 150, 5, 150 ), faceMaterial );
-	clock.position.y = 5;
-	scene.add( clock );
-	
-	// marks
-	var cube = new THREE.Mesh( 
-		new THREE.CubeGeometry( 20, 4, 15 ), mark12Material );
-	cube.position.x = 60;
-	cube.position.y = 9;
-	scene.add( cube );
-	
-	cube = new THREE.Mesh( 
-		new THREE.CubeGeometry( 10, 4, 10 ), markMaterial );
-	cube.position.x = -60;
-	cube.position.y = 9;
-	scene.add( cube );
-	
-	cube = new THREE.Mesh( 
-		new THREE.CubeGeometry( 10, 4, 10 ), markMaterial );
-	cube.position.z = 60;
-	cube.position.y = 9;
-	scene.add( cube );
-	
-	cube = new THREE.Mesh( 
-		new THREE.CubeGeometry( 10, 4, 10 ), markMaterial );
-	cube.position.z = -60;
-	cube.position.y = 9;
-	scene.add( cube );
-	
-	cube = new THREE.Mesh( 
-		new THREE.CubeGeometry( 110, 4, 4 ), handMaterial );
-	cube.position.y = 14;
-	
-	// the student needs to add code here:
-
-	scene.add( cube );
 }
 
+
 function init() {
-	var canvasWidth = window.innerWidth;
-	var canvasHeight = window.innerHeight;
+	var canvasWidth = 846;
+	var canvasHeight = 494;
+	// For grading the window is fixed in size; here's general code:
+	//var canvasWidth = window.innerWidth;
+	//var canvasHeight = window.innerHeight;
 	var canvasRatio = canvasWidth / canvasHeight;
 
 	// RENDERER
@@ -110,18 +116,18 @@ function init() {
 	// CONTROLS
 	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
 	cameraControls.target.set(0,0,0);
-	
+
 	fillScene();
 
 }
 
 function addToDOM() {
-    var container = document.getElementById('container');
-    var canvas = container.getElementsByTagName('canvas');
-    if (canvas.length>0) {
-        container.removeChild(canvas[0]);
-    }
-    container.appendChild( renderer.domElement );
+	var container = document.getElementById('container');
+	var canvas = container.getElementsByTagName('canvas');
+	if (canvas.length>0) {
+		container.removeChild(canvas[0]);
+	}
+	container.appendChild( renderer.domElement );
 }
 
 function animate() {
@@ -142,6 +148,7 @@ function render() {
 		axes = effectController.newAxes;
 
 		fillScene();
+		drawHelpers();
 	}
 	renderer.render(scene, camera);
 }
@@ -165,7 +172,15 @@ function setupGui() {
 	gui.add( effectController, "newAxes" ).name("Show axes");
 }
 
-init();
-addToDOM();
-setupGui();
-animate();
+
+try {
+	init();
+	setupGui();
+	drawHelpers();
+	addToDOM();
+	animate();
+} catch(e) {
+	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	$('#container').append(errorReport+e);
+}
+

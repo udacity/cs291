@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, Coordinates, document, window, dat*/
 
-var path = "/";      // STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
+var path = "/";	// STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
 
 var camera, scene, renderer;
 var cameraControls, effectController;
@@ -34,12 +34,12 @@ function fillScene() {
 	// Background grid and axes. Grid step size is 1, axes cross at 0, 0
 	Coordinates.drawGrid({size:100,scale:1,orientation:"z",offset:-0.01});
 	Coordinates.drawAxes({axisLength:2.1,axisOrientation:"x",axisRadius:0.004,offset:-0.01});
-	Coordinates.drawAxes({axisLength:2.1,axisOrientation:"y",axisRadius:0.004,offset:-0.01});	
-	
+	Coordinates.drawAxes({axisLength:2.1,axisOrientation:"y",axisRadius:0.004,offset:-0.01});
+
 	var myPolygon = new SquareGeometry();
 	var polygonObject = new THREE.Mesh( myPolygon, material[mtlName] );
 	scene.add(polygonObject);
-	
+
 	if ( effectController.showPoly )
 	{
 		polygonObject = new THREE.Mesh( myPolygon, wireMaterial );
@@ -49,7 +49,7 @@ function fillScene() {
 
 function SquareGeometry() {
 	var geo = new THREE.Geometry();
-	
+
 	// generate vertices
 	geo.vertices.push( new THREE.Vector3( 0.0, 0.0, 0.0 ) );
 	geo.vertices.push( new THREE.Vector3( uX, 0.0, 0.0 ) );
@@ -82,7 +82,7 @@ function init() {
 	renderer.gammaInput = true;
 	renderer.gammaOutput = true;
 	renderer.setSize(canvasWidth, canvasHeight);
-	renderer.setClearColorHex( 0xffffff, 1.0 );
+	renderer.setClearColorHex( 0xFFFFFF, 1.0 );
 
 	var container = document.getElementById('container');
 	container.appendChild( renderer.domElement );
@@ -90,7 +90,7 @@ function init() {
 	// Camera: Y up, X right, Z up
 	camera = new THREE.PerspectiveCamera( 1.1, canvasRatio, 10, 200 );
 	camera.position.set( 0.8,0.6, 100 );
-	
+
 	// CONTROLS
 	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
 	cameraControls.target.set(0.8,0.6,0);
@@ -127,7 +127,7 @@ function animate() {
 function render() {
 	var delta = clock.getDelta();
 	cameraControls.update(delta);
-	
+
 	if ( effectController.reset )
 	{
 		// TODO: defect with dat.gui is that the 0's sliders don't show up correctly.
@@ -160,7 +160,7 @@ function render() {
 		mtlName = effectController.mtlName;
 		fillScene();
 	}
-	
+
 	renderer.render(scene, camera);
 }
 
@@ -172,19 +172,19 @@ function setupGui() {
 		uY: 1,
 		uU: 1,
 		uV: 1,
-		
+
 		showPoly: false,
 
 		mtlName: 'grid',
-		
+
 		reset: false
 	};
 
 	gui = new dat.GUI();
-	gui.add( effectController, "uX",  0.0, 1.5 ).name("right X");
-	gui.add( effectController, "uY",  0.0, 1.5 ).name("upper Y");
-	gui.add( effectController, "uU",  0.0, 3.0 ).name("right U");
-	gui.add( effectController, "uV",  0.0, 3.0 ).name("upper V");
+	gui.add( effectController, "uX", 0.0, 1.5 ).name("right X");
+	gui.add( effectController, "uY", 0.0, 1.5 ).name("upper Y");
+	gui.add( effectController, "uU", 0.0, 3.0 ).name("right U");
+	gui.add( effectController, "uV", 0.0, 3.0 ).name("upper V");
 	gui.add( effectController, "showPoly" ).name("show polygon");
 	gui.add( effectController, "mtlName", ['crate','grid','maple','feather','darkam'] ).name("texture image");
 	gui.add( effectController, "reset" ).name("reset");

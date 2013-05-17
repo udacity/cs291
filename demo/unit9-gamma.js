@@ -40,10 +40,10 @@ function init() {
 	light2.target.position.set( 61/overlap, 0, 0 );
 	light2.angle = 0.08;
 
-	//  GROUND
+	// GROUND
 
 	var gg = new THREE.PlaneGeometry( 400, 400, 0, 0 );
-	white_material = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0x0, side: THREE.DoubleSide } );
+	white_material = new THREE.MeshPhongMaterial( { color: 0xFFFFFF, specular: 0x0, side: THREE.DoubleSide } );
 
 	gradient_material = new THREE.MeshPhongMaterial( { vertexColors: THREE.VertexColors, specular: 0x0, side: THREE.DoubleSide } );
 
@@ -78,7 +78,7 @@ function init() {
 	geometry.faces.push( new THREE.Face4( 0, 1, 2, 3 ) );
 
 	// these actually multiply the color of the material, which is white by default
-	var white = new THREE.Color( 0xffffff );
+	var white = new THREE.Color( 0xFFFFFF );
 	var black = new THREE.Color( 0x000000 );
 
 	geometry.faces[0].vertexColors = [ black, black, white, white ];

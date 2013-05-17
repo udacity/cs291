@@ -6,7 +6,7 @@
 // Return the mesh that defines the minimum number of triangles necessary
 // to draw the polygon.
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, Coordinates, document, window*/
+/*global THREE, Coordinates, $, document*/
 
 var camera, scene, renderer;
 var windowScale;
@@ -39,8 +39,11 @@ function PolygonGeometry(sides, location) {
 
 function init() {
 	// Set up some parameters
-	var canvasWidth = window.innerWidth;
-	var canvasHeight = window.innerHeight;
+	var canvasWidth = 846;
+	var canvasHeight = 494;
+	// For grading the window is fixed in size; here's general code:
+	//var canvasWidth = window.innerWidth;
+	//var canvasHeight = window.innerHeight;
 	var canvasRatio = canvasWidth / canvasHeight;
 	// scene
 	scene = new THREE.Scene();
@@ -59,13 +62,11 @@ function init() {
 	camera.position.z = 10;
 	camera.lookAt(focus);
 
-	renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true});
+	renderer = new THREE.WebGLRenderer({ antialias: false, preserveDrawingBuffer: true});
 	renderer.gammaInput = true;
 	renderer.gammaOutput = true;
 	renderer.setSize(canvasWidth, canvasHeight);
-	renderer.setClearColorHex( 0xffffff, 1.0 );
-	var container = document.getElementById('container');
-	container.appendChild( renderer.domElement );
+	renderer.setClearColorHex( 0xFFFFFF, 1.0 );
 
 }
 function showGrids() {
@@ -88,11 +89,16 @@ function render() {
 }
 
 // Main body of the script
-init();
-showGrids();
-addToDOM();
-var geo = PolygonGeometry(6, new THREE.Vector3( 3, 4, 0 ));
-var material = new THREE.MeshBasicMaterial( { color: 0xff0000, side: THREE.FrontSide } );
-var mesh = new THREE.Mesh( geo, material );
-scene.add( mesh );
-render();
+try {
+	init();
+	showGrids();
+	var geo = PolygonGeometry(6, new THREE.Vector3( 3, 4, 0 ));
+	var material = new THREE.MeshBasicMaterial( { color: 0xff0000, side: THREE.FrontSide } );
+	var mesh = new THREE.Mesh( geo, material );
+	scene.add( mesh );
+	addToDOM();
+	render();
+} catch(e) {
+	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	$('#container').append(errorReport+e);
+}

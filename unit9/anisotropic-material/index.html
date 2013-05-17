@@ -7,7 +7,7 @@
 		<script type="text/javascript" src="../../lib/jquery-1.8.3.min.js"></script>
 		<script type="text/javascript" src="../../lib/utils.js"></script>
 		<script type="text/javascript" src="../../lib/three.min.js"></script>
-        <script type="text/javascript" src="../../lib/Coordinates.js"></script>
+		<script type="text/javascript" src="../../lib/Coordinates.js"></script>
 		<script type="text/javascript" src="../../lib/OrbitAndPanControls.js"></script>
 		<script type="text/javascript" src="../../lib/uclass_BeveledBlockGeometry.js"></script>
 		<script type="text/javascript" src="../../lib/uclass_TeapotGeometry.js"></script>
@@ -57,7 +57,7 @@ void main() {
 	vec3 lVector = normalize( lDirection.xyz );
 
 	vec3 normal = normalize( vNormal );
-	
+
 	// Student: use these two jiggledNormals instead of the regular normal
 	// in the reflection model that follows.
 	for ( int i = 0; i < 2; i++) {
@@ -65,7 +65,7 @@ void main() {
 		offset.y = 0.0;
 		vec3 jiggledNormal = normalize( normal + uGroove * normalize( offset ) );
 	}
-	
+
 	// diffuse: N * L. Normal must be normalized, since it's interpolated.
 	float diffuse = max( dot( normal, lVector ), 0.0);
 

@@ -1,10 +1,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Add a reflection map
 ////////////////////////////////////////////////////////////////////////////////
+/*global THREE, requestAnimationFrame */
 
-/*global THREE, requestAnimationFrame, window */
-
-var path = "/";      // STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
+var txrpath = "/";	// STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
 
 var camera, scene, renderer;
 var cameraControls;
@@ -17,18 +16,18 @@ function fillScene() {
 	// LIGHTS
 	scene.add( new THREE.AmbientLight( 0x333333 ) );
 
-	var light = new THREE.DirectionalLight( 0xffffff, 0.9 );
+	var light = new THREE.DirectionalLight( 0xFFFFFF, 0.9 );
 	light.position.set( -1300, 700, 1240 );
 
 	scene.add( light );
-	
-	light = new THREE.DirectionalLight( 0xffffff, 0.7 );
+
+	light = new THREE.DirectionalLight( 0xFFFFFF, 0.7 );
 	light.position.set( 1000, -500, -1200 );
 
-	scene.add( light );	
-	
+	scene.add( light );
+
 	// MATERIALS
-	var path = "/media/img/cs291/textures/skybox/";
+	var path = txrpath + "media/img/cs291/textures/skybox/";
 	var urls = [path + "px.jpg", path + "nx.jpg",
 				path + "py.jpg", path + "ny.jpg",
 				path + "pz.jpg", path + "nz.jpg" ];
@@ -36,14 +35,14 @@ function fillScene() {
 	var textureCube = THREE.ImageUtils.loadTextureCube( urls );
 	textureCube.format = THREE.RGBFormat;
 
-	var teapotMaterial = new THREE.MeshPhongMaterial( 
+	var teapotMaterial = new THREE.MeshPhongMaterial(
 		{ color: 0x770000, specular:0xffaaaa } );
 
 	var teapot = new THREE.Mesh(
-		new THREE.TeapotGeometry( teapotSize, 
+		new THREE.TeapotGeometry( teapotSize,
 			8, true, true, true, true, true ),
 		teapotMaterial );
-	
+
 	scene.add( teapot );
 
 
@@ -63,8 +62,11 @@ function fillScene() {
 }
 
 function init() {
-	var canvasWidth = 846; 
+	var canvasWidth = 846;
 	var canvasHeight = 494;
+	// For grading the window is fixed in size; here's general code:
+	//var canvasWidth = window.innerWidth;
+	//var canvasHeight = window.innerHeight;
 
 	// CAMERA
 	camera = new THREE.PerspectiveCamera( 45, canvasWidth/ canvasHeight, 100, 20000 );
@@ -83,21 +85,21 @@ function init() {
 	cameraControls.target.set(0, -160, 0);
 
 }
-	
+
 // EVENT HANDLERS
 
 function addToDOM() {
-    var container = document.getElementById('container');
-    var canvas = container.getElementsByTagName('canvas');
-    if (canvas.length>0) {
-        container.removeChild(canvas[0]);
-    }
-    container.appendChild( renderer.domElement );
+	var container = document.getElementById('container');
+	var canvas = container.getElementsByTagName('canvas');
+	if (canvas.length>0) {
+		container.removeChild(canvas[0]);
+	}
+	container.appendChild( renderer.domElement );
 }
 
 function animate() {
 	requestAnimationFrame( animate );
-	render();	
+	render();
 }
 
 function render() {
@@ -108,11 +110,11 @@ function render() {
 }
 
 try {
-    init();
-    fillScene();
-    addToDOM();
-    animate();
+	init();
+	fillScene();
+	addToDOM();
+	animate();
 } catch(e) {
-  var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
-  $('#container').append(errorReport+e);
+	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	$('#container').append(errorReport+e);
 }

@@ -28,7 +28,7 @@ function init() {
 
 	ambientLight = new THREE.AmbientLight( 0x333333 );	// 0.2
 
-	light = new THREE.DirectionalLight( 0xffffff, 1.0 );
+	light = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
 	// direction is set in GUI
 
 	// RENDERER

@@ -34,9 +34,9 @@ function init() {
 	lightMesh.position.z = light1.position.z;
 
 
-	//  GROUND
+	// GROUND
 	var gg = new THREE.PlaneGeometry( 75, 75, 5, 5 );
-	var gm = new THREE.MeshPhongMaterial( { color: 0xffffff, side: THREE.DoubleSide} );
+	var gm = new THREE.MeshPhongMaterial( { color: 0xFFFFFF, side: THREE.DoubleSide} );
 	gm.specular.setRGB(0,0,0);
 	var wire = new THREE.MeshBasicMaterial({ color: 0x555555, wireframe: true });
 
@@ -70,7 +70,7 @@ function init() {
 	setupGui();
 
 }
-	
+
 // EVENT HANDLERS
 
 function onWindowResize() {
@@ -88,7 +88,7 @@ function onWindowResize() {
 function setupGui() {
 
 	ec = {
-	
+
 		angle: angle
 	};
 
@@ -104,13 +104,13 @@ function animate() {
 
 	requestAnimationFrame( animate );
 	render();
-	
+
 }
 
 function render() {
 
 	var delta = clock.getDelta();
-	
+
 	cameraControls.update( delta );
 	if ( ec.angle !== 0)
 	{
@@ -129,7 +129,7 @@ function fillScene() {
 	scene.add( light1 );
 	scene.add( light2 );
 	scene.add( light3 );
-	
+
 	scene.add( ground );
 	scene.add(lightMesh);
 	//Coordinates.drawGrid({size:75,scale:0.1, orientation:"z"});

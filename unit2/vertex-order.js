@@ -4,12 +4,12 @@
 // Check the function someObject()
 // and correct the code that starts at line 17.
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, Coordinates, document, window*/
+/*global THREE, Coordinates, $, document*/
 
 var camera, scene, renderer;
 var windowScale;
 
-function someObject (material) {
+function someObject(material) {
 	var geometry = new THREE.Geometry();
 
 	// Student: some data below must be fixed
@@ -28,9 +28,12 @@ function someObject (material) {
 }
 
 function init() {
-	//  Setting up some parameters
-	var canvasWidth = window.innerWidth;
-	var canvasHeight = window.innerHeight;
+	// Setting up some parameters
+	var canvasWidth = 846;
+	var canvasHeight = 494;
+	// For grading the window is fixed in size; here's general code:
+	//var canvasWidth = window.innerWidth;
+	//var canvasHeight = window.innerHeight;
 	var canvasRatio = canvasWidth / canvasHeight;
 	// scene
 	scene = new THREE.Scene();
@@ -53,7 +56,7 @@ function init() {
 	renderer.gammaInput = true;
 	renderer.gammaOutput = true;
 	renderer.setSize( canvasWidth, canvasHeight );
-	renderer.setClearColorHex( 0xffffff, 1.0 );
+	renderer.setClearColorHex( 0xFFFFFF, 1.0 );
 
 }
 
@@ -77,10 +80,16 @@ function render() {
 	renderer.render( scene, camera );
 }
 
+
 // Main body of the script
-init();
-showGrids();
-addToDOM();
-var material = new THREE.MeshBasicMaterial( { color: 0xF6831E, side: THREE.FrontSide } );
-someObject(material);
-render();
+try {
+	init();
+	showGrids();
+	var material = new THREE.MeshBasicMaterial( { color: 0xF6831E, side: THREE.FrontSide } );
+	someObject(material);
+	addToDOM();
+	render();
+} catch(e) {
+	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	$('#container').append(errorReport+e);
+}
