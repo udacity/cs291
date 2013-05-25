@@ -64,14 +64,8 @@ void main() {
 		0.5 * computeBias( 2.0*attenuation, uGainAlpha ) :
 		1.0 - 0.5 * computeBias( 2.0 - 2.0*attenuation, uGainAlpha );
 
-	// real output: gl_FragColor = vec4( uKd * uMaterialColor * uDirLightColor * diffuse, 1.0 );
-	// debug output:
-	gl_FragColor = vec4( diffuse, uGainAlpha, attenuation, 1.0 );
-	// alternate solution:
-	//gl_FragColor.r = diffuse;
-	//gl_FragColor.g = uGainAlpha;
-	//gl_FragColor.b = attenuation;
-	//gl_FragColor.a = 1.0;
+	// Student: instead output diffuse, uGainAlpha, attenuation to RGB
+	gl_FragColor = vec4( uKd * uMaterialColor * uDirLightColor * diffuse, 1.0 );
 }
 		</script>
 		<script type="text/javascript" src="shaders.js"></script>
