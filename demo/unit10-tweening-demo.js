@@ -18,11 +18,8 @@ var headlight;
 var bird;
 
 function init() {
-	var canvasWidth = 846;
-	var canvasHeight = 494;
-	// For grading the window is fixed in size; here's general code:
-	//var canvasWidth = window.innerWidth;
-	//var canvasHeight = window.innerHeight;
+	var canvasWidth = window.innerWidth;
+	var canvasHeight = window.innerHeight;
 
 	// RENDERER
 	renderer = new THREE.WebGLRenderer( { antialias: true } );
