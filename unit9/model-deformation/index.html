@@ -1,0 +1,80 @@
+<html>
+	<head></head>
+	<body style="overflow:auto; margin:0; padding:0;">
+		<div id="container" onclick="this.focus();"></div>
+		<div id="grading"></div>
+	</body>
+		<script type="text/javascript" src="../../lib/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="../../lib/utils.js"></script>
+		<script type="text/javascript" src="../../lib/three.min.js"></script>
+		<script type="text/javascript" src="../../lib/Coordinates.js"></script>
+		<script type="text/javascript" src="../../lib/OrbitAndPanControls.js"></script>
+		<script type="text/javascript" src="../../lib/uclass_BeveledBlockGeometry.js"></script>
+		<script type="text/javascript" src="../../lib/uclass_TeapotGeometry.js"></script>
+		<script type="text/javascript" src="../../lib/stats.min.js"></script>
+		<script type="text/javascript" src="../../lib/dat.gui.min.js"></script>
+		<script type="text/x-glsl" id="vertex">
+varying vec3 vNormal;
+varying vec3 vViewPosition;
+
+uniform float uSphereRadius2;	// squared
+
+void main() {
+	// Student: modify position. You'll need to copy it to a
+	// temporary vector and modify the temporary. 
+	// Don't forget to use this temporary in the rest of the shader.
+	gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+	vNormal = normalize( normalMatrix * normal );
+	vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+	vViewPosition = -mvPosition.xyz;
+}
+		</script>
+		<script type="text/x-glsl" id="fragment">
+uniform vec3 uMaterialColor;
+uniform vec3 uSpecularColor;
+
+uniform vec3 uDirLightPos;
+uniform vec3 uDirLightColor;
+
+uniform vec3 uAmbientLightColor;
+
+uniform float uKd;
+uniform float uKs;
+uniform float shininess;
+
+varying vec3 vNormal;
+varying vec3 vViewPosition;
+
+void main() {
+
+	// ambient
+	gl_FragColor = vec4( uAmbientLightColor, 1.0 );
+
+	// compute direction to light
+	vec4 lDirection = viewMatrix * vec4( uDirLightPos, 0.0 );
+	vec3 lVector = normalize( lDirection.xyz );
+
+	vec3 normal = normalize( vNormal );
+	
+	// diffuse: N * L. Normal must be normalized, since it's interpolated.
+	float diffuse = max( dot( normal, lVector ), 0.0);
+
+	// This can give a hard termination to the highlight, but it's better than some weird sparkle.
+	if (diffuse <= 0.0) {
+		return;
+	}
+
+	gl_FragColor.rgb += uKd * uMaterialColor * uDirLightColor * diffuse;
+
+	// specular: N * H to a power. H is light vector + view vector
+	vec3 viewPosition = normalize( vViewPosition );
+	vec3 pointHalfVector = normalize( lVector + viewPosition );
+	float pointDotNormalHalf = max( dot( normal, pointHalfVector ), 0.0 );
+	float specular = uKs * pow( pointDotNormalHalf, shininess );
+	specular *= diffuse*(2.0 + shininess)/8.0;
+
+	gl_FragColor.rgb += uDirLightColor * uSpecularColor * specular;
+}
+		</script>
+		<script type="text/javascript" src="shaders.js"></script>
+</html>
