@@ -230,9 +230,9 @@ function setupGui() {
 	h.add( effectController, "newAxes" ).name("Show axes");
 	h.add( effectController, "newRings").name("Show rings");
 	h = gui.addFolder("Euler angles");
-	h.add(effectController, "ex", -180.0, 180.0, 0.025).name("Euler x");
-	h.add(effectController, "ey", -180.0, 180.0, 0.025).name("Euler y");
 	h.add(effectController, "ez", -180.0, 180.0, 0.025).name("Euler z");
+	h.add(effectController, "ey", -180.0, 180.0, 0.025).name("Euler y");
+	h.add(effectController, "ex", -180.0, 180.0, 0.025).name("Euler x");
 }
 
 function takeScreenshot() {
