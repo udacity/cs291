@@ -104,7 +104,7 @@ function onDocumentMouseDown( event ) {
 
 	// Annoying nested window code: need to subtract offsets for nested windows.
 	// This is not needed if you have just a single window filling the browser
-	// var node = event.srcElement;
+	// var node = event.target || event.srcElement;
 	// var mouseX = event.clientX - node.offsetLeft;
 	// var mouseY = event.clientY - node.offsetTop;
 
