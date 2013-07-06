@@ -153,7 +153,7 @@ function render() {
 		axes = effectController.newAxes;
 
 		fillScene();
-		drawHelpers()
+		drawHelpers();
 	}
 	renderer.render(scene, camera);
 }
