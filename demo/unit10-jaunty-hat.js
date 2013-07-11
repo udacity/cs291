@@ -339,9 +339,7 @@ function createHead(bhead) {
 	cylinder.position.y = 40 + 10 + 70/2;
 	cylinder.position.z = 0;
 	hat.add( cylinder );
-
 	hat.position.y = 160 + 390;
-
 	bhead.add( hat );
 
 	// nose
@@ -535,7 +533,7 @@ var Trace = function(npoints,color) {
 	color = color || 0xff0000;
 
 	this.geom = new THREE.Geometry();
-	this.mat = new THREE.ParticleBasicMaterial( {color: color, size: 15});
+	this.mat = new THREE.LineBasicMaterial( {color: color, linewidth: 4.0});
 
 	// pre allocate vertices
 	for (var i = 0; i < this.npoints ; i++ ) {
@@ -543,21 +541,36 @@ var Trace = function(npoints,color) {
 	}
 	this.idx = 0;
 
-	this.line = new THREE.ParticleSystem(this.geom, this.mat);
+	this.line = new THREE.Line(this.geom, this.mat, THREE.LinePieces);
 
+	this.lastPoint = null;
 }
 
 Trace.prototype = {
 
 	addPoint: function(p) {
 
-		if (this.idx == this.npoints) this.idx = 0;
+		if (this.lastPoint === null) this.lastPoint = p;
 
-		this.geom.vertices[this.idx].copy(p);
+		if (this.idx >= this.npoints - 1 ) this.idx = 0;
+
+		// Using LinePieces, each pair of vertices creates a line,
+		// so we need to connect to last vertex. 
+		this.geom.vertices[this.idx].copy(this.lastPoint);
+		this.geom.vertices[this.idx+1].copy(p);
+
+		this.lastPoint = this.geom.vertices[this.idx+1];
 
 		this.geom.verticesNeedUpdate = true;
 
-		this.idx ++ ;
+		this.idx += 2 ;
+	},
+
+	unlinkLine: function() {
+
+		// this causes the next point to not be linked to the previous one 
+		// (useful for very large jumps where we don't want a straight line connecting them)
+		this.lastPoint = null;
 	},
 
 	clear: function() {
@@ -566,6 +579,8 @@ Trace.prototype = {
 		}
 		this.geom.verticesNeedUpdate = true;
 		this.idx = 0;
+
+		this.unlinkLine();
 
 	}
 };
@@ -603,10 +618,15 @@ function setupGui() {
 	gui.add( effectController, "forwardHatAngle", 0.0, 90.0, 1.0 ).name("forward angle").onChange( function() {
 		TWEEN.removeAll();
 		setTweens();
+		traceQuat.unlinkLine();
+		traceEuler.unlinkLine();
 	});
 	gui.add( effectController, "backwardHatAngle", 0.0, 90.0, 1.0 ).name("backward angle").onChange( function() {
 		TWEEN.removeAll();
 		setTweens();
+		traceQuat.unlinkLine();
+		traceEuler.unlinkLine();
+
 	});
 	gui.add( effectController, "useBodyRotation" ).name( "animate bird" ).onChange( function() {
 		bird.animated.rotation.z = 0;
@@ -626,7 +646,6 @@ function setupGui() {
 		traceEuler.line.visible = effectController.showTraces;
 	});
 }
-
 
 function animate() {
 	window.requestAnimationFrame(animate);
