@@ -122,8 +122,8 @@ function fillScene() {
 
 	//////////////////////////////
 	// Tracing lines
-	traceQuat = new Trace(500,0xff0000);
-	traceEuler = new Trace(500,0x00ff00);
+	traceQuat = new Trace(4000,0xff0000);
+	traceEuler = new Trace(4000,0x00ff00);
 
 	scene.add( traceQuat.line );
 	scene.add( traceEuler.line );
@@ -508,8 +508,8 @@ function setTweens()
 }
 
 var Trace = function(npoints,color) {
-	this.npoints = npoints || 1000;
-	color = color || 0xff0000;
+	this.npoints = (npoints !== undefined) ? npoints : 1000;
+	color = (color !== undefined) ? color : 0xff0000;
 
 	this.geom = new THREE.Geometry();
 	this.mat = new THREE.LineBasicMaterial( {color: color, linewidth: 4.0});
@@ -587,6 +587,8 @@ function setupGui() {
 	gui.add( effectController, "useQuaternion" ).name( "use quaternions" ).onChange( function() {
 		TWEEN.removeAll();
 		setTweens();
+		traceQuat.unlinkLine();
+		traceEuler.unlinkLine();
 	});
 	gui.add( effectController, "goAtAnAngle" ).name( "hat axis angled" ).onChange( function() {
 		TWEEN.removeAll();
