@@ -275,6 +275,26 @@ function createBody(bbody) {
 	cylinder.position.set( 0, 360, 0 );
 	cylinder.rotation.x = 90 * Math.PI / 180.0;
 	bbody.add( cylinder );
+	var tail = createTail();
+	bbody.add(tail);
+}
+function createTail() {
+	// solution
+	// for local display, change path to 'media/img/...', removing the initial '/' character
+	var tailTexture = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/feather.png' );
+	var tail = new THREE.Mesh(
+		new THREE.PlaneGeometry( 100, 100, 1, 1 ),
+		new THREE.MeshLambertMaterial(
+			{ map: tailTexture, side: THREE.DoubleSide, transparent: true } ) );
+	// I need the order to be X rotation before Y, so set the order to YZX;
+	// note that, as usual, the order is read right to left.
+	tail.eulerOrder = 'YZX';
+	tail.scale.y = 2;
+	tail.rotation.x = 40.0 * Math.PI / 180;
+	tail.rotation.y = 90.0 * Math.PI / 180;
+	tail.position.x = 120;
+	tail.position.y = 250;
+	return tail;
 }
 
 // Head of the bird - head + hat
