@@ -499,7 +499,7 @@ function removeText()
 function createHelp()
 {
 	var message =
-		[	'This demo shows how a single vertex','of a box, marked with an orange dot,',
+		[	'This demo shows how a single vertex','of a box, marked with a light blue dot,',
 			'is transformed by the rendering pipeline.','Red numbers are those that change.',
 			'Each transform is shown in OpenGL/WebGL','order: the untransformed vector is',
 			'on the right, the matrix multiplies it,','and the resulting vector is on the left.',
