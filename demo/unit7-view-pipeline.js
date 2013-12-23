@@ -63,10 +63,14 @@ function init()
 	//canvasWidth = window.innerWidth;
 	//canvasHeight = window.innerHeight;
 	
-    var headerElement = document.getElementById( "myID" );
-
     canvasWidth = window.innerWidth;
-    canvasHeight = window.innerHeight - headerElement.offsetHeight;
+    canvasHeight = window.innerHeight
+	// check if there is a header form, as used in index.html - remove its size
+    var headerElement = document.getElementById( "myID" );
+	if ( headerElement !== null )
+	{
+		canvasHeight -= headerElement.offsetHeight;
+	}
 	
 	// RENDERER
 	renderer = new THREE.WebGLRenderer( { antialias: true } );
@@ -78,6 +82,12 @@ function init()
 	renderer.autoClear = false;
 
 	container = document.getElementById('container');
+	// not perfect, doesn't resize, but better than nothing showing up
+	if ( container === null )
+	{
+		container = document.createElement( 'div' );
+		document.body.appendChild( container );
+	}
 	container.appendChild( renderer.domElement );
 
 	// CAMERA
