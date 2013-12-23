@@ -110,7 +110,7 @@ function onDocumentMouseDown( event ) {
 
 
 	// getBoundingClientRect()
-	//   givest the element's position relative to the browser's visile viewport.
+	//   gives the element's position relative to the browser's visible viewport.
 	// clientX/Y
 	//   gives the mouse position relative to the browser's visible viewport.
 	//

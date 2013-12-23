@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, Coordinates, document, window, dat*/
 
-var path = "/";	// STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
+var path = "";	// STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
 
 var camera, scene, renderer;
 var cameraControls, effectController;
