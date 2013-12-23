@@ -23,13 +23,14 @@ var sceneFrustum;
 // custom global variables
 var cube, corner, cornerGeometry;
 var helpSprite;
-var light, ambientLight;
+var light;
 var groundGrid, moreGround, axis1, axis2, xGrid, zGrid;
 var spritey = [];
 var sphereMaterial, cubeMaterial;
-var fullWireMaterial, lineMaterial, nearLineMaterial, farLineMaterial;
+var fullWireMaterial;
+var lineMaterial = [];
 
-var viewMode;
+var viewMode, prevTextScale;
 
 // tasty fudge:
 var TEXT_SCALE = 0.77;
@@ -48,15 +49,23 @@ var prevPtndc = new THREE.Vector4();
 var prevWindowMatrix = new THREE.Matrix4();
 var prevPtpix = new THREE.Vector4();
 
+var firstRenderTarget, screenMaterial;
+
 var EPSILON = 0.00001;
 
 function init() 
 {
+	// offscreen render target for viewport's near-frustum rectangle
+	firstRenderTarget = new THREE.WebGLRenderTarget( 512, 512, { format: THREE.RGBFormat } );	
+	screenMaterial = new THREE.MeshBasicMaterial( { map: firstRenderTarget, transparent: true, opacity: 0.7 } );
+
 	boxSize = new THREE.Vector3(8,10,6);
 
 	// SCENE
 	scene = new THREE.Scene();
-	sceneFrustum = new THREE.Scene();
+	//scene.fog = new THREE.Fog( clearColor, 5, 50 );
+
+	//sceneFrustum = new THREE.Scene();
 	sceneText = new THREE.Scene();
 
 	// if not a subwindow inside a window:
@@ -64,7 +73,7 @@ function init()
 	//canvasHeight = window.innerHeight;
 	
     canvasWidth = window.innerWidth;
-    canvasHeight = window.innerHeight
+    canvasHeight = window.innerHeight;
 	// check if there is a header form, as used in index.html - remove its size
     var headerElement = document.getElementById( "myID" );
 	if ( headerElement !== null )
@@ -93,7 +102,7 @@ function init()
 	// CAMERA
 	var aspect = canvasWidth / canvasHeight;
 	camera = new THREE.PerspectiveCamera( effectController.fov, aspect, effectController.near, effectController.far);
-	camera.position.set(-21,24,31);
+	camera.position.set(21,24,31);
 	//camera.lookAt(scene.position);
 	
 	frustumTarget = new THREE.Vector3();
@@ -114,9 +123,6 @@ function init()
 	light = new THREE.PointLight(0xffffff);
 	light.position.set(0,25,0);
 	scene.add(light);
-
-	ambientLight = new THREE.AmbientLight( 0xd5d5d5 );
-	scene.add(ambientLight);
 	///////////////////////
 	// GROUND
 	
@@ -133,14 +139,16 @@ function init()
 	*/
 
 	//scene.add( solidGround );
-
-	lineMaterial = new THREE.LineBasicMaterial( { color: 0x0 } );
-	nearLineMaterial = new THREE.LineBasicMaterial( { color: 0x228822 } );
-	farLineMaterial = new THREE.LineBasicMaterial( { color: 0xff55ff } );
+	lineMaterial = [];
+	var colors = [0x0, 0x636363, 0x888888, 0xa3a3a3, 0xbababa ];
+	for ( var i = 0; i < 5; i++ )
+	{
+		lineMaterial[i] = new THREE.LineBasicMaterial( { color: colors[i] } );
+	}
 
 	fullWireMaterial = new THREE.MeshLambertMaterial( { color: 0x00000000, wireframe: true } );
 	groundGrid = new THREE.Mesh(
-		new THREE.PlaneGeometry( 100, 100, 10, 10 ), fullWireMaterial );
+		new THREE.PlaneGeometry( 60, 60, 6, 6 ), fullWireMaterial );
 	groundGrid.rotation.x = - Math.PI / 2;
 
 	scene.add( groundGrid );
@@ -195,9 +203,9 @@ function init()
 	scene.add(cube);
 	
 	cornerGeometry = new THREE.SphereGeometry( 0.3 );
-	sphereMaterial = new THREE.MeshBasicMaterial( { color: 0xffaa00 } );
+	sphereMaterial = new THREE.MeshBasicMaterial( { color: 0x00cccc } );
 	corner = new THREE.Mesh( cornerGeometry, sphereMaterial );
-	corner.position.set(-boxSize.x/2,boxSize.y/2,boxSize.z/2);
+	corner.position.set(boxSize.x/2,boxSize.y/2,boxSize.z/2);
 	corner.name = "corner";
 	cube.add(corner);
 	
@@ -226,7 +234,7 @@ function createGridScene() {
 	var messageList = [];
 	messageList[0] = "-1.0,-1.0";
 	var label = makeTextSprite( messageList, 
-			{ 	fill: false,
+			{	fill: false,
 				showRect: false,
 				spriteAlignment : THREE.SpriteAlignment.center,
 				useScreenCoordinates: true 
@@ -430,7 +438,7 @@ function makeTextSprite( messageList, parameters )
 	var diff = new THREE.Vector3();
 	diff.copy( camera.position );
 	diff.sub( controls.target );
-	var scale = ( useScreenCoordinates ? 1.0 : diff.length() ) * TEXT_SCALE ;
+	var scale = ( useScreenCoordinates ? 1.0 : diff.length() ) * TEXT_SCALE * effectController.textscale ;
 	sprite.scale.set(scale,scale,1.0);
 	return sprite;	
 }
@@ -539,10 +547,7 @@ function matrixMatch( mtx1, mtx2 )
 
 function createText( force )
 {
-	displayHelp();
-	displayGrid();
-
-	var pt = new THREE.Vector4( -boxSize.x/2,boxSize.y/2,boxSize.z/2);	// corner location
+	var pt = new THREE.Vector4( corner.position.x,corner.position.y,corner.position.z);	// corner location
 	var ptm = new THREE.Vector4();
 	ptm.copy(pt);
 	ptm.applyMatrix4(cube.matrixWorld);	
@@ -612,7 +617,7 @@ function createText( force )
 	{
 		// hard-wired offset
 		if ( screenlock )
-			anchor.set(10, 10 + modenum*canvasHeight/5, 0.5);
+			anchor.set(10, 10 + modenum*canvasHeight*effectController.textscale/5, 0.5);
 			
 		messageList = [];	// clear each time
 		var i = 0;
@@ -696,7 +701,7 @@ function createText( force )
 			else
 			{
 				messageList[i] = " clip \n";
-				sphereMaterial.color.set( 0xffaa00 );
+				sphereMaterial.color.set( 0x00cccc );
 			}
 			messageList[i] += " coords \n";
 			setVector4Highlights( ptvp, prevPtvp, hl );
@@ -834,16 +839,25 @@ function createText( force )
 	prevPtpix.copy( ptpix );
 }
 
-function createFrustum( pointsForDepth )
+function createFrustum( pointsForDepth, faces )
 {
 	// lazy way to clear scene - is there a better way?
 	sceneFrustum = new THREE.Scene();
-
-	var eyeGeometry = new THREE.SphereGeometry( 4*0.3 );
-	var eyeMaterial = new THREE.MeshBasicMaterial( { color: 0x00dddd } );
-	var eyeSphere = new THREE.Mesh( eyeGeometry, eyeMaterial );
-	eyeSphere.position.copy( camera.position );
-	sceneFrustum.add(eyeSphere);
+	// hmmm, for some reason, fog doesn't work for this
+	// scene - maybe because it's orthographic?
+	// This would be great to have work for the edges
+	// version, as these could then have depth cueing.
+	// sceneFrustum.fog = new THREE.Fog( clearColor, 5, 50 );
+	
+	/* sphere at camera location
+	{
+		var eyeGeometry = new THREE.SphereGeometry( 4*0.3 );
+		var eyeMaterial = new THREE.MeshBasicMaterial( { color: 0x00dddd } );
+		var eyeSphere = new THREE.Mesh( eyeGeometry, eyeMaterial );
+		eyeSphere.position.copy( camera.position );
+		sceneFrustum.add(eyeSphere);
+	}
+	*/
 	
 	// draw 12 lines:
 	// 4 for frustum edges
@@ -852,7 +866,8 @@ function createFrustum( pointsForDepth )
 	
 	var frustumPoints = [];
 	var world = new THREE.Vector4();
-	var v,x,y,z;
+	var v;
+	var x,y,z;
 	for ( x = 0; x <= 1; x++ )
 	{
 		for ( y = 0; y <= 1; y++ )
@@ -867,40 +882,144 @@ function createFrustum( pointsForDepth )
 	}
 	
 	// frustum edges
+	var geometry, line, mtl, mesh;
 	for ( x = 0; x <= 1; x++ )
 	{
 		for ( y = 0; y <= 1; y++ )
 		{
-			var geometry = new THREE.Geometry();
+			geometry = new THREE.Geometry();
 			geometry.vertices.push( camera.position );
-			geometry.vertices.push( frustumPoints[x*2*pointsForDepth + y*pointsForDepth + pointsForDepth-1] );
+			geometry.vertices.push( frustumPoints[x*2*pointsForDepth + y*pointsForDepth + (faces ? 0 : (pointsForDepth-1)) ] );
 
-			var line = new THREE.Line( geometry, lineMaterial );
+			line = new THREE.Line( geometry, lineMaterial[0] );
 			sceneFrustum.add( line );
 		}
 	}
 	
 	// planes
-	for ( z = 0; z < pointsForDepth; z++ )
+	// do first plane always, as it outlines image
+	for ( z = 0; z < (faces ? 1 : pointsForDepth); z++ )
 	{
-		var geometry = new THREE.Geometry();
+		geometry = new THREE.Geometry();
 		for ( v = 0; v < 5; v++ )
 		{
 			x = Math.floor(v/2)%2;
 			y = Math.floor((v+1)/2)%2;
 			geometry.vertices.push( frustumPoints[x*2*pointsForDepth+y*pointsForDepth+z] );
 		}
-		var mtl = lineMaterial;
-		if ( z == 0 )
-		{
-			mtl = nearLineMaterial;
-		}
-		else if ( z == pointsForDepth-1 )
-		{
-			mtl = farLineMaterial;
-		}
-		var line = new THREE.Line( geometry, mtl );
+		mtl = lineMaterial[z];
+		line = new THREE.Line( geometry, mtl );
 		sceneFrustum.add( line );
+	}
+	
+	// do front face with image - always there
+	geometry = new THREE.Geometry();
+	var uvs = [];
+	z = 0;
+	for ( v = 0; v < 4; v++ )
+	{
+		x = Math.floor(v/2)%2;
+		y = Math.floor((v+1)/2)%2;
+		geometry.vertices.push( frustumPoints[x*2*pointsForDepth+y*pointsForDepth+z*(pointsForDepth-1)] );
+
+		uvs.push( new THREE.Vector2( 0.0, 0.0 ) );
+		uvs.push( new THREE.Vector2( 0.0, 1.0 ) );
+		uvs.push( new THREE.Vector2( 1.0, 1.0 ) );
+		uvs.push( new THREE.Vector2( 1.0, 0.0 ) );
+	}
+
+	geometry.faces.push( new THREE.Face3( 2, 1, 0 ) );
+	geometry.faceVertexUvs[ 0 ].push( [ uvs[2], uvs[1], uvs[0] ] );
+	geometry.faces.push( new THREE.Face3( 0, 3, 2 ) );
+	geometry.faceVertexUvs[ 0 ].push( [ uvs[0], uvs[3], uvs[2] ] );
+
+	mtl = screenMaterial;
+
+	mesh = new THREE.Mesh( geometry, mtl );
+	sceneFrustum.add( mesh );
+
+	// far face
+	if ( faces )
+	{
+		z = 1;
+		{
+			geometry = new THREE.Geometry();
+			var uvs = [];
+			for ( v = 0; v < 4; v++ )
+			{
+				x = Math.floor(v/2)%2;
+				y = Math.floor((v+1)/2)%2;
+				geometry.vertices.push( frustumPoints[x*2*pointsForDepth+y*pointsForDepth+z*(pointsForDepth-1)] );
+			}
+			geometry.faces.push( new THREE.Face3( 0, 1, 2 ) );
+			geometry.faces.push( new THREE.Face3( 2, 3, 0 ) );
+
+			mtl = new THREE.MeshBasicMaterial( { color: 0x0000ff, transparent: true, opacity: 0.3 } );
+
+			mesh = new THREE.Mesh( geometry, mtl );
+			sceneFrustum.add( mesh );
+		}
+		for ( side = 0; side < 4; side++ )
+		{
+			geometry = new THREE.Geometry();
+			for ( v = 0; v < 4; v++ )
+			{
+				x = Math.floor((side*4+v+6)/8)%2;
+				y = Math.floor((side*4+v+2)/8)%2;
+				z = Math.floor((v+1)/2)%2;
+				geometry.vertices.push( frustumPoints[x*2*pointsForDepth+y*pointsForDepth+z*(pointsForDepth-1)] );
+			}
+			geometry.faces.push( new THREE.Face3( 0, 1, 2 ) );
+			geometry.faces.push( new THREE.Face3( 2, 3, 0 ) );
+
+			mtl = new THREE.MeshBasicMaterial( { color: ( side%2 === 0 ) ? 0x00ff00 : 0xff0000, transparent: true, opacity: 0.3 } );
+			mesh = new THREE.Mesh( geometry, mtl );
+			sceneFrustum.add( mesh );
+		}
+	}
+
+	// frustum tip
+	geometry = new THREE.Geometry();
+	// outer base
+	var lerpVal = 0.85;
+	var vertex;
+	for ( v = 0; v < 4; v++ )
+	{
+		x = Math.floor(v/2)%2;
+		y = Math.floor((v+1)/2)%2;
+		vertex = new THREE.Vector3();
+		vertex.copy( frustumPoints[x*2*pointsForDepth+y*pointsForDepth] );
+		vertex.lerp( camera.position, lerpVal );
+		geometry.vertices.push( vertex );
+	}
+	geometry.faces.push( new THREE.Face3( 0, 1, 2 ) );
+	geometry.faces.push( new THREE.Face3( 2, 3, 0 ) );
+
+	mtl = new THREE.MeshBasicMaterial( { color: 0x5555ff } );
+	mesh = new THREE.Mesh( geometry, mtl );
+	sceneFrustum.add( mesh );
+
+	// sides of tip
+	for ( side = 0; side < 4; side++ )
+	{
+		geometry = new THREE.Geometry();
+		for ( v = 0; v < 2; v++ )
+		{
+			x = Math.floor((side*2+v+3)/4)%2;
+			y = Math.floor((side*2+v+1)/4)%2;
+			vertex = new THREE.Vector3();
+			vertex.copy( frustumPoints[x*2*pointsForDepth+y*pointsForDepth] );
+			vertex.lerp( camera.position, lerpVal );
+			geometry.vertices.push( vertex );
+		}
+		vertex = new THREE.Vector3();
+		vertex.copy( camera.position );
+		geometry.vertices.push( vertex );
+		geometry.faces.push( new THREE.Face3( 0, 1, 2 ) );
+
+		mtl = new THREE.MeshBasicMaterial( { color: ( side%2 === 0 ) ? 0x55ff55 : 0xff5555 } );
+		mesh = new THREE.Mesh( geometry, mtl );
+		sceneFrustum.add( mesh );
 	}
 }
 
@@ -920,8 +1039,8 @@ function getWorldLocation( ndc, world )
 function setupGui() {
 	effectController = {
 		fov: 40,
-		near: 10,
-		far: 110,
+		near: 20,
+		far: 80,
 		transx: 0,
 		transy: 5,
 		transz: 0,
@@ -936,15 +1055,16 @@ function setupGui() {
 		xgrid: false,
 		zgrid: false,
 		ndc: false,
+		textscale: 1,
 		help: false
 	};
 	var gui = new dat.GUI();
-	var element = gui.add( effectController, "matrix", [ 'model', 'view', 'projection', 'window', 'all' ] ).name("Watch matrix");
+	gui.add( effectController, "matrix", [ 'model', 'view', 'projection', 'window', 'all' ] ).name("Watch matrix");
 	
 	var f1 = gui.addFolder('Model manipulation');
-	f1.add( effectController, "transx", -10.0, 10.0 ).name("X translation");
-	f1.add( effectController, "transy", -10.0, 10.0 ).name("Y translation");
-	f1.add( effectController, "transz", -10.0, 10.0 ).name("Z translation");
+	f1.add( effectController, "transx", -20.0, 20.0 ).name("X translation");
+	f1.add( effectController, "transy", -20.0, 20.0 ).name("Y translation");
+	f1.add( effectController, "transz", -20.0, 20.0 ).name("Z translation");
 	f1.add( effectController, "rotx", 0, 360.0 ).name("X rotation");
 	f1.add( effectController, "roty", 0, 360.0 ).name("Y rotation");
 	f1.add( effectController, "rotz", 0, 360.0 ).name("Z rotation");
@@ -953,22 +1073,20 @@ function setupGui() {
 	var f2 = gui.addFolder('Camera manipulation');
 	f2.add( effectController, "fov", 1.0, 179.0 ).name("Field of view");
 	f2.add( effectController, "near", 1.0, 50.0 ).name("Near plane");
-	f2.add( effectController, "far", 50.0, 150.0 ).name("Far plane");
+	f2.add( effectController, "far", 50.0, 100.0 ).name("Far plane");
 	
 	gui.add( effectController, "perm" ).name("Keep highlit");
-	gui.add( effectController, "viewport", [ 'off', 'on', 'depths' ] ).name("Show frustum");
+	gui.add( effectController, "viewport", [ 'off', 'on', 'depths', 'faces' ] ).name("Show frustum");
 	gui.add( effectController, "grid" ).name("Show ground");
 	gui.add( effectController, "xgrid" ).name("Show X grid");
 	gui.add( effectController, "zgrid" ).name("Show Z grid");
 	gui.add( effectController, "ndc" ).name("Show NDC");
+	gui.add( effectController, "textscale", 0.2,1.3 ).name("Text scale");
 	gui.add( effectController, "help" ).name("Help");
 }
 
 function render() 
 {
-	ambientLight.visible = false;
-	light.visible = true;
-
 	controls.update();
 	cube.position.x = effectController.transx;
 	cube.position.y = effectController.transy;
@@ -983,8 +1101,26 @@ function render()
 	camera.updateProjectionMatrix();
 	light.position.copy(camera.position);
 	var force = ( viewMode != effectController.matrix );
+	if ( prevTextScale != effectController.textscale )
+	{
+		force = 1;
+		prevTextScale = effectController.textscale;
+	}
 	viewMode = effectController.matrix;
+	displayHelp();
+	displayGrid();
+
 	createText( force || !effectController.perm );
+
+	if ( effectController.viewport != 'off' )
+	{
+		// make corner dot bigger for offscreen and viewport renders
+		corner.scale.set( 3,3,3 );
+		// create off screen render
+		renderer.clear();
+		renderer.render( scene, camera, firstRenderTarget, true );
+		corner.scale.set( 1,1,1 );
+	}
 	
 	// clear whole screen with proper clear color
 	renderer.clear();
@@ -995,11 +1131,16 @@ function render()
 	// show viewport
 	if ( effectController.viewport != 'off' )
 	{
-		var viewSize = 100;
 		corner.scale.set( 3,3,3 );
+		var viewSize = 60;
 		setTextVisibility( false );
-		ambientLight.visible = true;
-		light.visible = false;
+		
+		// turn off thickened axes so we can see colored axes
+		axis1.visible = axis2.visible = false;
+
+		// render to target, and include in scene
+		//renderer.clear();
+		//renderer.render( scene, camera, firstRenderTarget, true );
 
 		var aspect = canvasWidth / canvasHeight;
 		frustumCam = new THREE.OrthographicCamera(
@@ -1010,10 +1151,10 @@ function render()
 		frustumCam.position.set( 250, verticalOffset, 0 );
 		frustumTarget.set( 0, verticalOffset, 0 );
 
-		//frustumCam.position.copy( camera.position );
 		frustumCam.lookAt( frustumTarget );
+		light.position.copy(frustumCam.position);
 		
-		// rearview render
+		// viewport render
 		renderer.enableScissorTest( true );
 		// setScissor could be set just once in this particular case,
 		// since it never changes, and then just enabled/disabled
@@ -1030,6 +1171,7 @@ function render()
 			(viewsize+borderh) * canvasWidth, (viewsize+borderv) * canvasHeight );
 		renderer.clear();
 
+		// viewport itself
 		renderer.setClearColorHex( clearColor, 1.0 );
 		renderer.setScissor( (1.0-margin-viewsize-borderh/2) * canvasWidth, (margin + borderv/2) * canvasHeight,
 			viewsize * canvasWidth, viewsize * canvasHeight );
@@ -1039,7 +1181,8 @@ function render()
 		renderer.render( scene, frustumCam );	
 
 		// create frustum and display
-		createFrustum( (effectController.viewport == 'on') ? 2 : 5 );
+		createFrustum( (effectController.viewport == 'depths') ? 5: 2, (effectController.viewport == 'faces') );
+
 		renderer.render( sceneFrustum, frustumCam );
 		
 		// restore any state needed
