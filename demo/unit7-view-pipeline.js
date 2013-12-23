@@ -820,7 +820,7 @@ function createText( force )
 		spritey[modenum].position.copy(anchor);
 		if ( viewMode != 'all' )
 		{
-			spritey[modenum].position.x -= 0.5;
+			spritey[modenum].position.x += 0.5;
 			//spritey.position.y += 0.5;
 			spritey[modenum].position.z += 0.5;
 			//spritey.renderDepth = 0.05;
