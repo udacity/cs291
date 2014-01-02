@@ -1095,7 +1095,7 @@ function setupGui() {
 	gui.add( effectController, "xgrid" ).name("Show X grid");
 	gui.add( effectController, "zgrid" ).name("Show Z grid");
 	gui.add( effectController, "ndc" ).name("Show NDC");
-	gui.add( effectController, "textscale", 0.2,1.3 ).name("Text scale");
+	gui.add( effectController, "textscale", 0.2,1.28 ).name("Text scale");
 	gui.add( effectController, "help" ).name("Help");
 }
 
