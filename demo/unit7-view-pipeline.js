@@ -188,7 +188,7 @@ function init()
 
 	scene.add( zGrid );
 
-	Coordinates.drawAllAxes({axisLength:16.2,axisRadius:0.1,axisTess:50});
+	Coordinates.drawAllAxes({axisLength:16.2,axisRadius:0.2,axisTess:20});
 	
 
 	////////////
