@@ -33,7 +33,7 @@ var lineMaterial = [];
 var viewMode, prevTextScale;
 
 // tasty fudge:
-var TEXT_SCALE = 0.77;
+var TEXT_SCALE = 0.83;
 var EXTRA_CUSHION = 3;
 
 var boxSize;
@@ -108,9 +108,9 @@ function init()
 	frustumTarget = new THREE.Vector3();
 	frustumTarget.set(0,0,0);
 
-	frustumCam = new THREE.PerspectiveCamera( 45, aspect, 10, 110 );
-	frustumCam.position.set( -21,24,31 );
-	frustumCam.lookAt( new THREE.Vector3( 0, 0, 0 ) );
+	//frustumCam = new THREE.PerspectiveCamera( 45, aspect, 10, 110 );
+	//frustumCam.position.set( -21,24,31 );
+	//frustumCam.lookAt( new THREE.Vector3( 0, 0, 0 ) );
 
 	// CONTROLS
 	controls = new THREE.OrbitAndPanControls( camera, renderer.domElement );
@@ -308,8 +308,8 @@ function makeTextSprite( messageList, parameters )
 		parameters.showRect : true ;
 		
 	var canvas = document.createElement('canvas');
-	canvas.width  = 620;
-	canvas.height = 620;
+	canvas.width  = 660;
+	canvas.height = 660;
 	var context = canvas.getContext('2d');
 	context.font = "Bold " + fontsize + "px " + fontface;
     
@@ -843,22 +843,11 @@ function createFrustum( pointsForDepth, faces )
 {
 	// lazy way to clear scene - is there a better way?
 	sceneFrustum = new THREE.Scene();
-	// hmmm, for some reason, fog doesn't work for this
-	// scene - maybe because it's orthographic?
-	// This would be great to have work for the edges
-	// version, as these could then have depth cueing.
-	// sceneFrustum.fog = new THREE.Fog( clearColor, 5, 50 );
-	
-	/* sphere at camera location
-	{
-		var eyeGeometry = new THREE.SphereGeometry( 4*0.3 );
-		var eyeMaterial = new THREE.MeshBasicMaterial( { color: 0x00dddd } );
-		var eyeSphere = new THREE.Mesh( eyeGeometry, eyeMaterial );
-		eyeSphere.position.copy( camera.position );
-		sceneFrustum.add(eyeSphere);
-	}
-	*/
-	
+
+	// turn on depth cueing for perspective (doesn't work for orthographic).
+	if ( faces )
+		sceneFrustum.fog = new THREE.Fog( clearColor, 30, 140 );
+
 	// draw 12 lines:
 	// 4 for frustum edges
 	// 4 for near
@@ -889,7 +878,8 @@ function createFrustum( pointsForDepth, faces )
 		{
 			geometry = new THREE.Geometry();
 			geometry.vertices.push( camera.position );
-			geometry.vertices.push( frustumPoints[x*2*pointsForDepth + y*pointsForDepth + (faces ? 0 : (pointsForDepth-1)) ] );
+			//geometry.vertices.push( frustumPoints[x*2*pointsForDepth + y*pointsForDepth + (faces ? 0 : (pointsForDepth-1)) ] );
+			geometry.vertices.push( frustumPoints[x*2*pointsForDepth + y*pointsForDepth + (pointsForDepth-1) ] );
 
 			line = new THREE.Line( geometry, lineMaterial[0] );
 			sceneFrustum.add( line );
@@ -898,7 +888,8 @@ function createFrustum( pointsForDepth, faces )
 	
 	// planes
 	// do first plane always, as it outlines image
-	for ( z = 0; z < (faces ? 1 : pointsForDepth); z++ )
+	//for ( z = 0; z < (faces ? 1 : pointsForDepth); z++ )
+	for ( z = 0; z < pointsForDepth; z++ )
 	{
 		geometry = new THREE.Geometry();
 		for ( v = 0; v < 5; v++ )
@@ -937,19 +928,39 @@ function createFrustum( pointsForDepth, faces )
 
 	mesh = new THREE.Mesh( geometry, mtl );
 	sceneFrustum.add( mesh );
-
-	// far face
-	if ( faces )
+	
+	// depth faces
+	if ( effectController.viewport === 'depths' )
 	{
-		z = 1;
+		for ( z = 1; z < pointsForDepth; z++ )
 		{
 			geometry = new THREE.Geometry();
-			var uvs = [];
 			for ( v = 0; v < 4; v++ )
 			{
 				x = Math.floor(v/2)%2;
 				y = Math.floor((v+1)/2)%2;
-				geometry.vertices.push( frustumPoints[x*2*pointsForDepth+y*pointsForDepth+z*(pointsForDepth-1)] );
+				geometry.vertices.push( frustumPoints[x*2*pointsForDepth+y*pointsForDepth+z] );
+			}
+			geometry.faces.push( new THREE.Face3( 0, 1, 2 ) );
+			geometry.faces.push( new THREE.Face3( 2, 3, 0 ) );
+
+			mtl = new THREE.MeshBasicMaterial( { color: lineMaterial[z].color, transparent: true, opacity: 0.3, side: THREE.DoubleSide } );
+
+			mesh = new THREE.Mesh( geometry, mtl );
+			sceneFrustum.add( mesh );
+		}
+	}
+
+	if ( faces )
+	{
+	// far face
+		{
+			geometry = new THREE.Geometry();
+			for ( v = 0; v < 4; v++ )
+			{
+				x = Math.floor(v/2)%2;
+				y = Math.floor((v+1)/2)%2;
+				geometry.vertices.push( frustumPoints[x*2*pointsForDepth+y*pointsForDepth+(pointsForDepth-1)] );
 			}
 			geometry.faces.push( new THREE.Face3( 0, 1, 2 ) );
 			geometry.faces.push( new THREE.Face3( 2, 3, 0 ) );
@@ -959,6 +970,7 @@ function createFrustum( pointsForDepth, faces )
 			mesh = new THREE.Mesh( geometry, mtl );
 			sceneFrustum.add( mesh );
 		}
+		// side faces
 		for ( side = 0; side < 4; side++ )
 		{
 			geometry = new THREE.Geometry();
@@ -995,7 +1007,8 @@ function createFrustum( pointsForDepth, faces )
 	geometry.faces.push( new THREE.Face3( 0, 1, 2 ) );
 	geometry.faces.push( new THREE.Face3( 2, 3, 0 ) );
 
-	mtl = new THREE.MeshBasicMaterial( { color: 0x5555ff } );
+	//mtl = new THREE.MeshBasicMaterial( { color: 0x5555ff } );
+	mtl = new THREE.MeshBasicMaterial( { color: 0x0000ff } );
 	mesh = new THREE.Mesh( geometry, mtl );
 	sceneFrustum.add( mesh );
 
@@ -1017,7 +1030,8 @@ function createFrustum( pointsForDepth, faces )
 		geometry.vertices.push( vertex );
 		geometry.faces.push( new THREE.Face3( 0, 1, 2 ) );
 
-		mtl = new THREE.MeshBasicMaterial( { color: ( side%2 === 0 ) ? 0x55ff55 : 0xff5555 } );
+		//mtl = new THREE.MeshBasicMaterial( { color: ( side%2 === 0 ) ? 0x55ff55 : 0xff5555 } );
+		mtl = new THREE.MeshBasicMaterial( { color: ( side%2 === 0 ) ? 0x00ff00 : 0xff0000 } );
 		mesh = new THREE.Mesh( geometry, mtl );
 		sceneFrustum.add( mesh );
 	}
@@ -1076,7 +1090,7 @@ function setupGui() {
 	f2.add( effectController, "far", 50.0, 100.0 ).name("Far plane");
 	
 	gui.add( effectController, "perm" ).name("Keep highlit");
-	gui.add( effectController, "viewport", [ 'off', 'on', 'depths', 'faces' ] ).name("Show frustum");
+	gui.add( effectController, "viewport", [ 'off', 'volume', 'near/far', 'depths' ] ).name("Show frustum");
 	gui.add( effectController, "grid" ).name("Show ground");
 	gui.add( effectController, "xgrid" ).name("Show X grid");
 	gui.add( effectController, "zgrid" ).name("Show Z grid");
@@ -1143,15 +1157,26 @@ function render()
 		//renderer.render( scene, camera, firstRenderTarget, true );
 
 		var aspect = canvasWidth / canvasHeight;
-		frustumCam = new THREE.OrthographicCamera(
-				-aspect*viewSize / 2, aspect*viewSize / 2,
-				viewSize / 2, -viewSize / 2,
-				-0, 500 );
-		var verticalOffset = 0;
-		frustumCam.position.set( 250, verticalOffset, 0 );
-		frustumTarget.set( 0, verticalOffset, 0 );
+		if ( effectController.viewport === 'volume' )
+		{
+			// use perspective camera - helps visualization a lot
+			frustumCam = new THREE.PerspectiveCamera( 60, aspect, 10, 150 );
+			frustumCam.position.set( 60, 35, 0 );
+			frustumCam.lookAt( new THREE.Vector3( 0, 0, 0 ) );
+		}
+		else
+		{
+			// use parallel camera
+			frustumCam = new THREE.OrthographicCamera(
+					-aspect*viewSize / 2, aspect*viewSize / 2,
+					viewSize / 2, -viewSize / 2,
+					-0, 500 );
+			var verticalOffset = 0;
+			frustumCam.position.set( 250, verticalOffset, 0 );
+			frustumTarget.set( 0, verticalOffset, 0 );
 
-		frustumCam.lookAt( frustumTarget );
+			frustumCam.lookAt( frustumTarget );
+		}
 		light.position.copy(frustumCam.position);
 		
 		// viewport render
@@ -1181,7 +1206,7 @@ function render()
 		renderer.render( scene, frustumCam );	
 
 		// create frustum and display
-		createFrustum( (effectController.viewport == 'depths') ? 5: 2, (effectController.viewport == 'faces') );
+		createFrustum( (effectController.viewport == 'depths') ? 5: 2, (effectController.viewport == 'volume') );
 
 		renderer.render( sceneFrustum, frustumCam );
 		
