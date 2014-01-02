@@ -107,7 +107,7 @@ function init() {
 
 	// Camera: Y up, X right, Z up
 	camera = new THREE.PerspectiveCamera( 1, canvasRatio, 1, 2000 );
-	camera.position.set( 19, -29, 93 );
+	camera.position.set( 30, 32, 90 );
 
 	// CONTROLS
 	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
