@@ -53,6 +53,14 @@ var firstRenderTarget, screenMaterial;
 
 var EPSILON = 0.00001;
 
+var oldViewport = '';	// viewport off to start
+// sceneFrustum objects that we manipulate
+var frustumPoints = [];
+var lineGeometry = [];
+var depthFaceGeometry = [];
+var sideFaceGeometry = [];
+var tipGeometry = [];
+
 function init() 
 {
 	// offscreen render target for viewport's near-frustum rectangle
@@ -768,46 +776,6 @@ function createText( force )
 					hl[0], ptndc.x, hl[1], hl[2], ptndc.y, hl[3], hl[4], ptndc.z, hl[5], hl[6], ptndc.w, hl[7]  );
 			i++;
 			break;
-		
-		/* for debugging, check out reverse of transforms */
-		case 'debug':
-			/*
-			// NDC to pixel
-			myfontsize = 9;
-			//anchor.copy(view2world);
-			anchor.set(10.1, 10.1, 0.5);
-
-			// get the world-space location for pixel 20, height-20
-			var screenLoc = new THREE.Vector4( 20, canvasHeight-20, 0.2, 1 );
-			var invMatrix = new THREE.Matrix4();
-			invMatrix.getInverse( windowMatrix );
-			
-			var screen2ndc = new THREE.Vector4();
-			screen2ndc.copy(screenLoc);
-			screen2ndc.applyMatrix4(invMatrix);
-			invMatrix.getInverse( camera.projectionMatrix );
-			
-			var ndc2view = new THREE.Vector4();
-			ndc2view.copy(screen2ndc);
-			ndc2view.applyMatrix4(invMatrix);
-			ndc2view.divideScalar(ndc2view.w);
-			
-			var view2world = new THREE.Vector4();
-			view2world.copy(ndc2view);
-			view2world.applyMatrix4(camera.matrixWorld);
-			
-			messageList[i] = "window coordinates     \n";
-			messageList[i] += sprintf( "%7.2f%8.2f%7.3f%6.1f \n", screenLoc.x, screenLoc.y, screenLoc.z, screenLoc.w );
-			messageList[i] += "NDC coordinates       \n";
-			messageList[i] += sprintf( "%7.2f%8.2f%7.3f%6.1f \n", screen2ndc.x, screen2ndc.y, screen2ndc.z, screen2ndc.w );
-			messageList[i] += "view coordinates       \n";
-			messageList[i] += sprintf( "%7.2f%8.2f%7.3f%6.1f \n", ndc2view.x, ndc2view.y, ndc2view.z, ndc2view.w );
-			messageList[i] += "world coordinates       \n";
-			messageList[i] += sprintf( "%7.2f%8.2f%7.3f%6.1f ", view2world.x, view2world.y, view2world.z, view2world.w );
-			i++;
-			*/
-
-			break;
 		}
 		
 		spritey[modenum] = makeTextSprite( messageList, 
@@ -839,24 +807,31 @@ function createText( force )
 	prevPtpix.copy( ptpix );
 }
 
-function createFrustum( pointsForDepth, faces )
+function createFrustum( pointsForDepth, faces, refresh )
 {
-	// lazy way to clear scene - is there a better way?
-	sceneFrustum = new THREE.Scene();
+	// For fastest updating when viewport is on, only remake the
+	// frustum when refresh is true. This is set to true only when
+	// the type of viewport changes. Otherwise, we update the vertices'
+	// positions, which is much faster (no memory allocate/free).
+	if ( refresh )
+	{
+		sceneFrustum = new THREE.Scene();
 
-	// turn on depth cueing for perspective (doesn't work for orthographic).
-	if ( faces )
-		sceneFrustum.fog = new THREE.Fog( clearColor, 30, 140 );
+		// turn on depth cueing for perspective (doesn't work for orthographic).
+		if ( faces )
+			sceneFrustum.fog = new THREE.Fog( clearColor, 30, 140 );
+	}
 
 	// draw 12 lines:
 	// 4 for frustum edges
 	// 4 for near
 	// 4 for far
 	
-	var frustumPoints = [];
 	var world = new THREE.Vector4();
 	var v;
 	var x,y,z;
+	// get the points' new locations. Note that once we have these, many of the follow objects are all set
+	// and only need to have their "update" flag set to true.
 	for ( x = 0; x <= 1; x++ )
 	{
 		for ( y = 0; y <= 1; y++ )
@@ -871,18 +846,30 @@ function createFrustum( pointsForDepth, faces )
 	}
 	
 	// frustum edges
-	var geometry, line, mtl, mesh;
+	var line, mtl, mesh, vcount;
+	var gcount = 0;
 	for ( x = 0; x <= 1; x++ )
 	{
 		for ( y = 0; y <= 1; y++ )
 		{
-			geometry = new THREE.Geometry();
-			geometry.vertices.push( camera.position );
-			//geometry.vertices.push( frustumPoints[x*2*pointsForDepth + y*pointsForDepth + (faces ? 0 : (pointsForDepth-1)) ] );
-			geometry.vertices.push( frustumPoints[x*2*pointsForDepth + y*pointsForDepth + (pointsForDepth-1) ] );
+			if ( refresh )
+			{
+				lineGeometry[gcount] = new THREE.Geometry();
+				lineGeometry[gcount].vertices.push( camera.position );
+				lineGeometry[gcount].vertices.push( frustumPoints[x*2*pointsForDepth + y*pointsForDepth + (pointsForDepth-1) ] );
 
-			line = new THREE.Line( geometry, lineMaterial[0] );
-			sceneFrustum.add( line );
+				line = new THREE.Line( lineGeometry[gcount++], lineMaterial[0] );
+				sceneFrustum.add( line );
+			}
+			else
+			{
+				// change vertex locations
+				// - we don't actually need to update these, as they're linked to the proper points!
+				//vcount = 0;
+				//lineGeometry[gcount].vertices[vcount++].copy( camera.position );
+				//lineGeometry[gcount].vertices[vcount++].copy( frustumPoints[x*2*pointsForDepth + y*pointsForDepth + (pointsForDepth-1) ] );
+				lineGeometry[gcount++].verticesNeedUpdate = true;
+			}
 		}
 	}
 	
@@ -891,149 +878,262 @@ function createFrustum( pointsForDepth, faces )
 	//for ( z = 0; z < (faces ? 1 : pointsForDepth); z++ )
 	for ( z = 0; z < pointsForDepth; z++ )
 	{
-		geometry = new THREE.Geometry();
-		for ( v = 0; v < 5; v++ )
+		if ( refresh )
 		{
-			x = Math.floor(v/2)%2;
-			y = Math.floor((v+1)/2)%2;
-			geometry.vertices.push( frustumPoints[x*2*pointsForDepth+y*pointsForDepth+z] );
+			lineGeometry[gcount] = new THREE.Geometry();
+			for ( v = 0; v < 5; v++ )
+			{
+				x = Math.floor(v/2)%2;
+				y = Math.floor((v+1)/2)%2;
+				lineGeometry[gcount].vertices.push( frustumPoints[x*2*pointsForDepth+y*pointsForDepth+z] );
+			}
+			mtl = lineMaterial[z];
+			line = new THREE.Line( lineGeometry[gcount++], mtl );
+			sceneFrustum.add( line );
 		}
-		mtl = lineMaterial[z];
-		line = new THREE.Line( geometry, mtl );
-		sceneFrustum.add( line );
+		else
+		{
+			//vcount = 0;
+			//for ( v = 0; v < 5; v++ )
+			//{
+			//	x = Math.floor(v/2)%2;
+			//	y = Math.floor((v+1)/2)%2;
+			//	lineGeometry[gcount].vertices[vcount++].copy( frustumPoints[x*2*pointsForDepth+y*pointsForDepth+z] );
+			//}
+			lineGeometry[gcount++].verticesNeedUpdate = true;
+		}
 	}
 	
 	// do front face with image - always there
-	geometry = new THREE.Geometry();
-	var uvs = [];
-	z = 0;
-	for ( v = 0; v < 4; v++ )
+	if ( refresh )
 	{
-		x = Math.floor(v/2)%2;
-		y = Math.floor((v+1)/2)%2;
-		geometry.vertices.push( frustumPoints[x*2*pointsForDepth+y*pointsForDepth+z*(pointsForDepth-1)] );
+		depthFaceGeometry[0] = new THREE.Geometry();
+		var uvs = [];
+		for ( v = 0; v < 4; v++ )
+		{
+			x = Math.floor(v/2)%2;
+			y = Math.floor((v+1)/2)%2;
+			depthFaceGeometry[0].vertices.push( frustumPoints[x*2*pointsForDepth+y*pointsForDepth] );
 
-		uvs.push( new THREE.Vector2( 0.0, 0.0 ) );
-		uvs.push( new THREE.Vector2( 0.0, 1.0 ) );
-		uvs.push( new THREE.Vector2( 1.0, 1.0 ) );
-		uvs.push( new THREE.Vector2( 1.0, 0.0 ) );
+			uvs.push( new THREE.Vector2( 0.0, 0.0 ) );
+			uvs.push( new THREE.Vector2( 0.0, 1.0 ) );
+			uvs.push( new THREE.Vector2( 1.0, 1.0 ) );
+			uvs.push( new THREE.Vector2( 1.0, 0.0 ) );
+		}
+
+		depthFaceGeometry[0].faces.push( new THREE.Face3( 2, 1, 0 ) );
+		depthFaceGeometry[0].faceVertexUvs[ 0 ].push( [ uvs[2], uvs[1], uvs[0] ] );
+		depthFaceGeometry[0].faces.push( new THREE.Face3( 0, 3, 2 ) );
+		depthFaceGeometry[0].faceVertexUvs[ 0 ].push( [ uvs[0], uvs[3], uvs[2] ] );
+
+		mtl = screenMaterial;
+
+		mesh = new THREE.Mesh( depthFaceGeometry[0], mtl );
+		sceneFrustum.add( mesh );
 	}
-
-	geometry.faces.push( new THREE.Face3( 2, 1, 0 ) );
-	geometry.faceVertexUvs[ 0 ].push( [ uvs[2], uvs[1], uvs[0] ] );
-	geometry.faces.push( new THREE.Face3( 0, 3, 2 ) );
-	geometry.faceVertexUvs[ 0 ].push( [ uvs[0], uvs[3], uvs[2] ] );
-
-	mtl = screenMaterial;
-
-	mesh = new THREE.Mesh( geometry, mtl );
-	sceneFrustum.add( mesh );
+	else
+	{
+		// for some strange reason I do have to copy these vertices over - I thought
+		// they would be linked to frustumPoints, but they don't appear to be, if I switch
+		// among the viewport modes.
+		for ( v = 0; v < 4; v++ )
+		{
+			x = Math.floor(v/2)%2;
+			y = Math.floor((v+1)/2)%2;
+			depthFaceGeometry[0].vertices[v].copy( frustumPoints[x*2*pointsForDepth+y*pointsForDepth] );
+		}
+		depthFaceGeometry[0].verticesNeedUpdate = true;
+	}
 	
 	// depth faces
 	if ( effectController.viewport === 'depths' )
 	{
-		for ( z = 1; z < pointsForDepth; z++ )
-		{
-			geometry = new THREE.Geometry();
-			for ( v = 0; v < 4; v++ )
+		if ( refresh ) {
+			for ( z = 1; z < pointsForDepth; z++ )
 			{
-				x = Math.floor(v/2)%2;
-				y = Math.floor((v+1)/2)%2;
-				geometry.vertices.push( frustumPoints[x*2*pointsForDepth+y*pointsForDepth+z] );
+				depthFaceGeometry[z] = new THREE.Geometry();
+				for ( v = 0; v < 4; v++ )
+				{
+					x = Math.floor(v/2)%2;
+					y = Math.floor((v+1)/2)%2;
+					depthFaceGeometry[z].vertices.push( frustumPoints[x*2*pointsForDepth+y*pointsForDepth+z] );
+				}
+				depthFaceGeometry[z].faces.push( new THREE.Face3( 0, 1, 2 ) );
+				depthFaceGeometry[z].faces.push( new THREE.Face3( 2, 3, 0 ) );
+
+				mtl = new THREE.MeshBasicMaterial( { color: lineMaterial[z].color, transparent: true, opacity: 0.2,
+					// for last face, show just front side - back side is blue
+					side: (z == pointsForDepth-1 ) ? THREE.BackSide : THREE.DoubleSide } );
+
+				mesh = new THREE.Mesh( depthFaceGeometry[z], mtl );
+				sceneFrustum.add( mesh );
 			}
-			geometry.faces.push( new THREE.Face3( 0, 1, 2 ) );
-			geometry.faces.push( new THREE.Face3( 2, 3, 0 ) );
-
-			mtl = new THREE.MeshBasicMaterial( { color: lineMaterial[z].color, transparent: true, opacity: 0.3, side: THREE.DoubleSide } );
-
-			mesh = new THREE.Mesh( geometry, mtl );
-			sceneFrustum.add( mesh );
+		}
+		else
+		{
+			for ( z = 1; z < pointsForDepth; z++ )
+			{
+				vcount = 0;
+				for ( v = 0; v < 4; v++ )
+				{
+					x = Math.floor(v/2)%2;
+					y = Math.floor((v+1)/2)%2;
+					depthFaceGeometry[z].vertices[vcount++].copy( frustumPoints[x*2*pointsForDepth+y*pointsForDepth+z] );
+				}
+				depthFaceGeometry[z].verticesNeedUpdate = true;
+			}
 		}
 	}
-
+	
+	var side;
 	if ( faces )
 	{
-	// far face
-		{
-			geometry = new THREE.Geometry();
-			for ( v = 0; v < 4; v++ )
-			{
-				x = Math.floor(v/2)%2;
-				y = Math.floor((v+1)/2)%2;
-				geometry.vertices.push( frustumPoints[x*2*pointsForDepth+y*pointsForDepth+(pointsForDepth-1)] );
-			}
-			geometry.faces.push( new THREE.Face3( 0, 1, 2 ) );
-			geometry.faces.push( new THREE.Face3( 2, 3, 0 ) );
-
-			mtl = new THREE.MeshBasicMaterial( { color: 0x0000ff, transparent: true, opacity: 0.3 } );
-
-			mesh = new THREE.Mesh( geometry, mtl );
-			sceneFrustum.add( mesh );
-		}
 		// side faces
-		for ( side = 0; side < 4; side++ )
-		{
-			geometry = new THREE.Geometry();
-			for ( v = 0; v < 4; v++ )
+		if ( refresh ) {
+			for ( side = 0; side < 4; side++ )
 			{
-				x = Math.floor((side*4+v+6)/8)%2;
-				y = Math.floor((side*4+v+2)/8)%2;
-				z = Math.floor((v+1)/2)%2;
-				geometry.vertices.push( frustumPoints[x*2*pointsForDepth+y*pointsForDepth+z*(pointsForDepth-1)] );
-			}
-			geometry.faces.push( new THREE.Face3( 0, 1, 2 ) );
-			geometry.faces.push( new THREE.Face3( 2, 3, 0 ) );
+				sideFaceGeometry[side] = new THREE.Geometry();
+				for ( v = 0; v < 4; v++ )
+				{
+					x = Math.floor((side*4+v+6)/8)%2;
+					y = Math.floor((side*4+v+2)/8)%2;
+					z = Math.floor((v+1)/2)%2;
+					sideFaceGeometry[side].vertices.push( frustumPoints[x*2*pointsForDepth+y*pointsForDepth+z*(pointsForDepth-1)] );
+				}
+				sideFaceGeometry[side].faces.push( new THREE.Face3( 0, 1, 2 ) );
+				sideFaceGeometry[side].faces.push( new THREE.Face3( 2, 3, 0 ) );
 
-			mtl = new THREE.MeshBasicMaterial( { color: ( side%2 === 0 ) ? 0x00ff00 : 0xff0000, transparent: true, opacity: 0.3 } );
-			mesh = new THREE.Mesh( geometry, mtl );
-			sceneFrustum.add( mesh );
+				mtl = new THREE.MeshBasicMaterial( { color: ( side%2 === 0 ) ? 0x00ff00 : 0xff0000, transparent: true, opacity: 0.2 } );
+				mesh = new THREE.Mesh( sideFaceGeometry[side], mtl );
+				sceneFrustum.add( mesh );
+			}
 		}
+		else
+		{
+			for ( side = 0; side < 4; side++ )
+			{
+				vcount = 0;
+				for ( v = 0; v < 4; v++ )
+				{
+					x = Math.floor((side*4+v+6)/8)%2;
+					y = Math.floor((side*4+v+2)/8)%2;
+					z = Math.floor((v+1)/2)%2;
+					sideFaceGeometry[side].vertices[vcount++].copy( frustumPoints[x*2*pointsForDepth+y*pointsForDepth+z*(pointsForDepth-1)] );
+				}
+				sideFaceGeometry[side].verticesNeedUpdate = true;
+			}
+		}
+	}
+	// far face - give a clue that you're looking at the bottom, so always show it
+	if ( refresh ) {
+		sideFaceGeometry[4] = new THREE.Geometry();
+		for ( v = 0; v < 4; v++ )
+		{
+			x = Math.floor(v/2)%2;
+			y = Math.floor((v+1)/2)%2;
+			sideFaceGeometry[4].vertices.push( frustumPoints[x*2*pointsForDepth+y*pointsForDepth+(pointsForDepth-1)] );
+		}
+		sideFaceGeometry[4].faces.push( new THREE.Face3( 0, 1, 2 ) );
+		sideFaceGeometry[4].faces.push( new THREE.Face3( 2, 3, 0 ) );
+
+		mtl = new THREE.MeshBasicMaterial( { color: 0x0000ff, transparent: true, opacity: 0.2 } );
+
+		mesh = new THREE.Mesh( sideFaceGeometry[4], mtl );
+		sceneFrustum.add( mesh );
+	}
+	else
+	{
+		vcount = 0;
+		for ( v = 0; v < 4; v++ )
+		{
+			x = Math.floor(v/2)%2;
+			y = Math.floor((v+1)/2)%2;
+			sideFaceGeometry[4].vertices[vcount++].copy( frustumPoints[x*2*pointsForDepth+y*pointsForDepth+(pointsForDepth-1)] );
+		}
+		sideFaceGeometry[4].verticesNeedUpdate = true;
 	}
 
 	// frustum tip
-	geometry = new THREE.Geometry();
-	// outer base
 	var lerpVal = 0.85;
 	var vertex;
-	for ( v = 0; v < 4; v++ )
+	if ( refresh )
 	{
-		x = Math.floor(v/2)%2;
-		y = Math.floor((v+1)/2)%2;
-		vertex = new THREE.Vector3();
-		vertex.copy( frustumPoints[x*2*pointsForDepth+y*pointsForDepth] );
-		vertex.lerp( camera.position, lerpVal );
-		geometry.vertices.push( vertex );
-	}
-	geometry.faces.push( new THREE.Face3( 0, 1, 2 ) );
-	geometry.faces.push( new THREE.Face3( 2, 3, 0 ) );
-
-	//mtl = new THREE.MeshBasicMaterial( { color: 0x5555ff } );
-	mtl = new THREE.MeshBasicMaterial( { color: 0x0000ff } );
-	mesh = new THREE.Mesh( geometry, mtl );
-	sceneFrustum.add( mesh );
-
-	// sides of tip
-	for ( side = 0; side < 4; side++ )
-	{
-		geometry = new THREE.Geometry();
-		for ( v = 0; v < 2; v++ )
+		// sides of tip
+		for ( side = 0; side < 4; side++ )
 		{
-			x = Math.floor((side*2+v+3)/4)%2;
-			y = Math.floor((side*2+v+1)/4)%2;
+			tipGeometry[side] = new THREE.Geometry();
+			for ( v = 0; v < 2; v++ )
+			{
+				x = Math.floor((side*2+v+3)/4)%2;
+				y = Math.floor((side*2+v+1)/4)%2;
+				vertex = new THREE.Vector3();
+				vertex.copy( frustumPoints[x*2*pointsForDepth+y*pointsForDepth] );
+				vertex.lerp( camera.position, lerpVal );
+				tipGeometry[side].vertices.push( vertex );
+			}
+			tipGeometry[side].vertices.push( camera.position );
+			tipGeometry[side].faces.push( new THREE.Face3( 0, 1, 2 ) );
+
+			mtl = new THREE.MeshBasicMaterial( { color: ( side%2 === 0 ) ? 0x00ff00 : 0xff0000 } );
+			mesh = new THREE.Mesh( tipGeometry[side], mtl );
+			sceneFrustum.add( mesh );
+		}
+	}
+	else
+	{
+		vertex = new THREE.Vector3();
+		for ( side = 0; side < 4; side++ )
+		{
+			vcount = 0;
+			for ( v = 0; v < 2; v++ )
+			{
+				x = Math.floor((side*2+v+3)/4)%2;
+				y = Math.floor((side*2+v+1)/4)%2;
+				vertex.copy( frustumPoints[x*2*pointsForDepth+y*pointsForDepth] );
+				vertex.lerp( camera.position, lerpVal );
+				tipGeometry[side].vertices[vcount++].copy( vertex );
+			}
+			tipGeometry[side].vertices[vcount++].copy( camera.position );
+
+			tipGeometry[side].verticesNeedUpdate = true;
+		}
+	}
+
+	// base of tip
+	if ( refresh )
+	{
+		tipGeometry[4] = new THREE.Geometry();
+		// bit lazy - we could reuse the 4 points computed for the sides
+		for ( v = 0; v < 4; v++ )
+		{
+			x = Math.floor(v/2)%2;
+			y = Math.floor((v+1)/2)%2;
 			vertex = new THREE.Vector3();
 			vertex.copy( frustumPoints[x*2*pointsForDepth+y*pointsForDepth] );
 			vertex.lerp( camera.position, lerpVal );
-			geometry.vertices.push( vertex );
+			tipGeometry[4].vertices.push( vertex );
 		}
-		vertex = new THREE.Vector3();
-		vertex.copy( camera.position );
-		geometry.vertices.push( vertex );
-		geometry.faces.push( new THREE.Face3( 0, 1, 2 ) );
+		tipGeometry[4].faces.push( new THREE.Face3( 0, 1, 2 ) );
+		tipGeometry[4].faces.push( new THREE.Face3( 2, 3, 0 ) );
 
-		//mtl = new THREE.MeshBasicMaterial( { color: ( side%2 === 0 ) ? 0x55ff55 : 0xff5555 } );
-		mtl = new THREE.MeshBasicMaterial( { color: ( side%2 === 0 ) ? 0x00ff00 : 0xff0000 } );
-		mesh = new THREE.Mesh( geometry, mtl );
+		//mtl = new THREE.MeshBasicMaterial( { color: 0x5555ff } );
+		mtl = new THREE.MeshBasicMaterial( { color: 0x0000ff } );
+		mesh = new THREE.Mesh( tipGeometry[4], mtl );
 		sceneFrustum.add( mesh );
+	}
+	else
+	{
+		// note we allocated the vertex once, above
+		vcount = 0;
+		for ( v = 0; v < 4; v++ )
+		{
+			x = Math.floor(v/2)%2;
+			y = Math.floor((v+1)/2)%2;
+			vertex.copy( frustumPoints[x*2*pointsForDepth+y*pointsForDepth] );
+			vertex.lerp( camera.position, lerpVal );
+			tipGeometry[side].vertices[vcount++].copy( vertex );
+		}
+		tipGeometry[4].verticesNeedUpdate = true;
 	}
 }
 
@@ -1160,7 +1260,7 @@ function render()
 		if ( effectController.viewport === 'volume' )
 		{
 			// use perspective camera - helps visualization a lot
-			frustumCam = new THREE.PerspectiveCamera( 60, aspect, 10, 150 );
+			frustumCam = new THREE.PerspectiveCamera( 60, aspect, 1, 150 );
 			frustumCam.position.set( 60, 35, 0 );
 			frustumCam.lookAt( new THREE.Vector3( 0, 0, 0 ) );
 		}
@@ -1206,7 +1306,11 @@ function render()
 		renderer.render( scene, frustumCam );	
 
 		// create frustum and display
-		createFrustum( (effectController.viewport == 'depths') ? 5: 2, (effectController.viewport == 'volume') );
+		createFrustum( (effectController.viewport == 'depths') ? 5: 2,
+			(effectController.viewport == 'volume'),
+			oldViewport !== effectController.viewport );
+
+		oldViewport = effectController.viewport;
 
 		renderer.render( sceneFrustum, frustumCam );
 		
