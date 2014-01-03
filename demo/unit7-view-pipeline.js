@@ -961,7 +961,9 @@ function createFrustum( pointsForDepth, faces, refresh )
 				depthFaceGeometry[z].faces.push( new THREE.Face3( 0, 1, 2 ) );
 				depthFaceGeometry[z].faces.push( new THREE.Face3( 2, 3, 0 ) );
 
-				mtl = new THREE.MeshBasicMaterial( { color: lineMaterial[z].color, transparent: true, opacity: 0.2,
+				mtl = new THREE.MeshBasicMaterial( { color: lineMaterial[z].color, transparent: true,
+					opacity: 0.05 + 0.25*(pointsForDepth-z)/pointsForDepth,
+					//opacity: 0.2,
 					// for last face, show just front side - back side is blue
 					side: (z == pointsForDepth-1 ) ? THREE.BackSide : THREE.DoubleSide } );
 
