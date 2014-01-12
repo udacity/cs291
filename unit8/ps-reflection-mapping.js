@@ -3,7 +3,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, requestAnimationFrame */
 
-var txrpath = "/";	// STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
+var txrpath = "";	// STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
 
 var camera, scene, renderer;
 var cameraControls;

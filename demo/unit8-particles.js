@@ -6,7 +6,7 @@
 
 //if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 
-var path = "/";	// STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
+var path = "";	// STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
 
 var camera, scene, renderer, stats;
 var cameraControls;

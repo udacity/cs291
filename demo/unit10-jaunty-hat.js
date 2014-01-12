@@ -4,6 +4,8 @@
 
 /*global THREE, document, window, Stats, TWEEN, dat*/
 
+var path = "";	// STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
+
 var camera, scene, renderer, stats;
 var cameraControls;
 var effectController;
@@ -280,8 +282,7 @@ function createBody(bbody) {
 }
 function createTail() {
 	// solution
-	// for local display, change path to 'media/img/...', removing the initial '/' character
-	var tailTexture = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/feather.png' );
+	var tailTexture = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/feather.png' );
 	var tail = new THREE.Mesh(
 		new THREE.PlaneGeometry( 100, 100, 1, 1 ),
 		new THREE.MeshLambertMaterial(
