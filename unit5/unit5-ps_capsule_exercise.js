@@ -16,7 +16,7 @@ var ground = true;
 /**
 * Returns a THREE.Object3D cylinder and spheres going from top to bottom positions
 * @param material - THREE.Material
-* @param radiusTop, radiusBottom - same as CylinderGeometry, the top and bottom radii of the cone
+* @param radius - the radius of the capsule's cylinder
 * @param top, bottom - THREE.Vector3, top and bottom positions of cone
 * @param segmentsWidth - tessellation around equator, like radiusSegments in CylinderGeometry
 * @param openTop, openBottom - whether the end is given a sphere; true means they are not
