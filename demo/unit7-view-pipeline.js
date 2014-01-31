@@ -322,8 +322,8 @@ function makeTextSprite( messageList, parameters )
 	context.font = "Bold " + fontsize + "px " + fontface;
     
 	// border color
-	context.strokeStyle = "rgba(" + borderColor.r + "," + borderColor.g + ","
-			+ borderColor.b + "," + borderColor.a + ")";
+	context.strokeStyle = "rgba(" + borderColor.r + "," + borderColor.g +
+			 "," + borderColor.b + "," + borderColor.a + ")";
 
 	var offsetx = 0;
 
@@ -397,8 +397,8 @@ function makeTextSprite( messageList, parameters )
 		if ( showRect && dofill )
 		{
 			context.lineWidth = borderThickness;
-			context.fillStyle = "rgba(" + backgroundColor.r + "," + backgroundColor.g + ","
-					+ backgroundColor.b + "," + backgroundColor.a + ")";
+			context.fillStyle = "rgba(" + backgroundColor.r + "," + backgroundColor.g +
+					 "," + backgroundColor.b + "," + backgroundColor.a + ")";
 			// 1.2 + 0.2 is extra height factor for text below baseline: g,j,p,q.
 			roundRect(context, offsetx, borderThickness/2, borderThickness/2, textWidth + borderThickness + 2*EXTRA_CUSHION,
 					fontsize * (1.2 * lines + 0.2) + borderThickness + 2*EXTRA_CUSHION, 6, fill);
@@ -409,13 +409,13 @@ function makeTextSprite( messageList, parameters )
 			// text color
 			if ( style === 0 )
 			{
-				context.fillStyle = "rgba(" + textColor.r + "," + textColor.g + ","
-						+ textColor.b + "," + textColor.a + ")";
+				context.fillStyle = "rgba(" + textColor.r + "," + textColor.g +
+						 "," + textColor.b + "," + textColor.a + ")";
 			}
 			else
 			{
-				context.fillStyle = "rgba(" + highlightColor.r + "," + highlightColor.g + ","
-						+ highlightColor.b + "," + highlightColor.a + ")";
+				context.fillStyle = "rgba(" + highlightColor.r + "," + highlightColor.g +
+						 "," + highlightColor.b + "," + highlightColor.a + ")";
 			}
 
 			for ( i = 0; i < cleanStringList.length; i++ )
@@ -1191,14 +1191,16 @@ function setupGui() {
 	f2.add( effectController, "near", 1.0, 50.0 ).name("Near plane");
 	f2.add( effectController, "far", 50.0, 100.0 ).name("Far plane");
 	
-	gui.add( effectController, "perm" ).name("Keep highlit");
 	gui.add( effectController, "viewport", [ 'off', 'volume', 'near/far', 'depths' ] ).name("Show frustum");
-	gui.add( effectController, "grid" ).name("Show ground");
-	gui.add( effectController, "xgrid" ).name("Show X grid");
-	gui.add( effectController, "zgrid" ).name("Show Z grid");
-	gui.add( effectController, "ndc" ).name("Show NDC");
-	gui.add( effectController, "textscale", 0.2,1.28 ).name("Text scale");
-	gui.add( effectController, "help" ).name("Help");
+	
+	var f3 = gui.addFolder('Controls');
+	f3.add( effectController, "perm" ).name("Keep highlit");
+	f3.add( effectController, "grid" ).name("Show ground");
+	f3.add( effectController, "xgrid" ).name("Show X grid");
+	f3.add( effectController, "zgrid" ).name("Show Z grid");
+	f3.add( effectController, "ndc" ).name("Show NDC");
+	f3.add( effectController, "textscale", 0.2,1.28 ).name("Text scale");
+	f3.add( effectController, "help" ).name("Help");
 }
 
 function render() 
