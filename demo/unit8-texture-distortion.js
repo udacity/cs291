@@ -111,10 +111,10 @@ function init() {
 	featherTexture.wrapS = THREE.RepeatWrapping; featherTexture.wrapT = THREE.RepeatWrapping;
 
 	// MATERIALS
-	material['crate'] = new THREE.MeshBasicMaterial( { map: crateTexture } );
-	material['grid'] = new THREE.MeshBasicMaterial( { map: gridTexture } );
-	material['maple'] = new THREE.MeshBasicMaterial( { map: mapleTexture, transparent: true } );
-	material['feather'] = new THREE.MeshBasicMaterial( { map: featherTexture, transparent: true } );
+	material.crate = new THREE.MeshBasicMaterial( { map: crateTexture } );
+	material.grid = new THREE.MeshBasicMaterial( { map: gridTexture } );
+	material.maple = new THREE.MeshBasicMaterial( { map: mapleTexture, transparent: true } );
+	material.feather = new THREE.MeshBasicMaterial( { map: featherTexture, transparent: true } );
 
 	wireMaterial = new THREE.MeshBasicMaterial( { wireframe: true, color: 0x00FF00 } );
 

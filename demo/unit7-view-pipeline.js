@@ -323,7 +323,7 @@ function makeTextSprite( messageList, parameters )
     
 	// border color
 	context.strokeStyle = "rgba(" + borderColor.r + "," + borderColor.g +
-			 "," + borderColor.b + "," + borderColor.a + ")";
+			"," + borderColor.b + "," + borderColor.a + ")";
 
 	var offsetx = 0;
 
@@ -398,7 +398,7 @@ function makeTextSprite( messageList, parameters )
 		{
 			context.lineWidth = borderThickness;
 			context.fillStyle = "rgba(" + backgroundColor.r + "," + backgroundColor.g +
-					 "," + backgroundColor.b + "," + backgroundColor.a + ")";
+					"," + backgroundColor.b + "," + backgroundColor.a + ")";
 			// 1.2 + 0.2 is extra height factor for text below baseline: g,j,p,q.
 			roundRect(context, offsetx, borderThickness/2, borderThickness/2, textWidth + borderThickness + 2*EXTRA_CUSHION,
 					fontsize * (1.2 * lines + 0.2) + borderThickness + 2*EXTRA_CUSHION, 6, fill);
@@ -410,12 +410,12 @@ function makeTextSprite( messageList, parameters )
 			if ( style === 0 )
 			{
 				context.fillStyle = "rgba(" + textColor.r + "," + textColor.g +
-						 "," + textColor.b + "," + textColor.a + ")";
+						"," + textColor.b + "," + textColor.a + ")";
 			}
 			else
 			{
 				context.fillStyle = "rgba(" + highlightColor.r + "," + highlightColor.g +
-						 "," + highlightColor.b + "," + highlightColor.a + ")";
+						"," + highlightColor.b + "," + highlightColor.a + ")";
 			}
 
 			for ( i = 0; i < cleanStringList.length; i++ )

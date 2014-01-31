@@ -1,5 +1,5 @@
 
-/*global THREE, requestAnimationFrame, Detector, dat */
+/*global THREE, requestAnimationFrame, dat */
 THREE.ShaderTypes = {
 
 'phong' : {
@@ -195,7 +195,7 @@ THREE.ShaderTypes = {
 var SCREEN_WIDTH = window.innerWidth;
 var SCREEN_HEIGHT = window.innerHeight;
 
-var container, camera, scene, renderer;
+var camera, scene, renderer;
 
 var cameraControls;
 
@@ -208,7 +208,6 @@ var teapotSize = 400;
 var tess = 5, newTess = tess;
 
 var tessLevel = [2, 3, 4, 5, 6, 8, 10, 12, 16, 24, 32];
-var maxTessLevel = tessLevel.length - 1;
 
 var phongBal = false;
 
@@ -220,9 +219,7 @@ init();
 animate();
 
 function init() {
-
-	container = document.createElement('div');
-	document.body.appendChild(container);
+	var container = document.getElementById('container');
 
 	// CAMERA
 

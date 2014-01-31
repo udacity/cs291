@@ -1,12 +1,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 // anisotropic shading
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, requestAnimationFrame, Detector, dat */
+/*global THREE, requestAnimationFrame, dat */
 
-var SCREEN_WIDTH = window.innerWidth;
-var SCREEN_HEIGHT = window.innerHeight;
-
-var container, camera, scene, renderer;
+var camera, scene, renderer;
 
 var cameraControls;
 
@@ -18,8 +15,6 @@ var teapotSize = 600;
 
 var tess = -1;	// force initialization
 
-var tessLevel = [2, 3, 4, 5, 6, 8, 10, 12, 16, 24, 32];
-
 var ambientLight, light;
 var teapot;
 var phongBalancedMaterial;
@@ -29,7 +24,7 @@ var phongBalancedMaterial;
 	animate();
 // }
 // catch(e) {
-// 	console.log(e);
+//  console.log(e);
 // }
 
 function init() {
@@ -83,10 +78,6 @@ function init() {
 	// GUI
 
 	setupGui();
-}
-
-function loadShader(shadertype) {
-	return document.getElementById(shadertype).textContent;
 }
 
 function createShaderMaterial(id, light, ambientLight) {
@@ -144,7 +135,7 @@ function createShaderMaterial(id, light, ambientLight) {
 	"vNormal = normalize( normalMatrix * normal );",
 	"vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );",
 	"vViewPosition = -mvPosition.xyz;",
-"}"].join("\n")
+"}"].join("\n");
 	// this line will load a shader that has an id of "fragment" from the .html file
 	var fs = ["uniform vec3 uMaterialColor;",
 "uniform vec3 uSpecularColor;",
@@ -212,7 +203,7 @@ function createShaderMaterial(id, light, ambientLight) {
 		"gl_FragColor.rgb += uKd * uMaterialColor * uDirLightColor * diffuse;",
 		"gl_FragColor.rgb += diffuse * uDirLightColor * uSpecularColor * uKs * specular;",
 	"}",
-"}"].join("\n")
+"}"].join("\n");
 
 	var material = new THREE.ShaderMaterial({ uniforms: u, vertexShader: vs, fragmentShader: fs });
 

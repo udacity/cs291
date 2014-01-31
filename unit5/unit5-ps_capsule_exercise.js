@@ -2,7 +2,7 @@
 // Capsule creation: add spheres so that method creates capsules (cheese logs)
 // Your task is to modify the createCapsule function
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, Coordinates, document, window, dat*/
+/*global THREE, Coordinates, document, window, dat, $*/
 
 var camera, scene, renderer;
 var cameraControls, effectController;

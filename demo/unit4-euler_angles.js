@@ -120,7 +120,7 @@ function createRing(radius,color,axis) {
 
 	//create ring shape
 	var circleMesh = new THREE.Mesh(
-	 	new THREE.TorusGeometry(radius,5,6,50),
+		new THREE.TorusGeometry(radius,5,6,50),
 		ringMaterial
 	);
 
@@ -236,7 +236,10 @@ function setupGui() {
 }
 
 function takeScreenshot() {
-	effectController.newGridX = false, effectController.newGridY = false, effectController.newGridZ = false, effectController.newAxes = false;
+	effectController.newGridX = false;
+	effectController.newGridY = false;
+	effectController.newGridZ = false;
+	effectController.newAxes = false;
 	init();
 	render();
 	var img1 = renderer.domElement.toDataURL("image/png");

@@ -3,9 +3,9 @@
 // This is rendering mode #0
 // Rotate the scene and see how the objects are displayed
 ////////////////////////////////////////////////////////////////////////////////
-/*global, THREE, requestAnimationFrame, window, document, Stats */
+/*global THREE, requestAnimationFrame, window, document, Stats, dat */
 var container, camera, scene, renderer, stats;
-var cameraControls;
+var cameraControls, effectController;
 var clock = new THREE.Clock();
 var sphere, cube, cylinder;
 
@@ -114,7 +114,7 @@ function setupGui() {
 			}
 			else
 				song.pause();
-		 },
+		},
 	};
 
 	var gui = new dat.GUI();

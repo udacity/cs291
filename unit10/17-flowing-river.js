@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Texture animation
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, Coordinates, document, window, dat*/
+/*global THREE, Coordinates, document, window, dat, $*/
 
 var path = "";	// STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
 

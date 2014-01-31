@@ -3,16 +3,11 @@
 // Your task is to change the fragment shader, and only that
 // Edit the file named fragment.glsl in the tab above.
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, Coordinates, document, window, dat*/
+/*global THREE, document, window, dat, $*/
 
 var camera, scene, renderer, light;
 var cameraControls, effectController, phongMaterial;
 var clock = new THREE.Clock();
-var gridX = true;
-var gridY = false;
-var gridZ = false;
-var axes = true;
-var ground = true;
 
 function fillScene() {
 	scene = new THREE.Scene();
@@ -75,24 +70,6 @@ function addToDOM() {
 		container.removeChild(canvas[0]);
 	}
 	container.appendChild( renderer.domElement );
-}
-
-function drawHelpers() {
-	if (ground) {
-		Coordinates.drawGround({size:10000});
-	}
-	if (gridX) {
-		Coordinates.drawGrid({size:10000,scale:0.01});
-	}
-	if (gridY) {
-		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"y"});
-	}
-	if (gridZ) {
-		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"z"});
-	}
-	if (axes) {
-		Coordinates.drawAllAxes({axisLength:200,axisRadius:1,axisTess:50});
-	}
 }
 
 function animate() {

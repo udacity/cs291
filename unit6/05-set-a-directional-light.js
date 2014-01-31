@@ -2,7 +2,7 @@
 // Add a directional light
 ////////////////////////////////////////////////////////////////////////////////
 
-/*global THREE, Coordinates, document, window*/
+/*global THREE, Coordinates, document, window, $*/
 
 var camera, scene, renderer;
 var cameraControls;

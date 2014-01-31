@@ -2,7 +2,7 @@
 // Helix: replace spheres with capsules (cheese logs)
 // Your task is to modify the createHelix function
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, Coordinates, document, window, dat*/
+/*global THREE, Coordinates, document, window, dat, $*/
 
 var camera, scene, renderer;
 var cameraControls, effectController;
