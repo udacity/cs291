@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Clock exercise: rotate hands correctly
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, Coordinates, document, window, dat*/
+/*global THREE, Coordinates, document, window, dat, $*/
 
 var camera, scene, renderer;
 var cameraControls, effectController;

@@ -3,7 +3,7 @@
 // This is rendering mode #1
 // Rotate the scene and see how the objects are displayed
 ////////////////////////////////////////////////////////////////////////////////
-/*global, THREE, requestAnimationFrame, window, document, Stats */
+/*global THREE, requestAnimationFrame, window, document, Stats */
 var container, camera, scene, renderer, stats;
 var cameraControls;
 var clock = new THREE.Clock();

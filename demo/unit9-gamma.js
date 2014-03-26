@@ -6,7 +6,6 @@
 
 var camera, scene;
 var renderer = null;
-var oldRenderer;
 var cameraControls;
 var ec;
 var clock = new THREE.Clock();
@@ -42,7 +41,6 @@ function init() {
 
 	// GROUND
 
-	var gg = new THREE.PlaneGeometry( 400, 400, 0, 0 );
 	white_material = new THREE.MeshPhongMaterial( { color: 0xFFFFFF, specular: 0x0, side: THREE.DoubleSide } );
 
 	gradient_material = new THREE.MeshPhongMaterial( { vertexColors: THREE.VertexColors, specular: 0x0, side: THREE.DoubleSide } );

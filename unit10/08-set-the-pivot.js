@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Change from fixed steps to timed updates
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, Coordinates, document, window, container, Stats*/
+/*global THREE, Coordinates, document, window, container, Stats, $*/
 
 var camera, scene, renderer, stats;
 var cameraControls;

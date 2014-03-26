@@ -2,7 +2,7 @@
 // Cylinder creation: add glue code to make point-to-point cylinders
 // Your task is to modify the createCylinderFromEnds function
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, Coordinates, document, window, dat*/
+/*global THREE, Coordinates, document, window, dat, $*/
 var camera, scene, renderer;
 var cameraControls, effectController;
 var clock = new THREE.Clock();

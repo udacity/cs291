@@ -1,15 +1,21 @@
 ////////////////////////////////////////////////////////////////////////////////
-// Drinking Bird Model exercise
-// Your task is to complete the model for the drinking bird
-// The following forms and sizes should be used:
-// Hat: cylinder. color blue (cylinderMaterial)
-//		Diameter top 80, bottom, full height 80, edge 10
-// Head: sphere, red (sphereMaterial), diameter 104
-// Middle of base: cube, color orange (cubeMaterial), width 77, length 194
-// Feet: cube, color orange, width 6, length 194, height 52
-// Legs: cube, color orange, width 6, length 64, height 386
-// Body: sphere, red, diameter 116
-// Spine: cylinder, blue, diameter 24, length 390
+// Drinking Bird Model exercise                                               //
+// Your task is to complete the model for the drinking bird                   //
+// The following forms and sizes should be used:                              //
+// Hat: cylinder. color blue (cylinderMaterial)                               //
+//      Diameter top 80, bottom, full height 80, edge 10                      //
+// Head: sphere, red (sphereMaterial), diameter 104                           //
+// Middle of base: cube, color orange (cubeMaterial), width 77, length 194    //
+// Feet: cube, color orange, width 6, length 194, height 52                   //
+// Legs: cube, color orange, width 6, length 64, height 386                   //
+// Body: sphere, red, diameter 116                                            //
+// Spine: cylinder, blue, diameter 24, length 390                             //
+//                                                                            //
+// So that the exercise passes, and the spheres and cylinders look good,      //
+// all SphereGeometry calls should be of the form:                            //
+//     SphereGeometry( radius, 32, 16 );                                      //
+// and CylinderGeometry calls should be of the form:                          //
+//     CylinderGeometry( radiusTop, radiusBottom, height, 32 );               //
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, Coordinates, $, document, window, dat*/
 

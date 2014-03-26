@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Scaling exercise: scale the sphere to make it look like a clock hand
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, Coordinates, document, window, dat*/
+/*global THREE, Coordinates, document, window, dat, $*/
 
 var camera, scene, renderer;
 var cameraControls, effectController;

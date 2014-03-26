@@ -1,4 +1,4 @@
-/*global, THREE,  document, window, dat*/
+/*global THREE, requestAnimationFrame, document, window, dat*/
 var camera, scene, renderer;
 
 var cameraControls;

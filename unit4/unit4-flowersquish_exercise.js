@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 // Flower petal improvement: scale and re-orient the petals to look better
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, Coordinates, document, window, dat*/
+/*global THREE, Coordinates, document, window, dat, $*/
 
 var camera, scene, renderer;
 var cameraControls, effectController;

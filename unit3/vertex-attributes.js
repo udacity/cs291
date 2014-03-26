@@ -1,5 +1,5 @@
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, window, document*/
+/*global THREE, window, document, $*/
 var camera, scene, renderer;
 var cameraControls;
 var clock = new THREE.Clock();
