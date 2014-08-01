@@ -62,6 +62,7 @@ function fillScene() {
 	// createRobotBody( body, bodyLength, robotBodyMaterial );
 	// ALSO CHECK OUT GUI CONTROLS FOR BODY
 	// IN THE FUNCTIONS setupGUI() and render()
+	// Note you'll have to add the body to the scene to get it to display.
 }
 
 function createRobotExtender( part, length, material )
