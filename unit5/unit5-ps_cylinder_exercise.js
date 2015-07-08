@@ -1,3 +1,4 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Cylinder creation: add glue code to make point-to-point cylinders
 // Your task is to modify the createCylinderFromEnds function

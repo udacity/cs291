@@ -1,3 +1,4 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Capsule creation: add spheres so that method creates capsules (cheese logs)
 // Your task is to modify the createCapsule function
