@@ -1,3 +1,4 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Tweening demo
 // tutorial: http://learningthreejs.com/blog/2011/08/17/tweenjs-for-smooth-animation/

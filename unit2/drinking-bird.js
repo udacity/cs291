@@ -1,3 +1,4 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Drinking Bird Model exercise                                               //
 // Your task is to complete the model for the drinking bird                   //

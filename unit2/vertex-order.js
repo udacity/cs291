@@ -1,3 +1,4 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Vertex Order Exercise
 // Your task is to determine the problem and fix the vertex drawing order.

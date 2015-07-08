@@ -1,3 +1,4 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Helix: replace spheres with capsules (cheese logs)
 // Your task is to modify the createHelix function

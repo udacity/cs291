@@ -1,3 +1,4 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Rotate, then scale
 // NOTE: this is not really a demo, just a way to show what goes wrong with a
