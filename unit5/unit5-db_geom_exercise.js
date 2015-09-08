@@ -1,3 +1,4 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Drinking Bird: add eyes, nose, and a crossbar
 // Your task is to modify the createDrinkingBird function around line 163

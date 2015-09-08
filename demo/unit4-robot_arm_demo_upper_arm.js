@@ -1,3 +1,4 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Just the upper arm of the robot, for testing
 ////////////////////////////////////////////////////////////////////////////////
@@ -200,7 +201,11 @@ function setupGui() {
 }
 
 function takeScreenshot() {
-	effectController.newGround = true, effectController.newGridX = false, effectController.newGridY = false, effectController.newGridZ = false, effectController.newAxes = false;
+	effectController.newGround = true;
+	effectController.newGridX = false;
+	effectController.newGridY = false;
+	effectController.newGridZ = false;
+	effectController.newAxes = false;
 	init();
 	render();
 	var img1 = renderer.domElement.toDataURL("image/png");

@@ -1,7 +1,8 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Smooth shading exercise: change program to make sphere look smooth
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, window, document*/
+/*global THREE, window, document, $*/
 
 var camera, scene, renderer;
 var cameraControls;

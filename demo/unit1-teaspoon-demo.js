@@ -1,3 +1,4 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Newell Teaspoon demo
 ////////////////////////////////////////////////////////////////////////////////
@@ -111,7 +112,7 @@ function setupGui() {
 		saturation: 0.01,
 		lightness:  0.9,
 
-		lhue:		 0.04,
+		lhue:        0.04,
 		lsaturation: 0.01,	// so that fractions will be shown
 		llightness:  1.0,
 

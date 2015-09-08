@@ -1,7 +1,8 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Make 4 viewports
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, Coordinates */
+/*global THREE, Coordinates, $ */
 
 var camera, topCam, sideCam, frontCam;
 var scene, renderer;

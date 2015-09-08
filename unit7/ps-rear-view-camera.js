@@ -1,7 +1,8 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Rearview camera
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, Coordinates */
+/*global THREE, Coordinates, $ */
 
 var camera, rearCam, scene, renderer;
 var cameraControls;

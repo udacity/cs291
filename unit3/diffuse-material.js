@@ -1,7 +1,8 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Diffuse material exercise
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, window, document*/
+/*global THREE, window, document, $*/
 
 var camera, scene, renderer;
 var cameraControls;

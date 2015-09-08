@@ -1,9 +1,10 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Magnification demo
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, Coordinates, document, window, dat*/
 
-var path = "/";	// STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
+var path = "";	// STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
 
 var camera, scene, renderer;
 var cameraControls, effectController;
@@ -107,7 +108,7 @@ function init() {
 
 	// Camera: Y up, X right, Z up
 	camera = new THREE.PerspectiveCamera( 1, canvasRatio, 1, 2000 );
-	camera.position.set( 0.75, 0.5, 100 );
+	camera.position.set( 30, 32, 90 );
 
 	// CONTROLS
 	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);

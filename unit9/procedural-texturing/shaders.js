@@ -1,9 +1,10 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Procedural texturing
 // Your task is to change the fragment shader, and only that
 // Edit the file named fragment.glsl in the tab above.
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, document, window, dat*/
+/*global THREE, document, window, dat, $*/
 
 var camera, scene, renderer, light;
 var cameraControls, effectController, phongMaterial;

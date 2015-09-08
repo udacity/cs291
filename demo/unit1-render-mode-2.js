@@ -1,9 +1,10 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Rendering modes demo
 // This is rendering mode #2
 // Rotate the scene and see how the objects are displayed
 ////////////////////////////////////////////////////////////////////////////////
-/*global, THREE, requestAnimationFrame, window, document, Stats */
+/*global THREE, requestAnimationFrame, window, document, Stats */
 var container, camera, scene, renderer, stats;
 var cameraControls;
 var clock = new THREE.Clock();

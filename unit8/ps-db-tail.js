@@ -1,7 +1,8 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Add a tail feather to the drinking bird
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE */
+/*global THREE, $ */
 
 var camera, scene, renderer;
 var cameraControls;

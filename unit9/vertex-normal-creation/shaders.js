@@ -1,17 +1,15 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Vertex normal creation:
 // You have to modify only the vertex shader in this exercise.
 // It can be found in the file vertex.glsl in the tabs above.
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, requestAnimationFrame, Detector, dat */
-var container, camera, scene, renderer;
+/*global THREE, requestAnimationFrame, dat, $ */
+var camera, scene, renderer;
 var cameraControls;
 var effectController;
 var clock = new THREE.Clock();
-var teapotSize = 600;
 var tess = 7, newTess = tess;
-var tessLevel = [2, 3, 4, 5, 6, 8, 10, 12, 16, 24, 32];
-var maxTessLevel = tessLevel.length - 1;
 var ambientLight, light;
 var teapot;
 var phongBalancedMaterial;

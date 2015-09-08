@@ -1,7 +1,8 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Add a specular texture
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, requestAnimationFrame */
+/*global THREE, requestAnimationFrame, $ */
 
 var camera, scene, renderer;
 var cameraControls;

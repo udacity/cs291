@@ -1,7 +1,8 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Adding shadows to a spotlight
 ////////////////////////////////////////////////////////////////////////////////
-/* global THREE, Coordinates, document, window, dat */
+/* global THREE, Coordinates, document, window, dat, $ */
 
 var camera, scene, renderer;
 var cameraControls;

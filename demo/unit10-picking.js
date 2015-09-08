@@ -1,3 +1,4 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Picking: pick object and change its color and place a sphere
 ////////////////////////////////////////////////////////////////////////////////
@@ -110,7 +111,7 @@ function onDocumentMouseDown( event ) {
 
 
 	// getBoundingClientRect()
-	//   givest the element's position relative to the browser's visile viewport.
+	//   gives the element's position relative to the browser's visible viewport.
 	// clientX/Y
 	//   gives the mouse position relative to the browser's visible viewport.
 	//

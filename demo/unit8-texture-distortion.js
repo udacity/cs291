@@ -1,10 +1,11 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Adjust textured upper corners demo
 ////////////////////////////////////////////////////////////////////////////////
 
 /*global THREE, Coordinates, document, window, dat*/
 
-var path = "/";	// STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
+var path = "";	// STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
 
 var camera, scene, renderer;
 var cameraControls, effectController;
@@ -111,10 +112,10 @@ function init() {
 	featherTexture.wrapS = THREE.RepeatWrapping; featherTexture.wrapT = THREE.RepeatWrapping;
 
 	// MATERIALS
-	material['crate'] = new THREE.MeshBasicMaterial( { map: crateTexture } );
-	material['grid'] = new THREE.MeshBasicMaterial( { map: gridTexture } );
-	material['maple'] = new THREE.MeshBasicMaterial( { map: mapleTexture, transparent: true } );
-	material['feather'] = new THREE.MeshBasicMaterial( { map: featherTexture, transparent: true } );
+	material.crate = new THREE.MeshBasicMaterial( { map: crateTexture } );
+	material.grid = new THREE.MeshBasicMaterial( { map: gridTexture } );
+	material.maple = new THREE.MeshBasicMaterial( { map: mapleTexture, transparent: true } );
+	material.feather = new THREE.MeshBasicMaterial( { map: featherTexture, transparent: true } );
 
 	wireMaterial = new THREE.MeshBasicMaterial( { wireframe: true, color: 0x00FF00 } );
 

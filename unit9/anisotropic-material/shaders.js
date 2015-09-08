@@ -1,9 +1,10 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // anisotropic shading
 // Your task is to change the fragment shader, and only that
 // Edit the file named fragment.glsl in the tab above.
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, requestAnimationFrame, dat */
+/*global THREE, requestAnimationFrame, dat, $ */
 
 var camera, scene, renderer;
 var cameraControls;

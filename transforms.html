@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<style>
+			body {
+				font-family: Monospace;
+				background-color: #F5F5F5;
+				margin: 0px;
+				overflow: hidden;
+			}
+			#container {
+				height: 492px;
+				width: 876px;
+			}
+		</style>
+		<script src="lib/jquery-1.8.3.min.js"></script>
+		<script src="lib/three.min.js"></script>
+		<script src="lib/Detector.js"></script>
+		<script src="lib/Coordinates.js"></script>
+		<script src="lib/OrbitAndPanControls.js"></script>
+		<script src="lib/TrackballControls.js"></script>
+		<script src="lib/uclass_TeapotGeometry.js"></script>
+		<script src="lib/uclass_TeacupGeometry.js"></script>
+		<script src="lib/uclass_TeaspoonGeometry.js"></script>
+		<script src="lib/uclass_BeveledBlockGeometry.js"></script>
+		<script src="lib/uclass_shaders.js"></script>
+		<script src="lib/stats.min.js"></script>
+		<script src="lib/dat.gui.min.js"></script>
+		<script src="lib/tween.min.js"></script>
+		<script src="lib/sprintf.js"></script>
+		<script>
+			function getParameterByName(name) {
+			var match = RegExp('[?&]' + name + '=([^&]*)')
+							.exec(window.location.search);
+			return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+			}
+			var loadScript = "demo/unit7-view-pipeline.js";
+			if ('undefined' !== typeof loadScript) {
+				if ( loadScript !== null ) {
+					var thescript = document.createElement('script');
+					thescript.setAttribute('type','text/javascript');
+					thescript.setAttribute('src',loadScript);
+					document.getElementsByTagName('head')[0].appendChild(thescript);
+				}
+			}
+			else {
+				alert(loadScript);
+			}
+		</script>
+	</head>
+	<body>
+		<div id="container">Explained a bit <a href="http://www.realtimerendering.com/blog/improved-graphics-transforms-demo/">here</a>.
+		</div>
+		<script>
+			if ( ! Detector.webgl ) {
+				Detector.addGetWebGLMessage();
+			}
+			else {
+				elem = document.createElement("div");
+				elem.id = 'myID';
+				elem.innerHTML =
+					'<br><form name="run">';
+
+					elem.innerHTML = loadScript;
+					elem.innerHTML = elem.innerHTML + "</form><br/>";
+
+					document.body.insertBefore(elem,document.body.childNodes[0])
+			}
+		</script>
+	</body>
+
+</html>

@@ -1,8 +1,9 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Cylinder creation: add glue code to make point-to-point cylinders
 // Your task is to modify the createCylinderFromEnds function
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, Coordinates, document, window, dat*/
+/*global THREE, Coordinates, document, window, dat, $*/
 var camera, scene, renderer;
 var cameraControls, effectController;
 var clock = new THREE.Clock();
@@ -15,7 +16,7 @@ var ground = true;
 /**
 * Returns a THREE.Mesh cone (CylinderGeometry) going from top to bottom positions
 * @param material - THREE.Material
-* @param radiusTop, radiusBottom - same as CylinderGeometry, the top and bottom radii of the cone
+* @param radius - the radius of the capsule's cylinder
 * @param top, bottom - THREE.Vector3, top and bottom positions of cone
 * @param segmentsWidth - tessellation around equator, like radiusSegments in CylinderGeometry
 * @param openEnded - whether the ends of the cone are generated; true means they are not

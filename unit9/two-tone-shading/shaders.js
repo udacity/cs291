@@ -1,8 +1,9 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // toon (cel) shading
 // The shaders can be found in the files vertex.glsl and fragment.glsl
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, document, window, dat*/
+/*global THREE, document, window, dat, $*/
 
 var camera, scene, renderer, light;
 var cameraControls, effectController, phongMaterial;

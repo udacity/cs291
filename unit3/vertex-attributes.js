@@ -1,5 +1,6 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, window, document*/
+/*global THREE, window, document, $*/
 var camera, scene, renderer;
 var cameraControls;
 var clock = new THREE.Clock();

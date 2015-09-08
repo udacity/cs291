@@ -1,4 +1,5 @@
-/*global, THREE,  document, window, dat*/
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
+/*global THREE, requestAnimationFrame, document, window, dat*/
 var camera, scene, renderer;
 
 var cameraControls;

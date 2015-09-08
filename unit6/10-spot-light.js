@@ -1,7 +1,8 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Adding a spotlight
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, Coordinates, document, window*/
+/*global THREE, Coordinates, document, window, $*/
 
 var camera, scene, renderer;
 var cameraControls;

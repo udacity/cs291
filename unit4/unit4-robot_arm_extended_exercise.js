@@ -1,3 +1,4 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Extended robot arm exercise: add a body
 ////////////////////////////////////////////////////////////////////////////////
@@ -62,6 +63,7 @@ function fillScene() {
 	// createRobotBody( body, bodyLength, robotBodyMaterial );
 	// ALSO CHECK OUT GUI CONTROLS FOR BODY
 	// IN THE FUNCTIONS setupGUI() and render()
+	// Note you'll have to add the body to the scene to get it to display.
 }
 
 function createRobotExtender( part, length, material )

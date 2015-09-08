@@ -1,8 +1,11 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Quaternion demo
 ////////////////////////////////////////////////////////////////////////////////
 
 /*global THREE, document, window, Stats, TWEEN, dat*/
+
+var path = "";	// STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
 
 var camera, scene, renderer, stats;
 var cameraControls;
@@ -15,7 +18,7 @@ var bevelRadius = 1.9;	// TODO: 2.0 causes some geometry bug.
 
 var headlight, light;
 
-var bird, hat;
+var bird, hat, traceQuat, traceEuler;
 
 function init() {
 	var canvasWidth = window.innerWidth;
@@ -119,6 +122,14 @@ function fillScene() {
 	createDrinkingBird( bird );
 
 	scene.add( bird );
+
+	//////////////////////////////
+	// Tracing lines
+	traceQuat = new Trace(4000,0xff0000);
+	traceEuler = new Trace(4000,0x00ff00);
+
+	scene.add( traceQuat.line );
+	scene.add( traceEuler.line );
 
 	setupGui();
 
@@ -272,8 +283,7 @@ function createBody(bbody) {
 }
 function createTail() {
 	// solution
-	// for local display, change path to 'media/img/...', removing the initial '/' character
-	var tailTexture = THREE.ImageUtils.loadTexture( '/media/img/cs291/textures/feather.png' );
+	var tailTexture = THREE.ImageUtils.loadTexture( path + 'media/img/cs291/textures/feather.png' );
 	var tail = new THREE.Mesh(
 		new THREE.PlaneGeometry( 100, 100, 1, 1 ),
 		new THREE.MeshLambertMaterial(
@@ -519,6 +529,64 @@ function setTweens()
 	tweenHatForward.start();
 }
 
+var Trace = function(npoints,color) {
+	this.npoints = (npoints !== undefined) ? npoints : 1000;
+	color = (color !== undefined) ? color : 0xff0000;
+
+	this.geom = new THREE.Geometry();
+	this.mat = new THREE.LineBasicMaterial( {color: color, linewidth: 4.0});
+
+	// pre allocate vertices
+	for (var i = 0; i < this.npoints ; i++ ) {
+		this.geom.vertices.push( new THREE.Vector3(0,0,0) );
+	}
+	this.idx = 0;
+
+	this.line = new THREE.Line(this.geom, this.mat, THREE.LinePieces);
+
+	this.lastPoint = null;
+}
+
+Trace.prototype = {
+
+	addPoint: function(p) {
+
+		if (this.lastPoint === null) this.lastPoint = p;
+
+		if (this.idx >= this.npoints - 1 ) this.idx = 0;
+
+		// Using LinePieces, each pair of vertices creates a line,
+		// so we need to connect to last vertex. 
+		this.geom.vertices[this.idx].copy(this.lastPoint);
+		this.geom.vertices[this.idx+1].copy(p);
+
+		this.lastPoint = this.geom.vertices[this.idx+1];
+
+		this.geom.verticesNeedUpdate = true;
+
+		this.idx += 2 ;
+	},
+
+	unlinkLine: function() {
+
+		// this causes the next point to not be linked to the previous one 
+		// (useful for very large jumps where we don't want a straight line connecting them)
+		this.lastPoint = null;
+	},
+
+	clear: function() {
+		for (var i = 0; i < this.npoints ; i++ ) {
+			this.geom.vertices[i].set(0,0,0);
+		}
+		this.geom.verticesNeedUpdate = true;
+		this.idx = 0;
+
+		this.unlinkLine();
+
+	}
+};
+
+
 function setupGui() {
 
 	effectController = {
@@ -531,7 +599,9 @@ function setupGui() {
 		backwardHatAngle: 50,
 
 		useBodyRotation: false,
-		shadowDarkness: light.shadowDarkness
+		shadowDarkness: light.shadowDarkness,
+
+		showTraces: true,
 	};
 
 	var gui = new dat.GUI();
@@ -539,26 +609,44 @@ function setupGui() {
 	gui.add( effectController, "useQuaternion" ).name( "use quaternions" ).onChange( function() {
 		TWEEN.removeAll();
 		setTweens();
+		traceQuat.unlinkLine();
+		traceEuler.unlinkLine();
 	});
 	gui.add( effectController, "goAtAnAngle" ).name( "hat axis angled" ).onChange( function() {
 		TWEEN.removeAll();
 		setTweens();
+		traceQuat.clear();
+		traceEuler.clear();
 	});
 	gui.add( effectController, "forwardHatAngle", 0.0, 90.0, 1.0 ).name("forward angle").onChange( function() {
 		TWEEN.removeAll();
 		setTweens();
+		traceQuat.unlinkLine();
+		traceEuler.unlinkLine();
 	});
 	gui.add( effectController, "backwardHatAngle", 0.0, 90.0, 1.0 ).name("backward angle").onChange( function() {
 		TWEEN.removeAll();
 		setTweens();
+		traceQuat.unlinkLine();
+		traceEuler.unlinkLine();
+
 	});
 	gui.add( effectController, "useBodyRotation" ).name( "animate bird" ).onChange( function() {
 		bird.animated.rotation.z = 0;
 		TWEEN.removeAll();
 		setTweens();
+		traceQuat.clear();
+		traceEuler.clear();
 	});
 	gui.add( effectController, "shadowDarkness", 0.0, 1.0, 0.1 ).name( "shadow darkness" ).onChange( function() {
 		light.shadowDarkness = effectController.shadowDarkness;
+	});
+
+	gui.add( effectController, "showTraces").name("show traces").onChange( function() {
+		traceQuat.clear();
+		traceEuler.clear();
+		traceQuat.line.visible = effectController.showTraces;
+		traceEuler.line.visible = effectController.showTraces;
 	});
 }
 
@@ -567,6 +655,7 @@ function animate() {
 	render();
 }
 
+var p = new THREE.Vector3();
 function render() {
 	var delta = clock.getDelta();
 	cameraControls.update(delta);
@@ -575,6 +664,19 @@ function render() {
 	stats.update();
 	TWEEN.update();
 	renderer.render(scene, camera);
+
+
+	if (effectController.showTraces) {
+		//point at the top of the hat (+10)
+		p.set(0,40 + 10 + 70 + 10,0);
+		hat.localToWorld(p);
+		if (effectController.useQuaternion) {
+			traceQuat.addPoint(p);
+		} else {
+			traceEuler.addPoint(p);
+		}
+	}
+
 }
 
 init();

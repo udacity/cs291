@@ -1,3 +1,4 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Particle System
 ////////////////////////////////////////////////////////////////////////////////
@@ -6,7 +7,7 @@
 
 //if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
 
-var path = "/";	// STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
+var path = "";	// STUDENT: set to "" to run on your computer, "/" for submitting code to Udacity
 
 var camera, scene, renderer, stats;
 var cameraControls;

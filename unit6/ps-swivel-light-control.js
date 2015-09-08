@@ -1,7 +1,8 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Make a swivel light
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, Coordinates, document, dat, window*/
+/*global THREE, Coordinates, document, dat, window, $*/
 
 var camera, scene, renderer;
 var cameraControls, effectController;

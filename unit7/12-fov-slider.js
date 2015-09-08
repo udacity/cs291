@@ -1,7 +1,8 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Field of view exercise
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, Coordinates, document, dat, window*/
+/*global THREE, Coordinates, document, window, $*/
 
 var camera, scene, renderer;
 var cameraControls, effectController;

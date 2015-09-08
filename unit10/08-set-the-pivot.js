@@ -1,7 +1,8 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Change from fixed steps to timed updates
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, Coordinates, document, window, container, Stats*/
+/*global THREE, Coordinates, document, window, container, Stats, $*/
 
 var camera, scene, renderer, stats;
 var cameraControls;

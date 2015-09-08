@@ -1,8 +1,9 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Add a directional light
 ////////////////////////////////////////////////////////////////////////////////
 
-/*global THREE, Coordinates, document, window*/
+/*global THREE, Coordinates, document, window, $*/
 
 var camera, scene, renderer;
 var cameraControls;

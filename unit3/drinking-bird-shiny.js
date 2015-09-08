@@ -1,7 +1,8 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Make hat, body, leg and foot of Drinking Bird shiny
 ////////////////////////////////////////////////////////////////////////////////
-/*global THREE, Coordinates, document, window */
+/*global THREE, Coordinates, document, window, $ */
 var camera, scene, renderer;
 var cameraControls;
 
