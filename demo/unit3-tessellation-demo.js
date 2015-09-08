@@ -11,6 +11,7 @@ var ambientLight, light;
 var tess = 3;	// force initialization
 var wire;
 var flat;
+var sphere;
 
 function init() {
 	var canvasWidth = window.innerWidth;
@@ -46,6 +47,13 @@ function init() {
 	cameraControls = new THREE.OrbitAndPanControls( camera, renderer.domElement );
 	cameraControls.target.set(0, 0, 0);
 
+	scene = new THREE.Scene();
+	scene.fog = new THREE.Fog( 0x808080, 2000, 4000 );
+
+	// LIGHTS
+	scene.add( ambientLight );
+	scene.add( light );
+
 	fillScene();
 	// GUI
 	setupGui();
@@ -70,16 +78,17 @@ material2.ambient.setRGB( material2.color.r * ka, material2.color.g * ka, materi
 var material3 = new THREE.MeshLambertMaterial( { color: 0xFFFF00, wireframe: true } );
 
 function fillScene() {
-	scene = new THREE.Scene();
-	scene.fog = new THREE.Fog( 0x808080, 2000, 4000 );
-
-	// LIGHTS
-	scene.add( ambientLight );
-	scene.add( light );
 
 	var material = wire ? material3 : (flat ? material1 : material2 );
-	var sphere = new THREE.Mesh(new THREE.SphereGeometry( 400, tess*2, tess ), material);
+	
+	if ( sphere !== undefined ) {
 
+		sphere.geometry.dispose();
+		scene.remove( sphere );
+					
+	}
+
+	sphere = new THREE.Mesh(new THREE.SphereGeometry( 400, tess*2, tess ), material);
 
 	scene.add( sphere );
 

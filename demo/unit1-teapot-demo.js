@@ -1,4 +1,3 @@
-"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
 ////////////////////////////////////////////////////////////////////////////////
 // Utah/Newell Teapot demo
 ////////////////////////////////////////////////////////////////////////////////
@@ -20,6 +19,7 @@ var wire;
 var flat;
 var phong;
 var flatGouraudMaterial, flatPhongMaterial, gouraudMaterial, phongMaterial, wireMaterial;
+var teapot;
 
 function init() {
 	var canvasWidth = window.innerWidth;
@@ -84,6 +84,16 @@ function init() {
 
 	wireMaterial = new THREE.MeshBasicMaterial( { color: 0xFFCC99, wireframe: true } ) ;
 
+	// scene itself
+	scene = new THREE.Scene();
+	scene.fog = new THREE.Fog( 0x808080, 2000, 4000 );
+
+	// LIGHTS
+
+	scene.add( ambientLight );
+	scene.add( light );
+	scene.add( particleLight );
+
 	// GUI
 	setupGui();
 
@@ -117,7 +127,7 @@ function setupGui() {
 		saturation: 0.46,
 		lightness:  0.9,
 
-		lhue:        0.04,
+		lhue:		 0.04,
 		lsaturation: 0.01,	// so that fractions will be shown
 		llightness:  1.0,
 
@@ -284,18 +294,16 @@ function createShaderMaterial( id, light, ambientLight ) {
 }
 
 function fillScene() {
-	scene = new THREE.Scene();
-	scene.fog = new THREE.Fog( 0x808080, 2000, 4000 );
-
-	// LIGHTS
-
-	scene.add( ambientLight );
-	scene.add( light );
-	scene.add( particleLight );
 
 	// Coordinates.drawAllAxes({axisLength:1000,axisRadius:5,axisTess:50});
+	if ( teapot !== undefined ) {
 
-	var teapot = new THREE.Mesh(
+		teapot.geometry.dispose();
+		scene.remove( teapot );
+					
+	}
+
+	teapot = new THREE.Mesh(
 		new THREE.TeapotGeometry( teapotSize,
 				tess,
 				effectController.bottom,

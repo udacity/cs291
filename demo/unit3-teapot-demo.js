@@ -15,6 +15,7 @@ var wire;
 var flat;
 var phong;
 var flatGouraudMaterial, flatPhongMaterial, gouraudMaterial, phongMaterial, wireMaterial;
+var teapot;
 
 function init() {
 	var canvasWidth = window.innerWidth;
@@ -78,6 +79,15 @@ function init() {
 	phongMaterial.side = THREE.DoubleSide;
 
 	wireMaterial = new THREE.MeshBasicMaterial( { color: 0xFFCC99, wireframe: true } ) ;
+
+	scene = new THREE.Scene();
+	scene.fog = new THREE.Fog( 0x808080, 2000, 4000 );
+
+	// LIGHTS
+
+	scene.add( ambientLight );
+	scene.add( light );
+	scene.add( particleLight );
 
 	// GUI
 	setupGui();
@@ -258,16 +268,14 @@ function createShaderMaterial( id, light, ambientLight ) {
 }
 
 function fillScene() {
-	scene = new THREE.Scene();
-	scene.fog = new THREE.Fog( 0x808080, 2000, 4000 );
-
-	// LIGHTS
-
-	scene.add( ambientLight );
-	scene.add( light );
-	scene.add( particleLight );
 
 	// Coordinates.drawAllAxes({axisLength:1000,axisRadius:5,axisTess:50});
+	if ( teapot !== undefined ) {
+
+		teapot.geometry.dispose();
+		scene.remove( teapot );
+					
+	}
 
 	var teapot = new THREE.Mesh(
 		new THREE.TeapotGeometry( teapotSize, tess, true, true, true, true ),
