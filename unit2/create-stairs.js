@@ -43,22 +43,27 @@ function createStairs() {
 	var stepMesh;
 
 	// Make and position the vertical part of the step
+  for ( var i = 0; i < 6; i++ )
+  {
 	stepMesh = new THREE.Mesh( stepVertical, stepMaterialVertical );
 	// The position is where the center of the block will be put.
 	// You can define position as THREE.Vector3(x, y, z) or in the following way:
-	stepMesh.position.x = 0;			// centered at origin
-	stepMesh.position.y = verticalStepHeight/2;	// half of height: put it above ground plane
-	stepMesh.position.z = 0;			// centered at origin
-	scene.add( stepMesh );
+  // adding the code to finish assignment
+  
+    stepMesh.position.x = 0;			// centered at origin
+    stepMesh.position.y = verticalStepHeight/2 + i * ( verticalStepHeight + stepThickness );	// half of height: put it above ground plane
+    stepMesh.position.z = i * ( horizontalStepDepth - stepThickness );			// centered at origin
+    scene.add( stepMesh );
 
-	// Make and position the horizontal part
-	stepMesh = new THREE.Mesh( stepHorizontal, stepMaterialHorizontal );
-	stepMesh.position.x = 0;
-	// Push up by half of horizontal step's height, plus vertical step's height
-	stepMesh.position.y = stepThickness/2 + verticalStepHeight;
-	// Push step forward by half the depth, minus half the vertical step's thickness
-	stepMesh.position.z = horizontalStepDepth/2 - stepHalfThickness;
-	scene.add( stepMesh );
+    // Make and position the horizontal part
+    stepMesh = new THREE.Mesh( stepHorizontal, stepMaterialHorizontal );
+    stepMesh.position.x = 0;
+    // Push up by half of horizontal step's height, plus vertical step's height
+    stepMesh.position.y = stepThickness/2 + verticalStepHeight + i * ( verticalStepHeight + stepThickness );
+    // Push step forward by half the depth, minus half the vertical step's thickness
+    stepMesh.position.z = horizontalStepDepth/2 - stepHalfThickness + i * ( horizontalStepDepth - stepThickness );
+    scene.add( stepMesh );
+  }
 }
 
 function createCup() {
