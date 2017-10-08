@@ -59,9 +59,9 @@ function createStairs() {
     stepMesh = new THREE.Mesh( stepHorizontal, stepMaterialHorizontal );
     stepMesh.position.x = 0;
     // Push up by half of horizontal step's height, plus vertical step's height
-    stepMesh.position.y = stepThickness/2 + verticalStepHeight;
+    stepMesh.position.y = stepThickness/2 + verticalStepHeight + i * ( verticalStepHeight + stepThickness );
     // Push step forward by half the depth, minus half the vertical step's thickness
-    stepMesh.position.z = horizontalStepDepth/2 - stepHalfThickness;
+    stepMesh.position.z = horizontalStepDepth/2 - stepHalfThickness + i * ( horizontalStepDepth - stepThickness );
     scene.add( stepMesh );
   }
 }
