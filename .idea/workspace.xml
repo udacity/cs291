@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4bfae72b-9931-41bc-b735-31f16597eb0c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unit1/fix-javascript-errors.html" beforeDir="false" afterPath="$PROJECT_DIR$/unit1/fix-javascript-errors.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,7 +56,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1595386996306</updated>
-      <workItem from="1595386997584" duration="1283000" />
+      <workItem from="1595386997584" duration="1315000" />
     </task>
     <task id="LOCAL-00001" summary="fix-javascript-errors.html">
       <created>1595387920682</created>
@@ -80,7 +79,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595388089123</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="indent">
+      <created>1595388296052</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1595388296052</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -89,13 +95,14 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="fix-javascript-errors.html" />
     <MESSAGE value="var -&gt; let" />
-    <option name="LAST_COMMIT_MESSAGE" value="var -&gt; let" />
+    <MESSAGE value="indent" />
+    <option name="LAST_COMMIT_MESSAGE" value="indent" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="554" y="68" key="CommitChangelistDialog2" timestamp="1595388089047">
+    <state x="554" y="68" key="CommitChangelistDialog2" timestamp="1595388295972">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state x="554" y="68" key="CommitChangelistDialog2/0.0.1920.1044@0.0.1920.1044" timestamp="1595388089047" />
+    <state x="554" y="68" key="CommitChangelistDialog2/0.0.1920.1044@0.0.1920.1044" timestamp="1595388295972" />
     <state width="1897" height="340" key="GridCell.Tab.0.bottom" timestamp="1595387847575">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
@@ -144,10 +151,10 @@
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
     <state width="1897" height="340" key="GridCell.Tab.2.right/0.0.1920.1044@0.0.1920.1044" timestamp="1595387847512" />
-    <state x="556" y="256" key="Vcs.Push.Dialog.v2" timestamp="1595388091028">
+    <state x="556" y="256" key="Vcs.Push.Dialog.v2" timestamp="1595388297501">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state x="556" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1044@0.0.1920.1044" timestamp="1595388091028" />
+    <state x="556" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1044@0.0.1920.1044" timestamp="1595388297501" />
     <state x="754" y="435" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595387893540">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
