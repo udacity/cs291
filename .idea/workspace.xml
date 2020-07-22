@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4bfae72b-9931-41bc-b735-31f16597eb0c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/unit1/fix-javascript-errors.js" beforeDir="false" afterPath="$PROJECT_DIR$/unit1/fix-javascript-errors.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1f1YJs4xQV0rR5Qx39pP6w8IR0e" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="restartRequiresConfirmation" value="false" />
+  </component>
+  <component name="RunManager">
+    <configuration name="fix-javascript-errors.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/cs291/unit1/fix-javascript-errors.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.fix-javascript-errors.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4bfae72b-9931-41bc-b735-31f16597eb0c" name="Default Changelist" comment="" />
+      <created>1595386996306</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1595386996306</updated>
+      <workItem from="1595386997584" duration="993000" />
+    </task>
+    <task id="LOCAL-00001" summary="fix-javascript-errors.html">
+      <created>1595387920682</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1595387920682</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fix-javascript-errors.html" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix-javascript-errors.html" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="554" y="68" key="CommitChangelistDialog2" timestamp="1595387920591">
+      <screen x="0" y="0" width="1920" height="1044" />
+    </state>
+    <state x="554" y="68" key="CommitChangelistDialog2/0.0.1920.1044@0.0.1920.1044" timestamp="1595387920591" />
+    <state width="1897" height="340" key="GridCell.Tab.0.bottom" timestamp="1595387847575">
+      <screen x="0" y="0" width="1920" height="1044" />
+    </state>
+    <state width="1897" height="340" key="GridCell.Tab.0.bottom/0.0.1920.1044@0.0.1920.1044" timestamp="1595387847575" />
+    <state width="1897" height="340" key="GridCell.Tab.0.center" timestamp="1595387847574">
+      <screen x="0" y="0" width="1920" height="1044" />
+    </state>
+    <state width="1897" height="340" key="GridCell.Tab.0.center/0.0.1920.1044@0.0.1920.1044" timestamp="1595387847574" />
+    <state width="1897" height="340" key="GridCell.Tab.0.left" timestamp="1595387847574">
+      <screen x="0" y="0" width="1920" height="1044" />
+    </state>
+    <state width="1897" height="340" key="GridCell.Tab.0.left/0.0.1920.1044@0.0.1920.1044" timestamp="1595387847574" />
+    <state width="1897" height="340" key="GridCell.Tab.0.right" timestamp="1595387847574">
+      <screen x="0" y="0" width="1920" height="1044" />
+    </state>
+    <state width="1897" height="340" key="GridCell.Tab.0.right/0.0.1920.1044@0.0.1920.1044" timestamp="1595387847574" />
+    <state width="1897" height="340" key="GridCell.Tab.1.bottom" timestamp="1595387847512">
+      <screen x="0" y="0" width="1920" height="1044" />
+    </state>
+    <state width="1897" height="340" key="GridCell.Tab.1.bottom/0.0.1920.1044@0.0.1920.1044" timestamp="1595387847512" />
+    <state width="1897" height="340" key="GridCell.Tab.1.center" timestamp="1595387847511">
+      <screen x="0" y="0" width="1920" height="1044" />
+    </state>
+    <state width="1897" height="340" key="GridCell.Tab.1.center/0.0.1920.1044@0.0.1920.1044" timestamp="1595387847511" />
+    <state width="1897" height="340" key="GridCell.Tab.1.left" timestamp="1595387847511">
+      <screen x="0" y="0" width="1920" height="1044" />
+    </state>
+    <state width="1897" height="340" key="GridCell.Tab.1.left/0.0.1920.1044@0.0.1920.1044" timestamp="1595387847511" />
+    <state width="1897" height="340" key="GridCell.Tab.1.right" timestamp="1595387847512">
+      <screen x="0" y="0" width="1920" height="1044" />
+    </state>
+    <state width="1897" height="340" key="GridCell.Tab.1.right/0.0.1920.1044@0.0.1920.1044" timestamp="1595387847512" />
+    <state width="1897" height="340" key="GridCell.Tab.2.bottom" timestamp="1595387847513">
+      <screen x="0" y="0" width="1920" height="1044" />
+    </state>
+    <state width="1897" height="340" key="GridCell.Tab.2.bottom/0.0.1920.1044@0.0.1920.1044" timestamp="1595387847513" />
+    <state width="1897" height="340" key="GridCell.Tab.2.center" timestamp="1595387847512">
+      <screen x="0" y="0" width="1920" height="1044" />
+    </state>
+    <state width="1897" height="340" key="GridCell.Tab.2.center/0.0.1920.1044@0.0.1920.1044" timestamp="1595387847512" />
+    <state width="1897" height="340" key="GridCell.Tab.2.left" timestamp="1595387847512">
+      <screen x="0" y="0" width="1920" height="1044" />
+    </state>
+    <state width="1897" height="340" key="GridCell.Tab.2.left/0.0.1920.1044@0.0.1920.1044" timestamp="1595387847512" />
+    <state width="1897" height="340" key="GridCell.Tab.2.right" timestamp="1595387847512">
+      <screen x="0" y="0" width="1920" height="1044" />
+    </state>
+    <state width="1897" height="340" key="GridCell.Tab.2.right/0.0.1920.1044@0.0.1920.1044" timestamp="1595387847512" />
+    <state x="556" y="256" key="Vcs.Push.Dialog.v2" timestamp="1595387923081">
+      <screen x="0" y="0" width="1920" height="1044" />
+    </state>
+    <state x="556" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1044@0.0.1920.1044" timestamp="1595387923081" />
+    <state x="754" y="435" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595387893540">
+      <screen x="0" y="0" width="1920" height="1044" />
+    </state>
+    <state x="754" y="435" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1044@0.0.1920.1044" timestamp="1595387893540" />
+  </component>
+</project>
