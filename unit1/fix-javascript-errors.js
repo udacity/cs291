@@ -9,20 +9,20 @@
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, Coordinates, $, document, window*/
 
-var camera, scene, renderer;
-var windowScale;
-var cameraControls;
-var clock = new THREE.Clock();
+let camera, scene, renderer;
+let windowScale;
+let cameraControls;
+let clock = new THREE.Clock();
 
 function drawGoldCube() {
 
-	var cube;
-	var cubeSizeLength = 100;
-	var goldColor = "#FFDF00";
-	var showFrame = true;
-	var wireMaterial = new THREE.MeshBasicMaterial( { color: goldColor, wireframe: showFrame } ) ;
+	let cube;
+	let cubeSizeLength = 100;
+	let goldColor = "#FFDF00";
+	let showFrame = true;
+	let wireMaterial = new THREE.MeshBasicMaterial( { color: goldColor, wireframe: showFrame } ) ;
 
-	var cubeGeometry = new THREE.CubeGeometry(cubeSizeLength, cubeSizeLength, cubeSizeLength);
+	let cubeGeometry = new THREE.CubeGeometry(cubeSizeLength, cubeSizeLength, cubeSizeLength);
 
 	cube = new THREE.Mesh( cubeGeometry, wireMaterial );
 	cube.position.x = 0;	// centered at origin
@@ -33,12 +33,12 @@ function drawGoldCube() {
 }
 
 function init() {
-	var canvasWidth = 846;
-	var canvasHeight = 494;
+	let canvasWidth = 846;
+	let canvasHeight = 494;
 	// For grading the window is fixed in size; here's general code:
-	//var canvasWidth = window.innerWidth;
-	//var canvasHeight = window.innerHeight;
-	var canvasRatio = canvasWidth / canvasHeight;
+	//let canvasWidth = window.innerWidth;
+	//let canvasHeight = window.innerHeight;
+	let canvasRatio = canvasWidth / canvasHeight;
 	// SCENE
 	scene = new THREE.Scene();
 	scene.fog = new THREE.Fog( 0x808080, 2000, 4000 );
@@ -53,7 +53,7 @@ function init() {
 	renderer.setSize(canvasWidth, canvasHeight);
 	renderer.setClearColor( scene.fog.color, 1 );
 
-	var container = document.getElementById('container');
+	let container = document.getElementById('container');
 	container.appendChild( renderer.domElement );
 
 
@@ -76,7 +76,7 @@ function animate() {
 }
 
 function render() {
-	var delta = clock.getDelta();
+	let delta = clock.getDelta();
 	cameraControls.update(delta);
 	renderer.render(scene, camera);
 }
