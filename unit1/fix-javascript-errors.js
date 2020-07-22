@@ -28,7 +28,7 @@ function drawGoldCube() {
 	cube.position.x = 0;	// centered at origin
 	cube.position.y = 0;	// centered at origin
 	cube.position.z = 0;	// centered at origin
-	scene.add( cube ;
+	scene.add( cube );
 
 }
 
@@ -64,9 +64,9 @@ function init() {
 	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
 	cameraControls.target.set(0,0,0);
 
-	/ draw the coordinate grid
+	// draw the coordinate grid
 	Coordinates.drawGrid({size:1000,scale:0.01});
-	Coordinates.drawGrid(size:1000,scale:0.01, orientation:"y"});
+	Coordinates.drawGrid({size:1000,scale:0.01, orientation:"y"});
 	Coordinates.drawGrid({size:1000,scale:0.01, orientation:"z"});
 }
 
