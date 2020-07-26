@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4bfae72b-9931-41bc-b735-31f16597eb0c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.labbook/200726042408Z.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unit2/.answer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unit2/triangle-mesh.answer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unit2/triangle-mesh.js" beforeDir="false" afterPath="$PROJECT_DIR$/unit2/triangle-mesh.js" afterDir="false" />
     </list>
@@ -45,8 +46,11 @@
       <recent name="$PROJECT_DIR$/unit2" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.triangle-mesh.html">
+  <component name="RunManager" selected="JavaScript Debug.triangle-mesh.answer.html">
     <configuration name="fix-javascript-errors.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/cs291/unit1/fix-javascript-errors.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="triangle-mesh.answer.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/cs291/unit2/triangle-mesh.answer.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="triangle-mesh.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/cs291/unit2/triangle-mesh.html" useBuiltInWebServerPort="true">
@@ -68,6 +72,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.triangle-mesh.answer.html" />
         <item itemvalue="JavaScript Debug.triangle-mesh.html" />
         <item itemvalue="Shell Script.newmd.bash" />
         <item itemvalue="Node.js.triangle-mesh.js" />
@@ -87,7 +92,7 @@
       <updated>1595386996306</updated>
       <workItem from="1595386997584" duration="2934000" />
       <workItem from="1595458961124" duration="290000" />
-      <workItem from="1595737402949" duration="157000" />
+      <workItem from="1595737402949" duration="1587000" />
     </task>
     <task id="LOCAL-00001" summary="fix-javascript-errors.html">
       <created>1595387920682</created>
@@ -124,24 +129,40 @@
       <option name="project" value="LOCAL" />
       <updated>1595388324883</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="var -&gt; let">
+      <created>1595737622975</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1595737622975</updated>
+    </task>
+    <task id="LOCAL-00007" summary="created with HtmlInliner">
+      <created>1595737788289</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1595737788289</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="fix-javascript-errors.html" />
-    <MESSAGE value="var -&gt; let" />
     <MESSAGE value="indent" />
-    <option name="LAST_COMMIT_MESSAGE" value="indent" />
+    <MESSAGE value="var -&gt; let" />
+    <MESSAGE value="created with HtmlInliner" />
+    <option name="LAST_COMMIT_MESSAGE" value="created with HtmlInliner" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="554" y="68" key="CommitChangelistDialog2" timestamp="1595388324824">
+    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2" timestamp="1595737788204">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state x="554" y="68" key="CommitChangelistDialog2/0.0.1920.1044@0.0.1920.1044" timestamp="1595388324824" />
+    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2/0.0.1920.1044@0.0.1920.1044" timestamp="1595737788204" />
     <state width="1897" height="217" key="GridCell.Tab.0.bottom" timestamp="1595459222579">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
@@ -206,10 +227,10 @@
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
     <state width="1897" height="217" key="GridCell.Tab.3.right/0.0.1920.1044@0.0.1920.1044" timestamp="1595420615513" />
-    <state x="556" y="256" key="Vcs.Push.Dialog.v2" timestamp="1595388326165">
+    <state x="556" y="256" key="Vcs.Push.Dialog.v2" timestamp="1595737809675">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state x="556" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1044@0.0.1920.1044" timestamp="1595388326165" />
+    <state x="556" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1044@0.0.1920.1044" timestamp="1595737809675" />
     <state x="754" y="435" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595387893540">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
@@ -220,7 +241,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/unit2/triangle-mesh.js</url>
-          <line>86</line>
+          <line>93</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
