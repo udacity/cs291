@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4bfae72b-9931-41bc-b735-31f16597eb0c" name="Default Changelist" comment="" />
+    <list default="true" id="4bfae72b-9931-41bc-b735-31f16597eb0c" name="Default Changelist" comment="polyon-radius works.">
+      <change afterPath="$PROJECT_DIR$/unit2/create-stairs-answer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unit2/create-stairs-answer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unit2/create-stairs.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unit2/create-stairs.js" beforeDir="false" afterPath="$PROJECT_DIR$/unit2/create-stairs.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -42,14 +48,14 @@
       <recent name="$PROJECT_DIR$/unit1" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.polygon-radius-answer.html">
-    <configuration name="polygon-creation-answer.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/cs291/unit2/polygon-creation-answer.html" useBuiltInWebServerPort="true">
+  <component name="RunManager" selected="JavaScript Debug.create-stairs-answer.html">
+    <configuration name="create-stairs-answer.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/cs291/unit2/create-stairs-answer.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="create-stairs.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/cs291/unit2/create-stairs.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="polygon-location-answer.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/cs291/unit2/polygon-location-answer.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <configuration name="polygon-location.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/cs291/unit2/polygon-location.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="polygon-radius-answer.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/cs291/unit2/polygon-radius-answer.html" useBuiltInWebServerPort="true">
@@ -60,11 +66,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.create-stairs-answer.html" />
+        <item itemvalue="JavaScript Debug.create-stairs.html" />
         <item itemvalue="JavaScript Debug.polygon-radius-answer.html" />
         <item itemvalue="JavaScript Debug.polygon-radius.html" />
         <item itemvalue="JavaScript Debug.polygon-location-answer.html" />
-        <item itemvalue="JavaScript Debug.polygon-location.html" />
-        <item itemvalue="JavaScript Debug.polygon-creation-answer.html" />
       </list>
     </recent_temporary>
   </component>
@@ -80,7 +86,7 @@
       <updated>1595386996306</updated>
       <workItem from="1595386997584" duration="2934000" />
       <workItem from="1595458961124" duration="290000" />
-      <workItem from="1595737402949" duration="12009000" />
+      <workItem from="1595737402949" duration="12639000" />
     </task>
     <task id="LOCAL-00001" summary="fix-javascript-errors.html">
       <created>1595387920682</created>
@@ -211,10 +217,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="polyon-radius works." />
   </component>
   <component name="WindowStateProjectService">
-    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2" timestamp="1595804698956">
+    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2" timestamp="1595805339195">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2/0.0.1920.1044@0.0.1920.1044" timestamp="1595804698956" />
+    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2/0.0.1920.1044@0.0.1920.1044" timestamp="1595805339195" />
     <state width="1897" height="311" key="GridCell.Tab.0.bottom" timestamp="1595794487450">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
@@ -279,10 +285,10 @@
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
     <state width="1897" height="217" key="GridCell.Tab.3.right/0.0.1920.1044@0.0.1920.1044" timestamp="1595420615513" />
-    <state x="707" y="204" key="RollbackChangesDialog" timestamp="1595739546704">
+    <state x="707" y="204" key="RollbackChangesDialog" timestamp="1595805336643">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state x="707" y="204" key="RollbackChangesDialog/0.0.1920.1044@0.0.1920.1044" timestamp="1595739546704" />
+    <state x="707" y="204" key="RollbackChangesDialog/0.0.1920.1044@0.0.1920.1044" timestamp="1595805336643" />
     <state x="556" y="256" key="Vcs.Push.Dialog.v2" timestamp="1595804700575">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
