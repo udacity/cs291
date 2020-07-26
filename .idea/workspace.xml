@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4bfae72b-9931-41bc-b735-31f16597eb0c" name="Default Changelist" comment="polygon location works">
-      <change afterPath="$PROJECT_DIR$/unit2/polygon-radius-answer.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/unit2/polygon-radius-answer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/unit2/polygon-radius.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="4bfae72b-9931-41bc-b735-31f16597eb0c" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -85,7 +80,7 @@
       <updated>1595386996306</updated>
       <workItem from="1595386997584" duration="2934000" />
       <workItem from="1595458961124" duration="290000" />
-      <workItem from="1595737402949" duration="11706000" />
+      <workItem from="1595737402949" duration="12009000" />
     </task>
     <task id="LOCAL-00001" summary="fix-javascript-errors.html">
       <created>1595387920682</created>
@@ -185,7 +180,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595796469967</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="polyon-radius works.">
+      <created>1595804699032</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1595804699032</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -205,13 +207,14 @@
     <MESSAGE value="polygon-creation-answer works." />
     <MESSAGE value="polygon location start" />
     <MESSAGE value="polygon location works" />
-    <option name="LAST_COMMIT_MESSAGE" value="polygon location works" />
+    <MESSAGE value="polyon-radius works." />
+    <option name="LAST_COMMIT_MESSAGE" value="polyon-radius works." />
   </component>
   <component name="WindowStateProjectService">
-    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2" timestamp="1595804222617">
+    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2" timestamp="1595804698956">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2/0.0.1920.1044@0.0.1920.1044" timestamp="1595804222617" />
+    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2/0.0.1920.1044@0.0.1920.1044" timestamp="1595804698956" />
     <state width="1897" height="311" key="GridCell.Tab.0.bottom" timestamp="1595794487450">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
@@ -280,10 +283,10 @@
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
     <state x="707" y="204" key="RollbackChangesDialog/0.0.1920.1044@0.0.1920.1044" timestamp="1595739546704" />
-    <state x="556" y="256" key="Vcs.Push.Dialog.v2" timestamp="1595796471848">
+    <state x="556" y="256" key="Vcs.Push.Dialog.v2" timestamp="1595804700575">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state x="556" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1044@0.0.1920.1044" timestamp="1595796471848" />
+    <state x="556" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1044@0.0.1920.1044" timestamp="1595804700575" />
     <state x="754" y="435" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595387893540">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
