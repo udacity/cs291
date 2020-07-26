@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4bfae72b-9931-41bc-b735-31f16597eb0c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/unit2/polygon-creation.answer.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/unit2/polygon-creation.answer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unit2/vertex-order-answer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unit2/vertex-order-answer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unit2/vertex-order.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.labbook/200726154953Z.md" beforeDir="false" afterPath="$PROJECT_DIR$/.labbook/200726154953Z.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unit2/polygon-creation-answer.js" beforeDir="false" afterPath="$PROJECT_DIR$/unit2/polygon-creation-answer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,37 +49,29 @@
       <recent name="$PROJECT_DIR$/unit1" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.fix-javascript-errors-answer.html">
+  <component name="RunManager" selected="JavaScript Debug.vertex-order-answer.html">
     <configuration name="fix-javascript-errors-answer.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/cs291/unit1/fix-javascript-errors-answer.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="fix-javascript-errors.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/cs291/unit1/fix-javascript-errors.html" useBuiltInWebServerPort="true">
+    <configuration name="polygon-creation-answer.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/cs291/unit2/polygon-creation-answer.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="polygon-creation.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/cs291/unit2/polygon-creation.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="triangle-mesh-answer.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/cs291/unit2/triangle-mesh-answer.html" useBuiltInWebServerPort="true">
+    <configuration name="vertex-order-answer.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/cs291/unit2/vertex-order-answer.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="newmd.bash" type="ShConfigurationType" temporary="true">
-      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
-      <option name="SCRIPT_PATH" value="$PROJECT_DIR$/.labbook/newmd.bash" />
-      <option name="SCRIPT_OPTIONS" value="" />
-      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
-      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$/.labbook" />
-      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
-      <option name="INTERPRETER_PATH" value="/bin/bash" />
-      <option name="INTERPRETER_OPTIONS" value="" />
+    <configuration name="vertex-order.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/cs291/unit2/vertex-order.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.vertex-order-answer.html" />
+        <item itemvalue="JavaScript Debug.vertex-order.html" />
+        <item itemvalue="JavaScript Debug.polygon-creation-answer.html" />
         <item itemvalue="JavaScript Debug.fix-javascript-errors-answer.html" />
         <item itemvalue="JavaScript Debug.polygon-creation.html" />
-        <item itemvalue="JavaScript Debug.fix-javascript-errors.html" />
-        <item itemvalue="Shell Script.newmd.bash" />
-        <item itemvalue="JavaScript Debug.triangle-mesh-answer.html" />
       </list>
     </recent_temporary>
   </component>
@@ -92,7 +87,7 @@
       <updated>1595386996306</updated>
       <workItem from="1595386997584" duration="2934000" />
       <workItem from="1595458961124" duration="290000" />
-      <workItem from="1595737402949" duration="4016000" />
+      <workItem from="1595737402949" duration="8880000" />
     </task>
     <task id="LOCAL-00001" summary="fix-javascript-errors.html">
       <created>1595387920682</created>
@@ -157,7 +152,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595783662484</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="New naming convention">
+      <created>1595784129264</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1595784129264</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -172,61 +174,62 @@
     <MESSAGE value="created with HtmlInliner" />
     <MESSAGE value="Completed the exercise, created resulting files with &quot;.answer&quot;" />
     <MESSAGE value="Add polygon-creation.html" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add polygon-creation.html" />
+    <MESSAGE value="New naming convention" />
+    <option name="LAST_COMMIT_MESSAGE" value="New naming convention" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2" timestamp="1595783662422">
+    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2" timestamp="1595784129164">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2/0.0.1920.1044@0.0.1920.1044" timestamp="1595783662422" />
-    <state width="1897" height="217" key="GridCell.Tab.0.bottom" timestamp="1595459222579">
+    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2/0.0.1920.1044@0.0.1920.1044" timestamp="1595784129164" />
+    <state width="1897" height="217" key="GridCell.Tab.0.bottom" timestamp="1595787682382">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="217" key="GridCell.Tab.0.bottom/0.0.1920.1044@0.0.1920.1044" timestamp="1595459222579" />
-    <state width="1897" height="217" key="GridCell.Tab.0.center" timestamp="1595459222579">
+    <state width="1897" height="217" key="GridCell.Tab.0.bottom/0.0.1920.1044@0.0.1920.1044" timestamp="1595787682382" />
+    <state width="1897" height="217" key="GridCell.Tab.0.center" timestamp="1595787682381">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="217" key="GridCell.Tab.0.center/0.0.1920.1044@0.0.1920.1044" timestamp="1595459222579" />
-    <state width="1897" height="217" key="GridCell.Tab.0.left" timestamp="1595459222579">
+    <state width="1897" height="217" key="GridCell.Tab.0.center/0.0.1920.1044@0.0.1920.1044" timestamp="1595787682381" />
+    <state width="1897" height="217" key="GridCell.Tab.0.left" timestamp="1595787682381">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="217" key="GridCell.Tab.0.left/0.0.1920.1044@0.0.1920.1044" timestamp="1595459222579" />
-    <state width="1897" height="217" key="GridCell.Tab.0.right" timestamp="1595459222579">
+    <state width="1897" height="217" key="GridCell.Tab.0.left/0.0.1920.1044@0.0.1920.1044" timestamp="1595787682381" />
+    <state width="1897" height="217" key="GridCell.Tab.0.right" timestamp="1595787682381">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="217" key="GridCell.Tab.0.right/0.0.1920.1044@0.0.1920.1044" timestamp="1595459222579" />
-    <state width="1897" height="217" key="GridCell.Tab.1.bottom" timestamp="1595459222505">
+    <state width="1897" height="217" key="GridCell.Tab.0.right/0.0.1920.1044@0.0.1920.1044" timestamp="1595787682381" />
+    <state width="1897" height="217" key="GridCell.Tab.1.bottom" timestamp="1595787683341">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="217" key="GridCell.Tab.1.bottom/0.0.1920.1044@0.0.1920.1044" timestamp="1595459222505" />
-    <state width="1897" height="217" key="GridCell.Tab.1.center" timestamp="1595459222504">
+    <state width="1897" height="217" key="GridCell.Tab.1.bottom/0.0.1920.1044@0.0.1920.1044" timestamp="1595787683341" />
+    <state width="1897" height="217" key="GridCell.Tab.1.center" timestamp="1595787683340">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="217" key="GridCell.Tab.1.center/0.0.1920.1044@0.0.1920.1044" timestamp="1595459222504" />
-    <state width="1897" height="217" key="GridCell.Tab.1.left" timestamp="1595459222504">
+    <state width="1897" height="217" key="GridCell.Tab.1.center/0.0.1920.1044@0.0.1920.1044" timestamp="1595787683340" />
+    <state width="1897" height="217" key="GridCell.Tab.1.left" timestamp="1595787683339">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="217" key="GridCell.Tab.1.left/0.0.1920.1044@0.0.1920.1044" timestamp="1595459222504" />
-    <state width="1897" height="217" key="GridCell.Tab.1.right" timestamp="1595459222505">
+    <state width="1897" height="217" key="GridCell.Tab.1.left/0.0.1920.1044@0.0.1920.1044" timestamp="1595787683339" />
+    <state width="1897" height="217" key="GridCell.Tab.1.right" timestamp="1595787683341">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="217" key="GridCell.Tab.1.right/0.0.1920.1044@0.0.1920.1044" timestamp="1595459222505" />
-    <state width="1897" height="217" key="GridCell.Tab.2.bottom" timestamp="1595459222505">
+    <state width="1897" height="217" key="GridCell.Tab.1.right/0.0.1920.1044@0.0.1920.1044" timestamp="1595787683341" />
+    <state width="1897" height="217" key="GridCell.Tab.2.bottom" timestamp="1595787682324">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="217" key="GridCell.Tab.2.bottom/0.0.1920.1044@0.0.1920.1044" timestamp="1595459222505" />
-    <state width="1897" height="217" key="GridCell.Tab.2.center" timestamp="1595459222505">
+    <state width="1897" height="217" key="GridCell.Tab.2.bottom/0.0.1920.1044@0.0.1920.1044" timestamp="1595787682324" />
+    <state width="1897" height="217" key="GridCell.Tab.2.center" timestamp="1595787682324">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="217" key="GridCell.Tab.2.center/0.0.1920.1044@0.0.1920.1044" timestamp="1595459222505" />
-    <state width="1897" height="217" key="GridCell.Tab.2.left" timestamp="1595459222505">
+    <state width="1897" height="217" key="GridCell.Tab.2.center/0.0.1920.1044@0.0.1920.1044" timestamp="1595787682324" />
+    <state width="1897" height="217" key="GridCell.Tab.2.left" timestamp="1595787682324">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="217" key="GridCell.Tab.2.left/0.0.1920.1044@0.0.1920.1044" timestamp="1595459222505" />
-    <state width="1897" height="217" key="GridCell.Tab.2.right" timestamp="1595459222505">
+    <state width="1897" height="217" key="GridCell.Tab.2.left/0.0.1920.1044@0.0.1920.1044" timestamp="1595787682324" />
+    <state width="1897" height="217" key="GridCell.Tab.2.right" timestamp="1595787682324">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="217" key="GridCell.Tab.2.right/0.0.1920.1044@0.0.1920.1044" timestamp="1595459222505" />
+    <state width="1897" height="217" key="GridCell.Tab.2.right/0.0.1920.1044@0.0.1920.1044" timestamp="1595787682324" />
     <state width="1897" height="217" key="GridCell.Tab.3.bottom" timestamp="1595420615514">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
@@ -247,10 +250,10 @@
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
     <state x="707" y="204" key="RollbackChangesDialog/0.0.1920.1044@0.0.1920.1044" timestamp="1595739546704" />
-    <state x="556" y="256" key="Vcs.Push.Dialog.v2" timestamp="1595783665176">
+    <state x="556" y="256" key="Vcs.Push.Dialog.v2" timestamp="1595784130814">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state x="556" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1044@0.0.1920.1044" timestamp="1595783665176" />
+    <state x="556" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1044@0.0.1920.1044" timestamp="1595784130814" />
     <state x="754" y="435" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595387893540">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
