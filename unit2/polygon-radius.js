@@ -10,27 +10,27 @@
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, Coordinates, $, document*/
 
-var camera, scene, renderer;
-var windowScale;
+let camera, scene, renderer;
+let windowScale;
 
 function PolygonGeometry(sides, location, radius) {
-	var geo = new THREE.Geometry();
+	let geo = new THREE.Geometry();
 
 	// generate vertices
-	for ( var pt = 0 ; pt < sides; pt++ )
+	for ( let pt = 0 ; pt < sides; pt++ )
 	{
 		// Add 90 degrees so we start at +Y axis, rotate counterclockwise around
-		var angle = (Math.PI/2) + (pt / sides) * 2 * Math.PI;
+		let angle = (Math.PI/2) + (pt / sides) * 2 * Math.PI;
 
-		var x = Math.cos(angle) + location.x;
-		var y = Math.sin(angle) + location.y;
+		let x = Math.cos(angle) + location.x;
+		let y = Math.sin(angle) + location.y;
 
 		// Save the vertex location
 		geo.vertices.push( new THREE.Vector3( x, y, 0.0 ) );
 	}
 
 	// generate faces
-	for ( var face = 0 ; face < sides-2; face++ )
+	for ( let face = 0 ; face < sides-2; face++ )
 	{
 		// this makes a triangle fan, from the first +Y point around
 		geo.faces.push( new THREE.Face3( 0, face+1, face+2 ) );
@@ -41,23 +41,23 @@ function PolygonGeometry(sides, location, radius) {
 
 function init() {
 	// Setting up some parameters
-	var canvasWidth = 846;
-	var canvasHeight = 494;
+	let canvasWidth = 846;
+	let canvasHeight = 494;
 	// For grading the window is fixed in size; here's general code:
-	//var canvasWidth = window.innerWidth;
-	//var canvasHeight = window.innerHeight;
-	var canvasRatio = canvasWidth / canvasHeight;
+	//let canvasWidth = window.innerWidth;
+	//let canvasHeight = window.innerHeight;
+	let canvasRatio = canvasWidth / canvasHeight;
 	// scene
 	scene = new THREE.Scene();
 
 	// Camera: Y up, X right, Z up
 	windowScale = 12;
-	var windowWidth = windowScale * canvasRatio;
-	var windowHeight = windowScale;
+	let windowWidth = windowScale * canvasRatio;
+	let windowHeight = windowScale;
 
 	camera = new THREE.OrthographicCamera( windowWidth / - 2, windowWidth / 2, windowHeight / 2, windowHeight / - 2, 0, 40 );
 
-	var focus = new THREE.Vector3( 5,5,0 );
+	let focus = new THREE.Vector3( 5,5,0 );
 	camera.position.x = focus.x;
 	camera.position.y = focus.y;
 	camera.position.z = 10;
@@ -78,8 +78,8 @@ function showGrids() {
 	Coordinates.drawAxes({axisLength:3,axisOrientation:"y",axisRadius:0.02});
 }
 function addToDOM() {
-	var container = document.getElementById('container');
-	var canvas = container.getElementsByTagName('canvas');
+	let container = document.getElementById('container');
+	let canvas = container.getElementsByTagName('canvas');
 	if (canvas.length>0) {
 		container.removeChild(canvas[0]);
 	}
@@ -93,13 +93,13 @@ function render() {
 try {
 	init();
 	showGrids();
-	var geo = PolygonGeometry(9, new THREE.Vector3( 5, 5, 0 ), 4);
-	var material = new THREE.MeshBasicMaterial( { color: 0xff0000, side: THREE.FrontSide } );
-	var mesh = new THREE.Mesh( geo, material );
+	let geo = PolygonGeometry(9, new THREE.Vector3( 5, 5, 0 ), 4);
+	let material = new THREE.MeshBasicMaterial( { color: 0xff0000, side: THREE.FrontSide } );
+	let mesh = new THREE.Mesh( geo, material );
 	scene.add( mesh );
 	addToDOM();
 	render();
 } catch(e) {
-	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	let errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
 	$('#container').append(errorReport+e);
 }

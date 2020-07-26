@@ -7,11 +7,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, Coordinates, $, document*/
 
-var camera, scene, renderer;
-var windowScale;
+let camera, scene, renderer;
+let windowScale;
 
 function someObject(material) {
-	var geometry = new THREE.Geometry();
+	let geometry = new THREE.Geometry();
 
 	// Student: some data below must be fixed
 	// for both triangles to appear !
@@ -23,31 +23,31 @@ function someObject(material) {
 	geometry.faces.push( new THREE.Face3( 0, 1, 2 ) );
 	geometry.faces.push( new THREE.Face3( 2, 0, 3 ) );
 
-	var mesh = new THREE.Mesh( geometry, material );
+	let mesh = new THREE.Mesh( geometry, material );
 
 	scene.add( mesh );
 }
 
 function init() {
 	// Setting up some parameters
-	var canvasWidth = 846;
-	var canvasHeight = 494;
+	let canvasWidth = 846;
+	let canvasHeight = 494;
 	// For grading the window is fixed in size; here's general code:
-	//var canvasWidth = window.innerWidth;
-	//var canvasHeight = window.innerHeight;
-	var canvasRatio = canvasWidth / canvasHeight;
+	//let canvasWidth = window.innerWidth;
+	//let canvasHeight = window.innerHeight;
+	let canvasRatio = canvasWidth / canvasHeight;
 	// scene
 	scene = new THREE.Scene();
 
 	// Camera: Y up, X right, Z up
 	windowScale = 10;
-	var windowWidth = windowScale * canvasRatio;
-	var windowHeight = windowScale;
+	let windowWidth = windowScale * canvasRatio;
+	let windowHeight = windowScale;
 
 	camera = new THREE.OrthographicCamera( windowWidth / - 2, windowWidth / 2,
 		windowHeight / 2, windowHeight / - 2, 0, 40 );
 
-	var focus = new THREE.Vector3( 5,4,0 );
+	let focus = new THREE.Vector3( 5,4,0 );
 	camera.position.x = focus.x;
 	camera.position.y = focus.y;
 	camera.position.z = 10;
@@ -62,8 +62,8 @@ function init() {
 }
 
 function addToDOM() {
-	var container = document.getElementById('container');
-	var canvas = container.getElementsByTagName('canvas');
+	let container = document.getElementById('container');
+	let canvas = container.getElementsByTagName('canvas');
 	if (canvas.length>0) {
 		container.removeChild(canvas[0]);
 	}
@@ -86,11 +86,11 @@ function render() {
 try {
 	init();
 	showGrids();
-	var material = new THREE.MeshBasicMaterial( { color: 0xF6831E, side: THREE.FrontSide } );
+	let material = new THREE.MeshBasicMaterial( { color: 0xF6831E, side: THREE.FrontSide } );
 	someObject(material);
 	addToDOM();
 	render();
 } catch(e) {
-	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	let errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
 	$('#container').append(errorReport+e);
 }
