@@ -36,7 +36,7 @@ function PolygonGeometry(sides) {
 
 	// Write the code to generate minimum number of faces for the polygon.
 	for (let pt = 2; pt < sides; pt++) {
-		geo.faces.push( new THREE.Face3( pt , pt - 1, 0) );
+		geo.faces.push( new THREE.Face3( 0 , pt - 1, pt) );
 	}
 
 	// Return the geometry object
@@ -98,7 +98,7 @@ function render() {
 try {
 	init();
 	showGrids();
-	let geo = PolygonGeometry(3);
+	let geo = PolygonGeometry(5);
 	let material = new THREE.MeshBasicMaterial( { color: 0xff0000, side: THREE.FrontSide } );
 	let mesh = new THREE.Mesh( geo, material );
 	scene.add( mesh );
