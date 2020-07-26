@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4bfae72b-9931-41bc-b735-31f16597eb0c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.labbook/200722032615Z.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/unit2/triangle-mesh.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.labbook/200726042408Z.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unit2/triangle-mesh.js" beforeDir="false" afterPath="$PROJECT_DIR$/unit2/triangle-mesh.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,8 +69,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="JavaScript Debug.triangle-mesh.html" />
-        <item itemvalue="Node.js.triangle-mesh.js" />
         <item itemvalue="Shell Script.newmd.bash" />
+        <item itemvalue="Node.js.triangle-mesh.js" />
         <item itemvalue="JavaScript Debug.fix-javascript-errors.html" />
       </list>
     </recent_temporary>
@@ -87,6 +87,7 @@
       <updated>1595386996306</updated>
       <workItem from="1595386997584" duration="2934000" />
       <workItem from="1595458961124" duration="290000" />
+      <workItem from="1595737402949" duration="157000" />
     </task>
     <task id="LOCAL-00001" summary="fix-javascript-errors.html">
       <created>1595387920682</created>
@@ -220,13 +221,11 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/unit2/triangle-mesh.js</url>
           <line>86</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/unit2/triangle-mesh.js</url>
           <line>10</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
