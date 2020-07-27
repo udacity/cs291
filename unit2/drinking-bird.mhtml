@@ -1,0 +1,58 @@
+<html>
+	<head><meta name="robots" content="noindex, follow, noodp"></head>
+	<body style="overflow:auto; margin:0; padding:0; padding-left: 10px;">
+		<link href="/media/css/udacity/udacity.min.css?63da327b90d891d754a294e44d499078" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="/media/wiki/style.css?63da327b90d891d754a294e44d499078"/>
+
+<h1 id="course-notes">Course Notes</h1>
+
+<ul>
+<li><a href="/wiki/cs291/instructor-comments">Instructor Comments</a> - combined page with all instructor comments, links to resources mentioned in lessons, etc.</li>
+</ul>
+
+<h2 id="lesson-scripts">Lesson Scripts </h2>
+
+<p>(should be about 95% the same as the published videos)</p>
+
+<ul>
+<li>Lesson 1: Introduction - <a href="https://s3.amazonaws.com/udacity-serving-videos/cs291/notes/Lesson-1-Introduction.pdf">PDF</a> - <a href="https://s3.amazonaws.com/udacity-serving-videos/cs291/notes/Lesson-1-Introduction.odt">ODT</a> - <a href="https://s3.amazonaws.com/udacity-serving-videos/cs291/notes/Lesson-1-Introduction.docx">DOCX</a></li>
+<li>Lesson 2: Points, Vectors and Meshes - <a href="https://s3.amazonaws.com/udacity-serving-videos/cs291/notes/Lesson-2-Points-Vectors-and-Meshes.pdf">PDF</a> - <a href="https://s3.amazonaws.com/udacity-serving-videos/cs291/notes/Lesson-2-Points-Vectors-and-Meshes.odt">ODT</a> - <a href="https://s3.amazonaws.com/udacity-serving-videos/cs291/notes/Lesson-2-Points-Vectors-and-Meshes.docx">DOCX</a></li>
+<li>Lesson 3: Colors and Materials - <a href="https://s3.amazonaws.com/udacity-serving-videos/cs291/notes/Lesson-3-Colors-and-Materials.pdf">PDF</a> - <a href="https://s3.amazonaws.com/udacity-serving-videos/cs291/notes/Lesson-3-Colors-and-Materials.odt">ODT</a> - <a href="https://s3.amazonaws.com/udacity-serving-videos/cs291/notes/Lesson-3-Colors-and-Materials.docx">DOCX</a></li>
+<li>Lesson 4: Transforms - <a href="https://s3.amazonaws.com/udacity-serving-videos/cs291/notes/Lesson-4-Transforms.pdf">PDF</a> - <a href="https://s3.amazonaws.com/udacity-serving-videos/cs291/notes/Lesson-4-Transforms.odt">ODT</a> - <a href="https://s3.amazonaws.com/udacity-serving-videos/cs291/notes/Lesson-4-Transforms.docx">DOCX</a></li>
+<li>Lesson 5: Matrices - <a href="https://s3.amazonaws.com/udacity-serving-videos/cs291/notes/Lesson-5-Matrices.pdf">PDF</a> - <a href="https://s3.amazonaws.com/udacity-serving-videos/cs291/notes/Lesson-5-Matrices.odt">ODT</a> - <a href="https://s3.amazonaws.com/udacity-serving-videos/cs291/notes/Lesson-5-Matrices.docx">DOCX</a></li>
+</ul>
+
+<h2 id="lesson-2-drinking-bird-blueprints">Lesson 2: Drinking Bird Blueprints</h2>
+
+<p><a href='/wiki/w/image/view?key=agpzfnVkYWNpdHl1chILEglXaWtpSW1hZ2UY-ZawQAw' title='agpzfnVkYWNpdHl1chILEglXaWtpSW1hZ2UY-ZawQAw;size=500'><img src='//lh3.googleusercontent.com/OLOEUaAI7odnMfIMIzBKoerGe-al_IEWMF2bwsp2BrxGujUQSyDO0q7YLQgtx-_0vnrnj96pOrCGJAzDWDs=s500' alt='blueprint_front.png'/></a> <a href='/wiki/w/image/view?key=agpzfnVkYWNpdHl1chILEglXaWtpSW1hZ2UYs7jCQAw' title='agpzfnVkYWNpdHl1chILEglXaWtpSW1hZ2UYs7jCQAw;size=500'><img src='//lh3.googleusercontent.com/jIgQKlO17nmFKIN6NW9x6piZxi8oPeIloQlk2K1I3eUkKvZ129HJAZUpsyQVyToQdkL_dcaHmstFUD8B=s500' alt='blueprint_side.png'/></a></p>
+
+<p>Note that, confusingly, the world's +X axis goes from right to left in the drawing on the right. In other words, the bird is facing down the -X axis in the exercise.</p>
+
+<p>Reference images (follow the blueprints, not these photos):</p>
+
+<p><a href='/wiki/w/image/view?key=agpzfnVkYWNpdHl1chILEglXaWtpSW1hZ2UY1pO_QAw' title='agpzfnVkYWNpdHl1chILEglXaWtpSW1hZ2UY1pO_QAw;size=500'><img src='//lh3.googleusercontent.com/5pSNpWOl3Mn7L0MS4i1c80RjB64shmjMG8zIsT_RsQBuDd1bjitKy24ENXBCv9hON3yIaPekQPTcoHDFWQ=s500' alt='db_front_photo.jpg'/></a> <a href='/wiki/w/image/view?key=agpzfnVkYWNpdHl1chILEglXaWtpSW1hZ2UY2ZjCQAw' title='agpzfnVkYWNpdHl1chILEglXaWtpSW1hZ2UY2ZjCQAw;size=500'><img src='//lh3.googleusercontent.com/fEA_PDuEJV5d3pnOVSgJISK7s283Qsp9JbTrBmtqDz7iluu6ooZCljjXH7oPYKLaDemxBySxSwfwWotVUD0=s500' alt='db_side_photo.jpg'/></a></p>
+
+<p>So that the exercise passes, and the spheres and cylinders look good,
+all SphereGeometry calls should be of the form:</p>
+
+<pre><code class="prettyprint">SphereGeometry( radius, 32, 16 );
+</code></pre>
+
+<p>and CylinderGeometry calls should be of the form:</p>
+
+<pre><code class="prettyprint">CylinderGeometry( radiusTop, radiusBottom, height, 32 );
+</code></pre>
+</div>
+</div>
+<script src="/media/js/standalone/libs/jquery-1.10.2.min.js"></script>
+		<script src="/media/js/standalone/libs/mathquill.min.js?63da327b90d891d754a294e44d499078"></script>
+
+		<link href="/media/wiki/google-code-prettify/prettify.css?63da327b90d891d754a294e44d499078" type="text/css" rel="stylesheet" />
+		<script type="text/javascript" src="/media/wiki/google-code-prettify/prettify.js?63da327b90d891d754a294e44d499078" charset="utf-8"></script>
+		<script>
+		$(document).ready(function() {
+			prettyPrint();
+		})
+		</script>
+	</body>
+</html>
