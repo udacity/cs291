@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4bfae72b-9931-41bc-b735-31f16597eb0c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/unit2/drinking-bird.instructions.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.labbook/200728031051Z.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unit2/drinking-bird.js" beforeDir="false" afterPath="$PROJECT_DIR$/unit2/drinking-bird.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unit2/drinking-bird.mhtml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.labbook/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/.labbook/TODO.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.labbook/newmd.bash" beforeDir="false" afterPath="$PROJECT_DIR$/.labbook/newmd.bash" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unit2/drinking-bird-answer.js" beforeDir="false" afterPath="$PROJECT_DIR$/unit2/drinking-bird-answer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +48,7 @@
       <recent name="$PROJECT_DIR$/unit1" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.drinking-bird.html">
+  <component name="RunManager" selected="Shell Script.newmd.bash">
     <configuration name="create-stairs-answer.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/cs291/unit2/create-stairs-answer.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
@@ -60,16 +61,24 @@
     <configuration name="drinking-bird.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/cs291/unit2/drinking-bird.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="polygon-radius-answer.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/cs291/unit2/polygon-radius-answer.html" useBuiltInWebServerPort="true">
+    <configuration name="newmd.bash" type="ShConfigurationType" temporary="true">
+      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
+      <option name="SCRIPT_PATH" value="$PROJECT_DIR$/.labbook/newmd.bash" />
+      <option name="SCRIPT_OPTIONS" value="" />
+      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$/.labbook" />
+      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="INTERPRETER_OPTIONS" value="" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.drinking-bird.html" />
+        <item itemvalue="Shell Script.newmd.bash" />
         <item itemvalue="JavaScript Debug.drinking-bird-answer.html" />
+        <item itemvalue="JavaScript Debug.drinking-bird.html" />
         <item itemvalue="JavaScript Debug.create-stairs-answer.html" />
         <item itemvalue="JavaScript Debug.create-stairs.html" />
-        <item itemvalue="JavaScript Debug.polygon-radius-answer.html" />
       </list>
     </recent_temporary>
   </component>
@@ -88,7 +97,7 @@
       <workItem from="1595458961124" duration="290000" />
       <workItem from="1595737402949" duration="15998000" />
       <workItem from="1595903722090" duration="48000" />
-      <workItem from="1595903859234" duration="393000" />
+      <workItem from="1595903859234" duration="3439000" />
     </task>
     <task id="LOCAL-00001" summary="fix-javascript-errors.html">
       <created>1595387920682</created>
@@ -216,7 +225,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595808265697</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="var -&gt; let in drinking-bird.js">
+      <created>1595904357695</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1595904357695</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -240,61 +256,62 @@
     <MESSAGE value="Starting create-stairs" />
     <MESSAGE value="Got create-stairs-answer working." />
     <MESSAGE value="drinking-bird" />
-    <option name="LAST_COMMIT_MESSAGE" value="drinking-bird" />
+    <MESSAGE value="var -&gt; let in drinking-bird.js" />
+    <option name="LAST_COMMIT_MESSAGE" value="var -&gt; let in drinking-bird.js" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2" timestamp="1595808265617">
+    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2" timestamp="1595904357169">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2/0.0.1920.1044@0.0.1920.1044" timestamp="1595808265617" />
-    <state width="1897" height="311" key="GridCell.Tab.0.bottom" timestamp="1595794487450">
+    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2/0.0.1920.1044@0.0.1920.1044" timestamp="1595904357169" />
+    <state width="1897" height="311" key="GridCell.Tab.0.bottom" timestamp="1595905847095">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="311" key="GridCell.Tab.0.bottom/0.0.1920.1044@0.0.1920.1044" timestamp="1595794487450" />
-    <state width="1897" height="311" key="GridCell.Tab.0.center" timestamp="1595794487450">
+    <state width="1897" height="311" key="GridCell.Tab.0.bottom/0.0.1920.1044@0.0.1920.1044" timestamp="1595905847095" />
+    <state width="1897" height="311" key="GridCell.Tab.0.center" timestamp="1595905847093">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="311" key="GridCell.Tab.0.center/0.0.1920.1044@0.0.1920.1044" timestamp="1595794487450" />
-    <state width="1897" height="311" key="GridCell.Tab.0.left" timestamp="1595794487449">
+    <state width="1897" height="311" key="GridCell.Tab.0.center/0.0.1920.1044@0.0.1920.1044" timestamp="1595905847093" />
+    <state width="1897" height="311" key="GridCell.Tab.0.left" timestamp="1595905847092">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="311" key="GridCell.Tab.0.left/0.0.1920.1044@0.0.1920.1044" timestamp="1595794487449" />
-    <state width="1897" height="311" key="GridCell.Tab.0.right" timestamp="1595794487450">
+    <state width="1897" height="311" key="GridCell.Tab.0.left/0.0.1920.1044@0.0.1920.1044" timestamp="1595905847092" />
+    <state width="1897" height="311" key="GridCell.Tab.0.right" timestamp="1595905847093">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="311" key="GridCell.Tab.0.right/0.0.1920.1044@0.0.1920.1044" timestamp="1595794487450" />
-    <state width="1897" height="311" key="GridCell.Tab.1.bottom" timestamp="1595794487394">
+    <state width="1897" height="311" key="GridCell.Tab.0.right/0.0.1920.1044@0.0.1920.1044" timestamp="1595905847093" />
+    <state width="1897" height="311" key="GridCell.Tab.1.bottom" timestamp="1595905847099">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="311" key="GridCell.Tab.1.bottom/0.0.1920.1044@0.0.1920.1044" timestamp="1595794487394" />
-    <state width="1897" height="311" key="GridCell.Tab.1.center" timestamp="1595794487394">
+    <state width="1897" height="311" key="GridCell.Tab.1.bottom/0.0.1920.1044@0.0.1920.1044" timestamp="1595905847099" />
+    <state width="1897" height="311" key="GridCell.Tab.1.center" timestamp="1595905847097">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="311" key="GridCell.Tab.1.center/0.0.1920.1044@0.0.1920.1044" timestamp="1595794487394" />
-    <state width="1897" height="311" key="GridCell.Tab.1.left" timestamp="1595794487394">
+    <state width="1897" height="311" key="GridCell.Tab.1.center/0.0.1920.1044@0.0.1920.1044" timestamp="1595905847097" />
+    <state width="1897" height="311" key="GridCell.Tab.1.left" timestamp="1595905847096">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="311" key="GridCell.Tab.1.left/0.0.1920.1044@0.0.1920.1044" timestamp="1595794487394" />
-    <state width="1897" height="311" key="GridCell.Tab.1.right" timestamp="1595794487394">
+    <state width="1897" height="311" key="GridCell.Tab.1.left/0.0.1920.1044@0.0.1920.1044" timestamp="1595905847096" />
+    <state width="1897" height="311" key="GridCell.Tab.1.right" timestamp="1595905847098">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="311" key="GridCell.Tab.1.right/0.0.1920.1044@0.0.1920.1044" timestamp="1595794487394" />
-    <state width="1897" height="311" key="GridCell.Tab.2.bottom" timestamp="1595794487395">
+    <state width="1897" height="311" key="GridCell.Tab.1.right/0.0.1920.1044@0.0.1920.1044" timestamp="1595905847098" />
+    <state width="1897" height="311" key="GridCell.Tab.2.bottom" timestamp="1595905847102">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="311" key="GridCell.Tab.2.bottom/0.0.1920.1044@0.0.1920.1044" timestamp="1595794487395" />
-    <state width="1897" height="311" key="GridCell.Tab.2.center" timestamp="1595794487394">
+    <state width="1897" height="311" key="GridCell.Tab.2.bottom/0.0.1920.1044@0.0.1920.1044" timestamp="1595905847102" />
+    <state width="1897" height="311" key="GridCell.Tab.2.center" timestamp="1595905847101">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="311" key="GridCell.Tab.2.center/0.0.1920.1044@0.0.1920.1044" timestamp="1595794487394" />
-    <state width="1897" height="311" key="GridCell.Tab.2.left" timestamp="1595794487394">
+    <state width="1897" height="311" key="GridCell.Tab.2.center/0.0.1920.1044@0.0.1920.1044" timestamp="1595905847101" />
+    <state width="1897" height="311" key="GridCell.Tab.2.left" timestamp="1595905847100">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="311" key="GridCell.Tab.2.left/0.0.1920.1044@0.0.1920.1044" timestamp="1595794487394" />
-    <state width="1897" height="311" key="GridCell.Tab.2.right" timestamp="1595794487395">
+    <state width="1897" height="311" key="GridCell.Tab.2.left/0.0.1920.1044@0.0.1920.1044" timestamp="1595905847100" />
+    <state width="1897" height="311" key="GridCell.Tab.2.right" timestamp="1595905847101">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="311" key="GridCell.Tab.2.right/0.0.1920.1044@0.0.1920.1044" timestamp="1595794487395" />
+    <state width="1897" height="311" key="GridCell.Tab.2.right/0.0.1920.1044@0.0.1920.1044" timestamp="1595905847101" />
     <state width="1897" height="217" key="GridCell.Tab.3.bottom" timestamp="1595420615514">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
