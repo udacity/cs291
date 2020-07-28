@@ -2,12 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4bfae72b-9931-41bc-b735-31f16597eb0c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/unit2/drinking-bird-answer.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/unit2/drinking-bird-answer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/unit2/drinking-bird.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/unit2/drinking-bird.mhtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unit2/drinking-bird.instructions.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.labbook/TODO.md" beforeDir="false" afterPath="$PROJECT_DIR$/.labbook/TODO.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unit2/drinking-bird.js" beforeDir="false" afterPath="$PROJECT_DIR$/unit2/drinking-bird.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unit2/drinking-bird.mhtml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,25 +54,26 @@
     <configuration name="create-stairs.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/cs291/unit2/create-stairs.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
+    <configuration name="drinking-bird-answer.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/cs291/unit2/drinking-bird-answer.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
     <configuration name="drinking-bird.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/cs291/unit2/drinking-bird.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="polygon-radius-answer.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/cs291/unit2/polygon-radius-answer.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="polygon-radius.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63343/cs291/unit2/polygon-radius.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="JavaScript Debug.drinking-bird.html" />
+        <item itemvalue="JavaScript Debug.drinking-bird-answer.html" />
         <item itemvalue="JavaScript Debug.create-stairs-answer.html" />
         <item itemvalue="JavaScript Debug.create-stairs.html" />
         <item itemvalue="JavaScript Debug.polygon-radius-answer.html" />
-        <item itemvalue="JavaScript Debug.polygon-radius.html" />
       </list>
     </recent_temporary>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -87,7 +86,9 @@
       <updated>1595386996306</updated>
       <workItem from="1595386997584" duration="2934000" />
       <workItem from="1595458961124" duration="290000" />
-      <workItem from="1595737402949" duration="15262000" />
+      <workItem from="1595737402949" duration="15998000" />
+      <workItem from="1595903722090" duration="48000" />
+      <workItem from="1595903859234" duration="393000" />
     </task>
     <task id="LOCAL-00001" summary="fix-javascript-errors.html">
       <created>1595387920682</created>
@@ -208,11 +209,18 @@
       <option name="project" value="LOCAL" />
       <updated>1595807080146</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="drinking-bird">
+      <created>1595808265697</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1595808265697</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
@@ -231,13 +239,14 @@
     <MESSAGE value="polyon-radius works." />
     <MESSAGE value="Starting create-stairs" />
     <MESSAGE value="Got create-stairs-answer working." />
-    <option name="LAST_COMMIT_MESSAGE" value="Got create-stairs-answer working." />
+    <MESSAGE value="drinking-bird" />
+    <option name="LAST_COMMIT_MESSAGE" value="drinking-bird" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2" timestamp="1595807080058">
+    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2" timestamp="1595808265617">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2/0.0.1920.1044@0.0.1920.1044" timestamp="1595807080058" />
+    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2/0.0.1920.1044@0.0.1920.1044" timestamp="1595808265617" />
     <state width="1897" height="311" key="GridCell.Tab.0.bottom" timestamp="1595794487450">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
@@ -306,10 +315,10 @@
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
     <state x="707" y="204" key="RollbackChangesDialog/0.0.1920.1044@0.0.1920.1044" timestamp="1595805336643" />
-    <state x="556" y="256" key="Vcs.Push.Dialog.v2" timestamp="1595807082561">
+    <state x="556" y="256" key="Vcs.Push.Dialog.v2" timestamp="1595808267047">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state x="556" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1044@0.0.1920.1044" timestamp="1595807082561" />
+    <state x="556" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1044@0.0.1920.1044" timestamp="1595808267047" />
     <state x="754" y="435" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595387893540">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
