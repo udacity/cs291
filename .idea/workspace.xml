@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4bfae72b-9931-41bc-b735-31f16597eb0c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.labbook/200730011615Z.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/unit2/drinking-bird-answer.js" beforeDir="false" afterPath="$PROJECT_DIR$/unit2/drinking-bird-answer.js" afterDir="false" />
     </list>
@@ -96,7 +95,7 @@
       <workItem from="1595737402949" duration="15998000" />
       <workItem from="1595903722090" duration="48000" />
       <workItem from="1595903859234" duration="3477000" />
-      <workItem from="1596071762597" duration="393000" />
+      <workItem from="1596071762597" duration="1241000" />
     </task>
     <task id="LOCAL-00001" summary="fix-javascript-errors.html">
       <created>1595387920682</created>
@@ -238,7 +237,14 @@
       <option name="project" value="LOCAL" />
       <updated>1595907337670</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Body is done.">
+      <created>1596072203593</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1596072203593</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -264,13 +270,14 @@
     <MESSAGE value="drinking-bird" />
     <MESSAGE value="var -&gt; let in drinking-bird.js" />
     <MESSAGE value="progress on drinking-bird-answer" />
-    <option name="LAST_COMMIT_MESSAGE" value="progress on drinking-bird-answer" />
+    <MESSAGE value="Body is done." />
+    <option name="LAST_COMMIT_MESSAGE" value="Body is done." />
   </component>
   <component name="WindowStateProjectService">
-    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2" timestamp="1595907337392">
+    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2" timestamp="1596072203436">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2/0.0.1920.1044@0.0.1920.1044" timestamp="1595907337392" />
+    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2/0.0.1920.1044@0.0.1920.1044" timestamp="1596072203436" />
     <state width="1897" height="311" key="GridCell.Tab.0.bottom" timestamp="1596071940402">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
@@ -339,10 +346,10 @@
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
     <state x="707" y="204" key="RollbackChangesDialog/0.0.1920.1044@0.0.1920.1044" timestamp="1595805336643" />
-    <state x="556" y="256" key="Vcs.Push.Dialog.v2" timestamp="1595907339759">
+    <state x="556" y="256" key="Vcs.Push.Dialog.v2" timestamp="1596072207466">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state x="556" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1044@0.0.1920.1044" timestamp="1595907339759" />
+    <state x="556" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1044@0.0.1920.1044" timestamp="1596072207466" />
     <state x="754" y="435" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595387893540">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>

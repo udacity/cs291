@@ -112,7 +112,7 @@ function createBody() {
 
 	let cylinderMaterial = new THREE.MeshLambertMaterial( { color: 0x0000D0 } );
 	let cylinder = new THREE.Mesh(
-		new THREE.CylinderGeometry( 12, 12, 380 ), cylinderMaterial );
+		new THREE.CylinderGeometry( 12, 12, 380, 32 ), cylinderMaterial );
 	cylinder.position.y = 376;
 	scene.add( cylinder );
 
@@ -121,7 +121,21 @@ function createBody() {
 // Head of the bird - head + hat
 function createHead() {
 	let sphereMaterial = new THREE.MeshLambertMaterial( { color: 0xA00000 } );
+	let sphere = new THREE.Mesh(
+		new THREE.SphereGeometry( 40, 32, 16 ), sphereMaterial );
+	sphere.position.y = 550;
+	scene.add( sphere );
+
 	let cylinderMaterial = new THREE.MeshLambertMaterial( { color: 0x0000D0 } );
+	let cylinder = new THREE.Mesh(
+		new THREE.CylinderGeometry( 40, 40, 70, 32 ), cylinderMaterial );
+	cylinder.position.y = 625;
+	scene.add( cylinder );
+
+	cylinder = new THREE.Mesh(
+		new THREE.CylinderGeometry( 71, 71, 10, 32 ), cylinderMaterial );
+	cylinder.position.y = 585;
+	scene.add( cylinder );
 
 }
 
