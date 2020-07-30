@@ -14,8 +14,17 @@ function fillScene() {
 	geometry = new THREE.Geometry();
 
 	// Student: add a colored triangle here
+	geometry.vertices.push( new THREE.Vector3( 100, 0, 0 ) );
+	geometry.vertices.push( new THREE.Vector3( 0, 100, 0 ) );
+	geometry.vertices.push( new THREE.Vector3( 0, 0, 100 ) );
 
+	geometry.faces.push( new THREE.Face3( 0, 1, 2 ) );
 
+	// these actually multiply the color of the material, which is white by default
+	let color1 = new THREE.Color( 0xff0000 );
+	let color2 = new THREE.Color( 0x00ff00 );
+	let color3 = new THREE.Color( 0x0000ff );
+	geometry.faces[0].vertexColors = [ color1, color2, color3 ];
 	mesh = new THREE.Mesh( geometry, material );
 
 	scene.add( mesh );
@@ -23,11 +32,13 @@ function fillScene() {
 }
 
 function init() {
-	let canvasWidth = 846;
-	let canvasHeight = 494;
-	// For grading the window is fixed in size; here's general code:
-	//let canvasWidth = window.innerWidth;
-	//let canvasHeight = window.innerHeight;
+	document.body.style.margin = "0";
+	document.body.style.padding = "0";
+	document.body.style.overflow = "hidden";
+
+	let canvasWidth = document.documentElement.clientWidth;
+	let canvasHeight = document.documentElement.clientHeight;
+
 	let canvasRatio = canvasWidth / canvasHeight;
 
 	// RENDERER

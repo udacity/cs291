@@ -33,12 +33,13 @@ function drawSquare(x1, y1, x2, y2) {
 }
 
 function init() {
-	// Set up some parameters
-	let canvasWidth = 846;
-	let canvasHeight = 494;
-	// For grading the window is fixed in size; here's general code:
-	//let canvasWidth = window.innerWidth;
-	//let canvasHeight = window.innerHeight;
+	document.body.style.margin = "0";
+	document.body.style.padding = "0";
+	document.body.style.overflow = "hidden";
+
+	let canvasWidth = document.documentElement.clientWidth;
+	let canvasHeight = document.documentElement.clientHeight;
+
 	let canvasRatio = canvasWidth / canvasHeight;
 	// scene
 	scene = new THREE.Scene();
