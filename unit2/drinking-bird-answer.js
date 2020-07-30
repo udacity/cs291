@@ -111,6 +111,10 @@ function createBody() {
 	scene.add( sphere );
 
 	let cylinderMaterial = new THREE.MeshLambertMaterial( { color: 0x0000D0 } );
+	let cylinder = new THREE.Mesh(
+		new THREE.CylinderGeometry( 12, 12, 380 ), cylinderMaterial );
+	cylinder.position.y = 376;
+	scene.add( cylinder );
 
 }
 
