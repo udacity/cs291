@@ -2,12 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4bfae72b-9931-41bc-b735-31f16597eb0c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/unit3/smooth-lambert-answer.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/unit3/smooth-lambert-answer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/unit3/smooth-lambert.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unit3/drinking-bird-shiny-answer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unit3/drinking-bird-shiny-answer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unit3/drinking-bird-shiny.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unit3/diffuse-material-answer.js" beforeDir="false" afterPath="$PROJECT_DIR$/unit3/diffuse-material-answer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/unit3/smooth-lambert.js" beforeDir="false" afterPath="$PROJECT_DIR$/unit3/smooth-lambert.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/uclass_BeveledBlockGeometry.js" beforeDir="false" afterPath="$PROJECT_DIR$/lib/uclass_BeveledBlockGeometry.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unit3/drinking-bird-shiny.js" beforeDir="false" afterPath="$PROJECT_DIR$/unit3/drinking-bird-shiny.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,17 +50,17 @@
       <recent name="$PROJECT_DIR$/unit1" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.smooth-lambert-answer.html">
-    <configuration name="diffuse-material-answer.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/cs291/unit3/diffuse-material-answer.html" useBuiltInWebServerPort="true">
+  <component name="RunManager" selected="JavaScript Debug.drinking-bird-shiny-answer.html">
+    <configuration name="dinking-bird-shiny.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/cs291/unit3/dinking-bird-shiny.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="drinking-bird-shiny-answer.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/cs291/unit3/drinking-bird-shiny-answer.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="drinking-bird-shiny.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/cs291/unit3/drinking-bird-shiny.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="smooth-lambert-answer.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/cs291/unit3/smooth-lambert-answer.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <configuration name="smooth-lambert.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/cs291/unit3/smooth-lambert.html" useBuiltInWebServerPort="true">
-      <method v="2" />
-    </configuration>
-    <configuration name="diffuse-material-answer.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/unit3/diffuse-material-answer.js" working-dir="$PROJECT_DIR$/unit3">
       <method v="2" />
     </configuration>
     <configuration name="smooth-lambert-answer.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/unit3/smooth-lambert-answer.js" working-dir="$PROJECT_DIR$/unit3">
@@ -68,11 +68,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.drinking-bird-shiny-answer.html" />
+        <item itemvalue="JavaScript Debug.drinking-bird-shiny.html" />
+        <item itemvalue="JavaScript Debug.dinking-bird-shiny.html" />
         <item itemvalue="JavaScript Debug.smooth-lambert-answer.html" />
         <item itemvalue="Node.js.smooth-lambert-answer.js" />
-        <item itemvalue="JavaScript Debug.smooth-lambert.html" />
-        <item itemvalue="JavaScript Debug.diffuse-material-answer.html" />
-        <item itemvalue="Node.js.diffuse-material-answer.js" />
       </list>
     </recent_temporary>
   </component>
@@ -93,7 +93,8 @@
       <workItem from="1595903722090" duration="48000" />
       <workItem from="1595903859234" duration="3477000" />
       <workItem from="1596071762597" duration="3580000" />
-      <workItem from="1596328181431" duration="2360000" />
+      <workItem from="1596328181431" duration="3254000" />
+      <workItem from="1596397348367" duration="1450000" />
     </task>
     <task id="LOCAL-00001" summary="fix-javascript-errors.html">
       <created>1595387920682</created>
@@ -270,7 +271,14 @@
       <option name="project" value="LOCAL" />
       <updated>1596328769888</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="smooth-lambert-answer">
+      <created>1596334236918</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1596334236918</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -301,29 +309,30 @@
     <MESSAGE value="prepare vertex-attributes(-answer)" />
     <MESSAGE value="Make them all full-browser" />
     <MESSAGE value="set up for diffuse-material-answer" />
-    <option name="LAST_COMMIT_MESSAGE" value="set up for diffuse-material-answer" />
+    <MESSAGE value="smooth-lambert-answer" />
+    <option name="LAST_COMMIT_MESSAGE" value="smooth-lambert-answer" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2" timestamp="1596328769766">
+    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2" timestamp="1596334236848">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2/0.0.1920.1044@0.0.1920.1044" timestamp="1596328769766" />
-    <state width="1897" height="275" key="GridCell.Tab.0.bottom" timestamp="1596334059065">
+    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2/0.0.1920.1044@0.0.1920.1044" timestamp="1596334236848" />
+    <state width="1897" height="275" key="GridCell.Tab.0.bottom" timestamp="1596336962693">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="275" key="GridCell.Tab.0.bottom/0.0.1920.1044@0.0.1920.1044" timestamp="1596334059065" />
-    <state width="1897" height="275" key="GridCell.Tab.0.center" timestamp="1596334059065">
+    <state width="1897" height="275" key="GridCell.Tab.0.bottom/0.0.1920.1044@0.0.1920.1044" timestamp="1596336962693" />
+    <state width="1897" height="275" key="GridCell.Tab.0.center" timestamp="1596336962692">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="275" key="GridCell.Tab.0.center/0.0.1920.1044@0.0.1920.1044" timestamp="1596334059065" />
-    <state width="1897" height="275" key="GridCell.Tab.0.left" timestamp="1596334059065">
+    <state width="1897" height="275" key="GridCell.Tab.0.center/0.0.1920.1044@0.0.1920.1044" timestamp="1596336962692" />
+    <state width="1897" height="275" key="GridCell.Tab.0.left" timestamp="1596336962692">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="275" key="GridCell.Tab.0.left/0.0.1920.1044@0.0.1920.1044" timestamp="1596334059065" />
-    <state width="1897" height="275" key="GridCell.Tab.0.right" timestamp="1596334059065">
+    <state width="1897" height="275" key="GridCell.Tab.0.left/0.0.1920.1044@0.0.1920.1044" timestamp="1596336962692" />
+    <state width="1897" height="275" key="GridCell.Tab.0.right" timestamp="1596336962693">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="275" key="GridCell.Tab.0.right/0.0.1920.1044@0.0.1920.1044" timestamp="1596334059065" />
+    <state width="1897" height="275" key="GridCell.Tab.0.right/0.0.1920.1044@0.0.1920.1044" timestamp="1596336962692" />
     <state width="1897" height="311" key="GridCell.Tab.1.bottom" timestamp="1596080485732">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
@@ -376,10 +385,10 @@
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
     <state x="707" y="204" key="RollbackChangesDialog/0.0.1920.1044@0.0.1920.1044" timestamp="1595805336643" />
-    <state x="556" y="256" key="Vcs.Push.Dialog.v2" timestamp="1596328771350">
+    <state x="556" y="256" key="Vcs.Push.Dialog.v2" timestamp="1596334238195">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state x="556" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1044@0.0.1920.1044" timestamp="1596328771350" />
+    <state x="556" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1044@0.0.1920.1044" timestamp="1596334238195" />
     <state x="754" y="435" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595387893540">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>

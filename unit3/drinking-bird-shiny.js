@@ -3,10 +3,10 @@
 // Make hat, body, leg and foot of Drinking Bird shiny
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, Coordinates, document, window, $ */
-var camera, scene, renderer;
-var cameraControls;
+let camera, scene, renderer;
+let cameraControls;
 
-var clock = new THREE.Clock();
+let clock = new THREE.Clock();
 
 function fillScene() {
 	scene = new THREE.Scene();
@@ -16,7 +16,7 @@ function fillScene() {
 
 	scene.add( new THREE.AmbientLight( 0x222222 ) );
 
-	var light = new THREE.DirectionalLight( 0xFFFFFF, 0.7 );
+	let light = new THREE.DirectionalLight( 0xFFFFFF, 0.7 );
 	light.position.set( 200, 500, 500 );
 
 	scene.add( light );
@@ -39,27 +39,27 @@ function createDrinkingBird() {
 	// leg: 4
 	// foot: 30
 	// specular color for all of these to 0.5,0.5,0.5
-	var headMaterial = new THREE.MeshLambertMaterial( );
+	let headMaterial = new THREE.MeshLambertMaterial( );
 	headMaterial.color.r = 104/255;
 	headMaterial.color.g = 1/255;
 	headMaterial.color.b = 5/255;
 
-	var hatMaterial = new THREE.MeshLambertMaterial( );
+	let hatMaterial = new THREE.MeshLambertMaterial( );
 	hatMaterial.color.r = 24/255;
 	hatMaterial.color.g = 38/255;
 	hatMaterial.color.b = 77/255;
 
-	var bodyMaterial = new THREE.MeshLambertMaterial( );
+	let bodyMaterial = new THREE.MeshLambertMaterial( );
 	bodyMaterial.color.setRGB( 31/255, 86/255, 169/255 );
 
-	var legMaterial = new THREE.MeshLambertMaterial( );
+	let legMaterial = new THREE.MeshLambertMaterial( );
 	legMaterial.color.setHex( 0xAdA79b );
 
-	var footMaterial = new THREE.MeshLambertMaterial( { color: 0x960f0b } );
+	let footMaterial = new THREE.MeshLambertMaterial( { color: 0x960f0b } );
 
-	var sphere, cylinder, cube;
+	let sphere, cylinder, cube;
 
-	var bevelRadius = 1.9;	// TODO: 2.0 causes some geometry bug.
+	let bevelRadius = 1.9;	// TODO: 2.0 causes some geometry bug.
 
 	// MODELS
 	// base
@@ -153,12 +153,14 @@ function createDrinkingBird() {
 }
 
 function init() {
-	var canvasWidth = 846;
-	var canvasHeight = 494;
-	// For grading the window is fixed in size; here's general code:
-	//var canvasWidth = window.innerWidth;
-	//var canvasHeight = window.innerHeight;
-	var canvasRatio = canvasWidth / canvasHeight;
+	document.body.style.margin = "0";
+	document.body.style.padding = "0";
+	document.body.style.overflow = "hidden";
+
+	let canvasWidth = document.documentElement.clientWidth;
+	let canvasHeight = document.documentElement.clientHeight;
+
+	let canvasRatio = canvasWidth / canvasHeight;
 
 	// RENDERER
 	renderer = new THREE.WebGLRenderer( { antialias: true } );
@@ -178,8 +180,8 @@ function init() {
 }
 
 function addToDOM() {
-	var container = document.getElementById('container');
-	var canvas = container.getElementsByTagName('canvas');
+	let container = document.getElementById('container');
+	let canvas = container.getElementsByTagName('canvas');
 	if (canvas.length>0) {
 		container.removeChild(canvas[0]);
 	}
@@ -192,7 +194,7 @@ function animate() {
 }
 
 function render() {
-	var delta = clock.getDelta();
+	let delta = clock.getDelta();
 	cameraControls.update(delta);
 
 	renderer.render(scene, camera);
@@ -205,7 +207,7 @@ try {
 	addToDOM();
 	animate();
 } catch(e) {
-	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	let errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
 	$('#container').append(errorReport+e);
 }
 
