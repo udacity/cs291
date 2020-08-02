@@ -49,7 +49,7 @@ function init() {
 }
 
 function createBall() {
-	let material = new THREE.MeshLambertMaterial( { color: 0x80FC66, shading: THREE.FlatShading } );
+	let material = new THREE.MeshLambertMaterial( { color: 0x80FC66} );
 	let ka = 0.4;
 	material.ambient.setRGB( material.color.r * ka, material.color.g * ka, material.color.b * ka );
 	let sphere = new THREE.Mesh(
