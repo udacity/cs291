@@ -4,49 +4,49 @@
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, Coordinates, $, document, window, dat*/
 
-var camera, scene, renderer;
-var cameraControls, effectController;
-var clock = new THREE.Clock();
-var gridX = true;
-var gridY = false;
-var gridZ = false;
-var axes = true;
-var ground = true;
-var arm, forearm, body, handLeft, handRight;
+let camera, scene, renderer;
+let cameraControls, effectController;
+let clock = new THREE.Clock();
+let gridX = true;
+let gridY = false;
+let gridZ = false;
+let axes = true;
+let ground = true;
+let arm, forearm, body, handLeft, handRight;
 
 function fillScene() {
 	scene = new THREE.Scene();
 	scene.fog = new THREE.Fog( 0x808080, 2000, 4000 );
 
 	// LIGHTS
-	var ambientLight = new THREE.AmbientLight( 0x222222 );
-	var light = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
+	let ambientLight = new THREE.AmbientLight( 0x222222 );
+	let light = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
 	light.position.set( 200, 400, 500 );
-	var light2 = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
+	let light2 = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
 	light2.position.set( -500, 250, -200 );
 	scene.add(ambientLight);
 	scene.add(light);
 	scene.add(light2);
 
 	// Robot definitions
-	var robotHandLeftMaterial = new THREE.MeshPhongMaterial( { color: 0xCC3399, specular: 0xCC3399, shininess: 20 } );
-	var robotHandRightMaterial = new THREE.MeshPhongMaterial( { color: 0xDD3388, specular: 0xDD3388, shininess: 20 } );
-	var robotBaseMaterial = new THREE.MeshPhongMaterial( { color: 0x6E23BB, specular: 0x6E23BB, shininess: 20 } );
-	var robotForearmMaterial = new THREE.MeshPhongMaterial( { color: 0xF4C154, specular: 0xF4C154, shininess: 100 } );
-	var robotUpperArmMaterial = new THREE.MeshPhongMaterial( { color: 0x95E4FB, specular: 0x95E4FB, shininess: 100 } );
+	let robotHandLeftMaterial = new THREE.MeshPhongMaterial( { color: 0xCC3399, specular: 0xCC3399, shininess: 20 } );
+	let robotHandRightMaterial = new THREE.MeshPhongMaterial( { color: 0xDD3388, specular: 0xDD3388, shininess: 20 } );
+	let robotBaseMaterial = new THREE.MeshPhongMaterial( { color: 0x6E23BB, specular: 0x6E23BB, shininess: 20 } );
+	let robotForearmMaterial = new THREE.MeshPhongMaterial( { color: 0xF4C154, specular: 0xF4C154, shininess: 100 } );
+	let robotUpperArmMaterial = new THREE.MeshPhongMaterial( { color: 0x95E4FB, specular: 0x95E4FB, shininess: 100 } );
 
-	var torus = new THREE.Mesh(
+	let torus = new THREE.Mesh(
 		new THREE.TorusGeometry( 22, 15, 32, 32 ), robotBaseMaterial );
 	torus.rotation.x = 90 * Math.PI/180;
 	scene.add( torus );
 
 	forearm = new THREE.Object3D();
-	var faLength = 80;
+	let faLength = 80;
 
 	createRobotExtender( forearm, faLength, robotForearmMaterial );
 
 	arm = new THREE.Object3D();
-	var uaLength = 120;
+	let uaLength = 120;
 
 	createRobotCrane( arm, uaLength, robotUpperArmMaterial );
 
@@ -56,7 +56,7 @@ function fillScene() {
 
 	scene.add( arm );
 
-	var handLength = 38;
+	let handLength = 38;
 
 	handLeft = new THREE.Object3D();
 	createRobotGrabber( handLeft, handLength, robotHandLeftMaterial );
@@ -71,7 +71,7 @@ function fillScene() {
 
 function createRobotGrabber( part, length, material )
 {
-	var box = new THREE.Mesh(
+	let box = new THREE.Mesh(
 		new THREE.CubeGeometry( 30, length, 4 ), material );
 	box.position.y = length/2;
 	part.add( box );
@@ -79,14 +79,14 @@ function createRobotGrabber( part, length, material )
 
 function createRobotExtender( part, length, material )
 {
-	var cylinder = new THREE.Mesh(
+	let cylinder = new THREE.Mesh(
 		new THREE.CylinderGeometry( 22, 22, 6, 32 ), material );
 	part.add( cylinder );
 
-	var i;
+	let i;
 	for ( i = 0; i < 4; i++ )
 	{
-		var box = new THREE.Mesh(
+		let box = new THREE.Mesh(
 			new THREE.CubeGeometry( 4, length, 4 ), material );
 		box.position.x = (i < 2) ? -8 : 8;
 		box.position.y = length/2;
@@ -103,12 +103,12 @@ function createRobotExtender( part, length, material )
 
 function createRobotCrane( part, length, material )
 {
-	var box = new THREE.Mesh(
+	let box = new THREE.Mesh(
 		new THREE.CubeGeometry( 18, length, 18 ), material );
 	box.position.y = length/2;
 	part.add( box );
 
-	var sphere = new THREE.Mesh(
+	let sphere = new THREE.Mesh(
 		new THREE.SphereGeometry( 20, 32, 16 ), material );
 	// place sphere at end of arm
 	sphere.position.y = length;
@@ -116,12 +116,12 @@ function createRobotCrane( part, length, material )
 }
 
 function init() {
-	var canvasWidth = 846;
-	var canvasHeight = 494;
+	let canvasWidth = 846;
+	let canvasHeight = 494;
 	// For grading the window is fixed in size; here's general code:
-	//var canvasWidth = window.innerWidth;
-	//var canvasHeight = window.innerHeight;
-	var canvasRatio = canvasWidth / canvasHeight;
+	//let canvasWidth = window.innerWidth;
+	//let canvasHeight = window.innerHeight;
+	let canvasRatio = canvasWidth / canvasHeight;
 
 	// RENDERER
 	renderer = new THREE.WebGLRenderer( { antialias: true } );
@@ -141,8 +141,8 @@ function init() {
 }
 
 function addToDOM() {
-	var container = document.getElementById('container');
-	var canvas = container.getElementsByTagName('canvas');
+	let container = document.getElementById('container');
+	let canvas = container.getElementsByTagName('canvas');
 	if (canvas.length>0) {
 		container.removeChild(canvas[0]);
 	}
@@ -173,7 +173,7 @@ function animate() {
 }
 
 function render() {
-	var delta = clock.getDelta();
+	let delta = clock.getDelta();
 	cameraControls.update(delta);
 
 	if ( effectController.newGridX !== gridX || effectController.newGridY !== gridY || effectController.newGridZ !== gridZ || effectController.newGround !== ground || effectController.newAxes !== axes)
@@ -221,8 +221,8 @@ function setupGui() {
 		htz: 12.0
 	};
 
-	var gui = new dat.GUI();
-	var h = gui.addFolder("Grid display");
+	let gui = new dat.GUI();
+	let h = gui.addFolder("Grid display");
 	h.add( effectController, "newGridX").name("Show XZ grid");
 	h.add( effectController, "newGridY" ).name("Show YZ grid");
 	h.add( effectController, "newGridZ" ).name("Show XY grid");
@@ -245,6 +245,6 @@ try {
 	setupGui();
 	animate();
 } catch(e) {
-	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	let errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
 	$('#container').append(errorReport+e);
 }

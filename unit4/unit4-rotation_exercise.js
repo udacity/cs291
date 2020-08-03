@@ -4,46 +4,46 @@
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, Coordinates, document, window, dat, $*/
 
-var camera, scene, renderer;
-var cameraControls, effectController;
-var clock = new THREE.Clock();
-var gridX = false;
-var gridY = false;
-var gridZ = false;
-var axes = true;
-var ground = true;
+let camera, scene, renderer;
+let cameraControls, effectController;
+let clock = new THREE.Clock();
+let gridX = false;
+let gridY = false;
+let gridZ = false;
+let axes = true;
+let ground = true;
 
 function fillScene() {
 	scene = new THREE.Scene();
 	scene.fog = new THREE.Fog( 0x808080, 2000, 4000 );
 
 	// LIGHTS
-	var ambientLight = new THREE.AmbientLight( 0x222222 );
+	let ambientLight = new THREE.AmbientLight( 0x222222 );
 
-	var light = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
+	let light = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
 	light.position.set( 200, 400, 500 );
 
-	var light2 = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
+	let light2 = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
 	light2.position.set( -500, 250, -200 );
 
 	scene.add(ambientLight);
 	scene.add(light);
 	scene.add(light2);
 
-	var faceMaterial = new THREE.MeshLambertMaterial( { color: 0xFFECA9 } );
-	var markMaterial = new THREE.MeshLambertMaterial( { color: 0x89581F } );
-	var mark12Material = new THREE.MeshLambertMaterial( { color: 0xE6880E } );
-	var handMaterial = new THREE.MeshLambertMaterial( { color: 0x226894 } );
+	let faceMaterial = new THREE.MeshLambertMaterial( { color: 0xFFECA9 } );
+	let markMaterial = new THREE.MeshLambertMaterial( { color: 0x89581F } );
+	let mark12Material = new THREE.MeshLambertMaterial( { color: 0xE6880E } );
+	let handMaterial = new THREE.MeshLambertMaterial( { color: 0x226894 } );
 
 	// clock
-	var clock = new THREE.Mesh(
+	let clock = new THREE.Mesh(
 		new THREE.CylinderGeometry( 75, 75, 10, 32 ), faceMaterial );
 		//new THREE.CubeGeometry( 150, 5, 150 ), faceMaterial );
 	clock.position.y = 5;
 	scene.add( clock );
 
 	// marks
-	var cube = new THREE.Mesh(
+	let cube = new THREE.Mesh(
 		new THREE.CubeGeometry( 20, 4, 15 ), mark12Material );
 	cube.position.x = 60;
 	cube.position.y = 9;
@@ -97,12 +97,12 @@ function drawHelpers() {
 
 
 function init() {
-	var canvasWidth = 846;
-	var canvasHeight = 494;
+	let canvasWidth = 846;
+	let canvasHeight = 494;
 	// For grading the window is fixed in size; here's general code:
-	//var canvasWidth = window.innerWidth;
-	//var canvasHeight = window.innerHeight;
-	var canvasRatio = canvasWidth / canvasHeight;
+	//let canvasWidth = window.innerWidth;
+	//let canvasHeight = window.innerHeight;
+	let canvasRatio = canvasWidth / canvasHeight;
 
 	// RENDERER
 	renderer = new THREE.WebGLRenderer( { antialias: true } );
@@ -123,8 +123,8 @@ function init() {
 }
 
 function addToDOM() {
-	var container = document.getElementById('container');
-	var canvas = container.getElementsByTagName('canvas');
+	let container = document.getElementById('container');
+	let canvas = container.getElementsByTagName('canvas');
 	if (canvas.length>0) {
 		container.removeChild(canvas[0]);
 	}
@@ -137,7 +137,7 @@ function animate() {
 }
 
 function render() {
-	var delta = clock.getDelta();
+	let delta = clock.getDelta();
 	cameraControls.update(delta);
 
 	if ( effectController.newGridX !== gridX || effectController.newGridY !== gridY || effectController.newGridZ !== gridZ || effectController.newGround !== ground || effectController.newAxes !== axes)
@@ -165,7 +165,7 @@ function setupGui() {
 		newAxes: axes
 	};
 
-	var gui = new dat.GUI();
+	let gui = new dat.GUI();
 	gui.add( effectController, "newGridX").name("Show XZ grid");
 	gui.add( effectController, "newGridY" ).name("Show YZ grid");
 	gui.add( effectController, "newGridZ" ).name("Show XY grid");
@@ -181,7 +181,7 @@ try {
 	addToDOM();
 	animate();
 } catch(e) {
-	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	let errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
 	$('#container').append(errorReport+e);
 }
 
