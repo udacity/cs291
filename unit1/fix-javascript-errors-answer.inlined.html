@@ -725,7 +725,7 @@ var Coordinates = {
 		var orientation = params.orientation !== undefined ? params.orientation:"x";
 		var grid = new THREE.Mesh(
 			new THREE.PlaneGeometry(size, size, size * scale, size * scale),
-			new THREE.MeshBasicMaterial({ color: 0x555555, wireframe: true }) 
+			new THREE.MeshBasicMaterial({ color: 0x555555, wireframe: true })
 			);
 		// Yes, these are poorly labeled! It would be a mess to fix.
 		// What's really going on here:
@@ -773,7 +773,7 @@ var Coordinates = {
 
 		var axisMaterial = new THREE.MeshLambertMaterial({ color: 0x000000, side: THREE.DoubleSide });
 		var axis = new THREE.Mesh(
-			new THREE.CylinderGeometry(axisRadius, axisRadius, axisLength, axisTess, 1, true), 
+			new THREE.CylinderGeometry(axisRadius, axisRadius, axisLength, axisTess, 1, true),
 			axisMaterial
 			);
 		if (axisOrientation === "x") {
@@ -782,11 +782,11 @@ var Coordinates = {
 		} else if (axisOrientation === "y") {
 				axis.position.y = axisLength/2-1;
 		}
-		
+
 		scene.add( axis );
-		
+
 		var arrow = new THREE.Mesh(
-			new THREE.CylinderGeometry(0, 4*axisRadius, 8*axisRadius, axisTess, 1, true), 
+			new THREE.CylinderGeometry(0, 4*axisRadius, 8*axisRadius, axisTess, 1, true),
 			axisMaterial
 			);
 		if (axisOrientation === "x") {
@@ -812,22 +812,22 @@ var Coordinates = {
 		axisYMaterial.side = THREE.DoubleSide;
 		axisZMaterial.side = THREE.DoubleSide;
 		var axisX = new THREE.Mesh(
-			new THREE.CylinderGeometry(axisRadius, axisRadius, axisLength, axisTess, 1, true), 
+			new THREE.CylinderGeometry(axisRadius, axisRadius, axisLength, axisTess, 1, true),
 			axisXMaterial
 			);
 		var axisY = new THREE.Mesh(
-			new THREE.CylinderGeometry(axisRadius, axisRadius, axisLength, axisTess, 1, true), 
+			new THREE.CylinderGeometry(axisRadius, axisRadius, axisLength, axisTess, 1, true),
 			axisYMaterial
 			);
 		var axisZ = new THREE.Mesh(
-			new THREE.CylinderGeometry(axisRadius, axisRadius, axisLength, axisTess, 1, true), 
+			new THREE.CylinderGeometry(axisRadius, axisRadius, axisLength, axisTess, 1, true),
 			axisZMaterial
 			);
 		axisX.rotation.z = - Math.PI / 2;
 		axisX.position.x = axisLength/2-1;
 
 		axisY.position.y = axisLength/2-1;
-		
+
 		axisZ.rotation.y = - Math.PI / 2;
 		axisZ.rotation.z = - Math.PI / 2;
 		axisZ.position.z = axisLength/2-1;
@@ -837,15 +837,15 @@ var Coordinates = {
 		scene.add( axisZ );
 
 		var arrowX = new THREE.Mesh(
-			new THREE.CylinderGeometry(0, 4*axisRadius, 4*axisRadius, axisTess, 1, true), 
+			new THREE.CylinderGeometry(0, 4*axisRadius, 4*axisRadius, axisTess, 1, true),
 			axisXMaterial
 			);
 		var arrowY = new THREE.Mesh(
-			new THREE.CylinderGeometry(0, 4*axisRadius, 4*axisRadius, axisTess, 1, true), 
+			new THREE.CylinderGeometry(0, 4*axisRadius, 4*axisRadius, axisTess, 1, true),
 			axisYMaterial
 			);
 		var arrowZ = new THREE.Mesh(
-			new THREE.CylinderGeometry(0, 4*axisRadius, 4*axisRadius, axisTess, 1, true), 
+			new THREE.CylinderGeometry(0, 4*axisRadius, 4*axisRadius, axisTess, 1, true),
 			axisZMaterial
 			);
 		arrowX.rotation.z = - Math.PI / 2;
@@ -977,7 +977,7 @@ THREE.OrbitAndPanControls = function ( object, domElement ) {
 		// get X column of matrix
 		panOffset.set( te[0], te[1], te[2] );
 		panOffset.multiplyScalar(-distance);
-		
+
 		pan.add( panOffset );
 
 	};
@@ -990,10 +990,10 @@ THREE.OrbitAndPanControls = function ( object, domElement ) {
 		// get Y column of matrix
 		panOffset.set( te[4], te[5], te[6] );
 		panOffset.multiplyScalar(distance);
-		
+
 		pan.add( panOffset );
 	};
-	
+
 	// main entry point; pass in Vector2 of change desired in pixel space,
 	// right and down are positive
 	this.pan = function ( delta ) {
@@ -1080,7 +1080,7 @@ THREE.OrbitAndPanControls = function ( object, domElement ) {
 
 		// restrict radius to be between desired limits
 		radius = Math.max( this.minDistance, Math.min( this.maxDistance, radius ) );
-		
+
 		// move target to panned location
 		this.target.add( pan );
 
@@ -1195,7 +1195,7 @@ THREE.OrbitAndPanControls = function ( object, domElement ) {
 
 			panEnd.set( event.clientX, event.clientY );
 			panDelta.subVectors( panEnd, panStart );
-			
+
 			scope.pan( panDelta );
 
 			panStart.copy( panEnd );
@@ -1270,7 +1270,7 @@ THREE.OrbitAndPanControls = function ( object, domElement ) {
 		}
 
 	}
-	
+
 	function touchstart( event ) {
 
 		if ( scope.enabled === false ) { return; }
@@ -1364,7 +1364,7 @@ THREE.OrbitAndPanControls = function ( object, domElement ) {
 
 				panEnd.set( event.touches[ 0 ].pageX, event.touches[ 0 ].pageY );
 				panDelta.subVectors( panEnd, panStart );
-				
+
 				scope.pan( panDelta );
 
 				panStart.copy( panEnd );
