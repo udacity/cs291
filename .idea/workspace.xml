@@ -2,7 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4bfae72b-9931-41bc-b735-31f16597eb0c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.labbook/200911014827Z.md" beforeDir="false" afterPath="$PROJECT_DIR$/.labbook/200911014827Z.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index_debug.html" beforeDir="false" afterPath="$PROJECT_DIR$/index_debug.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unit4/unit4-scale_exercise.js" beforeDir="false" afterPath="$PROJECT_DIR$/unit4/scale-a-sphere.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +108,7 @@
       <workItem from="1599493226677" duration="1231000" />
       <workItem from="1599534007252" duration="1037000" />
       <workItem from="1599604181653" duration="2950000" />
-      <workItem from="1599671220278" duration="4374000" />
+      <workItem from="1599671220278" duration="5655000" />
     </task>
     <task id="LOCAL-00001" summary="fix-javascript-errors.html">
       <created>1595387920682</created>
@@ -365,7 +369,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599789168126</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Catching up.  inlined through rotate-a-block.html">
+      <created>1599789224854</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1599789224854</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -406,10 +417,10 @@
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
     <state x="419" y="180" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1044@0.0.1920.1044" timestamp="1599788999309" />
-    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2" timestamp="1599789168054">
+    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2" timestamp="1599789224766">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2/0.0.1920.1044@0.0.1920.1044" timestamp="1599789168054" />
+    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2/0.0.1920.1044@0.0.1920.1044" timestamp="1599789224766" />
     <state x="100" y="100" width="1720" height="844" key="DiffContextDialog" timestamp="1596424896290">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
@@ -482,10 +493,10 @@
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
     <state x="707" y="204" key="RollbackChangesDialog/0.0.1920.1044@0.0.1920.1044" timestamp="1596424700408" />
-    <state x="556" y="256" key="Vcs.Push.Dialog.v2" timestamp="1599789169869">
+    <state x="556" y="256" key="Vcs.Push.Dialog.v2" timestamp="1599789226259">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state x="556" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1044@0.0.1920.1044" timestamp="1599789169869" />
+    <state x="556" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1044@0.0.1920.1044" timestamp="1599789226259" />
     <state x="754" y="435" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595387893540">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
