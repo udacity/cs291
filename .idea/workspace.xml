@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4bfae72b-9931-41bc-b735-31f16597eb0c" name="Default Changelist" comment="Build a snowman.">
-      <change afterPath="$PROJECT_DIR$/unit4/build-a-snowman-answer.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/unit4/build-a-snowman-answer.inlined.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/unit4/build-a-snowman-answer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/unit4/build-a-snowman.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/unit4/build-a-snowman.js" afterDir="false" />
+    <list default="true" id="4bfae72b-9931-41bc-b735-31f16597eb0c" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.labbook/200915031421Z.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unit3/diffuse-material-answer.inlined.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unit3/smooth-lambert-answer.inlined.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unit3/vertex-attributes-answer.inlined.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unit4/robot-arm-extended.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unit4/two-clock-hands-answer.inlined.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.labbook/200911014827Z.md" beforeDir="false" afterPath="$PROJECT_DIR$/.labbook/200911014827Z.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index_debug.html" beforeDir="false" afterPath="$PROJECT_DIR$/index_debug.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unit4/clock-exercise-answer.html" beforeDir="false" afterPath="$PROJECT_DIR$/unit4/two-clock-hands-answer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unit4/clock-exercise-answer.js" beforeDir="false" afterPath="$PROJECT_DIR$/unit4/two-clock-hands.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unit4/clock-exercise.html" beforeDir="false" afterPath="$PROJECT_DIR$/unit4/two-clock-hands.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unit4/clock-exercise.js" beforeDir="false" afterPath="$PROJECT_DIR$/unit4/two-clock-hands-answer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unit4/unit4-robot_arm_extended_exercise.js" beforeDir="false" afterPath="$PROJECT_DIR$/unit4/robot-arm-extended.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,7 +48,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/unit2" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../pflager.net" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -53,29 +61,37 @@
       <recent name="$PROJECT_DIR$/unit1" />
     </key>
   </component>
-  <component name="RunManager" selected="JavaScript Debug.build-a-snowman-answer.html">
-    <configuration name="build-a-snowman-answer.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/cs291/unit4/build-a-snowman-answer.html" useBuiltInWebServerPort="true">
+  <component name="RunManager" selected="Shell Script.newmd.bash">
+    <configuration name="robot-arm-extended.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/cs291/unit4/robot-arm-extended.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="build-a-snowman.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/cs291/unit4/build-a-snowman.html" useBuiltInWebServerPort="true">
+    <configuration name="two-clock-hands-answer.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/cs291/unit4/two-clock-hands-answer.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="clock-exercise-answer.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/cs291/unit4/clock-exercise-answer.html" useBuiltInWebServerPort="true">
+    <configuration name="two-clock-hands-answer.inlined.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/cs291/unit4/two-clock-hands-answer.inlined.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="scale-a-sphere-answer.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/cs291/unit4/scale-a-sphere-answer.html" useBuiltInWebServerPort="true">
+    <configuration name="two-clock-hands.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/cs291/unit4/two-clock-hands.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="scale-a-sphere.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/cs291/unit4/scale-a-sphere.html" useBuiltInWebServerPort="true">
+    <configuration name="newmd.bash" type="ShConfigurationType" temporary="true">
+      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
+      <option name="SCRIPT_PATH" value="$PROJECT_DIR$/.labbook/newmd.bash" />
+      <option name="SCRIPT_OPTIONS" value="" />
+      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
+      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$/.labbook" />
+      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="INTERPRETER_OPTIONS" value="" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JavaScript Debug.build-a-snowman-answer.html" />
-        <item itemvalue="JavaScript Debug.build-a-snowman.html" />
-        <item itemvalue="JavaScript Debug.scale-a-sphere-answer.html" />
-        <item itemvalue="JavaScript Debug.scale-a-sphere.html" />
-        <item itemvalue="JavaScript Debug.clock-exercise-answer.html" />
+        <item itemvalue="Shell Script.newmd.bash" />
+        <item itemvalue="JavaScript Debug.two-clock-hands-answer.inlined.html" />
+        <item itemvalue="JavaScript Debug.two-clock-hands-answer.html" />
+        <item itemvalue="JavaScript Debug.two-clock-hands.html" />
+        <item itemvalue="JavaScript Debug.robot-arm-extended.html" />
       </list>
     </recent_temporary>
   </component>
@@ -102,7 +118,7 @@
       <workItem from="1599493226677" duration="1231000" />
       <workItem from="1599534007252" duration="1037000" />
       <workItem from="1599604181653" duration="2950000" />
-      <workItem from="1599671220278" duration="9192000" />
+      <workItem from="1599671220278" duration="15152000" />
     </task>
     <task id="LOCAL-00001" summary="fix-javascript-errors.html">
       <created>1595387920682</created>
@@ -384,7 +400,14 @@
       <option name="project" value="LOCAL" />
       <updated>1599867865631</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Build a snowman.">
+      <created>1599874220198</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1599874220198</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -393,7 +416,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Do vertex order and vertex order answer." />
     <MESSAGE value="polygon-creation-answer works." />
     <MESSAGE value="polygon location start" />
     <MESSAGE value="polygon location works" />
@@ -418,21 +440,26 @@
     <MESSAGE value="Revisiting all exercises" />
     <MESSAGE value="Catching up.  inlined through rotate-a-block.html" />
     <MESSAGE value="Exercise &quot;Scale a Sphere&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Exercise &quot;Scale a Sphere&quot;" />
+    <MESSAGE value="Build a snowman." />
+    <option name="LAST_COMMIT_MESSAGE" value="Build a snowman." />
   </component>
   <component name="WindowStateProjectService">
-    <state x="419" y="180" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1599788999309">
+    <state x="419" y="180" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600137359314">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state x="419" y="180" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1044@0.0.1920.1044" timestamp="1599788999309" />
-    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2" timestamp="1599874181563">
+    <state x="419" y="180" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1044@0.0.1920.1044" timestamp="1600137359314" />
+    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2" timestamp="1599874220075">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2/0.0.1920.1044@0.0.1920.1044" timestamp="1599874181563" />
+    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2/0.0.1920.1044@0.0.1920.1044" timestamp="1599874220075" />
     <state x="100" y="100" width="1720" height="844" key="DiffContextDialog" timestamp="1596424896290">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
     <state x="100" y="100" width="1720" height="844" key="DiffContextDialog/0.0.1920.1044@0.0.1920.1044" timestamp="1596424896290" />
+    <state x="744" y="280" key="FileChooserDialogImpl" timestamp="1599959072527">
+      <screen x="0" y="0" width="1920" height="1044" />
+    </state>
+    <state x="744" y="280" key="FileChooserDialogImpl/0.0.1920.1044@0.0.1920.1044" timestamp="1599959072527" />
     <state width="1897" height="275" key="GridCell.Tab.0.bottom" timestamp="1596336962693">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
@@ -501,10 +528,10 @@
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
     <state x="707" y="204" key="RollbackChangesDialog/0.0.1920.1044@0.0.1920.1044" timestamp="1596424700408" />
-    <state x="556" y="256" key="Vcs.Push.Dialog.v2" timestamp="1599867867242">
+    <state x="556" y="256" key="Vcs.Push.Dialog.v2" timestamp="1599874222029">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state x="556" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1044@0.0.1920.1044" timestamp="1599867867242" />
+    <state x="556" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1044@0.0.1920.1044" timestamp="1599874222029" />
     <state x="754" y="435" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595387893540">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
