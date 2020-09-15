@@ -64,9 +64,11 @@ function fillScene() {
 	handLeft.position.y = faLength;
 	forearm.add( handLeft );
 
-	// YOUR CODE HERE
-	// Add the second grabber handRight. Note that it uses a different color, defined above
-	// ALSO EDIT render() TO ENABLE CONTROLS FOR GRABBER
+	handRight = new THREE.Object3D();
+	createRobotGrabber( handRight, handLength, robotHandRightMaterial );
+// Move the hand part to the end of the forearm.
+	handRight.position.y = faLength;
+	forearm.add( handRight );
 }
 
 function createRobotGrabber( part, length, material )
@@ -116,11 +118,13 @@ function createRobotCrane( part, length, material )
 }
 
 function init() {
-	let canvasWidth = 846;
-	let canvasHeight = 494;
-	// For grading the window is fixed in size; here's general code:
-	//let canvasWidth = window.innerWidth;
-	//let canvasHeight = window.innerHeight;
+	document.body.style.margin = "0";
+	document.body.style.padding = "0";
+	document.body.style.overflow = "hidden";
+
+	let canvasWidth = document.documentElement.clientWidth;
+	let canvasHeight = document.documentElement.clientHeight;
+
 	let canvasRatio = canvasWidth / canvasHeight;
 
 	// RENDERER
@@ -197,7 +201,10 @@ function render() {
 	// ADD handRight yaw AND translate HERE
 	handLeft.rotation.z = effectController.hz * Math.PI/180;	// yaw
 	handLeft.position.z = effectController.htz;	// translate
-
+// solution
+	handRight.rotation.z = effectController.hz * Math.PI/180;    // yaw
+// negate to go the other direction
+	handRight.position.z = -effectController.htz;    // translate
 	renderer.render(scene, camera);
 }
 
