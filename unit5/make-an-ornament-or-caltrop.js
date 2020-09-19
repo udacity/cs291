@@ -4,52 +4,52 @@
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, Coordinates, document, window, dat*/
 
-var camera, scene, renderer;
-var cameraControls, effectController;
-var clock = new THREE.Clock();
-var bCube = true;
-var gridX = false;
-var gridY = false;
-var gridZ = false;
-var axes = true;
-var ground = false;
+let camera, scene, renderer;
+let cameraControls, effectController;
+let clock = new THREE.Clock();
+let bCube = true;
+let gridX = false;
+let gridY = false;
+let gridZ = false;
+let axes = true;
+let ground = false;
 
 function fillScene() {
 	scene = new THREE.Scene();
 	scene.fog = new THREE.Fog( 0x808080, 2000, 4000 );
 
 	// LIGHTS
-	var ambientLight = new THREE.AmbientLight( 0x222222 );
+	let ambientLight = new THREE.AmbientLight( 0x222222 );
 
-	var light = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
+	let light = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
 	light.position.set( 200, 400, 500 );
 
-	var light2 = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
+	let light2 = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
 	light2.position.set( -500, 250, -200 );
 
 	scene.add(ambientLight);
 	scene.add(light);
 	scene.add(light2);
 
-	var cylinderMaterial = new THREE.MeshPhongMaterial( { color: 0xD1F5FD, specular: 0xD1F5FD, shininess: 100 } );
+	let cylinderMaterial = new THREE.MeshPhongMaterial( { color: 0xD1F5FD, specular: 0xD1F5FD, shininess: 100 } );
 
 	// get two diagonally-opposite corners of the cube and compute the
 	// cylinder axis direction and length
-	var maxCorner = new THREE.Vector3(  1, 1, 1 );
-	var minCorner = new THREE.Vector3( -1,-1,-1 );
+	let maxCorner = new THREE.Vector3(  1, 1, 1 );
+	let minCorner = new THREE.Vector3( -1,-1,-1 );
 	// note how you can chain one operation on to another:
-	var cylAxis = new THREE.Vector3().subVectors( maxCorner, minCorner );
-	var cylLength = cylAxis.length();
+	let cylAxis = new THREE.Vector3().subVectors( maxCorner, minCorner );
+	let cylLength = cylAxis.length();
 
 	// take dot product of cylAxis and up vector to get cosine of angle
 	cylAxis.normalize();
-	var theta = Math.acos( cylAxis.dot( new THREE.Vector3(0,1,0) ) );
+	let theta = Math.acos( cylAxis.dot( new THREE.Vector3(0,1,0) ) );
 	// or just simply theta = Math.acos( cylAxis.y );
 
 	// YOUR CODE HERE
-	var cylinder = new THREE.Mesh(
+	let cylinder = new THREE.Mesh(
 		new THREE.CylinderGeometry( 0.2, 0.2, cylLength, 32 ), cylinderMaterial );
-	var rotationAxis = new THREE.Vector3(1,0,-1);
+	let rotationAxis = new THREE.Vector3(1,0,-1);
 	// makeRotationAxis wants its axis normalized
 	rotationAxis.normalize();
 	// don't use position, rotation, scale
@@ -77,21 +77,23 @@ function drawHelpers() {
 	}
 
 	if (bCube) {
-		var cubeMaterial = new THREE.MeshLambertMaterial(
+		let cubeMaterial = new THREE.MeshLambertMaterial(
 			{ color: 0xFFFFFF, opacity: 0.7, transparent: true } );
-		var cube = new THREE.Mesh(
+		let cube = new THREE.Mesh(
 			new THREE.CubeGeometry( 2, 2, 2 ), cubeMaterial );
 		scene.add( cube );
 	}
 }
 
 function init() {
-	var canvasWidth = 846;
-	var canvasHeight = 494;
-	// For grading the window is fixed in size; here's general code:
-	//var canvasWidth = window.innerWidth;
-	//var canvasHeight = window.innerHeight;
-	var canvasRatio = canvasWidth / canvasHeight;
+	document.body.style.margin = "0";
+	document.body.style.padding = "0";
+	document.body.style.overflow = "hidden";
+
+	let canvasWidth = document.documentElement.clientWidth;
+	let canvasHeight = document.documentElement.clientHeight;
+
+	let canvasRatio = canvasWidth / canvasHeight;
 
 	// RENDERER
 	renderer = new THREE.WebGLRenderer( { antialias: true } );
@@ -100,7 +102,7 @@ function init() {
 	renderer.setSize(canvasWidth, canvasHeight);
 	renderer.setClearColorHex( 0xAAAAAA, 1.0 );
 
-	var container = document.getElementById('container');
+	let container = document.getElementById('container');
 	container.appendChild( renderer.domElement );
 
 	// CAMERA
@@ -113,8 +115,8 @@ function init() {
 }
 
 function addToDOM() {
-	var container = document.getElementById('container');
-	var canvas = container.getElementsByTagName('canvas');
+	let container = document.getElementById('container');
+	let canvas = container.getElementsByTagName('canvas');
 	if (canvas.length>0) {
 		container.removeChild(canvas[0]);
 	}
@@ -127,7 +129,7 @@ function animate() {
 }
 
 function render() {
-	var delta = clock.getDelta();
+	let delta = clock.getDelta();
 	cameraControls.update(delta);
 
 	if ( effectController.newCube !== bCube || effectController.newGridX !== gridX || effectController.newGridY !== gridY || effectController.newGridZ !== gridZ || effectController.newGround !== ground || effectController.newAxes !== axes)
@@ -159,7 +161,7 @@ function setupGui() {
 		newAxes: axes
 	};
 
-	var gui = new dat.GUI();
+	let gui = new dat.GUI();
 	gui.add( effectController, "newCube").name("Show cube");
 	gui.add( effectController, "newGridX").name("Show XZ grid");
 	gui.add( effectController, "newGridY" ).name("Show YZ grid");
@@ -176,7 +178,7 @@ try {
 	addToDOM();
 	animate();
 } catch(e) {
-	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	let errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
 	$('#container').append(errorReport+e);
 }
 
