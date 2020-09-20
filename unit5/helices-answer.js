@@ -1,0 +1,324 @@
+"use strict"; // good practice - see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Strict_mode
+////////////////////////////////////////////////////////////////////////////////
+// Helix: replace spheres with capsules (cheese logs)
+// Your task is to modify the createHelix function
+////////////////////////////////////////////////////////////////////////////////
+/*global THREE, Coordinates, document, window, dat, $*/
+
+let camera, scene, renderer;
+let cameraControls, effectController;
+let clock = new THREE.Clock();
+let gridX = true;
+let gridY = false;
+let gridZ = false;
+let axes = true;
+let ground = true;
+
+/**
+* Returns a THREE.Object3D helix going from top to bottom positions
+* @param material - THREE.Material
+* @param radius - radius of helix itself
+* @param tube - radius of tube
+* @param radialSegments - number of capsules around a full circle
+* @param tubularSegments - tessellation around equator of each tube
+* @param height - height to extend, from *center* of tube ends along Y axis
+* @param arc - how many times to go around the Y axis; currently just an integer
+* @param clockwise - if true, go counterclockwise up the axis
+*/
+function createHelix( material, radius, tube, radialSegments, tubularSegments, height, arc, clockwise )
+{
+	let helix = new THREE.Object3D();
+	let bottom = new THREE.Vector3();
+	let top = new THREE.Vector3();
+	let openBottom = false;
+	let openTop = false;
+	let sine_sign = clockwise ? 1 : -1;
+	bottom.set( radius, -height/2, 0 );
+	for ( let i = 1; i <= arc*radialSegments ; i++ )
+	{
+		// going from X to Z axis
+		top.set( radius * Math.cos( i * 2*Math.PI / radialSegments ),
+			height * (i/(arc*radialSegments)) - height/2,
+			sine_sign * radius * Math.sin( i * 2*Math.PI / radialSegments ) );
+		let capsule = createCapsule( material, tube, top, bottom, tubularSegments, openTop, openBottom );
+		helix.add( capsule );
+		// after first capsule is laid down, don't need to draw sphere for bottom.
+		openBottom = true;
+		// make top of previous capsule the bottom of the next one
+		bottom.copy( top );
+	}
+	return helix;
+}
+
+/**
+* Returns a THREE.Object3D cylinder and spheres going from top to bottom positions
+* @param material - THREE.Material
+* @param radius - the radius of the capsule's cylinder
+* @param top, bottom - THREE.Vector3, top and bottom positions of cone
+* @param segmentsWidth - tessellation around equator, like radiusSegments in CylinderGeometry
+* @param openTop, openBottom - whether the end is given a sphere; true means they are not
+*/
+function createCapsule( material, radius, top, bottom, segmentsWidth, openTop, openBottom )
+{
+	// defaults
+	segmentsWidth = (segmentsWidth === undefined) ? 32 : segmentsWidth;
+	openTop = (openTop === undefined) ? false : openTop;
+	openBottom = (openBottom === undefined) ? false : openBottom;
+
+	// get cylinder height
+	let cylAxis = new THREE.Vector3();
+	cylAxis.subVectors( top, bottom );
+	let length = cylAxis.length();
+
+	// get cylinder center for translation
+	let center = new THREE.Vector3();
+	center.addVectors( top, bottom );
+	center.divideScalar( 2.0 );
+
+	// always open-ended
+	let cylGeom = new THREE.CylinderGeometry( radius, radius, length, segmentsWidth, 1, 1 );
+	let cyl = new THREE.Mesh( cylGeom, material );
+
+	// pass in the cylinder itself, its desired axis, and the place to move the center.
+	makeLengthAngleAxisTransform( cyl, cylAxis, center );
+
+	let capsule = new THREE.Object3D();
+	capsule.add( cyl );
+	if ( !openTop || !openBottom ) {
+		// instance geometry
+		let sphGeom = new THREE.SphereGeometry( radius, segmentsWidth, segmentsWidth/2 );
+		if ( !openTop ) {
+			let sphTop = new THREE.Mesh( sphGeom, material );
+			sphTop.position.set( top.x, top.y, top.z );
+			capsule.add( sphTop );
+		}
+		if ( !openBottom ) {
+			let sphBottom = new THREE.Mesh( sphGeom, material );
+			sphBottom.position.set( bottom.x, bottom.y, bottom.z );
+			capsule.add( sphBottom );
+		}
+	}
+
+	return capsule;
+}
+
+// Transform cylinder to align with given axis and then move to center
+function makeLengthAngleAxisTransform( cyl, cylAxis, center )
+{
+	cyl.matrixAutoUpdate = false;
+
+	// From left to right using frames: translate, then rotate; TR.
+	// So translate is first.
+	cyl.matrix.makeTranslation( center.x, center.y, center.z );
+
+	// take cross product of cylAxis and up vector to get axis of rotation
+	let yAxis = new THREE.Vector3(0,1,0);
+	// Needed later for dot product, just do it now;
+	// a little lazy, should really copy it to a local Vector3.
+	cylAxis.normalize();
+	let rotationAxis = new THREE.Vector3();
+	rotationAxis.crossVectors( cylAxis, yAxis );
+	if ( rotationAxis.length() < 0.000001 )
+	{
+		// Special case: if rotationAxis is just about zero, set to X axis,
+		// so that the angle can be given as 0 or PI. This works ONLY
+		// because we know one of the two axes is +Y.
+		rotationAxis.set( 1, 0, 0 );
+	}
+	rotationAxis.normalize();
+
+	// take dot product of cylAxis and up vector to get cosine of angle of rotation
+	let theta = -Math.acos( cylAxis.dot( yAxis ) );
+	//cyl.matrix.makeRotationAxis( rotationAxis, theta );
+	let rotMatrix = new THREE.Matrix4();
+	rotMatrix.makeRotationAxis( rotationAxis, theta );
+	cyl.matrix.multiply( rotMatrix );
+}
+
+function fillScene() {
+	scene = new THREE.Scene();
+	scene.fog = new THREE.Fog( 0x808080, 2000, 4000 );
+
+	// LIGHTS
+	let ambientLight = new THREE.AmbientLight( 0x222222 );
+
+	let light = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
+	light.position.set( 200, 400, 500 );
+
+	let light2 = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
+	light2.position.set( -500, 250, -200 );
+
+	scene.add(ambientLight);
+	scene.add(light);
+	scene.add(light2);
+
+	// TEST MATERIALS AND OBJECTS
+	let redMaterial = new THREE.MeshLambertMaterial( { color: 0xFF0000 } );
+	let greenMaterial = new THREE.MeshLambertMaterial( { color: 0x00FF00 } );
+	let blueMaterial = new THREE.MeshLambertMaterial( { color: 0x0000FF } );
+	let grayMaterial = new THREE.MeshLambertMaterial( { color: 0x808080 } );
+
+	let yellowMaterial = new THREE.MeshLambertMaterial( { color: 0xFFFF00 } );
+	let cyanMaterial = new THREE.MeshLambertMaterial( { color: 0x00FFFF } );
+	let magentaMaterial = new THREE.MeshLambertMaterial( { color: 0xFF00FF } );
+
+	let radius = 60;
+	let tube = 10;
+	let radialSegments = 24;
+	let height = 300;
+	let segmentsWidth = 12;
+	let arc = 2;
+
+	let helix;
+	helix = createHelix( redMaterial, radius, tube, radialSegments, segmentsWidth, height, arc, true );
+	helix.position.y = height/2;
+	scene.add( helix );
+
+	helix = createHelix( greenMaterial, radius/2, tube, radialSegments, segmentsWidth, height, arc, false );
+	helix.position.y = height/2;
+	scene.add( helix );
+
+	// DNA
+	helix = createHelix( blueMaterial, radius, tube/2, radialSegments, segmentsWidth, height, arc, false );
+	helix.position.y = height/2;
+	helix.position.z = 2.5 * radius;
+	scene.add( helix );
+
+	helix = createHelix( blueMaterial, radius, tube/2, radialSegments, segmentsWidth, height, arc, false );
+	helix.rotation.y = 120 * Math.PI / 180;
+	helix.position.y = height/2;
+	helix.position.z = 2.5 * radius;
+	scene.add( helix );
+
+	helix = createHelix( grayMaterial, radius, tube/2, radialSegments, segmentsWidth, height/2, arc, true );
+	helix.position.y = height/2;
+	helix.position.x = 2.5 * radius;
+	scene.add( helix );
+
+	helix = createHelix( yellowMaterial, 0.75*radius, tube/2, radialSegments, segmentsWidth, height, 4*arc, false );
+	helix.position.y = height/2;
+	helix.position.x = 2.5 * radius;
+	helix.position.z = -2.5 * radius;
+	scene.add( helix );
+
+	helix = createHelix( cyanMaterial, 0.75*radius, 4*tube, radialSegments, segmentsWidth, height, 2*arc, false );
+	helix.position.y = height/2;
+	helix.position.x = 2.5 * radius;
+	helix.position.z = 2.5 * radius;
+	scene.add( helix );
+
+	helix = createHelix( magentaMaterial, radius, tube, radialSegments, segmentsWidth, height, arc, true );
+	helix.rotation.x = 45 * Math.PI / 180;
+	helix.position.y = height/2;
+	helix.position.z = -2.5 * radius;
+	scene.add( helix );
+}
+
+function init() {
+	let canvasWidth = 846;
+	let canvasHeight = 494;
+	// For grading the window is fixed in size; here's general code:
+	//let canvasWidth = window.innerWidth;
+	//let canvasHeight = window.innerHeight;
+	let canvasRatio = canvasWidth / canvasHeight;
+
+	// RENDERER
+	renderer = new THREE.WebGLRenderer( { antialias: false } );
+	renderer.gammaInput = true;
+	renderer.gammaOutput = true;
+	renderer.setSize(canvasWidth, canvasHeight);
+	renderer.setClearColorHex( 0xAAAAAA, 1.0 );
+
+	// CAMERA
+	camera = new THREE.PerspectiveCamera( 40, canvasRatio, 1, 10000 );
+	camera.position.set( -528, 513, 92 );
+	// CONTROLS
+	cameraControls = new THREE.OrbitAndPanControls(camera, renderer.domElement);
+	cameraControls.target.set(0,200,0);
+
+}
+
+function addToDOM() {
+	let container = document.getElementById('container');
+	let canvas = container.getElementsByTagName('canvas');
+	if (canvas.length>0) {
+		container.removeChild(canvas[0]);
+	}
+	container.appendChild( renderer.domElement );
+}
+
+function drawHelpers() {
+	if (ground) {
+		Coordinates.drawGround({size:10000});
+	}
+	if (gridX) {
+		Coordinates.drawGrid({size:10000,scale:0.01});
+	}
+	if (gridY) {
+		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"y"});
+	}
+	if (gridZ) {
+		Coordinates.drawGrid({size:10000,scale:0.01, orientation:"z"});
+	}
+	if (axes) {
+		Coordinates.drawAllAxes({axisLength:200,axisRadius:1,axisTess:50});
+	}
+}
+
+function animate() {
+	window.requestAnimationFrame(animate);
+	render();
+}
+
+function render() {
+	let delta = clock.getDelta();
+	cameraControls.update(delta);
+
+	if ( effectController.newGridX !== gridX || effectController.newGridY !== gridY || effectController.newGridZ !== gridZ || effectController.newGround !== ground || effectController.newAxes !== axes)
+	{
+		gridX = effectController.newGridX;
+		gridY = effectController.newGridY;
+		gridZ = effectController.newGridZ;
+		ground = effectController.newGround;
+		axes = effectController.newAxes;
+
+		fillScene();
+		drawHelpers();
+	}
+
+	renderer.render(scene, camera);
+}
+
+
+
+function setupGui() {
+
+	effectController = {
+
+		newGridX: gridX,
+		newGridY: gridY,
+		newGridZ: gridZ,
+		newGround: ground,
+		newAxes: axes
+	};
+
+	let gui = new dat.GUI();
+	let h = gui.addFolder("Grid display");
+	h.add( effectController, "newGridX").name("Show XZ grid");
+	h.add( effectController, "newGridY" ).name("Show YZ grid");
+	h.add( effectController, "newGridZ" ).name("Show XY grid");
+	h.add( effectController, "newGround" ).name("Show ground");
+	h.add( effectController, "newAxes" ).name("Show axes");
+}
+
+try {
+	init();
+	fillScene();
+	drawHelpers();
+	setupGui();
+	addToDOM();
+	animate();
+} catch(e) {
+	let errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	$('#container').append(errorReport+e);
+}
