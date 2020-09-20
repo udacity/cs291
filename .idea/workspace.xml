@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4bfae72b-9931-41bc-b735-31f16597eb0c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.labbook/200919001208Z.md" beforeDir="false" afterPath="$PROJECT_DIR$/.labbook/200919001208Z.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unit5/cylinder-positioning-answer.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unit5/cylinder-positioning-answer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unit5/cylinder-positioning.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/unit5/cylinder-positioning.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/unit5/unit5-ps_cylinder_exercise.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,8 +52,11 @@
       <recent name="$PROJECT_DIR$/unit1" />
     </key>
   </component>
-  <component name="RunManager" selected="Node.js.make-an-ornament-or-caltrop-answer.js">
-    <configuration name="improved-petals-answer.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/cs291/unit4/improved-petals-answer.html" useBuiltInWebServerPort="true">
+  <component name="RunManager" selected="JavaScript Debug.cylinder-positioning-answer.html">
+    <configuration name="cylinder-positioning-answer.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/cs291/unit5/cylinder-positioning-answer.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="cylinder-positioning.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/cs291/unit5/cylinder-positioning.html" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
     <configuration name="make-an-ornament-or-caltrop-answer.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/cs291/unit5/make-an-ornament-or-caltrop-answer.html" useBuiltInWebServerPort="true">
@@ -60,24 +68,13 @@
     <configuration name="make-an-ornament-or-caltrop-answer.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/unit5/make-an-ornament-or-caltrop-answer.js" working-dir="$PROJECT_DIR$/unit5">
       <method v="2" />
     </configuration>
-    <configuration name="newmd.bash" type="ShConfigurationType" temporary="true">
-      <option name="INDEPENDENT_SCRIPT_PATH" value="true" />
-      <option name="SCRIPT_PATH" value="$PROJECT_DIR$/.labbook/newmd.bash" />
-      <option name="SCRIPT_OPTIONS" value="" />
-      <option name="INDEPENDENT_SCRIPT_WORKING_DIRECTORY" value="true" />
-      <option name="SCRIPT_WORKING_DIRECTORY" value="$PROJECT_DIR$/.labbook" />
-      <option name="INDEPENDENT_INTERPRETER_PATH" value="true" />
-      <option name="INTERPRETER_PATH" value="/bin/bash" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JavaScript Debug.cylinder-positioning-answer.html" />
+        <item itemvalue="JavaScript Debug.cylinder-positioning.html" />
         <item itemvalue="Node.js.make-an-ornament-or-caltrop-answer.js" />
         <item itemvalue="JavaScript Debug.make-an-ornament-or-caltrop-answer.html" />
         <item itemvalue="JavaScript Debug.make-an-ornament-or-caltrop.html" />
-        <item itemvalue="Shell Script.newmd.bash" />
-        <item itemvalue="JavaScript Debug.improved-petals-answer.html" />
       </list>
     </recent_temporary>
   </component>
@@ -104,14 +101,8 @@
       <workItem from="1599493226677" duration="1231000" />
       <workItem from="1599534007252" duration="1037000" />
       <workItem from="1599604181653" duration="2950000" />
-      <workItem from="1599671220278" duration="23796000" />
-    </task>
-    <task id="LOCAL-00001" summary="fix-javascript-errors.html">
-      <created>1595387920682</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1595387920682</updated>
+      <workItem from="1599671220278" duration="25886000" />
+      <workItem from="1600538579752" duration="1477000" />
     </task>
     <task id="LOCAL-00002" summary="fix-javascript-errors.html">
       <created>1595388012116</created>
@@ -449,7 +440,14 @@
       <option name="project" value="LOCAL" />
       <updated>1600475636817</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="finished make-an-ornament-or-caltrop-answer.inlined.html">
+      <created>1600476015385</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1600476015385</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -458,7 +456,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="var -&gt; let in drinking-bird.js" />
     <MESSAGE value="progress on drinking-bird-answer" />
     <MESSAGE value="Body is done." />
     <MESSAGE value="Head and Hat done." />
@@ -483,17 +480,18 @@
     <MESSAGE value="improved petals" />
     <MESSAGE value="without answer." />
     <MESSAGE value="Answer" />
-    <option name="LAST_COMMIT_MESSAGE" value="Answer" />
+    <MESSAGE value="finished make-an-ornament-or-caltrop-answer.inlined.html" />
+    <option name="LAST_COMMIT_MESSAGE" value="finished make-an-ornament-or-caltrop-answer.inlined.html" />
   </component>
   <component name="WindowStateProjectService">
     <state x="419" y="180" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600137359314">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
     <state x="419" y="180" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1044@0.0.1920.1044" timestamp="1600137359314" />
-    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2" timestamp="1600475636749">
+    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2" timestamp="1600476015297">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2/0.0.1920.1044@0.0.1920.1044" timestamp="1600475636749" />
+    <state x="554" y="68" width="811" height="908" key="CommitChangelistDialog2/0.0.1920.1044@0.0.1920.1044" timestamp="1600476015297" />
     <state x="100" y="100" width="1720" height="844" key="DiffContextDialog" timestamp="1596424896290">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
@@ -502,22 +500,22 @@
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
     <state x="744" y="280" key="FileChooserDialogImpl/0.0.1920.1044@0.0.1920.1044" timestamp="1599959072527" />
-    <state width="1897" height="275" key="GridCell.Tab.0.bottom" timestamp="1596336962693">
+    <state width="1874" height="275" key="GridCell.Tab.0.bottom" timestamp="1600538561083">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="275" key="GridCell.Tab.0.bottom/0.0.1920.1044@0.0.1920.1044" timestamp="1596336962693" />
-    <state width="1897" height="275" key="GridCell.Tab.0.center" timestamp="1596336962692">
+    <state width="1874" height="275" key="GridCell.Tab.0.bottom/0.0.1920.1044@0.0.1920.1044" timestamp="1600538561083" />
+    <state width="1874" height="275" key="GridCell.Tab.0.center" timestamp="1600538561083">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="275" key="GridCell.Tab.0.center/0.0.1920.1044@0.0.1920.1044" timestamp="1596336962692" />
-    <state width="1897" height="275" key="GridCell.Tab.0.left" timestamp="1596336962692">
+    <state width="1874" height="275" key="GridCell.Tab.0.center/0.0.1920.1044@0.0.1920.1044" timestamp="1600538561083" />
+    <state width="1874" height="275" key="GridCell.Tab.0.left" timestamp="1600538561083">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="275" key="GridCell.Tab.0.left/0.0.1920.1044@0.0.1920.1044" timestamp="1596336962692" />
-    <state width="1897" height="275" key="GridCell.Tab.0.right" timestamp="1596336962693">
+    <state width="1874" height="275" key="GridCell.Tab.0.left/0.0.1920.1044@0.0.1920.1044" timestamp="1600538561083" />
+    <state width="1874" height="275" key="GridCell.Tab.0.right" timestamp="1600538561083">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state width="1897" height="275" key="GridCell.Tab.0.right/0.0.1920.1044@0.0.1920.1044" timestamp="1596336962692" />
+    <state width="1874" height="275" key="GridCell.Tab.0.right/0.0.1920.1044@0.0.1920.1044" timestamp="1600538561083" />
     <state width="1897" height="311" key="GridCell.Tab.1.bottom" timestamp="1596080485732">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
@@ -570,10 +568,10 @@
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
     <state x="707" y="204" key="RollbackChangesDialog/0.0.1920.1044@0.0.1920.1044" timestamp="1596424700408" />
-    <state x="556" y="256" key="Vcs.Push.Dialog.v2" timestamp="1600474982530">
+    <state x="556" y="256" key="Vcs.Push.Dialog.v2" timestamp="1600476017670">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>
-    <state x="556" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1044@0.0.1920.1044" timestamp="1600474982530" />
+    <state x="556" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1044@0.0.1920.1044" timestamp="1600476017670" />
     <state x="754" y="435" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1595387893540">
       <screen x="0" y="0" width="1920" height="1044" />
     </state>

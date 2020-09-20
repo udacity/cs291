@@ -4,14 +4,14 @@
 // Your task is to modify the createCylinderFromEnds function
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, Coordinates, document, window, dat, $*/
-var camera, scene, renderer;
-var cameraControls, effectController;
-var clock = new THREE.Clock();
-var gridX = true;
-var gridY = false;
-var gridZ = false;
-var axes = true;
-var ground = true;
+let camera, scene, renderer;
+let cameraControls, effectController;
+let clock = new THREE.Clock();
+let gridX = true;
+let gridY = false;
+let gridZ = false;
+let axes = true;
+let ground = true;
 
 /**
 * Returns a THREE.Mesh cone (CylinderGeometry) going from top to bottom positions
@@ -28,13 +28,16 @@ function createCylinderFromEnds( material, radiusTop, radiusBottom, top, bottom,
 	openEnded = (openEnded === undefined) ? false : openEnded;
 
 	// Dummy settings, replace with proper code:
-	var length = 100;
-	var cylAxis = new THREE.Vector3(100,100,-100);
-	var center = new THREE.Vector3(-100,100,100);
-	////////////////////
+	let cylAxis = new THREE.Vector3();
+	cylAxis.subVectors(top, bottom);
+	let length = cylAxis.length();
 
-	var cylGeom = new THREE.CylinderGeometry( radiusTop, radiusBottom, length, segmentsWidth, 1, openEnded );
-	var cyl = new THREE.Mesh( cylGeom, material );
+	let center = new THREE.Vector3();
+	center.addVectors(top, bottom);
+	center.divideScalar(2.0);
+
+	let cylGeom = new THREE.CylinderGeometry( radiusTop, radiusBottom, length, segmentsWidth, 1, openEnded );
+	let cyl = new THREE.Mesh( cylGeom, material );
 
 	// pass in the cylinder itself, its desired axis, and the place to move the center.
 	makeLengthAngleAxisTransform( cyl, cylAxis, center );
@@ -52,11 +55,11 @@ function makeLengthAngleAxisTransform( cyl, cylAxis, center )
 	cyl.matrix.makeTranslation( center.x, center.y, center.z );
 
 	// take cross product of cylAxis and up vector to get axis of rotation
-	var yAxis = new THREE.Vector3(0,1,0);
+	let yAxis = new THREE.Vector3(0,1,0);
 	// Needed later for dot product, just do it now;
 	// a little lazy, should really copy it to a local Vector3.
 	cylAxis.normalize();
-	var rotationAxis = new THREE.Vector3();
+	let rotationAxis = new THREE.Vector3();
 	rotationAxis.crossVectors( cylAxis, yAxis );
 	if ( rotationAxis.length() < 0.000001 )
 	{
@@ -68,9 +71,9 @@ function makeLengthAngleAxisTransform( cyl, cylAxis, center )
 	rotationAxis.normalize();
 
 	// take dot product of cylAxis and up vector to get cosine of angle of rotation
-	var theta = -Math.acos( cylAxis.dot( yAxis ) );
+	let theta = -Math.acos( cylAxis.dot( yAxis ) );
 	//cyl.matrix.makeRotationAxis( rotationAxis, theta );
-	var rotMatrix = new THREE.Matrix4();
+	let rotMatrix = new THREE.Matrix4();
 	rotMatrix.makeRotationAxis( rotationAxis, theta );
 	cyl.matrix.multiply( rotMatrix );
 }
@@ -80,12 +83,12 @@ function fillScene() {
 	scene.fog = new THREE.Fog( 0x808080, 2000, 4000 );
 
 	// LIGHTS
-	var ambientLight = new THREE.AmbientLight( 0x222222 );
+	let ambientLight = new THREE.AmbientLight( 0x222222 );
 
-	var light = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
+	let light = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
 	light.position.set( 200, 400, 500 );
 
-	var light2 = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
+	let light2 = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
 	light2.position.set( -500, 250, -200 );
 
 	scene.add(ambientLight);
@@ -93,20 +96,20 @@ function fillScene() {
 	scene.add(light2);
 
 	// TEST MATERIALS AND OBJECTS
-	var redMaterial = new THREE.MeshLambertMaterial( { color: 0xFF0000 } );
-	var greenMaterial = new THREE.MeshLambertMaterial( { color: 0x00FF00 } );
-	var blueMaterial = new THREE.MeshLambertMaterial( { color: 0x0000FF } );
-	var grayMaterial = new THREE.MeshLambertMaterial( { color: 0x808080 } );
+	let redMaterial = new THREE.MeshLambertMaterial( { color: 0xFF0000 } );
+	let greenMaterial = new THREE.MeshLambertMaterial( { color: 0x00FF00 } );
+	let blueMaterial = new THREE.MeshLambertMaterial( { color: 0x0000FF } );
+	let grayMaterial = new THREE.MeshLambertMaterial( { color: 0x808080 } );
 
-	var yellowMaterial = new THREE.MeshLambertMaterial( { color: 0xFFFF00 } );
-	var cyanMaterial = new THREE.MeshLambertMaterial( { color: 0x00FFFF } );
-	var magentaMaterial = new THREE.MeshLambertMaterial( { color: 0xFF00FF } );
+	let yellowMaterial = new THREE.MeshLambertMaterial( { color: 0xFFFF00 } );
+	let cyanMaterial = new THREE.MeshLambertMaterial( { color: 0x00FFFF } );
+	let magentaMaterial = new THREE.MeshLambertMaterial( { color: 0xFF00FF } );
 
-	var radiusTop = 50;
-	var radiusBottom = 0;
-	var segmentsWidth = 32;
-	var openEnded = false;
-	var cylinder;
+	let radiusTop = 50;
+	let radiusBottom = 0;
+	let segmentsWidth = 32;
+	let openEnded = false;
+	let cylinder;
 
 	// along Y axis
 	cylinder = new createCylinderFromEnds( greenMaterial,
@@ -166,12 +169,14 @@ function fillScene() {
 }
 
 function init() {
-	var canvasWidth = 846;
-	var canvasHeight = 494;
-	// For grading the window is fixed in size; here's general code:
-	//var canvasWidth = window.innerWidth;
-	//var canvasHeight = window.innerHeight;
-	var canvasRatio = canvasWidth / canvasHeight;
+	document.body.style.margin = "0";
+	document.body.style.padding = "0";
+	document.body.style.overflow = "hidden";
+
+	let canvasWidth = document.documentElement.clientWidth;
+	let canvasHeight = document.documentElement.clientHeight;
+
+	let canvasRatio = canvasWidth / canvasHeight;
 
 	// RENDERER
 	renderer = new THREE.WebGLRenderer( { antialias: true } );
@@ -190,8 +195,8 @@ function init() {
 }
 
 function addToDOM() {
-	var container = document.getElementById('container');
-	var canvas = container.getElementsByTagName('canvas');
+	let container = document.getElementById('container');
+	let canvas = container.getElementsByTagName('canvas');
 	if (canvas.length>0) {
 		container.removeChild(canvas[0]);
 	}
@@ -222,7 +227,7 @@ function animate() {
 }
 
 function render() {
-	var delta = clock.getDelta();
+	let delta = clock.getDelta();
 	cameraControls.update(delta);
 
 	if ( effectController.newGridX !== gridX || effectController.newGridY !== gridY || effectController.newGridZ !== gridZ || effectController.newGround !== ground || effectController.newAxes !== axes)
@@ -253,8 +258,8 @@ function setupGui() {
 		newAxes: axes
 	};
 
-	var gui = new dat.GUI();
-	var h = gui.addFolder("Grid display");
+	let gui = new dat.GUI();
+	let h = gui.addFolder("Grid display");
 	h.add( effectController, "newGridX").name("Show XZ grid");
 	h.add( effectController, "newGridY" ).name("Show YZ grid");
 	h.add( effectController, "newGridZ" ).name("Show XY grid");
@@ -270,7 +275,7 @@ try {
 	addToDOM();
 	animate();
 } catch(e) {
-	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	let errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
 	$('#container').append(errorReport+e);
 }
 
