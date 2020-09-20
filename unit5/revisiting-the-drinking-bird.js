@@ -5,44 +5,44 @@
 ////////////////////////////////////////////////////////////////////////////////
 /*global THREE, Coordinates, document, window, dat*/
 
-var camera, scene, renderer;
-var cameraControls, effectController;
-var clock = new THREE.Clock();
-var gridX = true;
-var gridY = false;
-var gridZ = false;
-var axes = true;
-var ground = true;
+let camera, scene, renderer;
+let cameraControls, effectController;
+let clock = new THREE.Clock();
+let gridX = true;
+let gridY = false;
+let gridZ = false;
+let axes = true;
+let ground = true;
 
 function createDrinkingBird() {
 	// MATERIALS
-	var headMaterial = new THREE.MeshLambertMaterial( );
+	let headMaterial = new THREE.MeshLambertMaterial( );
 	headMaterial.color.r = 104/255;
 	headMaterial.color.g = 1/255;
 	headMaterial.color.b = 5/255;
 
-	var hatMaterial = new THREE.MeshPhongMaterial( { shininess: 100 } );
+	let hatMaterial = new THREE.MeshPhongMaterial( { shininess: 100 } );
 	hatMaterial.color.r = 24/255;
 	hatMaterial.color.g = 38/255;
 	hatMaterial.color.b = 77/255;
 	hatMaterial.specular.setRGB( 0.5, 0.5, 0.5 );
 
-	var bodyMaterial = new THREE.MeshPhongMaterial( { shininess: 100 } );
+	let bodyMaterial = new THREE.MeshPhongMaterial( { shininess: 100 } );
 	bodyMaterial.color.setRGB( 31/255, 86/255, 169/255 );
 	bodyMaterial.specular.setRGB( 0.5, 0.5, 0.5 );
 
-	var glassMaterial = new THREE.MeshPhongMaterial( { color: 0x0, specular: 0xFFFFFF, shininess: 100, opacity: 0.3, transparent: true } );
+	let glassMaterial = new THREE.MeshPhongMaterial( { color: 0x0, specular: 0xFFFFFF, shininess: 100, opacity: 0.3, transparent: true } );
 
-	var legMaterial = new THREE.MeshPhongMaterial( { shininess: 4 } );
+	let legMaterial = new THREE.MeshPhongMaterial( { shininess: 4 } );
 	legMaterial.color.setHex( 0xAdA79b );
 	legMaterial.specular.setRGB( 0.5, 0.5, 0.5 );
 
-	var footMaterial = new THREE.MeshPhongMaterial( { color: 0x960f0b, shininess: 30 } );
+	let footMaterial = new THREE.MeshPhongMaterial( { color: 0x960f0b, shininess: 30 } );
 	footMaterial.specular.setRGB( 0.5, 0.5, 0.5 );
 
-	var sphere, cylinder, cube;
+	let sphere, cylinder, cube;
 
-	var bevelRadius = 1.9;	// TODO: 2.0 causes some geometry bug.
+	let bevelRadius = 1.9;	// TODO: 2.0 causes some geometry bug.
 
 	// MODELS
 	// base
@@ -158,8 +158,8 @@ function createDrinkingBird() {
 	cylinder.position.z = 0;
 	scene.add( cylinder );
 
-	var crossbarMaterial = new THREE.MeshPhongMaterial( { color: 0x808080, specular: 0xFFFFFF, shininess: 400 } );
-	var eyeMaterial = new THREE.MeshPhongMaterial( { color: 0x000000, specular: 0x303030, shininess: 4 } );
+	let crossbarMaterial = new THREE.MeshPhongMaterial( { color: 0x808080, specular: 0xFFFFFF, shininess: 400 } );
+	let eyeMaterial = new THREE.MeshPhongMaterial( { color: 0x000000, specular: 0x303030, shininess: 4 } );
 
 	// YOUR CODE HERE
 	// Add a crossbar support, a nose, and eyes.
@@ -182,12 +182,12 @@ function fillScene() {
 	scene.fog = new THREE.Fog( 0x808080, 2000, 4000 );
 
 	// LIGHTS
-	var ambientLight = new THREE.AmbientLight( 0x222222 );
+	let ambientLight = new THREE.AmbientLight( 0x222222 );
 
-	var light = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
+	let light = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
 	light.position.set( 200, 400, 500 );
 
-	var light2 = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
+	let light2 = new THREE.DirectionalLight( 0xFFFFFF, 1.0 );
 	light2.position.set( -500, 250, -200 );
 
 	scene.add(ambientLight);
@@ -197,12 +197,14 @@ function fillScene() {
 }
 
 function init() {
-	var canvasWidth = 846;
-	var canvasHeight = 494;
-	// For grading the window is fixed in size; here's general code:
-	//var canvasWidth = window.innerWidth;
-	//var canvasHeight = window.innerHeight;
-	var canvasRatio = canvasWidth / canvasHeight;
+	document.body.style.margin = "0";
+	document.body.style.padding = "0";
+	document.body.style.overflow = "hidden";
+
+	let canvasWidth = document.documentElement.clientWidth;
+	let canvasHeight = document.documentElement.clientHeight;
+
+	let canvasRatio = canvasWidth / canvasHeight;
 
 	// RENDERER
 	renderer = new THREE.WebGLRenderer( { antialias: true } );
@@ -221,8 +223,8 @@ function init() {
 }
 
 function addToDOM() {
-	var container = document.getElementById('container');
-	var canvas = container.getElementsByTagName('canvas');
+	let container = document.getElementById('container');
+	let canvas = container.getElementsByTagName('canvas');
 	if (canvas.length>0) {
 		container.removeChild(canvas[0]);
 	}
@@ -253,7 +255,7 @@ function animate() {
 }
 
 function render() {
-	var delta = clock.getDelta();
+	let delta = clock.getDelta();
 	cameraControls.update(delta);
 
 	if ( effectController.newGridX !== gridX || effectController.newGridY !== gridY || effectController.newGridZ !== gridZ || effectController.newGround !== ground || effectController.newAxes !== axes)
@@ -284,8 +286,8 @@ function setupGui() {
 		newAxes: axes
 	};
 
-	var gui = new dat.GUI();
-	var h = gui.addFolder("Grid display");
+	let gui = new dat.GUI();
+	let h = gui.addFolder("Grid display");
 	h.add( effectController, "newGridX").name("Show XZ grid");
 	h.add( effectController, "newGridY" ).name("Show YZ grid");
 	h.add( effectController, "newGridZ" ).name("Show XY grid");
@@ -302,6 +304,6 @@ try {
 	addToDOM();
 	animate();
 } catch(e) {
-	var errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
+	let errorReport = "Your program encountered an unrecoverable error, can not draw on canvas. Error was:<br/><br/>";
 	$('#container').append(errorReport+e);
 }
